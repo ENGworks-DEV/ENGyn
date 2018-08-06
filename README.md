@@ -11,7 +11,8 @@ Graphical programing interface based on [TUM.CMS.VPLControl](https://github.com/
 * Navisworks handles reference dlls on a specific folder. Copy the content of the folder "resources" into  
 ``` C:\Program Files\Autodesk\Navisworks Manage 2019\Dependencies ```
 
-## Instalation
+## Installation
 Build the project and the Build events will copy the dlls to the right folder or copy them your self to
 
 ``` %APPDATA%\Autodesk Navisworks Manage 2019\Plugins\  ```
+
