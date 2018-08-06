@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Document GraphFlowDirection="Horizontal">
+  <Nodes>
+    <NW_GraphicPrograming.Nodes.NW_Document GUID="814b75ab-74c6-42e3-94d6-b42032b7fa2f" TOP="48.8" Left="55.800000000000011" />
+    <NW_GraphicPrograming.Nodes.NW_ClashTest GUID="f453bd89-3320-475e-bf15-59798ca405d6" TOP="199.20000000000002" Left="299.8" />
+    <NW_GraphicPrograming.Nodes.NW_ClashTest GUID="cdd51da5-8abf-472e-86d3-4c5895470a2e" TOP="137.60000000000002" Left="503" />
+  </Nodes>
+  <Connectors>
+    <TUM.CMS.VplControl.Core.Connector StartNode="814b75ab-74c6-42e3-94d6-b42032b7fa2f" StartIndex="0" EndNode="f453bd89-3320-475e-bf15-59798ca405d6" EndIndex="0" />
+    <TUM.CMS.VplControl.Core.Connector StartNode="f453bd89-3320-475e-bf15-59798ca405d6" StartIndex="0" EndNode="cdd51da5-8abf-472e-86d3-4c5895470a2e" EndIndex="0" />
+  </Connectors>
+</Document>
