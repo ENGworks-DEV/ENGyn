@@ -1,5 +1,7 @@
 # NW_GraphicPrograming
 
+Graphical programing interface based on [TUM.CMS.VPLControl](https://github.com/tumcms/TUM.CMS.VPLControl)
+
 ## Navisworks tested versions
 
 * Navisworks Manage 2019
