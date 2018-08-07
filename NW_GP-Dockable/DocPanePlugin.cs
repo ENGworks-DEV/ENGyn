@@ -6,6 +6,8 @@ using System.Windows.Forms.Integration;
 using Autodesk.Navisworks.Api.Plugins;
 using System.Linq;
 
+//TODO: https://www.automatetheplanet.com/specify-assembly-references-based-build-configuration-visual-studio/
+
 namespace NW_GraphicPrograming
 {
    #region WPFDocPanePlugin
