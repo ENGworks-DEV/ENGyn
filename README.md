@@ -3,9 +3,11 @@
 Graphical programing interface based on [TUM.CMS.VPLControl](https://github.com/tumcms/TUM.CMS.VPLControl) in progress
 
 Querying selected elements
+
 ![](https://media.giphy.com/media/9JrzovA2JPoX95CBc8/giphy.gif)
 
 Querying Clash Results
+
 ![](https://media.giphy.com/media/1fmx4BFwHO7Nez3PCm/giphy.gif)
 
 ## Navisworks tested versions
