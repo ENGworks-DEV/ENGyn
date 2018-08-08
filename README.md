@@ -18,7 +18,7 @@ Graphical programing interface based on [TUM.CMS.VPLControl](https://github.com/
 ``` C:\Program Files\Autodesk\Navisworks Manage 2018\ ```
 
 ## Installation
-Build the project and the Build events will copy the dlls to the right folder or copy them your self to
+Build the project and the Build events will copy the dlls to the right folder or copy them your self to (replace 2019 with the version of Navisworks you have):
 
 ``` %APPDATA%\Autodesk Navisworks Manage 2019\Plugins\  ```
 
