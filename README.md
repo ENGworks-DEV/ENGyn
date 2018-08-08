@@ -2,6 +2,9 @@
 
 Graphical programing interface based on [TUM.CMS.VPLControl](https://github.com/tumcms/TUM.CMS.VPLControl)
 
+
+![](https://media.giphy.com/media/9JrzovA2JPoX95CBc8/giphy.gif)
+
 ## Navisworks tested versions
 
 * Navisworks Manage 2019
