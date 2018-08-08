@@ -8,7 +8,7 @@ Querying selected elements
 
 Querying Clash Results
 
-![](https://media.giphy.com/media/1fmx4BFwHO7Nez3PCm/giphy.gif)
+![](https://media.giphy.com/media/1fmx4BFwHO7Nez3PCm/200w_d.gif)
 
 ## Navisworks tested versions
 
