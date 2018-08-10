@@ -22,6 +22,7 @@ namespace NW_GraphicPrograming.Nodes
 
         }
 
+        
         public override void Calculate()
         {
 

@@ -224,12 +224,14 @@
   -->
   <PropertyGroup>
     <PostBuildEvent>IF EXIST "C:\Program Files\Autodesk\Navisworks Manage 2019\Plugins\$(TargetName)\" rmdir /S /Q "C:\Program Files\Autodesk\Navisworks Manage 2019\Plugins\$(TargetName)\"
-IF EXIST "%25APPDATA%25\Autodesk Navisworks Manage 2019\Plugins\$(TargetName)\" rmdir /S /Q "%25APPDATA%25\Autodesk Navisworks Manage 20198\Plugins\$(TargetName)\"
+IF EXIST "%25APPDATA%25\Autodesk Navisworks Manage 2019\Plugins\$(TargetName)\" rmdir /S /Q "%25APPDATA%25\Autodesk Navisworks Manage 2019\Plugins\$(TargetName)\"
 
 xcopy /Y "$(TargetDir)*.*" "%25APPDATA%25\Autodesk Navisworks Manage 2019\Plugins\$(TargetName)\"
 
 IF EXIST "%25APPDATA%25\Autodesk Navisworks Manage 2019\Plugins\$(TargetName)\Themes\" rmdir /S /Q "%25APPDATA%25\Autodesk Navisworks Manage 2019\Plugins\$(TargetName)\Themes\"
 
-xcopy /Y "$(TargetDir)*.*" "%25APPDATA%25\Autodesk Navisworks Manage 2019\Plugins\$(TargetName)\Themes\"</PostBuildEvent>
+xcopy /Y "$(TargetDir)*.*" "%25APPDATA%25\Autodesk Navisworks Manage 2019\Plugins\$(TargetName)\Themes\"
+
+xcopy /Y "$(ProjectDir)resources\*.*" "C:\Program Files\Autodesk\Navisworks Manage 2019\Dependencies\"</PostBuildEvent>
   </PropertyGroup>
 </Project>
