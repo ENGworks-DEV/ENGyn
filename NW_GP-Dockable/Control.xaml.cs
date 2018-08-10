@@ -43,12 +43,15 @@ namespace NW_GraphicPrograming
         }
 
 
-
+        //Ugly way to trigger calculate
         private void refresh(object sender, RoutedEventArgs e)
         {
+            foreach (Node n in this.VplControl.NodeCollection)
+            { n.setToRun = true;
+                n.Calculate();
+                n.setToRun = false;
+            }
 
-            this.VplControl.ConnectorCollection.First();
-           
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
