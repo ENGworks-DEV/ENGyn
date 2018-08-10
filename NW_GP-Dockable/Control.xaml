@@ -7,7 +7,7 @@
 
     <Grid Margin="0,0,0,0">
 
-        <VplControl:VplControl Name="VplControl" ClipToBounds="True" Background="White" Margin="0,0,0,0.8"/>
+        <VplControl:VplControl Name="VplControl" ClipToBounds="True" Background="White" Margin="0,0,1,1"/>
         <Button x:Name="runButton" Content="Refresh" Margin="33,10,655,10" Grid.Row="1" Click="Button_Click"/>
 
         <Grid.RowDefinitions>
