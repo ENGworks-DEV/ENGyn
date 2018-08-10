@@ -3,24 +3,18 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NW_GP-Dockable-2019", "NW_GP-Dockable\NW_GP-Dockable-2019.csproj", "{0CF6E1A1-FD98-41C4-B377-3C7324361B63}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NW_GP-Dockable", "NW_GP-Dockable\NW_GP-Dockable.csproj", "{0CF6E1A1-FD98-41C4-B377-3C7324361B63}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Navisworks 2018|Any CPU = Navisworks 2018|Any CPU
-		Navisworks 2018|x64 = Navisworks 2018|x64
-		Navisworks 2019|Any CPU = Navisworks 2019|Any CPU
-		Navisworks 2019|x64 = Navisworks 2019|x64
+		Navisworks Manage 2018|Any CPU = Navisworks Manage 2018|Any CPU
+		Navisworks Manage 2019|Any CPU = Navisworks Manage 2019|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0CF6E1A1-FD98-41C4-B377-3C7324361B63}.Navisworks 2018|Any CPU.ActiveCfg = Navisworks 2018|Any CPU
-		{0CF6E1A1-FD98-41C4-B377-3C7324361B63}.Navisworks 2018|Any CPU.Build.0 = Navisworks 2018|Any CPU
-		{0CF6E1A1-FD98-41C4-B377-3C7324361B63}.Navisworks 2018|x64.ActiveCfg = Navisworks 2018|x64
-		{0CF6E1A1-FD98-41C4-B377-3C7324361B63}.Navisworks 2018|x64.Build.0 = Navisworks 2018|x64
-		{0CF6E1A1-FD98-41C4-B377-3C7324361B63}.Navisworks 2019|Any CPU.ActiveCfg = 2019|Any CPU
-		{0CF6E1A1-FD98-41C4-B377-3C7324361B63}.Navisworks 2019|Any CPU.Build.0 = 2019|Any CPU
-		{0CF6E1A1-FD98-41C4-B377-3C7324361B63}.Navisworks 2019|x64.ActiveCfg = 2019|x64
-		{0CF6E1A1-FD98-41C4-B377-3C7324361B63}.Navisworks 2019|x64.Build.0 = 2019|x64
+		{0CF6E1A1-FD98-41C4-B377-3C7324361B63}.Navisworks Manage 2018|Any CPU.ActiveCfg = Navisworks Manage 2019|Any CPU
+		{0CF6E1A1-FD98-41C4-B377-3C7324361B63}.Navisworks Manage 2018|Any CPU.Build.0 = Navisworks Manage 2019|Any CPU
+		{0CF6E1A1-FD98-41C4-B377-3C7324361B63}.Navisworks Manage 2019|Any CPU.ActiveCfg = Navisworks Manage 2019|Any CPU
+		{0CF6E1A1-FD98-41C4-B377-3C7324361B63}.Navisworks Manage 2019|Any CPU.Build.0 = Navisworks Manage 2019|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
