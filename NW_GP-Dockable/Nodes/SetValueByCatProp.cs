@@ -8,8 +8,6 @@ using System.Windows.Data;
 using System.Collections.Generic;
 using Autodesk.Navisworks.Api.Interop.ComApi;
 using Autodesk.Navisworks.Api.ComApi;
-using Autodesk.Navisworks.Gui.Utilities;
-using Autodesk.Navisworks.Internal.ApiImplementation.ComApi;
 using System;
 
 namespace NW_GraphicPrograming.Nodes
@@ -97,10 +95,11 @@ namespace NW_GraphicPrograming.Nodes
 
             for (int i = 1; i < propertyNode.GUIAttributes().Count; i++)
             {
-                var name = propertyNode.GUIAttributes()[i].ClassUserName;
-                if (propertyNode.GUIAttributes()[i].ClassUserName == category)
+                var GUIAttribute = propertyNode.GUIAttributes()[i] as InwGUIAttribute2;
+                string name = GUIAttribute.ClassUserName;
+                if (GUIAttribute.ClassUserName == category)
                 {
-                    existingCategory = propertyNode.GUIAttributes()[i];
+                    existingCategory = GUIAttribute;
                     break;
                 }
                 index += 1;
