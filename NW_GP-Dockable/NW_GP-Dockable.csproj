@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>NW_GraphicPrograming</RootNamespace>
     <AssemblyName>NW_GraphicPrograming</AssemblyName>
-    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
@@ -36,7 +36,7 @@
     <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
     <TargetFrameworkProfile />
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Navisworks Manage 2019|AnyCPU' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Autodesk Navisworks Manage 2019|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -51,50 +51,50 @@
   <PropertyGroup>
     <RunPostBuildEvent>Always</RunPostBuildEvent>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Navisworks Manage 2018|AnyCPU' ">
-    <OutputPath>bin\Navisworks 2018\</OutputPath>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Autodesk Navisworks Manage 2018|AnyCPU' ">
+    <OutputPath>bin\</OutputPath>
     <IntermediateOutputPath>C:\Users\PDEREN~1\AppData\Local\Temp\vsCB9A.tmp\Navisworks 2018\</IntermediateOutputPath>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Autodesk.Navisworks.Api" Condition="'$(Configuration)' == 'Navisworks Manage 2018'">
+    <Reference Include="Autodesk.Navisworks.Api" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2018'">
       <HintPath>C:\Program Files\Autodesk\Navisworks Manage 2018\Autodesk.Navisworks.Api.dll</HintPath>
       <Private>False</Private>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
-    <Reference Include="Autodesk.Navisworks.Api" Condition="'$(Configuration)' == 'Navisworks Manage 2019'">
+    <Reference Include="Autodesk.Navisworks.Api" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2019'">
       <HintPath>C:\Program Files\Autodesk\Navisworks Manage 2019\Autodesk.Navisworks.Api.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Autodesk.Navisworks.Clash" Condition="'$(Configuration)' == 'Navisworks Manage 2018'">
+    <Reference Include="Autodesk.Navisworks.Clash" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2018'">
       <HintPath>C:\Program Files\Autodesk\Navisworks Manage 2018\Autodesk.Navisworks.Clash.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Autodesk.Navisworks.Clash" Condition="'$(Configuration)' == 'Navisworks Manage 2019'">
+    <Reference Include="Autodesk.Navisworks.Clash" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2019'">
       <HintPath>C:\Program Files\Autodesk\Navisworks Manage 2019\Autodesk.Navisworks.Clash.dll</HintPath>
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Autodesk.Navisworks.ComApi" Condition="'$(Configuration)' == 'Navisworks Manage 2018'">
+    <Reference Include="Autodesk.Navisworks.ComApi" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2018'">
       <HintPath>C:\Program Files\Autodesk\Navisworks Manage 2018\Autodesk.Navisworks.ComApi.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Autodesk.Navisworks.ComApi" Condition="'$(Configuration)' == 'Navisworks Manage 2019'">
+    <Reference Include="Autodesk.Navisworks.ComApi" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2019'">
       <HintPath>C:\Program Files\Autodesk\Navisworks Manage 2019\Autodesk.Navisworks.ComApi.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Autodesk.Navisworks.Interop.ComApi" Condition="'$(Configuration)' == 'Navisworks Manage 2019'">
+    <Reference Include="Autodesk.Navisworks.Interop.ComApi" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2019'">
       <HintPath>C:\Program Files\Autodesk\Navisworks Manage 2019\Autodesk.Navisworks.Interop.ComApi.dll</HintPath>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
-    <Reference Include="Autodesk.Navisworks.Interop.ComApi" Condition="'$(Configuration)' == 'Navisworks Manage 2018'">
+    <Reference Include="Autodesk.Navisworks.Interop.ComApi" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2018'">
       <HintPath>C:\Program Files\Autodesk\Navisworks Manage 2018\Autodesk.Navisworks.Interop.ComApi.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
-    <Reference Include="navisworks.gui.common" Condition="'$(Configuration)' == 'Navisworks Manage 2019'">
+    <Reference Include="navisworks.gui.common" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2019'">
       <HintPath>C:\Program Files\Autodesk\Navisworks Manage 2019\navisworks.gui.common.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="navisworks.gui.common" Condition="'$(Configuration)' == 'Navisworks Manage 2018'">
+    <Reference Include="navisworks.gui.common" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2018'">
       <HintPath>C:\Program Files\Autodesk\Navisworks Manage 2018\navisworks.gui.common.dll</HintPath>
       <Private>False</Private>
     </Reference>
