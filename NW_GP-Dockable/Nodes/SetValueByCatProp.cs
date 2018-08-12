@@ -17,20 +17,26 @@ namespace NW_GraphicPrograming.Nodes
         public SetValueByCatProp(VplControl hostCanvas)
             : base(hostCanvas)
         {
-            AddInputPortToNode("ModelItem", typeof(object));
+            AddInputPortToNode("ModelItem", typeof(object),true);
             AddInputPortToNode("Category", typeof(object));
             AddInputPortToNode("Property", typeof(object));
             AddInputPortToNode("Value", typeof(object));
             AddOutputPortToNode("ModelItem", typeof(object));
 
-            AddControlToNode(new Label { Content = "NW SetValueByCatProp" });
-            var label = new Label
-            {
-                Content = "NW SetValueByCatProp",
-                FontSize = 30,
-                HorizontalContentAlignment = HorizontalAlignment.Center
-            };
-        }
+
+            //TODO: input as part of the point.Below, temporary solution : One label per input
+            AddControlToNode(new Label() { Content = "Model Item",FontSize = 20});
+            AddControlToNode(new Label() { Content = "Category", FontSize = 20 });
+            AddControlToNode(new Label() { Content = "Property", FontSize = 20 });
+            AddControlToNode(new Label() { Content = "Value", FontSize = 20 });
+
+            this.Name = "SetValueByCatProp";
+
+            this.BottomComment = new TUM.CMS.VplControl.Core.Comment(this) { Text = "Returns value from category/property" };
+           
+
+
+       }
 
         public override void Calculate()
         {
