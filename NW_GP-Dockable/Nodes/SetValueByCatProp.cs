@@ -1,4 +1,4 @@
-﻿using System.Windows;
+using System.Windows;
 using System.Windows.Controls;
 using System.Xml;
 using Autodesk.Navisworks.Api;
@@ -28,6 +28,7 @@ namespace NW_GraphicPrograming.Nodes
 
             foreach (var item in this.InputPorts)
             {
+Item.Description = item.Name;
                 AddControlToNode(new Label() { Content = item.Name, FontSize = 13 });
             }
 
