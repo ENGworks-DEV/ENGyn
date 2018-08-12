@@ -25,18 +25,20 @@ namespace NW_GraphicPrograming.Nodes
 
 
             //TODO: input as part of the point.Below, temporary solution : One label per input
-            AddControlToNode(new Label() { Content = "Model Item",FontSize = 20});
-            AddControlToNode(new Label() { Content = "Category", FontSize = 20 });
-            AddControlToNode(new Label() { Content = "Property", FontSize = 20 });
-            AddControlToNode(new Label() { Content = "Value", FontSize = 20 });
 
-            this.Name = "SetValueByCatProp";
-
-            this.BottomComment = new TUM.CMS.VplControl.Core.Comment(this) { Text = "Returns value from category/property" };
-           
+            foreach (var item in this.InputPorts)
+            {
+                AddControlToNode(new Label() { Content = item.Name, FontSize = 13 });
+            }
 
 
-       }
+            this.Name = "Set Value";
+
+            this.BottomComment = new TUM.CMS.VplControl.Core.Comment(this) { Text = "sets value from category/property" };
+            IsResizeable = true;
+
+
+        }
 
         public override void Calculate()
         {

@@ -10,19 +10,32 @@ using System.Collections.Generic;
 
 namespace NW_GraphicPrograming.Nodes
 {
-    public class NW_Clash : Node
+    public class NW_ClashResult : Node
     {
-        public NW_Clash(VplControl hostCanvas)
+        public NW_ClashResult(VplControl hostCanvas)
             : base(hostCanvas)
         {
-            AddInputPortToNode("Navis Clash Tests", typeof(object));
+            AddInputPortToNode("Clash Test", typeof(object));
             AddOutputPortToNode("Navis Clash", typeof(ClashResult));
 
-            AddControlToNode(new Label { Content = "NW Clash Result" });
 
+            //TODO: input as part of the point.Below, temporary solution : One label per input
+
+            foreach (Port item in this.InputPorts)
+            {
+                item.ToolTip = item.Name;
+                // AddControlToNode(new Label() { Content = item.Name, FontSize = 13 });
+            }
+
+            AddControlToNode(new Label() { Content = "Clash Result", FontSize = 13 });
+
+            
+
+            this.BottomComment = new TUM.CMS.VplControl.Core.Comment(this) { Text = "Returns Clash Result from test" };
+            IsResizeable = true;
         }
 
-        
+
         public override void Calculate()
         {
 
@@ -74,7 +87,7 @@ namespace NW_GraphicPrograming.Nodes
 
         public override Node Clone()
         {
-            return new NW_Clash(HostCanvas)
+            return new NW_ClashResult(HostCanvas)
             {
                 Top = Top,
                 Left = Left

@@ -16,7 +16,20 @@ namespace NW_GraphicPrograming.Nodes
             AddInputPortToNode("NW Document", typeof(Document));
             AddOutputPortToNode("Selection", typeof(object));
 
-            AddControlToNode(new Label { Content = "NW Get Selection" });
+
+            //TODO: input as part of the point.Below, temporary solution : One label per input
+
+            foreach (Port item in this.InputPorts)
+            {
+                item.ToolTip = item.Name;
+                // AddControlToNode(new Label() { Content = item.Name, FontSize = 13 });
+            }
+
+            AddControlToNode(new Label() { Content = "Get Selection", FontSize = 13 });
+            
+
+            this.BottomComment = new TUM.CMS.VplControl.Core.Comment(this) { Text = "Returns current selection" };
+            IsResizeable = true;
 
         }
 

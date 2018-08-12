@@ -15,8 +15,21 @@ namespace NW_GraphicPrograming.Nodes
             AddInputPortToNode("NW Document", typeof(Document));
             AddOutputPortToNode("Navis Model Name", typeof(string));
 
-            AddControlToNode(new Label { Content = "NW Model Name" });
 
+            //TODO: input as part of the point.Below, temporary solution : One label per input
+
+            foreach (Port item in this.InputPorts)
+            {
+                item.ToolTip = item.Name;
+                // AddControlToNode(new Label() { Content = item.Name, FontSize = 13 });
+            }
+
+            AddControlToNode(new Label() { Content = "Model Name", FontSize = 13 });
+
+            this.Name = "Model Name";
+
+            this.BottomComment = new TUM.CMS.VplControl.Core.Comment(this) { Text = "Returns Model Name" };
+            IsResizeable = true;
         }
 
         public override void Calculate()

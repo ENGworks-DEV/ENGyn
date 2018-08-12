@@ -19,13 +19,20 @@ namespace NW_GraphicPrograming.Nodes
             AddInputPortToNode("Property", typeof(object));
             AddOutputPortToNode("Value", typeof(object));
 
-            AddControlToNode(new Label { Content = "NW GetValueByCatProp" });
-            var label = new Label
+            //TODO: input as part of the point.Below, temporary solution : One label per input
+
+            foreach (Port item in this.InputPorts)
             {
-                Content = "NW GetValueByCatProp",
-                FontSize = 30,
-                HorizontalContentAlignment = HorizontalAlignment.Center
-            };
+                item.ToolTip = item.Name;
+               // AddControlToNode(new Label() { Content = item.Name, FontSize = 13 });
+            }
+
+            AddControlToNode(new Label() { Content = "Get Value By Cat Prop", FontSize = 13 });
+          
+            this.BottomComment = new TUM.CMS.VplControl.Core.Comment(this) { Text = "Returns value by category and property" };
+            IsResizeable = true;
+
+
         }
 
         public override void Calculate()

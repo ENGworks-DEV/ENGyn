@@ -22,6 +22,13 @@ namespace NW_GraphicPrograming.Nodes
             AddOutputPortToNode("result", typeof(object));
             AddControlToNode(new Label { Content = "GetItemAtIndex" });
 
+            foreach (Port item in this.InputPorts)
+            {
+                item.ToolTip = item.Name;
+                // AddControlToNode(new Label() { Content = item.Name, FontSize = 13 });
+            }
+
+            AddControlToNode(new Label() { Content = "Get item at index", FontSize = 13 });
 
             IsResizeable = true;
        
