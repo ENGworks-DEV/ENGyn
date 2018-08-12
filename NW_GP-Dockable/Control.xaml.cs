@@ -33,10 +33,7 @@ namespace NW_GraphicPrograming
             Utilities.GetTypesInNamespace(Assembly.GetExecutingAssembly(), "NW_GraphicPrograming.Nodes").ToList());
             VplControl.NodeTypeMode = NodeTypeModes.All;
 
-            //foreach (var item in VplControl.ExternalNodeTypes)
-            //{
-            //    NodesList.Items.Add(item.Name);
-            //}
+
 
             runButton.Click += refresh;
             
