@@ -6,6 +6,7 @@ using TUM.CMS.VplControl.Nodes;
 using TUM.CMS.VplControl.Core;
 using System.Windows.Data;
 using System.Collections.Generic;
+using System;
 
 namespace NW_GraphicPrograming.Nodes
 {
@@ -14,20 +15,28 @@ namespace NW_GraphicPrograming.Nodes
         public GetValueByCatProp(VplControl hostCanvas)
             : base(hostCanvas)
         {
-            AddInputPortToNode("ModelItem", typeof(object));
-            AddInputPortToNode("Category", typeof(object));
-            AddInputPortToNode("Property", typeof(object));
-            AddOutputPortToNode("Value", typeof(object));
+            AddInputPortToNode("ModelItem", typeof(ModelItem));
+            AddInputPortToNode("Category", typeof(string));
+            AddInputPortToNode("Property", typeof(string));
+            AddOutputPortToNode("Value", typeof(string));
 
             //TODO: input as part of the point.Below, temporary solution : One label per input
 
             foreach (Port item in this.InputPorts)
             {
-                item.ToolTip = item.Name;
-               // AddControlToNode(new Label() { Content = item.Name, FontSize = 13 });
+                //item.ToolTip = item.DataType.ToString();
+                item.Description = item.Name;
+               
             }
 
-            AddControlToNode(new Label() { Content = "Get Value By Cat Prop", FontSize = 13 });
+            foreach (Port item in this.OutputPorts)
+            {
+                //item.ToolTip = item.DataType.ToString();
+                item.Description = item.Name;
+            }
+
+
+            AddControlToNode(new Label() { Content = "Get value by" + Environment.NewLine + "category and property", FontSize = 13 });
           
             this.BottomComment = new TUM.CMS.VplControl.Core.Comment(this) { Text = "Returns value by category and property" };
             IsResizeable = true;

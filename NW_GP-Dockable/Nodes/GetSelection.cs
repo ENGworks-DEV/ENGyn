@@ -17,15 +17,20 @@ namespace NW_GraphicPrograming.Nodes
             AddOutputPortToNode("Selection", typeof(object));
 
 
-            //TODO: input as part of the point.Below, temporary solution : One label per input
-
             foreach (Port item in this.InputPorts)
             {
-                item.ToolTip = item.Name;
-                // AddControlToNode(new Label() { Content = item.Name, FontSize = 13 });
+                //item.ToolTip = item.DataType.ToString();
+                item.Description = item.Name;
+
             }
 
-            AddControlToNode(new Label() { Content = "Get Selection", FontSize = 13 });
+            foreach (Port item in this.OutputPorts)
+            {
+                //item.ToolTip = item.DataType.ToString();
+                item.Description = item.Name;
+            }
+
+            AddControlToNode(new Label() { Content = "Get Selection", FontSize = 13, VerticalAlignment = System.Windows.VerticalAlignment.Top });
             
 
             this.BottomComment = new TUM.CMS.VplControl.Core.Comment(this) { Text = "Returns current selection" };

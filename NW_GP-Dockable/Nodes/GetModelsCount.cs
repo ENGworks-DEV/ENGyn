@@ -15,6 +15,19 @@ namespace NW_GraphicPrograming.Nodes
             AddInputPortToNode("NW_Document", typeof(Document));
             AddOutputPortToNode("Navis Models Count", typeof(object));
 
+            foreach (Port item in this.InputPorts)
+            {
+                //item.ToolTip = item.DataType.ToString();
+                item.Description = item.Name;
+
+            }
+
+            foreach (Port item in this.OutputPorts)
+            {
+                //item.ToolTip = item.DataType.ToString();
+                item.Description = item.Name;
+            }
+
             AddControlToNode(new Label { Content = "NW Models in file" });
 
         }

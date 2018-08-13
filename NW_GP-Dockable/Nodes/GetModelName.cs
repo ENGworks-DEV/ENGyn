@@ -20,8 +20,15 @@ namespace NW_GraphicPrograming.Nodes
 
             foreach (Port item in this.InputPorts)
             {
-                item.ToolTip = item.Name;
-                // AddControlToNode(new Label() { Content = item.Name, FontSize = 13 });
+                //item.ToolTip = item.DataType.ToString();
+                item.Description = item.Name;
+
+            }
+
+            foreach (Port item in this.OutputPorts)
+            {
+                //item.ToolTip = item.DataType.ToString();
+                item.Description = item.Name;
             }
 
             AddControlToNode(new Label() { Content = "Model Name", FontSize = 13 });

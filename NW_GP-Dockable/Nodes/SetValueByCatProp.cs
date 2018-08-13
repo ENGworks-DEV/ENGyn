@@ -24,16 +24,21 @@ namespace NW_GraphicPrograming.Nodes
             AddOutputPortToNode("ModelItem", typeof(object));
 
 
-            //TODO: input as part of the point.Below, temporary solution : One label per input
-
-            foreach (var item in this.InputPorts)
+            foreach (Port item in this.InputPorts)
             {
-Item.Description = item.Name;
-                AddControlToNode(new Label() { Content = item.Name, FontSize = 13 });
+                //item.ToolTip = item.DataType.ToString();
+                item.Description = item.Name;
+
             }
 
+            foreach (Port item in this.OutputPorts)
+            {
+                //item.ToolTip = item.DataType.ToString();
+                item.Description = item.Name;
+            }
 
-            this.Name = "Set Value";
+            AddControlToNode(new Label() { Content = "Set value by" + Environment.NewLine + "category and property", FontSize = 13 });
+
 
             this.BottomComment = new TUM.CMS.VplControl.Core.Comment(this) { Text = "sets value from category/property" };
             IsResizeable = true;
