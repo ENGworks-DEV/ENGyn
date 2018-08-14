@@ -109,7 +109,7 @@ namespace NW_GraphicPrograming.Nodes
 
             for (int i = 1; i < propertyNode.GUIAttributes().Count; i++)
             {
-                var GUIAttribute = propertyNode.GUIAttributes()[i] as InwGUIAttribute2;
+                InwGUIAttribute2 GUIAttribute = propertyNode.GUIAttributes()[i] as InwGUIAttribute2;
                 string name = GUIAttribute.ClassUserName;
                 if (GUIAttribute.ClassUserName == category)
                 {
