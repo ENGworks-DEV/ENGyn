@@ -6,7 +6,7 @@ using System.Linq;
 using System;
 using Autodesk.Navisworks.Api;
 using System.Windows;
-
+using System.IO;
 
 namespace NW_GraphicPrograming
 {
@@ -26,11 +26,25 @@ namespace NW_GraphicPrograming
             KeyDown += VplControl.VplControl_KeyDown;
             KeyUp += VplControl.VplControl_KeyUp;
             // Load a theme and set it as current.
-
-
             
+
+
             VplControl.ExternalNodeTypes.AddRange(
             Utilities.GetTypesInNamespace(Assembly.GetExecutingAssembly(), "NW_GraphicPrograming.Nodes").ToList());
+
+            //Loading nodes dlls located in Nodes folders
+            var assamblyLocation = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + @"\Nodes" ;
+            
+
+            var test = Directory.GetFiles(assamblyLocation,"*.dll");
+            foreach (var dllPath in Directory.GetFiles(assamblyLocation))
+            {
+                var assamb = Assembly.LoadFrom(Path.Combine(dllPath));
+
+                VplControl.ExternalNodeTypes.AddRange(assamb.GetTypes());
+            }
+            
+
             VplControl.NodeTypeMode = NodeTypeModes.All;
 
 

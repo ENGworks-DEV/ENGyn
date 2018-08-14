@@ -179,15 +179,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="Nodes\GetItemAtIndex.cs" />
-    <Compile Include="Nodes\GetClash.cs" />
-    <Compile Include="Nodes\GetClashTest.cs" />
-    <Compile Include="Nodes\GetDocument.cs" />
-    <Compile Include="Nodes\SetValueByCatProp.cs" />
-    <Compile Include="Nodes\GetValueByCatProp.cs" />
-    <Compile Include="Nodes\GetSelection.cs" />
-    <Compile Include="Nodes\GetModelName.cs" />
-    <Compile Include="Nodes\GetModelsCount.cs" />
+    <Compile Include="NodesCS\GetItemAtIndex.cs" />
+    <Compile Include="NodesCS\GetClash.cs" />
+    <Compile Include="NodesCS\GetClashTest.cs" />
+    <Compile Include="NodesCS\GetDocument.cs" />
+    <Compile Include="NodesCS\SetValueByCatProp.cs" />
+    <Compile Include="NodesCS\GetValueByCatProp.cs" />
+    <Compile Include="NodesCS\GetSelection.cs" />
+    <Compile Include="NodesCS\GetModelName.cs" />
+    <Compile Include="NodesCS\GetModelsCount.cs" />
     <Compile Include="Control.xaml.cs">
       <DependentUpon>Control.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -232,10 +232,8 @@ IF EXIST "%25APPDATA%25\$(ConfigurationName)\Plugins\$(TargetName)\" rmdir /S /Q
 
 xcopy /Y "$(TargetDir)*.*" "%25APPDATA%25\$(ConfigurationName)\Plugins\$(TargetName)\"
 
-IF EXIST "%25APPDATA%25\$(ConfigurationName)\Plugins\$(TargetName)\Themes\" rmdir /S /Q "%25APPDATA%25\$(ConfigurationName)\Plugins\$(TargetName)\Themes\"
+mkdir "%25APPDATA%25\$(ConfigurationName)\Plugins\$(TargetName)\Nodes"
 
-xcopy /Y "$(TargetDir)*.*" "%25APPDATA%25\$(ConfigurationName)\Plugins\$(TargetName)\Themes\"
-
-</PostBuildEvent>
+xcopy /Y "$(ProjectDir)\Nodes\*.*" "%25APPDATA%25\$(ConfigurationName)\Plugins\$(TargetName)\Nodes\"</PostBuildEvent>
   </PropertyGroup>
 </Project>
