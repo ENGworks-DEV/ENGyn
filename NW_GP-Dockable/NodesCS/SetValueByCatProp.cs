@@ -105,13 +105,13 @@ namespace NW_GraphicPrograming.Nodes
             int index = 0;
 
 
-           // GC.KeepAlive(propertyNode); //Call here to keep propertyNode ‘alive’ through the inner loop 
+          
 
             for (int i = 1; i < propertyNode.GUIAttributes().Count; i++)
             {
                 InwGUIAttribute2 GUIAttribute = propertyNode.GUIAttributes()[i] as InwGUIAttribute2;
                 string name = GUIAttribute.ClassUserName;
-                if (GUIAttribute.ClassUserName == category)
+                if (GUIAttribute.ClassUserName == category && GUIAttribute.UserDefined)
                 {
                     existingCategory = GUIAttribute;
                     break;
@@ -119,9 +119,10 @@ namespace NW_GraphicPrograming.Nodes
                 index += 1;
             }
 
+            //If Tab doesn't exist, create a new one
             if (existingCategory == null)
             {
-                index = 0;
+                
                 // create new property
                 InwOaProperty newP = (InwOaProperty)state.ObjectFactory(nwEObjectType.eObjectType_nwOaProperty, null, null);
 
@@ -136,13 +137,18 @@ namespace NW_GraphicPrograming.Nodes
                 // add the new property to the new property category
 
                 newPvec.Properties().Add(newP);
+                //Add category/tab to element
+                
+                propertyNode.SetUserDefined(0, category, category + "_InteralName", newPvec);
 
+                return;
             }
 
+            //If Tag exists, enter 
             else
             {
 
-                // check if property exists
+                // bool if property exists
                 bool propertyExists = false;
                 
 
@@ -153,18 +159,26 @@ namespace NW_GraphicPrograming.Nodes
                     if (prop.UserName == property)
                     {
                         propertyExists = true;
-                        
+
                         //Set existing property to new value
                         //prop.value(value);
 
+                        // create new property vector
+                        InwOaPropertyVec propVectorModify = (InwOaPropertyVec)state.ObjectFactory(nwEObjectType.eObjectType_nwOaPropertyVec, null, null); 
+
                         // create new property
                         InwOaProperty newP = (InwOaProperty)state.ObjectFactory(nwEObjectType.eObjectType_nwOaProperty, null, null);
+
+                        //Extract old prop name
                         newP.name = prop.name;
                         newP.UserName = prop.UserName;
                         newP.value = value;
 
+
                         //Add the property to the propertyVec
-                        newPvec.Properties().Add(newP);
+                        propVectorModify.Properties().Add(newP);
+
+                        propertyNode.SetUserDefined(index, existingCategory.ClassUserName, existingCategory.ClassName,  propVectorModify);
                     }
                 }
 
@@ -172,12 +186,12 @@ namespace NW_GraphicPrograming.Nodes
                 if (!propertyExists)
                 {
 
-                    //Create new propertyVec (whatever that is)
-                    //newPvec = existingCategory as InwOaPropertyVec;
-                    
+                    InwOaPropertyVec propVectorModify = (InwOaPropertyVec)state.ObjectFactory(nwEObjectType.eObjectType_nwOaPropertyVec, null, null);
+
                     // create new property
                     InwOaProperty newP = (InwOaProperty)state.ObjectFactory(nwEObjectType.eObjectType_nwOaProperty, null, null);
 
+                    
                     // set the name, username and value of the new property
                     newP.name = property + "_Name";
 
@@ -185,8 +199,12 @@ namespace NW_GraphicPrograming.Nodes
 
                     newP.value = value;
 
-                    // add the new property to the new property category
-                    newPvec.Properties().Add(newP);
+
+                    //Add the property to the propertyVec
+                    propVectorModify.Properties().Add(newP);
+
+                    propertyNode.SetUserDefined(index, existingCategory.ClassUserName, existingCategory.ClassName, propVectorModify);
+
                 }
 
 
