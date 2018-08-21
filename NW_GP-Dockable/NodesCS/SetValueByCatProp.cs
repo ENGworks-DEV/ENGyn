@@ -79,25 +79,8 @@ namespace NW_GraphicPrograming.Nodes
 
             public static void SetValues(ModelItem m, string CategoryName, string PropertyName, string value)
             {
-
-
-            // Create collection with model item
-
-            ModelItemCollection modelItemCollection = new ModelItemCollection();
-            modelItemCollection.Add(m);
-
             state = ComApiBridge.State;
-
-            // get the selection in COM
-
-            InwOpSelection comSelectionOut = ComApiBridge.ToInwOpSelection(modelItemCollection);
-
-            /// get paths within the selection and select the last one (for some reason)
-
-
             InwOaPath oPath = ComApiBridge.ToInwOaPath(m);
-
-            
 
             // get properties collection of the path
 
@@ -105,35 +88,35 @@ namespace NW_GraphicPrograming.Nodes
 
             // creating tab (Category), property null variables as placeholders
             InwGUIAttribute2 existingCategory = null;
-            
 
             //Index of userDefined Tab
             int index = 1;
 
-            //Look for an existing category with the same CategoryName
+            //Case 1: Look for an existing category with the same CategoryName
 
             foreach (Autodesk.Navisworks.Api.Interop.ComApi.InwGUIAttribute2 attribute in propertyNode.GUIAttributes())
             {
-                if (attribute.ClassUserName == CategoryName && attribute.UserDefined)
+                if (attribute.UserDefined)
                 {
-                    existingCategory = attribute;
-                    NavisProperties properties = new NavisProperties(PropertyName, value, CategoryName);
-                    setProperty(properties, index, propertyNode);
-                    return;
+                    if (attribute.ClassUserName == CategoryName)
+                    {
+                        existingCategory = attribute;
+                        NavisProperties properties = new NavisProperties(PropertyName, value, CategoryName);
+                        setProperty(properties, index, propertyNode);
+                        return;
+                    }
+
+                    index++;
                 }
 
-                index ++;
-                GC.KeepAlive(propertyNode);
             }
 
-            //Case 1: Category doesn´t exist, create category and property
+
+            //Case 2: Category doesn´t exist, create category and property
             if (existingCategory == null)
             {
-                
                 NavisProperties properties = new NavisProperties(PropertyName, value, CategoryName);
-
                 setCategoryAndProperty(properties, propertyNode);
-
                 return;
             }
 
@@ -151,18 +134,8 @@ namespace NW_GraphicPrograming.Nodes
         public static void setProperty ( NavisProperties properties, int index, InwGUIPropertyNode2 propertyNode)
 
         {
-            try {
-                propertyNode.SetUserDefined(index, 
-                    properties.CategoryName, 
-                    properties.CategoryName, 
-                    properties.PropertyVec);
-            }
-            
-            catch (Exception exception)
-            {
-                MessageBox.Show(exception.Message + Environment.NewLine  + exception.ToString() + index.ToString());
- 
-            }
+
+                propertyNode.SetUserDefined(index, properties.CategoryName, properties.CategoryName, properties.PropertyVec);
 
         }
 
