@@ -17,21 +17,21 @@ namespace NW_GraphicPrograming.Nodes
             : base(hostCanvas)
         {
 
-            AddInputPortToNode("Index", typeof(int));
             AddInputPortToNode("List", typeof(List<object>));
+            AddInputPortToNode("Index", typeof(int));
             AddOutputPortToNode("Result", typeof(object));
             AddControlToNode(new Label { Content = "GetItemAtIndex" });
 
             foreach (Port item in this.InputPorts)
             {
-                //item.ToolTip = item.DataType.ToString();
+                
                 item.Description = item.Name;
 
             }
 
             foreach (Port item in this.OutputPorts)
             {
-                //item.ToolTip = item.DataType.ToString();
+                
                 item.Description = item.Name;
             }
 
