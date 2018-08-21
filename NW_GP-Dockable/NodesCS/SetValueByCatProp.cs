@@ -56,10 +56,19 @@ namespace NW_GraphicPrograming.Nodes
             var sel = InputPorts[0].Data;
             List<object> modelItems = new List<object>();
 
+            var category = "";
+            var property = "";
+            var value = "";
 
-            var category = InputPorts[1].Data.ToString();
-            var property = InputPorts[2].Data.ToString();
-            var value = InputPorts[3].Data.ToString();
+            if (InputPorts[1].Data.ToString() != null && 
+                InputPorts[2].Data.ToString() != null &&
+                InputPorts[3].Data.ToString() != null)
+            {
+                category =  InputPorts[1].Data.ToString();
+                property = InputPorts[2].Data.ToString();
+                value = InputPorts[3].Data.ToString();
+            }
+
 
 
 
@@ -101,7 +110,7 @@ namespace NW_GraphicPrograming.Nodes
                     if (attribute.ClassUserName == CategoryName)
                     {
                         existingCategory = attribute;
-                        NavisProperties properties = new NavisProperties(PropertyName, value, CategoryName);
+                        NavisProperties properties = new NavisProperties(PropertyName, value, existingCategory);
                         setProperty(properties, index, propertyNode);
                         return;
                     }
@@ -158,7 +167,32 @@ namespace NW_GraphicPrograming.Nodes
                 PropertyVec.Properties().Add(newP);
             }
 
+            public NavisProperties(string name, string value, InwGUIAttribute2 existingCategory)
+            {
+
+                newP.name = name;
+                newP.value = value;
+                
+                CategoryName = existingCategory.ClassUserName;
+                foreach (InwOaProperty item in existingCategory.Properties())
+                {
+                    if (item.name != name)
+                    {
+                        //Cant be the same item? do i need to re create it everytime?
+                        InwOaProperty existingProp = state.ObjectFactory(nwEObjectType.eObjectType_nwOaProperty) as InwOaProperty;
+                        existingProp.name = item.name;
+                        existingProp.value = item.value;
+
+                        PropertyVec.Properties().Add(existingProp);
+                    }
+
+                }
+
+                PropertyVec.Properties().Add(newP);
+            }
+
             public InwOaProperty newP { get; set; } = state.ObjectFactory(nwEObjectType.eObjectType_nwOaProperty) as InwOaProperty;
+            
             public string CategoryName { get; set; }
             public InwOaPropertyVec PropertyVec { get; set; } = state.ObjectFactory(nwEObjectType.eObjectType_nwOaPropertyVec) as InwOaPropertyVec;
         }
