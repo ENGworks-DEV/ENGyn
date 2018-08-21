@@ -17,7 +17,6 @@ namespace NW_GraphicPrograming.Nodes
             : base(hostCanvas)
         {
             AddInputPortToNode("Tests", typeof(List<ClashTest>));
-            AddInputPortToNode("Document", typeof(Document));
             AddOutputPortToNode("Clash Tests", typeof(List<Object>));
 
 
@@ -38,13 +37,15 @@ namespace NW_GraphicPrograming.Nodes
 
         public override void Calculate()
         {
-
-            Document doc = InputPorts[1].Data as Document;
+            //Get clashes from document
+            Document doc = Autodesk.Navisworks.Api.Application.ActiveDocument;
             var testData = doc.GetClash().TestsData;
 
+
+            
             try
             {
-                var clashTestList = InputPorts[0].Data as List<ClashTest>;
+                var clashTestList = InputPorts[0].Data as List<ClashTest> ;
 
                 foreach (ClashTest item in clashTestList)
                 {
