@@ -82,6 +82,9 @@
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Navisworks.AutoAppearance.Plugin">
+      <HintPath>..\..\..\..\..\..\Program Files\Autodesk\Navisworks Manage 2019\Navisworks.AutoAppearance.Plugin.dll</HintPath>
+    </Reference>
     <Reference Include="navisworks.gui.common" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2019'">
       <HintPath>C:\Program Files\Autodesk\Navisworks Manage 2019\navisworks.gui.common.dll</HintPath>
       <Private>False</Private>
@@ -183,6 +186,7 @@
     <Compile Include="NodesCS\GetClash.cs" />
     <Compile Include="NodesCS\GetClashTest.cs" />
     <Compile Include="NodesCS\GetDocument.cs" />
+    <Compile Include="NodesCS\Appearance.cs" />
     <Compile Include="NodesCS\SetValueByCatProp.cs" />
     <Compile Include="NodesCS\GetValueByCatProp.cs" />
     <Compile Include="NodesCS\GetSelection.cs" />
