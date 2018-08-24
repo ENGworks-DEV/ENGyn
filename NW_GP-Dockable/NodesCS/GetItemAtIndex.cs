@@ -43,8 +43,8 @@ namespace NW_GraphicPrograming.Nodes
 
         public override void Calculate()
         {
-            var count = Int32.Parse( InputPorts[0].Data.ToString());
-            var inputs = InputPorts[1].Data as List<object>;
+            var count = Int32.Parse( InputPorts[1].Data.ToString());
+            var inputs = InputPorts[0].Data as List<object>;
             OutputPorts[0].Data = inputs[count];
           
         }
