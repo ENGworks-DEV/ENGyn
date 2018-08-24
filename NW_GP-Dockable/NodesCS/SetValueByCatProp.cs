@@ -17,7 +17,7 @@ namespace NW_GraphicPrograming.Nodes
         public SetValueByCatProp(VplControl hostCanvas)
             : base(hostCanvas)
         {
-            AddInputPortToNode("ModelItem", typeof(object),true);
+            AddInputPortToNode("ModelItem", typeof(object), true);
             AddInputPortToNode("Category", typeof(object));
             AddInputPortToNode("Property", typeof(object));
             AddInputPortToNode("Value", typeof(object));
@@ -56,187 +56,147 @@ namespace NW_GraphicPrograming.Nodes
             var sel = InputPorts[0].Data;
             List<object> modelItems = new List<object>();
 
+            var category = "";
+            var property = "";
+            var value = "";
 
-            var category = InputPorts[1].Data.ToString();
-            var property = InputPorts[2].Data.ToString();
-            var value = InputPorts[3].Data.ToString();
+            if (InputPorts[1].Data.ToString() != null && 
+                InputPorts[2].Data.ToString() != null &&
+                InputPorts[3].Data.ToString() != null)
+            {
+                category =  InputPorts[1].Data.ToString();
+                property = InputPorts[2].Data.ToString();
+                value = InputPorts[3].Data.ToString();
+            }
 
 
-            
+
+
 
             foreach (var s in sel as List<ModelItem>)
             {
-                setValues(s, category, property, value);
+                SetValues(s, category, property, value);
                 modelItems.Add(s);
             }
 
             OutputPorts[0].Data = modelItems;
-        }
+            }
 
-        public static void setValues(ModelItem m, string category, string property, string value)
-        {
-            // Create collection with model item
 
-            ModelItemCollection modelItemCollection = new ModelItemCollection();
-            modelItemCollection.Add(m);
 
-            InwOpState10 state;
+            public  static InwOpState10 state { get; set; }
+
+            public static void SetValues(ModelItem m, string CategoryName, string PropertyName, string value)
+            {
             state = ComApiBridge.State;
-
-            // get the selection in COM
-
-            Autodesk.Navisworks.Api.Interop.ComApi.InwOpSelection comSelectionOut = ComApiBridge.ToInwOpSelection(modelItemCollection);
-
-            /// get paths within the selection and select the last one (for some reason)
-
-            InwSelectionPathsColl oPaths = comSelectionOut.Paths();
-            InwOaPath3 oPath = (InwOaPath3)oPaths.Last();
+            InwOaPath oPath = ComApiBridge.ToInwOaPath(m);
 
             // get properties collection of the path
 
-            InwGUIPropertyNode2 propertyNode = (InwGUIPropertyNode2)state.GetGUIPropertyNode(oPath, true);
+            InwGUIPropertyNode2 propertyNode = state.GetGUIPropertyNode(oPath, true) as InwGUIPropertyNode2;
 
             // creating tab (Category), property null variables as placeholders
             InwGUIAttribute2 existingCategory = null;
-            //Create new propertyVec (whatever that is)
-            InwOaPropertyVec newPvec = (InwOaPropertyVec)state.ObjectFactory(nwEObjectType.eObjectType_nwOaPropertyVec, null, null); ;
 
             //Index of userDefined Tab
-            int index = 0;
+            int index = 1;
 
+            //Case 1: Look for an existing category with the same CategoryName
 
-           // GC.KeepAlive(propertyNode); //Call here to keep propertyNode ‘alive’ through the inner loop 
-
-            for (int i = 1; i < propertyNode.GUIAttributes().Count; i++)
+            foreach (Autodesk.Navisworks.Api.Interop.ComApi.InwGUIAttribute2 attribute in propertyNode.GUIAttributes())
             {
-                InwGUIAttribute2 GUIAttribute = propertyNode.GUIAttributes()[i] as InwGUIAttribute2;
-                string name = GUIAttribute.ClassUserName;
-                if (GUIAttribute.ClassUserName == category)
+                if (attribute.UserDefined)
                 {
-                    existingCategory = GUIAttribute;
-                    break;
+                    if (attribute.ClassUserName == CategoryName)
+                    {
+                        existingCategory = attribute;
+                        NavisProperties properties = new NavisProperties(PropertyName, value, existingCategory);
+                        setProperty(properties, index, propertyNode);
+                        return;
+                    }
+
+                    index++;
                 }
-                index += 1;
+
             }
 
+
+            //Case 2: Category doesn�t exist, create category and property
             if (existingCategory == null)
             {
-                index = 0;
-                // create new property
-                InwOaProperty newP = (InwOaProperty)state.ObjectFactory(nwEObjectType.eObjectType_nwOaProperty, null, null);
-
-                // set the name, username and value of the new property
-
-                newP.name = property + "_Name";
-
-                newP.UserName = property;
-
-                newP.value = value;
-
-                // add the new property to the new property category
-
-                newPvec.Properties().Add(newP);
-
+                NavisProperties properties = new NavisProperties(PropertyName, value, CategoryName);
+                setCategoryAndProperty(properties, propertyNode);
+                return;
             }
 
-            else
+        }
+
+
+        public static void setCategoryAndProperty(NavisProperties properties, InwGUIPropertyNode2 propertyNode)
+        {
+
+            try { propertyNode.SetUserDefined(0, properties.CategoryName, properties.CategoryName, properties.PropertyVec); }
+            catch (Exception exception) { MessageBox.Show(exception.Message); }
+
+        }
+
+        public static void setProperty ( NavisProperties properties, int index, InwGUIPropertyNode2 propertyNode)
+
+        {
+
+                propertyNode.SetUserDefined(index, properties.CategoryName, properties.CategoryName, properties.PropertyVec);
+
+        }
+
+
+        public class NavisProperties
+        {
+
+            /// <summary>
+            /// Property with value and category name
+            /// </summary>
+            /// <param name="name"></param>
+            /// <param name="value"></param>
+            /// <param name="categoryName"></param>
+            public NavisProperties(string name, string value, string categoryName)
             {
 
-                // check if property exists
-                bool propertyExists = false;
-                
-
-                foreach (InwOaProperty prop in existingCategory.Properties())
-                {
-
-
-                    if (prop.UserName == property)
-                    {
-                        propertyExists = true;
-                        
-                        //Set existing property to new value
-                        //prop.value(value);
-
-                        // create new property
-                        InwOaProperty newP = (InwOaProperty)state.ObjectFactory(nwEObjectType.eObjectType_nwOaProperty, null, null);
-                        newP.name = prop.name;
-                        newP.UserName = prop.UserName;
-                        newP.value = value;
-
-                        //Add the property to the propertyVec
-                        newPvec.Properties().Add(newP);
-                    }
-                }
-
-
-                if (!propertyExists)
-                {
-
-                    //Create new propertyVec (whatever that is)
-                    //newPvec = existingCategory as InwOaPropertyVec;
-                    
-                    // create new property
-                    InwOaProperty newP = (InwOaProperty)state.ObjectFactory(nwEObjectType.eObjectType_nwOaProperty, null, null);
-
-                    // set the name, username and value of the new property
-                    newP.name = property + "_Name";
-
-                    newP.UserName = property;
-
-                    newP.value = value;
-
-                    // add the new property to the new property category
-                    newPvec.Properties().Add(newP);
-                }
-
-
+                newP.name = name;
+                newP.value = value;
+                CategoryName = categoryName;
+                PropertyVec.Properties().Add(newP);
             }
 
-            // add the new property category to the path
+            public NavisProperties(string name, string value, InwGUIAttribute2 existingCategory)
+            {
 
-            propertyNode.SetUserDefined(index, category, category + "_InteralName", newPvec);
+                newP.name = name;
+                newP.value = value;
+                
+                CategoryName = existingCategory.ClassUserName;
+                foreach (InwOaProperty item in existingCategory.Properties())
+                {
+                    if (item.name != name)
+                    {
+                        //Cant be the same item? do i need to re create it everytime?
+                        InwOaProperty existingProp = state.ObjectFactory(nwEObjectType.eObjectType_nwOaProperty) as InwOaProperty;
+                        existingProp.name = item.name;
+                        existingProp.value = item.value;
 
+                        PropertyVec.Properties().Add(existingProp);
+                    }
+
+                }
+
+                PropertyVec.Properties().Add(newP);
+            }
+
+            public InwOaProperty newP { get; set; } = state.ObjectFactory(nwEObjectType.eObjectType_nwOaProperty) as InwOaProperty;
+            
+            public string CategoryName { get; set; }
+            public InwOaPropertyVec PropertyVec { get; set; } = state.ObjectFactory(nwEObjectType.eObjectType_nwOaPropertyVec) as InwOaPropertyVec;
         }
-
-
-        public static void RecreateCategory (InwOpState10 state, InwOaProperty oldP , string property, string value)
-        {
-            InwGUIPropertyNode2 propertyNode;
-
-
-
-            //category exists? N
-            //property exists?
-            //
-
-            //if (category.Name == CategoryName)
-            //{
-            // 
-            //if (property.Name == PropertyName)
-            //
-            //}
-
-            //Create new propertyVec (whatever that is)
-            InwOaPropertyVec newPvec = (InwOaPropertyVec)state.ObjectFactory(nwEObjectType.eObjectType_nwOaPropertyVec, null, null);
-           
-            // create new property
-            InwOaProperty newP = (InwOaProperty)state.ObjectFactory(nwEObjectType.eObjectType_nwOaProperty, null, null);
-
-            // set the name, username and value of the new property
-
-            newP.name = property + "_Name";
-
-            newP.UserName = property;
-
-            newP.value = value;
-
-            // add the new property to the new property category
-
-            newPvec.Properties().Add(newP);
-
-        }
-   
-
+        
 
         public override void SerializeNetwork(XmlWriter xmlWriter)
         {

@@ -1,20 +1,36 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NW_GP-Dockable", "NW_GP-Dockable\NW_GP-Dockable.csproj", "{0CF6E1A1-FD98-41C4-B377-3C7324361B63}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NW_GP-Dockable.UnitTests", "NW_GP-Dockable.UnitTests\NW_GP-Dockable.UnitTests.csproj", "{748AE42E-67C6-4510-AE1B-FB36AD31DAD7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
 		Navisworks 2018|Any CPU = Navisworks 2018|Any CPU
 		Navisworks 2019|Any CPU = Navisworks 2019|Any CPU
+		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0CF6E1A1-FD98-41C4-B377-3C7324361B63}.Debug|Any CPU.ActiveCfg = Autodesk Navisworks Manage 2019|Any CPU
+		{0CF6E1A1-FD98-41C4-B377-3C7324361B63}.Debug|Any CPU.Build.0 = Autodesk Navisworks Manage 2019|Any CPU
 		{0CF6E1A1-FD98-41C4-B377-3C7324361B63}.Navisworks 2018|Any CPU.ActiveCfg = Autodesk Navisworks Manage 2018|Any CPU
 		{0CF6E1A1-FD98-41C4-B377-3C7324361B63}.Navisworks 2018|Any CPU.Build.0 = Autodesk Navisworks Manage 2018|Any CPU
 		{0CF6E1A1-FD98-41C4-B377-3C7324361B63}.Navisworks 2019|Any CPU.ActiveCfg = Autodesk Navisworks Manage 2019|Any CPU
 		{0CF6E1A1-FD98-41C4-B377-3C7324361B63}.Navisworks 2019|Any CPU.Build.0 = Autodesk Navisworks Manage 2019|Any CPU
+		{0CF6E1A1-FD98-41C4-B377-3C7324361B63}.Release|Any CPU.ActiveCfg = Autodesk Navisworks Manage 2019|Any CPU
+		{0CF6E1A1-FD98-41C4-B377-3C7324361B63}.Release|Any CPU.Build.0 = Autodesk Navisworks Manage 2019|Any CPU
+		{748AE42E-67C6-4510-AE1B-FB36AD31DAD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{748AE42E-67C6-4510-AE1B-FB36AD31DAD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{748AE42E-67C6-4510-AE1B-FB36AD31DAD7}.Navisworks 2018|Any CPU.ActiveCfg = Release|Any CPU
+		{748AE42E-67C6-4510-AE1B-FB36AD31DAD7}.Navisworks 2018|Any CPU.Build.0 = Release|Any CPU
+		{748AE42E-67C6-4510-AE1B-FB36AD31DAD7}.Navisworks 2019|Any CPU.ActiveCfg = Release|Any CPU
+		{748AE42E-67C6-4510-AE1B-FB36AD31DAD7}.Navisworks 2019|Any CPU.Build.0 = Release|Any CPU
+		{748AE42E-67C6-4510-AE1B-FB36AD31DAD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{748AE42E-67C6-4510-AE1B-FB36AD31DAD7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
