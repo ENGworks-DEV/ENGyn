@@ -94,23 +94,29 @@ namespace NW_GraphicPrograming.Nodes
 
         private void run()
         {
-
-            string st = System.IO.File.ReadAllText(@"E:\Share\NW_GraphicPrograming\selectionSet.json");
-
-            try {
-                selectionSetsConfs = JsonConvert.DeserializeObject<List<SelectionSets>>(st);
-                }
-            catch (Exception exp)
-            { System.Windows.MessageBox.Show(exp.Message); }
-
-            if (selectionSetsConfs != null )
+            //@"E:\Share\NW_GraphicPrograming\selectionSet.json"
+            string path = InputPorts[0].Data.ToString();
+            if (path != null)
             {
-                foreach (var set in selectionSetsConfs)
-                {
-                    RecursiveSets(set);
-                }
+                string st = System.IO.File.ReadAllText(path);
 
+                try
+                {
+                    selectionSetsConfs = JsonConvert.DeserializeObject<List<SelectionSets>>(st);
+                }
+                catch (Exception exp)
+                { System.Windows.MessageBox.Show(exp.Message); }
+
+                if (selectionSetsConfs != null)
+                {
+                    foreach (var set in selectionSetsConfs)
+                    {
+                        RecursiveSets(set);
+                    }
+
+                }
             }
+           
                 
         }
 
