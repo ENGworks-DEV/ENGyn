@@ -182,11 +182,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="NodesCS\GetSearchSets.cs" />
     <Compile Include="NodesCS\GetItemAtIndex.cs" />
     <Compile Include="NodesCS\GetClash.cs" />
     <Compile Include="NodesCS\GetClashTest.cs" />
     <Compile Include="NodesCS\GetDocument.cs" />
-    <Compile Include="NodesCS\Appearance.cs" />
+    <Compile Include="NodesCS\SetAppearance.cs" />
     <Compile Include="NodesCS\SetValueByCatProp.cs" />
     <Compile Include="NodesCS\GetValueByCatProp.cs" />
     <Compile Include="NodesCS\GetSelection.cs" />
