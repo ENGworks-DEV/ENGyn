@@ -47,7 +47,7 @@ namespace NW_GraphicPrograming.Nodes
 
 
                     GetSets(selections);
-                        foreach (SelectionSet item in selectionSet)
+                        foreach (SelectionSet item in SelectionSet)
                         {
                             if (item != null && item.HasSearch)
                             {
@@ -64,14 +64,14 @@ namespace NW_GraphicPrograming.Nodes
         }
             }
 
-        public List<SelectionSet> selectionSet { get; private set; }
+        public List<SelectionSet> SelectionSet { get; private set; }
 
-        public SelectionSet iterateSelections(SavedItem savedItem)
+        public SelectionSet IterateSelections(SavedItem savedItem)
         { return null; }
         public void GetSets(SavedItem savedItem)
         {
 
-             selectionSet = new List<SelectionSet>();
+             SelectionSet = new List<SelectionSet>();
 
             if (savedItem.GetType() == typeof(FolderItem))
             {
@@ -84,7 +84,7 @@ namespace NW_GraphicPrograming.Nodes
             }
             else
             {
-                selectionSet.Add(savedItem as SelectionSet);
+                SelectionSet.Add(savedItem as SelectionSet);
             }
 
             

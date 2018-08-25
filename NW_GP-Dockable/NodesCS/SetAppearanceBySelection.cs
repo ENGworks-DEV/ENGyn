@@ -15,32 +15,20 @@ namespace NW_GraphicPrograming.Nodes
 {
     public class SetAppearanceBySelection : Node
     {
+
+        #region Node class methods
+
         public SetAppearanceBySelection(VplControl hostCanvas)
             : base(hostCanvas)
         {
-            //TODO define Input
+
             AddInputPortToNode("SearchSet", typeof(List<SelectionSet>));
             AddInputPortToNode("Color", typeof(System.Windows.Media.Color));
             AddOutputPortToNode("SearchSet", typeof(List<SelectionSet>));
 
 
-            foreach (Port item in this.InputPorts)
-            {
-                
-                item.Description = item.Name;
-
-            }
-
-            foreach (Port item in this.OutputPorts)
-            {
-                
-                item.Description = item.Name;
-            }
-
             AddControlToNode(new Label() { Content = "Get Selection", FontSize = 13, VerticalAlignment = System.Windows.VerticalAlignment.Top });
             
-
-            //this.BottomComment = new TUM.CMS.VplControl.Core.Comment(this) { Text = "Returns current selection" };
             IsResizeable = true;
 
         }
@@ -50,44 +38,22 @@ namespace NW_GraphicPrograming.Nodes
             if (InputPorts[0].Data != null)
             {
                 List<SelectionSet> searchs = (List<SelectionSet>)InputPorts[0].Data;
+
                 media.Color color = (media.Color)InputPorts[1].Data;
+                
+                //Convert ARGB Alpha to normaliced transparency
                 double t =  ((-color.A / 255.0)+1) * 100;
                 double transparency = t;
+
                 foreach (SelectionSet s in searchs)
                 {
-                    applyAppearance(s, transformColor(color), transparency);
+                    ApplyAppearance(s, TransformColor(color), transparency);
                 }
 
                 OutputPorts[0].Data = (List<SelectionSet>)InputPorts[0].Data;
             }
             
         }
-
-
-        private Color transformColor(System.Windows.Media.Color color)
-        {
-            double r = color.R / 255.0;
-            double g = color.G / 255.0;
-            double b = color.B / 255.0;
-            Color NavisColor = new Color(r,g,b);
-            
-            return NavisColor;
-            
-        }
-
-
-        private void applyAppearance(SelectionSet selectionSet, Color color, double transparency )
-        {
-            if (selectionSet != null && color != null  )
-
-            {
-                IEnumerable<ModelItem> modelItems = selectionSet.GetSelectedItems() as IEnumerable<ModelItem>;
-                Autodesk.Navisworks.Api.Application.ActiveDocument.Models.OverridePermanentColor(modelItems, color);
-                Autodesk.Navisworks.Api.Application.ActiveDocument.Models.OverridePermanentTransparency(modelItems, transparency);
-            }
-
-        }
-
 
         public override void SerializeNetwork(XmlWriter xmlWriter)
         {
@@ -110,8 +76,64 @@ namespace NW_GraphicPrograming.Nodes
                 Top = Top,
                 Left = Left
             };
-        
+
         }
+        #endregion
+
+        #region Methods
+        /// <summary>
+        /// Transform RGB Media.Color to naviscolor
+        /// </summary>
+        /// <param name="color"></param>
+        /// <returns></returns>
+        private Color TransformColor(System.Windows.Media.Color color)
+        {
+            double r = color.R / 255.0;
+            double g = color.G / 255.0;
+            double b = color.B / 255.0;
+            Color NavisColor = new Color(r, g, b);
+
+            return NavisColor;
+
+        }
+
+        /// <summary>
+        /// Transform RGB Drawing.Color to naviscolor
+        /// </summary>
+        /// <param name="color"></param>
+        /// <returns></returns>
+        private Color TransformColor(System.Drawing.Color color)
+        {
+            double r = color.R / 255.0;
+            double g = color.G / 255.0;
+            double b = color.B / 255.0;
+            Color NavisColor = new Color(r, g, b);
+
+            return NavisColor;
+
+        }
+
+        /// <summary>
+        /// Apply appearance to selection set
+        /// </summary>
+        /// <param name="selectionSet"></param>
+        /// <param name="color"></param>
+        /// <param name="transparency"></param>
+        private void ApplyAppearance(SelectionSet selectionSet, Color color, double transparency)
+        {
+            if (selectionSet != null
+                && color != null)
+
+            {
+                IEnumerable<ModelItem> modelItems = selectionSet.GetSelectedItems() as IEnumerable<ModelItem>;
+                Autodesk.Navisworks.Api.Application.ActiveDocument.Models.OverridePermanentColor(modelItems, color);
+                Autodesk.Navisworks.Api.Application.ActiveDocument.Models.OverridePermanentTransparency(modelItems, transparency);
+            }
+
+        }
+        #endregion
+
+
     }
 
 }
