@@ -6,10 +6,13 @@ using TUM.CMS.VplControl.Core;
 using System.Windows.Data;
 using System.Collections.Generic;
 using System.Reflection;
+
 namespace NW_GraphicPrograming.Nodes
 {
     public class GetSearchSets : Node
     {
+        
+
         public GetSearchSets(VplControl hostCanvas)
             : base(hostCanvas)
         {
@@ -35,18 +38,57 @@ namespace NW_GraphicPrograming.Nodes
             Document doc = Autodesk.Navisworks.Api.Application.ActiveDocument;
             
             List<SelectionSet> searchSets = new List<SelectionSet>();
+            if (doc.SelectionSets != null)
+            { 
             SavedItemCollection selectionSets =  doc.SelectionSets;
-            foreach (SelectionSet selections in selectionSets)
-            {
-                if (  selections.HasSearch)
+            try {
+                foreach (SavedItem selections in selectionSets)
                 {
-                    searchSets.Add(selections);
+
+
+                    GetSets(selections);
+                        foreach (SelectionSet item in selectionSet)
+                        {
+                            if (item != null && item.HasSearch)
+                            {
+                                searchSets.Add(item);
+                            }
+                        }
+     
                 }
             }
+            catch (System.Exception e)
+            { System.Windows.MessageBox.Show(e.Message); }
             
             OutputPorts[0].Data = searchSets;
         }
+            }
 
+        public List<SelectionSet> selectionSet { get; private set; }
+
+        public SelectionSet iterateSelections(SavedItem savedItem)
+        { return null; }
+        public void GetSets(SavedItem savedItem)
+        {
+
+             selectionSet = new List<SelectionSet>();
+
+            if (savedItem.GetType() == typeof(FolderItem))
+            {
+                var folder = savedItem as FolderItem;
+
+                foreach (SavedItem si in folder.Children)
+                {
+                    GetSets(si);
+                }
+            }
+            else
+            {
+                selectionSet.Add(savedItem as SelectionSet);
+            }
+
+            
+        }
 
         public override void SerializeNetwork(XmlWriter xmlWriter)
         {

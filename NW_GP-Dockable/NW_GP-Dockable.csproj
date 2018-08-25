@@ -187,7 +187,7 @@
     <Compile Include="NodesCS\GetClash.cs" />
     <Compile Include="NodesCS\GetClashTest.cs" />
     <Compile Include="NodesCS\GetDocument.cs" />
-    <Compile Include="NodesCS\SetAppearance.cs" />
+    <Compile Include="NodesCS\SetAppearanceBySelection.cs" />
     <Compile Include="NodesCS\SetValueByCatProp.cs" />
     <Compile Include="NodesCS\GetValueByCatProp.cs" />
     <Compile Include="NodesCS\GetSelection.cs" />
