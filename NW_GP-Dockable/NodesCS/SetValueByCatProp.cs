@@ -201,20 +201,6 @@ namespace NW_GraphicPrograming.Nodes
 
         public static void RecreateCategory (InwOpState10 state, InwOaProperty oldP , string property, string value)
         {
-            InwGUIPropertyNode2 propertyNode;
-
-
-
-            //category exists? N
-            //property exists?
-            //
-
-            //if (category.Name == CategoryName)
-            //{
-            // 
-            //if (property.Name == PropertyName)
-            //
-            //}
 
             //Create new propertyVec (whatever that is)
             InwOaPropertyVec newPvec = (InwOaPropertyVec)state.ObjectFactory(nwEObjectType.eObjectType_nwOaPropertyVec, null, null);
