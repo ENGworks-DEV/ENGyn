@@ -59,7 +59,7 @@ namespace NW_GraphicPrograming.Nodes
         #endregion
 
         #region Properties
-        private List<SelectionSets> selectionSetsConfs;
+        private List<JsonSelectionSets> selectionSetsConfs;
         #endregion
 
         #region Methods
@@ -123,7 +123,7 @@ namespace NW_GraphicPrograming.Nodes
 
                 try
                 {
-                    selectionSetsConfs = JsonConvert.DeserializeObject<List<SelectionSets>>(st);
+                    selectionSetsConfs = JsonConvert.DeserializeObject<List<JsonSelectionSets>>(st);
                 }
                 catch (Exception exp)
                 { System.Windows.MessageBox.Show(exp.Message); }
@@ -136,6 +136,7 @@ namespace NW_GraphicPrograming.Nodes
                     }
 
                 }
+                
             }
            
                 
@@ -145,7 +146,7 @@ namespace NW_GraphicPrograming.Nodes
         /// Recurse over SelectionSets objects applying color overrides to sets
         /// </summary>
         /// <param name="selectionSets"></param>
-        public void RecursiveSets(SelectionSets selectionSets)
+        public void RecursiveSets(JsonSelectionSets selectionSets)
         {
             //Apply color to set if color exists
             if (selectionSets.Color != null 
@@ -170,7 +171,7 @@ namespace NW_GraphicPrograming.Nodes
                 if (selectionSets.Sets != null 
                     && selectionSets.Sets.Count > 0)
 
-                    foreach (SelectionSets children in selectionSets.Sets)
+                    foreach (JsonSelectionSets children in selectionSets.Sets)
                     {
                         RecursiveSets(children);
                     }
@@ -182,7 +183,7 @@ namespace NW_GraphicPrograming.Nodes
                 if (selectionSets.Sets != null 
                     && selectionSets.Sets.Count > 0)
 
-                    foreach (SelectionSets children in selectionSets.Sets)
+                    foreach (JsonSelectionSets children in selectionSets.Sets)
                     {
                         RecursiveSets(children);
                     }
@@ -193,14 +194,14 @@ namespace NW_GraphicPrograming.Nodes
         /// <summary>
         /// Stores selection set configuration to apply into OverridePermanent methods
         /// </summary>
-        public class SelectionSets
+        public class JsonSelectionSets
         {
             public string Name { get; set; }
             public string Type { get; set; }
             public string Guid { get; set; }
             public string Color { get; set; }
             public int Transparency { get; set; }
-            public List<SelectionSets> Sets { get; set; }
+            public List<JsonSelectionSets> Sets { get; set; }
         }
 
         /// <summary>
