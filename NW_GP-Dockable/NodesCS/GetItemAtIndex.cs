@@ -8,6 +8,8 @@ using System.Windows.Data;
 
 using System.Collections.Generic;
 using System;
+using System.Collections;
+using System.Linq;
 
 namespace NW_GraphicPrograming.Nodes
 {
@@ -21,7 +23,7 @@ namespace NW_GraphicPrograming.Nodes
             AddInputPortToNode("Index", typeof(int));
             AddOutputPortToNode("Result", typeof(object));
             AddControlToNode(new Label { Content = "GetItemAtIndex" });
-
+            
             foreach (Port item in this.InputPorts)
             {
                 
@@ -43,9 +45,23 @@ namespace NW_GraphicPrograming.Nodes
 
         public override void Calculate()
         {
-            var count = Int32.Parse( InputPorts[1].Data.ToString());
-            var inputs = InputPorts[0].Data as List<object>;
-            OutputPorts[0].Data = inputs[count];
+            if (InputPorts[1].Data != null || InputPorts[0].Data != null)
+            {
+                //TODO : Catch this one
+                var count = Int32.Parse(InputPorts[1].Data.ToString());
+                
+                object inputs = InputPorts[0].Data ;
+               
+                object[] res  = ((IEnumerable)inputs).Cast<object>()
+                                 
+                                 .ToArray();
+
+                if (res != null && res.Length >= count + 1)
+                {
+                    OutputPorts[0].Data = res.GetValue(count);
+
+                }
+            }
           
         }
 
