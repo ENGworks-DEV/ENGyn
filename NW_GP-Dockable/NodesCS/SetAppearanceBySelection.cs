@@ -22,12 +22,12 @@ namespace NW_GraphicPrograming.Nodes
             : base(hostCanvas)
         {
 
-            AddInputPortToNode("SearchSet", typeof(List<SelectionSet>));
+            AddInputPortToNode("Selection", typeof(object));
             AddInputPortToNode("Color", typeof(System.Windows.Media.Color));
             AddOutputPortToNode("SearchSet", typeof(List<SelectionSet>));
 
 
-            AddControlToNode(new Label() { Content = "Get Selection", FontSize = 13, VerticalAlignment = System.Windows.VerticalAlignment.Top });
+            AddControlToNode(new Label() { Content = "Appearance By "+ Environment.NewLine+"Selection" });
             
             IsResizeable = true;
 
@@ -35,24 +35,44 @@ namespace NW_GraphicPrograming.Nodes
 
         public override void Calculate()
         {
-            if (InputPorts[0].Data != null)
+            var input = InputPorts[0].Data;
+
+            if (input != null)
+            {if (input is List<SelectionSet> || input is SelectionSet )
             {
-                List<SelectionSet> searchs = (List<SelectionSet>)InputPorts[0].Data;
+                    List<SelectionSet> searchs = (List<SelectionSet>)InputPorts[0].Data;
 
-                media.Color color = (media.Color)InputPorts[1].Data;
-                
-                //Convert ARGB Alpha to normaliced transparency
-                double t =  ((-color.A / 255.0)+1) * 100;
-                double transparency = t;
+                    media.Color color = (media.Color)InputPorts[1].Data;
 
-                foreach (SelectionSet s in searchs)
-                {
-                    ApplyAppearance(s, TransformColor(color), transparency);
+                    //Convert ARGB Alpha to normaliced transparency
+                    double t = ((-color.A / 255.0) + 1) * 100;
+                    double transparency = t;
+
+                    foreach (SelectionSet s in searchs)
+                    {
+                        ApplyAppearance(s, TransformColor(color), transparency);
+                    }
+
+                    OutputPorts[0].Data = (List<SelectionSet>)InputPorts[0].Data;
                 }
 
-                OutputPorts[0].Data = (List<SelectionSet>)InputPorts[0].Data;
+                if (input is List<ModelItem> || input is ModelItem )
+                {
+                    List<ModelItem> searchs = (List<ModelItem>)InputPorts[0].Data;
+
+                    media.Color color = (media.Color)InputPorts[1].Data;
+
+                    //Convert ARGB Alpha to normaliced transparency
+                    double t = ((-color.A / 255.0) + 1) * 100;
+                    double transparency = t;
+
+
+                    ApplyAppearance(searchs, TransformColor(color), transparency);
+
+                    OutputPorts[0].Data = (List<ModelItem>)InputPorts[0].Data;
+                }
             }
-            
+
         }
 
         public override void SerializeNetwork(XmlWriter xmlWriter)
@@ -126,6 +146,24 @@ namespace NW_GraphicPrograming.Nodes
 
             {
                 IEnumerable<ModelItem> modelItems = selectionSet.GetSelectedItems() as IEnumerable<ModelItem>;
+                Autodesk.Navisworks.Api.Application.ActiveDocument.Models.OverridePermanentColor(modelItems, color);
+                Autodesk.Navisworks.Api.Application.ActiveDocument.Models.OverridePermanentTransparency(modelItems, transparency);
+            }
+
+        }
+        /// <summary>
+        /// Apply appearance to modelitems list
+        /// </summary>
+        /// <param name="modelItems"></param>
+        /// <param name="color"></param>
+        /// <param name="transparency"></param>
+        private void ApplyAppearance(List<ModelItem> modelItems, Color color, double transparency)
+        {
+            if (modelItems != null
+                && color != null)
+
+            {
+                
                 Autodesk.Navisworks.Api.Application.ActiveDocument.Models.OverridePermanentColor(modelItems, color);
                 Autodesk.Navisworks.Api.Application.ActiveDocument.Models.OverridePermanentTransparency(modelItems, transparency);
             }

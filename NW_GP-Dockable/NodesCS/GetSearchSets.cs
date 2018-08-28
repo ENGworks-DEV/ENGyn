@@ -17,7 +17,7 @@ namespace NW_GraphicPrograming.Nodes
             : base(hostCanvas)
         {
             
-            AddOutputPortToNode("SearchSets", typeof(List<SelectionSet>));
+            AddOutputPortToNode("SearchSets", typeof(object));
 
             foreach (Port item in this.OutputPorts)
             {
@@ -64,9 +64,9 @@ namespace NW_GraphicPrograming.Nodes
         }
             }
 
-        public List<SelectionSet> SelectionSet { get; private set; }
+        private List<SelectionSet> SelectionSet { get; set; }
 
-        public SelectionSet IterateSelections(SavedItem savedItem)
+        private SelectionSet IterateSelections(SavedItem savedItem)
         { return null; }
         public void GetSets(SavedItem savedItem)
         {

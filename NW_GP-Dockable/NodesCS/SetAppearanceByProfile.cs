@@ -146,7 +146,7 @@ namespace NW_GraphicPrograming.Nodes
         /// Recurse over SelectionSets objects applying color overrides to sets
         /// </summary>
         /// <param name="selectionSets"></param>
-        public void RecursiveSets(JsonSelectionSets selectionSets)
+        private void RecursiveSets(JsonSelectionSets selectionSets)
         {
             //Apply color to set if color exists
             if (selectionSets.Color != null 
@@ -155,26 +155,33 @@ namespace NW_GraphicPrograming.Nodes
                 && selectionSets.Guid != "")
             {
                 //Get selection set
-                SelectionSet set = GetSetsByGUID(selectionSets.Guid);
-                //Pick color from json
-                var color = TransformColor( ColorTranslator.FromHtml(selectionSets.Color));
+                try {
+                    SelectionSet set = GetSetsByGUID(selectionSets.Guid);
+                    //Pick color from json
+                    var color = TransformColor(ColorTranslator.FromHtml(selectionSets.Color));
 
-                if (set != null 
-                    && set.GetSelectedItems().Count >0)
-                { 
-                    //Apply override to set
-                    ApplyAppearance(set, color, selectionSets.Transparency);
-                    
+                    if (set != null
+                        && set.GetSelectedItems().Count > 0)
+                    {
+                        //Apply override to set
+                        ApplyAppearance(set, color, selectionSets.Transparency);
+
+                    }
+
+                    //If folder has childrens, recurse
+                    if (selectionSets.Sets != null
+                        && selectionSets.Sets.Count > 0)
+
+                        foreach (JsonSelectionSets children in selectionSets.Sets)
+                        {
+                            RecursiveSets(children);
+                        }
+                }
+                catch (Exception exp)
+                {
+                    // Lets do something with this in the future
                 }
                 
-                //If folder has childrens, recurse
-                if (selectionSets.Sets != null 
-                    && selectionSets.Sets.Count > 0)
-
-                    foreach (JsonSelectionSets children in selectionSets.Sets)
-                    {
-                        RecursiveSets(children);
-                    }
             }
             //Go to childrens if set has no colors
             else
@@ -191,18 +198,7 @@ namespace NW_GraphicPrograming.Nodes
 
         }
 
-        /// <summary>
-        /// Stores selection set configuration to apply into OverridePermanent methods
-        /// </summary>
-        public class JsonSelectionSets
-        {
-            public string Name { get; set; }
-            public string Type { get; set; }
-            public string Guid { get; set; }
-            public string Color { get; set; }
-            public int Transparency { get; set; }
-            public List<JsonSelectionSets> Sets { get; set; }
-        }
+        
 
         /// <summary>
         /// Apply appearance to selection set
@@ -228,5 +224,9 @@ namespace NW_GraphicPrograming.Nodes
 
         
     }
+    /// <summary>
+    /// Stores selection set configuration to apply into OverridePermanent methods
+    /// </summary>
+    
 
 }

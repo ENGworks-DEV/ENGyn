@@ -65,7 +65,7 @@ namespace NW_GraphicPrograming.Nodes
         #endregion
 
         #region Properties
-        public exchange exchange { get; set; }
+        private exchange exchange { get; set; }
 
         #endregion
         #region Methods
@@ -91,7 +91,7 @@ namespace NW_GraphicPrograming.Nodes
 
         private JsonSelectionSets jsonSelectionSets { get; set; } = new JsonSelectionSets();
 
-        public void convertXMLtoConfiguration(object item)
+        private void convertXMLtoConfiguration(object item)
         {
               if (item.GetType() == typeof(exchange))
             {
