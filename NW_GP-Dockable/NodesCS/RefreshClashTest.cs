@@ -16,7 +16,7 @@ namespace NW_GraphicPrograming.Nodes
         public NW_RefreshClashTest(VplControl hostCanvas)
             : base(hostCanvas)
         {
-            AddInputPortToNode("Tests", typeof(List<ClashTest>));
+            AddInputPortToNode("Tests", typeof(object));
             AddOutputPortToNode("Clash Tests", typeof(List<Object>));
 
 
@@ -41,37 +41,40 @@ namespace NW_GraphicPrograming.Nodes
             Document doc = Autodesk.Navisworks.Api.Application.ActiveDocument;
             var testData = doc.GetClash().TestsData;
 
+            if (InputPorts[0].Data != null)
+            {
+                try
+                {
+                    var clashTestList = InputPorts[0].Data as List<ClashTest>;
 
+                    foreach (ClashTest item in clashTestList)
+                    {
+                        testData.TestsRunTest(item);
+                    }
+
+                    if (clashTestList.Count != 0)
+                    {
+                        OutputPorts[0].Data = clashTestList;
+                    }
+
+
+                    else
+                    {
+                        OutputPorts[0].Data = 0;
+                    }
+
+
+                }
+                catch
+                {
+
+                    var clashTest = InputPorts[0].Data as ClashTest;
+                    testData.TestsRunTest(clashTest);
+                    OutputPorts[0].Data = clashTest;
+                }
+            }
             
-            try
-            {
-                var clashTestList = InputPorts[0].Data as List<ClashTest> ;
-
-                foreach (ClashTest item in clashTestList)
-                {
-                    testData.TestsRunTest(item);
-                }
-
-                if (clashTestList.Count != 0)
-                {
-                    OutputPorts[0].Data = clashTestList;
-                }
-
-
-                else
-                {
-                    OutputPorts[0].Data = 0;
-                }
-
-
-            }
-            catch
-            {
-
-                var clashTest = InputPorts[0].Data as ClashTest;
-                testData.TestsRunTest(clashTest);
-                OutputPorts[0].Data = clashTest;
-            }
+            
             //var testData = doc.GetClash().TestsData;
 
 
