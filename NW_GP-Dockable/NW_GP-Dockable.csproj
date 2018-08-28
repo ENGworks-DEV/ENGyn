@@ -111,7 +111,6 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq">
@@ -180,15 +179,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="References\171002_PRO_VPA_ARC_QJA_M3D_10.cs" />
-    <Compile Include="NodesCS\GetSearchSets.cs" />
+    <Compile Include="NodesCS\RefreshClashTest.cs" />
     <Compile Include="NodesCS\GetItemAtIndex.cs" />
     <Compile Include="NodesCS\GetClash.cs" />
     <Compile Include="NodesCS\GetClashTest.cs" />
     <Compile Include="NodesCS\GetDocument.cs" />
-    <Compile Include="NodesCS\GetProfileFromXML.cs" />
-    <Compile Include="NodesCS\SetAppearanceByProfile.cs" />
-    <Compile Include="NodesCS\SetAppearanceBySelection.cs" />
     <Compile Include="NodesCS\SetValueByCatProp.cs" />
     <Compile Include="NodesCS\GetValueByCatProp.cs" />
     <Compile Include="NodesCS\GetSelection.cs" />
