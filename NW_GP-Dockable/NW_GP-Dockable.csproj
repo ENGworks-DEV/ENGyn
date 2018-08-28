@@ -179,6 +179,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="NodesCS\RefreshClashTest.cs" />
     <Compile Include="NodesCS\GetItemAtIndex.cs" />
     <Compile Include="NodesCS\GetClash.cs" />
     <Compile Include="NodesCS\GetClashTest.cs" />
