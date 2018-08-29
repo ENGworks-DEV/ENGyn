@@ -17,7 +17,7 @@ namespace NW_GraphicPrograming.Nodes
             : base(hostCanvas)
         {
             AddInputPortToNode("NW Document", typeof(Document));
-            AddOutputPortToNode("Navis Clash Tests", typeof(List<Object>));
+            AddOutputPortToNode("Navis Clash Tests", typeof(Object));
 
 
             foreach (Port item in this.InputPorts)

@@ -17,21 +17,21 @@ namespace NW_GraphicPrograming.Nodes
             : base(hostCanvas)
         {
 
-            AddInputPortToNode("Index", typeof(int));
             AddInputPortToNode("List", typeof(List<object>));
+            AddInputPortToNode("Index", typeof(int));
             AddOutputPortToNode("Result", typeof(object));
             AddControlToNode(new Label { Content = "GetItemAtIndex" });
 
             foreach (Port item in this.InputPorts)
             {
-                //item.ToolTip = item.DataType.ToString();
+                
                 item.Description = item.Name;
 
             }
 
             foreach (Port item in this.OutputPorts)
             {
-                //item.ToolTip = item.DataType.ToString();
+                
                 item.Description = item.Name;
             }
 
@@ -43,8 +43,8 @@ namespace NW_GraphicPrograming.Nodes
 
         public override void Calculate()
         {
-            var count = Int32.Parse( InputPorts[0].Data.ToString());
-            var inputs = InputPorts[1].Data as List<object>;
+            var count = Int32.Parse( InputPorts[1].Data.ToString());
+            var inputs = InputPorts[0].Data as List<object>;
             OutputPorts[0].Data = inputs[count];
           
         }
