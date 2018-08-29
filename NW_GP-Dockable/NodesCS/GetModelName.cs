@@ -31,19 +31,21 @@ namespace NW_GraphicPrograming.Nodes
                 item.Description = item.Name;
             }
 
-            AddControlToNode(new Label() { Content = "Model Name", FontSize = 13 });
+            AddControlToNode(new Label() { Content = "Model Name"});
 
-            this.Name = "Model Name";
+            
 
-            this.BottomComment = new TUM.CMS.VplControl.Core.Comment(this) { Text = "Returns Model Name" };
+            
             IsResizeable = true;
         }
 
         public override void Calculate()
         {
-
-            Document doc = InputPorts[0].Data as Document;
-         OutputPorts[0].Data = doc.CurrentFileName;
+            if (InputPorts[0].Data != null && InputPorts[0].Data is Document)
+            {
+                Document doc = InputPorts[0].Data as Document;
+                OutputPorts[0].Data = doc.CurrentFileName;
+            }
         }
 
 

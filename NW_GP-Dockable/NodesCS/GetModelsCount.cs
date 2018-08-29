@@ -34,9 +34,11 @@ namespace NW_GraphicPrograming.Nodes
 
         public override void Calculate()
         {
-
-            Document doc = InputPorts[0].Data as Document;
-            OutputPorts[0].Data = doc.Models.Count;
+            if (InputPorts[0].Data != null && InputPorts[0].Data is Document)
+            {
+                Document doc = InputPorts[0].Data as Document;
+                OutputPorts[0].Data = doc.Models.Count;
+            }
         }
 
 

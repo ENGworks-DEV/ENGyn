@@ -17,7 +17,7 @@ namespace NW_GraphicPrograming.Nodes
         {
             AddInputPortToNode("Clash Test", typeof(object));
             AddOutputPortToNode("Navis Clash", typeof(ClashResult));
-
+            AddOutputPortToNode("Navis Clash Groups", typeof(ClashResult));
 
             foreach (Port item in this.InputPorts)
             {
@@ -50,28 +50,33 @@ namespace NW_GraphicPrograming.Nodes
             List<ClashResultGroup> clashResultGroupList = new List<ClashResultGroup>();
             List<object> lct = new List<object>();
 
-            List<string> outputTest = new List<string>();
-            foreach (var item in InputPorts[0].Data as List<ClashTest>)
+            
+
+            //Check for null in input
+            if (InputPorts[0].Data != null && InputPorts[0].Data is List<ClashTest>)
             {
-                foreach (var t in item.Children)
+                foreach (var item in InputPorts[0].Data as List<ClashTest>)
                 {
+                    foreach (var t in item.Children)
+                    {
 
-                    if (t.IsGroup)
-                    {
-                        clashResultGroupList.Add(t as ClashResultGroup);
+                        if (t.IsGroup)
+                        {
+                            clashResultGroupList.Add(t as ClashResultGroup);
+                        }
+                        else
+                        {
+                            clashResultList.Add(t as ClashResult);
+                        }
                     }
-                    else
-                    {
-                        clashResultList.Add(t as ClashResult);
-                    }
+                    
                 }
-                outputTest.Add("yep");
-            }
-            
-   
 
-        OutputPorts[0].Data = clashResultList;
-            
+
+
+                OutputPorts[0].Data = clashResultList;
+                OutputPorts[1].Data = clashResultGroupList;
+            }
 
         }
 

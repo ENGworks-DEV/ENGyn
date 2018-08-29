@@ -43,24 +43,25 @@ namespace NW_GraphicPrograming.Nodes
 
         public override void Calculate()
         {
-
-            Document doc = InputPorts[0].Data as Document;
-            var testData = doc.GetClash().TestsData;
-
-            if (testData != null && testData.Tests.Count > 0)
+            if (InputPorts[0].Data != null && InputPorts[0].Data is Document)
             {
-                List<Object> clashTestList = new List<Object>();
-                foreach (var t in testData.Tests)
-                {
-               
-                    clashTestList.Add(t as Object);
-                }
+                Document doc = InputPorts[0].Data as Document;
+                var testData = doc.GetClash().TestsData;
 
-                OutputPorts[0].Data = clashTestList;
+                if (testData != null && testData.Tests.Count > 0)
+                {
+                    List<Object> clashTestList = new List<Object>();
+                    foreach (var t in testData.Tests)
+                    {
+
+                        clashTestList.Add(t as Object);
+                    }
+
+                    OutputPorts[0].Data = clashTestList;
+                }
+                else
+                { OutputPorts[0].Data = 0; }
             }
-            else
-            { OutputPorts[0].Data = 0; }
- 
         }
 
 
