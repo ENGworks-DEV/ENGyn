@@ -40,15 +40,17 @@ namespace NW_GraphicPrograming.Nodes
 
         public override void Calculate()
         {
-
-            Document doc = InputPorts[0].Data as Document;
-            var sel = doc.CurrentSelection.SelectedItems;
-            List<ModelItem> modelItems = new List<ModelItem>();
-            foreach (var s in sel)
+            if (InputPorts[0].Data != null && InputPorts[0].Data is Document)
             {
-                modelItems.Add(s);
+                Document doc = InputPorts[0].Data as Document;
+                var sel = doc.CurrentSelection.SelectedItems;
+                List<ModelItem> modelItems = new List<ModelItem>();
+                foreach (var s in sel)
+                {
+                    modelItems.Add(s);
+                }
+                OutputPorts[0].Data = modelItems;
             }
-         OutputPorts[0].Data = modelItems;
         }
 
 

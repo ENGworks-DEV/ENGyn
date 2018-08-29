@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using Autodesk.Navisworks.Api.Interop.ComApi;
 using Autodesk.Navisworks.Api.ComApi;
 using System;
+using System.Linq;
 
 namespace NW_GraphicPrograming.Nodes
 {
@@ -51,27 +52,39 @@ namespace NW_GraphicPrograming.Nodes
 
             //http://adndevblog.typepad.com/aec/2013/03/add-custom-properties-to-all-desired-model-items.html
 
-
-
-            var sel = InputPorts[0].Data;
-            List<object> modelItems = new List<object>();
-
-
-            var category = InputPorts[1].Data.ToString();
-            var property = InputPorts[2].Data.ToString();
-            var value = InputPorts[3].Data.ToString();
-
-
-            
-
-            foreach (var s in sel as List<ModelItem>)
+            if (InputPorts[0].Data is List<ModelItem>
+                && InputPorts[1].Data is string
+                && InputPorts[2].Data is string
+                && InputPorts[3].Data != null)
             {
-                setValues(s, category, property, value);
-                modelItems.Add(s);
-            }
 
-            OutputPorts[0].Data = modelItems;
+                var sel = InputPorts[0].Data;
+                List<object> modelItems = new List<object>();
+
+
+                var category = InputPorts[1].Data.ToString();
+                var property = InputPorts[2].Data.ToString();
+                var value = InputPorts[3].Data.ToString();
+
+
+
+
+                foreach (var s in sel as List<ModelItem>)
+                {
+                    setValues(s, category, property, value);
+                    modelItems.Add(s);
+                }
+
+                OutputPorts[0].Data = modelItems;
+            }
         }
+
+        //TODO :  Implement later
+        //public bool boolcheckNull(params object[] objects)
+        //{
+        //    return objects.All(s => s == null);
+        //}
+
 
         public static void setValues(ModelItem m, string category, string property, string value)
         {

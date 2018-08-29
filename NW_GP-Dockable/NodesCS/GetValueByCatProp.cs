@@ -46,19 +46,24 @@ namespace NW_GraphicPrograming.Nodes
 
         public override void Calculate()
         {
-
-            
-            var sel = InputPorts[0].Data;
-            List<object> modelItems = new List<object>();
-            var category = InputPorts[1].Data.ToString();
-            var property = InputPorts[2].Data.ToString();
-            foreach (var s in sel as List<ModelItem>)
+            if (InputPorts[0].Data != null
+                && InputPorts[1].Data != null
+                && InputPorts[2].Data != null
+                && InputPorts[0].Data is List<ModelItem>)
             {
-                var value = s.PropertyCategories.FindPropertyByDisplayName(category, property).Value;
-                modelItems.Add(value);
-            }
 
-            OutputPorts[0].Data = modelItems;
+                var sel = InputPorts[0].Data;
+                List<object> modelItems = new List<object>();
+                var category = InputPorts[1].Data.ToString();
+                var property = InputPorts[2].Data.ToString();
+                foreach (var s in sel as List<ModelItem>)
+                {
+                    var value = s.PropertyCategories.FindPropertyByDisplayName(category, property).Value;
+                    modelItems.Add(value);
+                }
+
+                OutputPorts[0].Data = modelItems;
+            }
         }
 
 
