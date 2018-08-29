@@ -52,35 +52,32 @@ namespace NW_GraphicPrograming.Nodes
             //http://adndevblog.typepad.com/aec/2013/03/add-custom-properties-to-all-desired-model-items.html
 
 
-
-            var sel = InputPorts[0].Data;
-            List<object> modelItems = new List<object>();
-
-            var category = "";
-            var property = "";
-            var value = "";
-
-            if (InputPorts[1].Data.ToString() != null && 
-                InputPorts[2].Data.ToString() != null &&
-                InputPorts[3].Data.ToString() != null)
+            if (InputPorts[0].Data is List<ModelItem>
+                && InputPorts[1].Data is string
+                && InputPorts[2].Data is string
+                && InputPorts[3].Data != null)
             {
-                category =  InputPorts[1].Data.ToString();
-                property = InputPorts[2].Data.ToString();
-                value = InputPorts[3].Data.ToString();
+
+                var sel = InputPorts[0].Data;
+                List<object> modelItems = new List<object>();
+
+
+                var category = InputPorts[1].Data.ToString();
+                var property = InputPorts[2].Data.ToString();
+                var value = InputPorts[3].Data.ToString();
+
+
+
+
+                foreach (var s in sel as List<ModelItem>)
+                {
+                    SetValues(s, category, property, value);
+                    modelItems.Add(s);
+                }
+
+                OutputPorts[0].Data = modelItems;
             }
-
-
-
-
-
-            foreach (var s in sel as List<ModelItem>)
-            {
-                SetValues(s, category, property, value);
-                modelItems.Add(s);
-            }
-
-            OutputPorts[0].Data = modelItems;
-            }
+        }
 
 
 
