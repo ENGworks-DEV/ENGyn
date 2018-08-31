@@ -19,18 +19,6 @@ namespace NW_GraphicPrograming.Nodes
             AddOutputPortToNode("Navis Clash", typeof(ClashResult));
             AddOutputPortToNode("Navis Clash Groups", typeof(ClashResult));
 
-            foreach (Port item in this.InputPorts)
-            {
-                //item.ToolTip = item.DataType.ToString();
-                item.Description = item.Name;
-
-            }
-
-            foreach (Port item in this.OutputPorts)
-            {
-                //item.ToolTip = item.DataType.ToString();
-                item.Description = item.Name;
-            }
 
             AddControlToNode(new Label() { Content = "Clash Result", FontSize = 13 });
 

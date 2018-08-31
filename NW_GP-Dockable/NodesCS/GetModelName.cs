@@ -16,21 +16,6 @@ namespace NW_GraphicPrograming.Nodes
             AddOutputPortToNode("Navis Model Name", typeof(string));
 
 
-            //TODO: input as part of the point.Below, temporary solution : One label per input
-
-            foreach (Port item in this.InputPorts)
-            {
-                //item.ToolTip = item.DataType.ToString();
-                item.Description = item.Name;
-
-            }
-
-            foreach (Port item in this.OutputPorts)
-            {
-                //item.ToolTip = item.DataType.ToString();
-                item.Description = item.Name;
-            }
-
             AddControlToNode(new Label() { Content = "Model Name"});
 
             
