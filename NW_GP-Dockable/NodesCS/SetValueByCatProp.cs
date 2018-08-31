@@ -23,26 +23,7 @@ namespace NW_GraphicPrograming.Nodes
             AddInputPortToNode("Value", typeof(object));
             AddOutputPortToNode("ModelItem", typeof(object));
 
-
-            foreach (Port item in this.InputPorts)
-            {
-                //item.ToolTip = item.DataType.ToString();
-                item.Description = item.Name;
-
-            }
-
-            foreach (Port item in this.OutputPorts)
-            {
-                //item.ToolTip = item.DataType.ToString();
-                item.Description = item.Name;
-            }
-
-            AddControlToNode(new Label() { Content = "Set value by" + Environment.NewLine + "category and property", FontSize = 13 });
-
-
-            this.BottomComment = new TUM.CMS.VplControl.Core.Comment(this) { Text = "sets value from category/property" };
-            IsResizeable = true;
-
+            AddControlToNode(new Label() { Content = "Set value by category and property"});
 
         }
 

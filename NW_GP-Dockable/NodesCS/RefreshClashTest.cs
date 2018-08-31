@@ -19,20 +19,8 @@ namespace NW_GraphicPrograming.Nodes
             AddInputPortToNode("Tests", typeof(object));
             AddOutputPortToNode("Clash Tests", typeof(List<Object>));
 
+            AddControlToNode(new Label() { Content = "Clash Tests" });
 
-            //TODO: input as part of the point.Below, temporary solution : One label per input
-            foreach (Port item in this.InputPorts)
-            {
-                item.ToolTip = item.Name;
-                // AddControlToNode(new Label() { Content = item.Name, FontSize = 13 });
-            }
-
-            AddControlToNode(new Label() { Content = "Clash Tests", FontSize = 13 });
-
-
-
-            this.BottomComment = new TUM.CMS.VplControl.Core.Comment(this) { Text = "Refresh clash test from document" };
-            IsResizeable = true;
         }
 
         public override void Calculate()
