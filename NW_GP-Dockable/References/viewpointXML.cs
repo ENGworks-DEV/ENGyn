@@ -13,14 +13,15 @@ namespace NW_GraphicPrograming.XML
     [XmlRoot(ElementName = "selectionset")]
     public class Selectionset
     {
-        //[XmlElement(ElementName = "findspec")]
-        //public Findspec Findspec { get; set; }
+
         [XmlAttribute(AttributeName = "name")]
         public string Name { get; set; }
         [XmlAttribute(AttributeName = "guid")]
         public string Guid { get; set; }
         [XmlAttribute(AttributeName = "color")]
         public string color { get; set; }
+        [XmlAttribute(AttributeName = "transparency")]
+        public int transparency { get; set; }
     }
 
     [XmlRoot(ElementName = "viewfolder")]
@@ -34,6 +35,8 @@ namespace NW_GraphicPrograming.XML
         public string Guid { get; set; }
         [XmlAttribute(AttributeName = "color")]
         public string color { get; set; }
+        [XmlAttribute(AttributeName = "transparency")]
+        public int transparency { get; set; }
     }
 
     [XmlRoot(ElementName = "selectionsets")]

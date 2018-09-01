@@ -7,6 +7,7 @@ using TUM.CMS.VplControl.Core;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using System;
+using NW_GraphicPrograming.XML;
 
 namespace NW_GraphicPrograming.Nodes
 {
@@ -32,7 +33,7 @@ namespace NW_GraphicPrograming.Nodes
 
         }
 
-        
+
         public override void SerializeNetwork(XmlWriter xmlWriter)
         {
             base.SerializeNetwork(xmlWriter);
@@ -59,10 +60,12 @@ namespace NW_GraphicPrograming.Nodes
         #endregion
 
         #region Properties
-        private List<JsonSelectionSets> selectionSetsConfs;
+        private JsonSelectionSetsConfiguration selectionSetsConfs;
+
         #endregion
 
         #region Methods
+
         /// <summary>
         /// Returns navisworks selection set matching GUID string
         /// </summary>
@@ -77,7 +80,7 @@ namespace NW_GraphicPrograming.Nodes
 
             return outputSelectionSet;
         }
-        
+
         /// <summary>
         /// Transform RGB Media.Color to naviscolor
         /// </summary>
@@ -115,7 +118,7 @@ namespace NW_GraphicPrograming.Nodes
         /// </summary>
         private void ReadConfiguration()
         {
-            
+
             string path = InputPorts[0].Data.ToString();
             if (path != null)
             {
@@ -123,110 +126,131 @@ namespace NW_GraphicPrograming.Nodes
 
                 try
                 {
-                    selectionSetsConfs = JsonConvert.DeserializeObject<List<JsonSelectionSets>>(st);
+                    selectionSetsConfs = JsonConvert.DeserializeObject<JsonSelectionSetsConfiguration>(st);
                 }
                 catch (Exception exp)
                 { System.Windows.MessageBox.Show(exp.Message); }
 
                 if (selectionSetsConfs != null)
                 {
-                    foreach (var set in selectionSetsConfs)
+                    foreach (var set in selectionSetsConfs.Selectionsets.Selectionset)
                     {
                         RecursiveSets(set);
                     }
-
+                    foreach (var set in selectionSetsConfs.Selectionsets.Viewfolder)
+                    {
+                        RecursiveSets(set);
+                    }
                 }
-                
+
             }
-           
-                
+
+
         }
 
         /// <summary>
         /// Recurse over SelectionSets objects applying color overrides to sets
         /// </summary>
-        /// <param name="selectionSets"></param>
-        private void RecursiveSets(JsonSelectionSets selectionSets)
+        /// <param name="obj"></param>
+        private void RecursiveSets(object obj)
         {
-            //Apply color to set if color exists
-            if (selectionSets.Color != null 
-                && selectionSets.Color != "" 
-                && selectionSets.Guid != null 
-                && selectionSets.Guid != "")
+            #region SelectionSet type
+            //If object is a selection set only apply color
+            if (obj is Selectionset)
             {
-                //Get selection set
-                try {
-                    SelectionSet set = GetSetsByGUID(selectionSets.Guid);
-                    //Pick color from json
-                    var color = TransformColor(ColorTranslator.FromHtml(selectionSets.Color));
+                var selectionSets = obj as Selectionset;
 
-                    if (set != null
-                        && set.GetSelectedItems().Count > 0)
-                    {
-                        //Apply override to set
-                        ApplyAppearance(set, color, selectionSets.Transparency);
-
-                    }
-
-                    //If folder has childrens, recurse
-                    if (selectionSets.Sets != null
-                        && selectionSets.Sets.Count > 0)
-
-                        foreach (JsonSelectionSets children in selectionSets.Sets)
-                        {
-                            RecursiveSets(children);
-                        }
-                }
-                catch (Exception exp)
+                //Apply color to set if color/transparency exists
+                if (selectionSets.Guid != null && selectionSets.Guid != "")
                 {
-                    // Lets do something with this in the future
-                }
-                
-            }
-            //Go to childrens if set has no colors
-            else
-            {
-                //If folder has childrens, recurse
-                if (selectionSets.Sets != null 
-                    && selectionSets.Sets.Count > 0)
-
-                    foreach (JsonSelectionSets children in selectionSets.Sets)
+                    //Get selection set
+                    try
                     {
-                        RecursiveSets(children);
+                        SelectionSet set = GetSetsByGUID(selectionSets.Guid);
+
+                        if (set != null
+                            && set.GetSelectedItems().Count > 0)
+                        {
+                            //Apply override to set
+                            ApplyAppearance(set, selectionSets.color, selectionSets.transparency);
+                        }
+
                     }
+                    catch (Exception exp)
+                    {
+                        // Lets do something with this in the future
+                    }
+
+                }
             }
+            #endregion
 
+            #region Viewfolder type
+            if (obj is Viewfolder)
+            {
+                var selectionSets = obj as Viewfolder;
+
+                //Apply color to set if color/transparency exists
+                if (selectionSets.Guid != null && selectionSets.Guid != "")
+                {
+
+                    //Get selection set
+                    try
+                    {
+                        SelectionSet set = GetSetsByGUID(selectionSets.Guid);
+
+                        if (set != null
+                            && set.GetSelectedItems().Count > 0)
+                        {
+                            //Apply override to set
+                            ApplyAppearance(set, selectionSets.color, selectionSets.transparency);
+                            foreach (var s in selectionSets.Selectionset)
+                            {
+                                RecursiveSets(s);
+                            }
+                        }
+
+                    }
+                    catch (Exception exp)
+                    {
+                        // Lets do something with this in the future
+                    }
+
+                }
+            }
+            
+            #endregion
         }
-
-        
 
         /// <summary>
         /// Apply appearance to selection set
         /// </summary>
         /// <param name="selectionSet"></param>
-        /// <param name="color"></param>
+        /// <param name="Color"></param>
         /// <param name="transparency"></param>
-        private void ApplyAppearance(SelectionSet selectionSet, Color color, double transparency )
+        private void ApplyAppearance(SelectionSet selectionSet, object Color, object transparency)
         {
-            if (selectionSet != null 
-                && color != null  )
+            if (selectionSet != null
+                && (Color != null || transparency != null))
 
             {
                 IEnumerable<ModelItem> modelItems = selectionSet.GetSelectedItems() as IEnumerable<ModelItem>;
-                Autodesk.Navisworks.Api.Application.ActiveDocument.Models.OverridePermanentColor(modelItems, color);
-                Autodesk.Navisworks.Api.Application.ActiveDocument.Models.OverridePermanentTransparency(modelItems, transparency);
+                if (Color != null)
+                {
+                    //Pick color from json
+                    var color = TransformColor(ColorTranslator.FromHtml(Color.ToString()));
+                    Autodesk.Navisworks.Api.Application.ActiveDocument.Models.OverridePermanentColor(modelItems, color); }
+                
+                if (transparency != null)
+                {
+                    Autodesk.Navisworks.Api.Application.ActiveDocument.Models.OverridePermanentTransparency(modelItems, int.Parse(transparency.ToString()));
+                }
+               
             }
 
         }
 
         #endregion
-
-
-        
     }
-    /// <summary>
-    /// Stores selection set configuration to apply into OverridePermanent methods
-    /// </summary>
-    
 
 }

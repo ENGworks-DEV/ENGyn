@@ -67,6 +67,7 @@ namespace NW_GraphicPrograming
         public string Name { get; set; }
         public string Guid { get; set; }
         public object color { get; set; }
+        public object transparency { get; set; }
     }
 
     public class Selectionset
@@ -74,6 +75,7 @@ namespace NW_GraphicPrograming
         public string Name { get; set; }
         public string Guid { get; set; }
         public object color { get; set; }
+        public object transparency { get; set; }
     }
 
     public class Selectionsets

@@ -35,7 +35,10 @@ namespace NW_GraphicPrograming.Nodes
             var path = InputPorts[0].Data as string;
             
             if (path != null && File.Exists(path))
-            { var exchange = Tools.readXML(path); }
+            {
+                var exchange = Tools.readXML(path);
+                Tools.convertXMLtoConfiguration(path.Replace(".xml", ".json"));
+            }
         }
 
 
