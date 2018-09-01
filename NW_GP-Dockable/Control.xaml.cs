@@ -49,9 +49,34 @@ namespace NW_GraphicPrograming
 
 
 
+            foreach (var item in VplControl.ExternalNodeTypes)
+            {
+                var button = new Button() { Content = item.Name }; // Creating button
+                button.Click += Add_Node; //Hooking up to event
+                button.Width = 140;
+                DockPanel.SetDock(button, Dock.Top);
+                ButtonStack.Children.Add(button); //Adding to grid or other parent
+                
+            }
+
+
             runButton.Click += refresh;
             
         }
+
+        private void Add_Node(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+            Node node = null;
+
+            foreach (var item in this.VplControl.NodeCollection)
+            {
+                if (item.Name == button.Name)
+                { }
+            }
+
+        }
+
 
 
         //Ugly way to trigger calculate
@@ -67,16 +92,22 @@ namespace NW_GraphicPrograming
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
+  
+            
         }
 
         private void NodesList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
-
             var l = this;
 
-           
         }
+
+        private void FillButtoms(object sender, SelectedCellsChangedEventArgs e )
+        {
+
+        }
+
+
     }
 }

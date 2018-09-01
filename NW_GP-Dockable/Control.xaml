@@ -3,12 +3,15 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
    xmlns:VplControl="clr-namespace:TUM.CMS.VplControl.Core;assembly=TUM.CMS.VplControl"
        
-    Height="400" Width="800">
+    Height="408" Width="747">
 
     <Grid Margin="0,0,0,0">
 
-        <VplControl:VplControl Name="VplControl" ClipToBounds="True" Background="White" Margin="0,0,0,0" Grid.Row="1" Grid.RowSpan="1"/>
-        <Button x:Name="runButton" Content="Refresh" Margin="33,9.8,0,9.8" Grid.Row="3" Click="Button_Click" HorizontalAlignment="Left" Width="100"/>
+        <VplControl:VplControl Name="VplControl" ClipToBounds="True" Background="White" Margin="2,0,0,0" Grid.Row="1" Grid.RowSpan="1" Grid.Column="1"/>
+        <Button x:Name="runButton" Content="Refresh" Margin="2,10,0,10" Grid.Row="2" Click="Button_Click" HorizontalAlignment="Left" Width="100" Grid.Column="1"/>
+        <ScrollViewer HorizontalAlignment="Left"  Grid.Row="1" VerticalAlignment="Top" Width="180">
+            <StackPanel Name="ButtonStack" Width="180"/>
+        </ScrollViewer>
 
         <Grid.RowDefinitions>
 
@@ -18,7 +21,8 @@
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="180"/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
 
