@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -33,19 +34,19 @@ namespace NW_GraphicPrograming.UnitTest
         public void XconvertXMLtoConfiguration_convertsToJson()
         {
 
-            //Tools.readXML(@"C:\Users\pdere\Desktop\python\RWLV-Search Sets-General Model.xml");
+            Tools.readXML(@"C:\Users\pdere\Desktop\python\RWLV-Search Sets-General Model.xml");
             //var set = new JsonSelectionSets();
             ////Task.Factory.StartNew(() =>
             ////{
             //Thread t = new Thread(new ParameterizedThreadStart(Tools.convertXMLtoConfiguration),10);
-           
+
             //t.Start(Tools.exchangeFile);
 
+            Tools.convertXMLtoConfiguration(@"C:\Users\pdere\Desktop\python\RWLV-Search Sets-General Model.json");
 
+           
             
-            JsonSelectionSets set = Tools.jsonSelectionSetsFile;
-            
-            Assert.IsNotNull(set);
+            Assert.IsTrue(File.Exists(@"C:\Users\pdere\Desktop\python\RWLV-Search Sets-General Model.json"));
 
             
         }
