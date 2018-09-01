@@ -32,10 +32,10 @@ namespace NW_GraphicPrograming.Nodes
 
         public override void Calculate()
         {
-            readXML();
-
-
-
+            var path = InputPorts[0].Data as string;
+            
+            if (path != null && File.Exists(path))
+            { var exchange = Tools.readXML(path); }
         }
 
 
@@ -64,74 +64,9 @@ namespace NW_GraphicPrograming.Nodes
         }
         #endregion
 
-        #region Properties
-        private exchange exchange { get; set; }
-
-        #endregion
-        #region Methods
-        public void readXML ()
-        {
-            
-            string path = InputPorts[0].Data as string ?? @"C:\Users\pdere\Desktop\python\171002_PRO_VPA_ARC_QJA_M3D_10.xml";
-            FileStream fs = new FileStream(path, FileMode.Open);
-
-            try {
-            XmlSerializer serializer = new XmlSerializer(typeof(exchange));
-                exchange = (exchange)serializer.Deserialize(fs);
-            }
-            catch (System.Exception ex)
-            { System.Windows.MessageBox.Show(ex.Message); }
-
-            
-
-            fs.Close();
 
 
-        }
-
-        private JsonSelectionSets jsonSelectionSets { get; set; } = new JsonSelectionSets();
-
-        private void convertXMLtoConfiguration(object item)
-        {
-              if (item.GetType() == typeof(exchange))
-            {
-                exchange ex = item as exchange;
-                foreach (var i in ex.selectionsets)
-                {
-                    convertXMLtoConfiguration(i);
-                }
-               
-            }
-
-              if (item.GetType() == typeof(XML.exchangeSelectionsetsViewfolder))
-                {
-
-                exchangeSelectionsetsViewfolder viewfolder = item as exchangeSelectionsetsViewfolder;
-
-                }
-
-
-            }
-            
-
-        }
-
-
-
-        #endregion
-        /// <summary>
-        /// Stores selection set configuration to apply into OverridePermanent methods
-        /// </summary>
-        public class JsonSelectionSets
-        {
-            public string Name { get; set; }
-            public string Type { get; set; }
-            public string Guid { get; set; }
-            public string Color { get; set; }
-            public int Transparency { get; set; }
-            public List<JsonSelectionSets> Sets { get; set; }
-        }
-
+    }
 
     }
 
