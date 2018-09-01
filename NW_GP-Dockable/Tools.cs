@@ -16,8 +16,11 @@ namespace NW_GraphicPrograming
     {
         #region Properties
         public static Exchange exchangeFile { get; set; }
+        public static JsonSelectionSetsConfiguration jsonSelectionSetsFile { get; set; }
+
 
         #endregion
+
         #region Methods
         public static  Exchange readXML(string path )
         {
@@ -37,38 +40,56 @@ namespace NW_GraphicPrograming
 
         }
 
-        public static JsonSelectionSets jsonSelectionSetsFile { get; set; }
 
-        
 
         public static void convertXMLtoConfiguration(string path)
         {
 
-            var jsonSerializer = JsonConvert.SerializeObject(exchangeFile);
+            var jsonXML= JsonConvert.SerializeObject(exchangeFile);
+            jsonSelectionSetsFile = JsonConvert.DeserializeObject< JsonSelectionSetsConfiguration>(jsonXML);
 
-            File.WriteAllText(path, jsonSerializer);
+            File.WriteAllText(path, jsonXML);
 
 
-        }
-
-        
+        }        
 
     }
 
 
 
-#endregion
+    #endregion
     /// <summary>
     /// Stores selection set configuration to apply into OverridePermanent methods
     /// </summary>
-    public class JsonSelectionSets
+    public class Viewfolder
+    {
+        public List<object> Selectionset { get; set; }
+        public string Name { get; set; }
+        public string Guid { get; set; }
+        public object color { get; set; }
+    }
+
+    public class Selectionset
     {
         public string Name { get; set; }
-        public string Type { get; set; }
         public string Guid { get; set; }
-        public string Color { get; set; }
-        public int Transparency { get; set; }
-        public List<JsonSelectionSets> Sets { get; set; }
+        public object color { get; set; }
+    }
+
+    public class Selectionsets
+    {
+        public List<Viewfolder> Viewfolder { get; set; }
+        public List<Selectionset> Selectionset { get; set; }
+    }
+
+    public class JsonSelectionSetsConfiguration
+    {
+        public Selectionsets Selectionsets { get; set; }
+        public string Xsi { get; set; }
+        public string NoNamespaceSchemaLocation { get; set; }
+        public string Units { get; set; }
+        public string Filename { get; set; }
+        public string Filepath { get; set; }
     }
 
 

@@ -50,7 +50,27 @@ namespace NW_GraphicPrograming.UnitTest
 
             
         }
-        
+        [TestMethod]
+        public void XconvertXMLtoConfiguration_convertsClass()
+        {
+
+            Tools.readXML(@"C:\Users\pdere\Desktop\python\RWLV-Search Sets-General Model.xml");
+            //var set = new JsonSelectionSets();
+            ////Task.Factory.StartNew(() =>
+            ////{
+            //Thread t = new Thread(new ParameterizedThreadStart(Tools.convertXMLtoConfiguration),10);
+
+            //t.Start(Tools.exchangeFile);
+
+            Tools.convertXMLtoConfiguration(@"C:\Users\pdere\Desktop\python\RWLV-Search Sets-General Model.json");
+
+
+
+            Assert.IsNotNull(Tools.jsonSelectionSetsFile);
+
+
+        }
+
 
     }
 }
