@@ -139,7 +139,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Tools.cs" />
     <Resource Include="themes\Buttons.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -182,19 +181,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Compile Include="References\viewpointXML.cs" />
-    <Compile Include="NodesCS\GetSearchSets.cs" />
-    <Compile Include="NodesCS\GetItemAtIndex.cs" />
-    <Compile Include="NodesCS\GetClash.cs" />
-    <Compile Include="NodesCS\GetClashTest.cs" />
-    <Compile Include="NodesCS\GetDocument.cs" />
-    <Compile Include="NodesCS\GetProfileFromXML.cs" />
-    <Compile Include="NodesCS\SetAppearanceByProfile.cs" />
-    <Compile Include="NodesCS\SetAppearanceBySelection.cs" />
-    <Compile Include="NodesCS\SetValueByCatProp.cs" />
-    <Compile Include="NodesCS\GetValueByCatProp.cs" />
-    <Compile Include="NodesCS\GetSelection.cs" />
-    <Compile Include="NodesCS\GetModelName.cs" />
-    <Compile Include="NodesCS\GetModelsCount.cs" />
     <Compile Include="Control.xaml.cs">
       <DependentUpon>Control.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -225,6 +211,7 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
