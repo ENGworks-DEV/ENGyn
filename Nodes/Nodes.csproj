@@ -84,6 +84,7 @@
     <Compile Include="GetValueByCatProp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="References\viewpointXML.cs" />
+    <Compile Include="ResfreshClashTest.cs" />
     <Compile Include="SetAppearanceByProfile.cs" />
     <Compile Include="SetAppearanceBySelection.cs" />
     <Compile Include="SetValueByCatProp.cs" />
