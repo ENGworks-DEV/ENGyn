@@ -20,12 +20,9 @@ namespace NW_GraphicPrograming.Nodes
             AddOutputPortToNode("Navis Clash Groups", typeof(ClashResult));
 
 
-            AddControlToNode(new Label() { Content = "Clash Result", FontSize = 13 });
+            AddControlToNode(new Label() { Content = "Clash Result"});
 
             
-
-            this.BottomComment = new TUM.CMS.VplControl.Core.Comment(this) { Text = "Returns Clash Result from test" };
-            IsResizeable = true;
         }
 
 

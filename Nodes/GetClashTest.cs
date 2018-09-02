@@ -20,12 +20,8 @@ namespace NW_GraphicPrograming.Nodes
             AddOutputPortToNode("Navis Clash Tests", typeof(Object));
 
 
-            AddControlToNode(new Label() { Content = "Clash Tests", FontSize = 13 });
+            AddControlToNode(new Label() { Content = "Clash Tests"});
 
-          
-
-            this.BottomComment = new TUM.CMS.VplControl.Core.Comment(this) { Text = "Returns Clash Tests from document" };
-            IsResizeable = true;
         }
 
         public override void Calculate()

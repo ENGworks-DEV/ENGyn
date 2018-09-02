@@ -25,7 +25,7 @@ namespace NW_GraphicPrograming.Nodes
                 item.Description = item.Name;
             }
 
-            AddControlToNode(new Label() { Content = "Get SearchSets", FontSize = 13, VerticalAlignment = System.Windows.VerticalAlignment.Top });
+            AddControlToNode(new Label() { Content = "Get SearchSets" });
             
 
             this.BottomComment = new TUM.CMS.VplControl.Core.Comment(this) { Text = "Returns Get Search Sets" };

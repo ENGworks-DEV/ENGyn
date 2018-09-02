@@ -17,7 +17,7 @@ namespace NW_GraphicPrograming.Nodes
             AddOutputPortToNode("Selection", typeof(object));
 
 
-            AddControlToNode(new Label() { Content = "Get Selection", FontSize = 13, VerticalAlignment = System.Windows.VerticalAlignment.Top });
+            AddControlToNode(new Label() { Content = "Get Selection"});
             
 
             this.BottomComment = new TUM.CMS.VplControl.Core.Comment(this) { Text = "Returns current selection" };

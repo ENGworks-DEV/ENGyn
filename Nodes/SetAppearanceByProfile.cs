@@ -23,7 +23,7 @@ namespace NW_GraphicPrograming.Nodes
             AddInputPortToNode("File path", typeof(string));
 
 
-            AddControlToNode(new Label() { Content = "Apply appearance profile", FontSize = 13, VerticalAlignment = System.Windows.VerticalAlignment.Top });
+            AddControlToNode(new Label() { Content = "Apply appearance profile"});
             IsResizeable = true;
 
         }

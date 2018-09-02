@@ -25,7 +25,7 @@ namespace NW_GraphicPrograming.Nodes
             AddControlToNode(new Label { Content = "GetItemAtIndex" });
             
  
-            AddControlToNode(new Label() { Content = "Get item at index", FontSize = 13 });
+            AddControlToNode(new Label() { Content = "Get item at index" });
 
          
        

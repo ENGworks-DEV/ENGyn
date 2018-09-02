@@ -25,7 +25,7 @@ namespace NW_GraphicPrograming.Nodes
             AddInputPortToNode("File path", typeof(string));
 
 
-            AddControlToNode(new Label() { Content = "Appearance profile from XML", FontSize = 13, VerticalAlignment = System.Windows.VerticalAlignment.Top });
+            AddControlToNode(new Label() { Content = "Appearance profile from XML" });
             IsResizeable = true;
 
         }
