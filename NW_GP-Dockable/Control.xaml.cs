@@ -7,6 +7,8 @@ using System;
 using Autodesk.Navisworks.Api;
 using System.Windows;
 using System.IO;
+using Microsoft.CSharp;
+using System.CodeDom.Compiler;
 
 namespace NW_GraphicPrograming
 {
@@ -36,12 +38,17 @@ namespace NW_GraphicPrograming
             var assamblyLocation = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + @"\Nodes" ;
             
 
-            var test = Directory.GetFiles(assamblyLocation,"*.dll");
-            foreach (var dllPath in Directory.GetFiles(assamblyLocation))
+            var dlls = Directory.GetFiles(assamblyLocation,"*.dll");
+            foreach (var dllPath in dlls)
             {
-                var assamb = Assembly.LoadFrom(Path.Combine(dllPath));
+                //Only load classes inherent from Node
 
-                VplControl.ExternalNodeTypes.AddRange(assamb.GetTypes());
+                var assamb = Assembly.LoadFrom(Path.Combine(dllPath))
+                    .GetTypes()
+                    .Where(t => t != typeof(Node) &&
+                                          typeof(Node).IsAssignableFrom(t));
+
+                VplControl.ExternalNodeTypes.AddRange(assamb);
             }
             
 
@@ -49,9 +56,45 @@ namespace NW_GraphicPrograming
 
 
 
+            foreach (var item in VplControl.ExternalNodeTypes)
+            {
+                var button = new Button() { Content = item.Name }; // Creating button
+                button.Click += Add_Node; //Hooking up to event
+                button.Width = 140;
+                DockPanel.SetDock(button, Dock.Top);
+                ButtonStack.Children.Add(button); //Adding to grid or other parent
+                
+            }
+
+
             runButton.Click += refresh;
             
         }
+
+        private void Add_Node(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+            
+            var el = this.VplControl.ConnectorCollection;
+            
+            foreach (var item in this.VplControl.ExternalNodeTypes)
+            {
+                if (item.Name == button.Content.ToString())
+                {
+                    var node = (Node)Activator.CreateInstance(item, this.VplControl);
+
+                    node.Left = 0;
+                    node.Top = 0;
+
+                    node.Show();
+                }
+                
+
+ 
+            }
+
+        }
+
 
 
         //Ugly way to trigger calculate
@@ -67,16 +110,22 @@ namespace NW_GraphicPrograming
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
+  
+            
         }
 
         private void NodesList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
-
             var l = this;
 
-           
         }
+
+        private void FillButtoms(object sender, SelectedCellsChangedEventArgs e )
+        {
+
+        }
+
+
     }
 }
