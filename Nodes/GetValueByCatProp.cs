@@ -10,9 +10,9 @@ using System;
 
 namespace NW_GraphicPrograming.Nodes
 {
-    public class GetValueByCatProp : Node
+    public class NW_GetValueByCatProp : Node
     {
-        public GetValueByCatProp(VplControl hostCanvas)
+        public NW_GetValueByCatProp(VplControl hostCanvas)
             : base(hostCanvas)
         {
             AddInputPortToNode("ModelItem", typeof(ModelItem));
@@ -67,7 +67,7 @@ namespace NW_GraphicPrograming.Nodes
 
         public override Node Clone()
         {
-            return new GetValueByCatProp(HostCanvas)
+            return new NW_GetValueByCatProp(HostCanvas)
             {
                 Top = Top,
                 Left = Left

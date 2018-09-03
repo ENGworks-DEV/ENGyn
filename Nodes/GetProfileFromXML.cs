@@ -15,11 +15,11 @@ using NW_GraphicPrograming.XML;
 
 namespace NW_GraphicPrograming.Nodes
 {
-    public class GetProfileFromXML : Node
+    public class NW_GetProfileFromXML : Node
     {
         //TODO: read xml and convert to json profile
         #region Node class methods
-        public GetProfileFromXML(VplControl hostCanvas)
+        public NW_GetProfileFromXML(VplControl hostCanvas)
             : base(hostCanvas)
         {
             AddInputPortToNode("File path", typeof(string));
@@ -58,7 +58,7 @@ namespace NW_GraphicPrograming.Nodes
 
         public override Node Clone()
         {
-            return new GetProfileFromXML(HostCanvas)
+            return new NW_GetProfileFromXML(HostCanvas)
             {
                 Top = Top,
                 Left = Left

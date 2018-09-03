@@ -13,11 +13,11 @@ using System.Xml.Serialization;
 
 namespace NW_GraphicPrograming.Nodes
 {
-    public class SetAppearanceByProfile : Node
+    public class NW_SetAppearanceByProfile : Node
     {
 
         #region Node class methods
-        public SetAppearanceByProfile(VplControl hostCanvas)
+        public NW_SetAppearanceByProfile(VplControl hostCanvas)
             : base(hostCanvas)
         {
             AddInputPortToNode("File path", typeof(string));
@@ -52,7 +52,7 @@ namespace NW_GraphicPrograming.Nodes
 
         public override Node Clone()
         {
-            return new SetAppearanceByProfile(HostCanvas)
+            return new NW_SetAppearanceByProfile(HostCanvas)
             {
                 Top = Top,
                 Left = Left

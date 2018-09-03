@@ -13,12 +13,12 @@ using System;
 
 namespace NW_GraphicPrograming.Nodes
 {
-    public class SetAppearanceBySelection : Node
+    public class NW_SetAppearanceBySelection : Node
     {
 
         #region Node class methods
 
-        public SetAppearanceBySelection(VplControl hostCanvas)
+        public NW_SetAppearanceBySelection(VplControl hostCanvas)
             : base(hostCanvas)
         {
 
@@ -91,7 +91,7 @@ namespace NW_GraphicPrograming.Nodes
 
         public override Node Clone()
         {
-            return new SetAppearanceBySelection(HostCanvas)
+            return new NW_SetAppearanceBySelection(HostCanvas)
             {
                 Top = Top,
                 Left = Left
