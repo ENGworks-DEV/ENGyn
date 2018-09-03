@@ -10,6 +10,8 @@ using System.IO;
 using Microsoft.CSharp;
 using System.CodeDom.Compiler;
 using System.Windows.Input;
+using System.Collections.Generic;
+using System.Collections;
 
 namespace NW_GraphicPrograming
 {
@@ -115,13 +117,28 @@ namespace NW_GraphicPrograming
         //Ugly way to trigger calculate
         private void refresh(object sender, RoutedEventArgs e)
         {
-            foreach (Node n in this.VplControl.NodeCollection)
-            { n.setToRun = true;
-                n.Calculate();
+            var nn = SortNodes.TSort(this.VplControl.NodeCollection as IEnumerable<Node>, n => NodeDep(n) );
+
+            foreach (Node n in nn)
+            {
+                n.setToRun = true;
+                try
+                {
+                    n.Calculate();
+                }
+                catch (Exception except)
+                {
+                    MessageBox.Show(n.GetType().ToString() + Environment.NewLine + except.Message);
+
+                    n.HasError = true;
+
+                }
                 n.setToRun = false;
             }
 
         }
+
+
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -141,6 +158,59 @@ namespace NW_GraphicPrograming
 
         }
 
+        public static IEnumerable<Node> NodeDep(Node node)
 
+        {
+            var type = node.DependencyObjectType as IEnumerable<Node>;
+            var outpt = new List<Node>();
+            type = null ;
+            foreach (var item in node.InputPorts)
+            {
+                foreach (var ii in item.ConnectedConnectors)
+                {
+                    outpt.Add(ii.StartPort.ParentNode);
+
+                } 
+            }
+             
+           
+            return  outpt as IEnumerable<Node>;
+        }
     }
+    public static  class SortNodes
+    {
+
+        public static IEnumerable<T> TSort<T>(this IEnumerable<T> source, Func<T, IEnumerable<T>> dependencies, bool throwOnCycle = false)
+        {
+            var sorted = new List<T>();
+            var visited = new HashSet<T>();
+
+            foreach (var item in source)
+                Visit(item, visited, sorted, dependencies, throwOnCycle);
+
+            return sorted;
+        }
+
+        private static void Visit<T>(T item, HashSet<T> visited, List<T> sorted, Func<T, IEnumerable<T>> dependencies, bool throwOnCycle)
+        {
+            if (!visited.Contains(item))
+            {
+                visited.Add(item);
+                if (dependencies(item) != null)
+                {
+                    foreach (var dep in dependencies(item))
+                        Visit(dep, visited, sorted, dependencies, throwOnCycle);
+
+                    sorted.Add(item);
+                }
+
+            }
+            else
+            {
+                if (throwOnCycle && !sorted.Contains(item))
+                    throw new Exception("Cyclic dependency found");
+            }
+        }
+    }
+    
 }

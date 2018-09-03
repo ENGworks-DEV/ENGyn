@@ -17,7 +17,7 @@ namespace NW_GraphicPrograming.Nodes
             : base(hostCanvas)
         {
             AddInputPortToNode("Tests", typeof(object));
-            AddOutputPortToNode("Clash Tests", typeof(List<Object>));
+            AddOutputPortToNode("Clash Tests", typeof(object));
 
             AddControlToNode(new Label() { Content = "Clash Tests" });
 

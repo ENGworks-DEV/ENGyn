@@ -72,6 +72,8 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CompactTest.cs" />
+    <Compile Include="Template.cs" />
     <Compile Include="GetClash.cs" />
     <Compile Include="GetClashTest.cs" />
     <Compile Include="GetDocument.cs" />
