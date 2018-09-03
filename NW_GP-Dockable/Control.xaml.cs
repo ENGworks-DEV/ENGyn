@@ -9,6 +9,7 @@ using System.Windows;
 using System.IO;
 using Microsoft.CSharp;
 using System.CodeDom.Compiler;
+using System.Windows.Input;
 
 namespace NW_GraphicPrograming
 {
@@ -27,10 +28,8 @@ namespace NW_GraphicPrograming
 
             KeyDown += VplControl.VplControl_KeyDown;
             KeyUp += VplControl.VplControl_KeyUp;
-            // Load a theme and set it as current.
-            
 
-
+            //Loading nodes dlls located in Nodes folders
             VplControl.ExternalNodeTypes.AddRange(
             Utilities.GetTypesInNamespace(Assembly.GetExecutingAssembly(), "NW_GraphicPrograming.Nodes").ToList());
 
@@ -56,19 +55,35 @@ namespace NW_GraphicPrograming
 
 
 
-            foreach (var item in VplControl.ExternalNodeTypes)
+            foreach (var item in VplControl.ExternalNodeTypes.OrderBy(o => o.Name).ToList())
             {
-                var button = new Button() { Content = item.Name }; // Creating button
-                button.Click += Add_Node; //Hooking up to event
-                button.Width = 140;
+                var button = new Button() { Content = item.Name , HorizontalContentAlignment = HorizontalAlignment.Left }; 
+                button.Click += Add_Node; 
+                   
                 DockPanel.SetDock(button, Dock.Top);
-                ButtonStack.Children.Add(button); //Adding to grid or other parent
+                ButtonStack.Children.Add(button); 
                 
             }
 
 
             runButton.Click += refresh;
             
+        }
+
+
+        private void NewCommand(object sender, RoutedEventArgs e)
+        {
+            VplControl.NewFile();
+        }
+
+        private void OpenCommand(object sender, RoutedEventArgs e)
+        {
+            VplControl.OpenFile();
+        }
+
+        private void SaveCommand(object sender, RoutedEventArgs e)
+        {
+            VplControl.SaveFile();
         }
 
         private void Add_Node(object sender, RoutedEventArgs e)

@@ -1,6 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:l="clr-namespace:TUM.CMS.VplControl.Core;assembly=TUM.CMS.VplControl">
+                    xmlns:l="clr-namespace:TUM.CMS.VplControl.Core">
 
 
     <Style x:Key="{x:Type l:SearchTextBox}" TargetType="{x:Type l:SearchTextBox}">

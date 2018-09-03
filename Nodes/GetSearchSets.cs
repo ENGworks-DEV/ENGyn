@@ -26,9 +26,7 @@ namespace NW_GraphicPrograming.Nodes
             }
 
             AddControlToNode(new Label() { Content = "Get SearchSets" });
-            
 
-            this.BottomComment = new TUM.CMS.VplControl.Core.Comment(this) { Text = "Returns Get Search Sets" };
             
 
         }

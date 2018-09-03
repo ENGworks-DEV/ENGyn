@@ -2,14 +2,14 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:system="clr-namespace:System;assembly=mscorlib"
-    xmlns:core="clr-namespace:TUM.CMS.VplControl.Core;assembly=TUM.CMS.VplControl">
+    xmlns:core="clr-namespace:TUM.CMS.VplControl.Core">
 
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="SearchTextBoxStyle.xaml" />
-        <ResourceDictionary Source="Slider.xaml" />
-        <ResourceDictionary Source="RadialMenu.xaml" />
-        <ResourceDictionary Source="InputOutputStackPanel.xaml" />
-        <ResourceDictionary Source="Buttons.xaml" />
+        <ResourceDictionary Source="/TUM.CMS.VplControl;component/Themes/SearchTextBoxStyle.xaml" />
+        <ResourceDictionary Source="/TUM.CMS.VplControl;component/Themes/Slider.xaml" />
+        <ResourceDictionary Source="/TUM.CMS.VplControl;component/Themes/RadialMenu.xaml" />
+        <ResourceDictionary Source="/TUM.CMS.VplControl;component/Themes/InputOutputStackPanel.xaml" />
+        <ResourceDictionary Source="/TUM.CMS.VplControl;component/Themes/Buttons.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
 
@@ -199,7 +199,7 @@
             <TextBlock Text="{Binding Text}" />
         </StackPanel>
     </ToolTip>
-
+        
     <Style x:Key="VplPortStyleRight" TargetType="core:Port">
         <Setter Property="Width" Value="{DynamicResource PortSize}" />
         <Setter Property="Height" Value="{DynamicResource PortSize}" />
@@ -207,9 +207,17 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="core:Port">
-                    <Ellipse Name="ellipse" Width="{DynamicResource PortSize}" Height="{DynamicResource PortSize}"
-                             Fill="{DynamicResource PortFillBrush}" Stroke="{DynamicResource PortStrokeBrush}"
-                             StrokeThickness="{DynamicResource PortStrokeThickness}" />
+                    <StackPanel Orientation="Horizontal">
+                        <Ellipse 
+                            Name="ellipse" 
+                            Width="{DynamicResource PortSize}" 
+                            Height="{DynamicResource PortSize}"
+                            Fill="{DynamicResource PortFillBrush}" 
+                            Stroke="{DynamicResource PortStrokeBrush}"
+                            StrokeThickness="{DynamicResource PortStrokeThickness}" 
+                        />
+                    </StackPanel>
+                    
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="true">
                             <Setter TargetName="ellipse" Property="Fill" Value="{DynamicResource BrushHighlighting}" />
@@ -223,15 +231,25 @@
     </Style>
 
     <Style x:Key="VplPortStyleLeft" TargetType="core:Port">
-        <Setter Property="Width" Value="{DynamicResource PortSize}" />
+        <Setter Property="Width" Value="100" />
         <Setter Property="Height" Value="{DynamicResource PortSize}" />
         <Setter Property="Margin" Value="5, 5, 7, 5" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="core:Port">
-                    <Ellipse Name="ellipse" Width="{DynamicResource PortSize}" Height="{DynamicResource PortSize}"
-                             Fill="{DynamicResource PortFillBrush}" Stroke="{DynamicResource PortStrokeBrush}"
-                             StrokeThickness="{DynamicResource PortStrokeThickness}" />
+                    <StackPanel Orientation="Horizontal">
+                        <Ellipse Name="ellipse" 
+                             Width="{DynamicResource PortSize}" 
+                             Height="{DynamicResource PortSize}"
+                             Fill="{DynamicResource PortFillBrush}" 
+                             Stroke="{DynamicResource PortStrokeBrush}"
+                             StrokeThickness="{DynamicResource PortStrokeThickness}" 
+                        />
+                        <TextBlock 
+                            Text="{TemplateBinding Description}"
+                            Margin="5 0 0 0"
+                        ></TextBlock>
+                    </StackPanel>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="true">
                             <Setter TargetName="ellipse" Property="Fill" Value="{DynamicResource BrushHighlighting}" />
@@ -246,9 +264,7 @@
 
 
     <Style x:Key="VplConnectorPortStyle" TargetType="core:ConnectorPort">
-        <Setter Property="Width" Value="{DynamicResource ConnEllipseSize}" />
         <Setter Property="Height" Value="{DynamicResource ConnEllipseSize}" />
-        <!-- <Setter Property="Margin" Value="0,0,0,0" /> -->
         <Setter Property="IsHitTestVisible" Value="False" />
         <Setter Property="Template">
             <Setter.Value>

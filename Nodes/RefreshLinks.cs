@@ -4,21 +4,19 @@ using Autodesk.Navisworks.Api;
 using TUM.CMS.VplControl.Nodes;
 using TUM.CMS.VplControl.Core;
 using System.Windows.Data;
-using System.Collections.Generic;
 
 namespace NW_GraphicPrograming.Nodes
 {
-    public class NW_GetSelection : Node
+    public class NW_RefreshLinks : Node
     {
-        public NW_GetSelection(VplControl hostCanvas)
+        public NW_RefreshLinks(VplControl hostCanvas)
             : base(hostCanvas)
         {
-            AddInputPortToNode("NW Document", typeof(Document));
-            AddOutputPortToNode("Selection", typeof(object));
+            AddInputPortToNode("NW_Document", typeof(Document));
+            
 
-
-            AddControlToNode(new Label() { Content = "Get Selection"});
-
+ 
+            AddControlToNode(new Label { Content = "Refresh Links" });
 
         }
 
@@ -27,13 +25,7 @@ namespace NW_GraphicPrograming.Nodes
             if (InputPorts[0].Data != null && InputPorts[0].Data is Document)
             {
                 Document doc = InputPorts[0].Data as Document;
-                var sel = doc.CurrentSelection.SelectedItems;
-                List<ModelItem> modelItems = new List<ModelItem>();
-                foreach (var s in sel)
-                {
-                    modelItems.Add(s);
-                }
-                OutputPorts[0].Data = modelItems;
+                doc.UpdateFiles();
             }
         }
 
@@ -54,7 +46,7 @@ namespace NW_GraphicPrograming.Nodes
 
         public override Node Clone()
         {
-            return new NW_ModelName(HostCanvas)
+            return new NW_RefreshLinks(HostCanvas)
             {
                 Top = Top,
                 Left = Left
