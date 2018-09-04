@@ -19,7 +19,7 @@ namespace NW_GraphicPrograming.Nodes
             AddControlToNode(new Label { Content = "Navisworks Document", FontSize = 13, FontWeight = FontWeights.Bold });
 
             OutputPorts[0].Data = Autodesk.Navisworks.Api.Application.ActiveDocument;
-
+            Name = "Get Document";
             Calculate();
 
         }

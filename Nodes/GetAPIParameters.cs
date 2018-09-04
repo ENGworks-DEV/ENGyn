@@ -23,11 +23,12 @@ namespace NW_GraphicPrograming.Nodes
             AddOutputPortToNode("Output", typeof(object));
 
             AddControlToNode(new Label() { Content = "Get API Parameters", FontSize = 13, FontWeight = FontWeights.Bold });
-
-
+            this.NodeCaption = "API";
+            Name = "Get API Parameters";
         }
 
-
+        public static string category;
+        
         public override void Calculate()
         {
             List<object> output = new List<object>();

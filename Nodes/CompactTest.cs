@@ -12,15 +12,15 @@ using System.Windows;
 
 namespace NW_GraphicPrograming.Nodes
 {
-    public class NW_CompactTest : Node
+    public class Clash_CompactTest : Node
     {
-        public NW_CompactTest(VplControl hostCanvas)
+        public Clash_CompactTest(VplControl hostCanvas)
             : base(hostCanvas)
         {
             AddInputPortToNode("Document", typeof(Document));
             AddInputPortToNode("Input", typeof(object));
             AddOutputPortToNode("Output", typeof(Document));
-
+            Name = "Compact Clash Test";
 
 
             AddControlToNode(new Label() { Content = "Compact Test", FontSize= 13, FontWeight = FontWeights.Bold });
@@ -89,7 +89,7 @@ namespace NW_GraphicPrograming.Nodes
 
         public override Node Clone()
         {
-            return new NW_CompactTest(HostCanvas)
+            return new Clash_CompactTest(HostCanvas)
             {
                 Top = Top,
                 Left = Left

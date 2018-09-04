@@ -19,9 +19,9 @@ namespace NW_GraphicPrograming.Nodes
 
             AddControlToNode(new Label() { Content = "Model Name", FontSize = 13, FontWeight = FontWeights.Bold });
 
-            
+            Name = "Get Model Name";
 
-            
+
             IsResizeable = true;
         }
 

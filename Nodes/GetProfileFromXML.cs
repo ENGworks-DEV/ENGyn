@@ -16,11 +16,11 @@ using System.Windows;
 
 namespace NW_GraphicPrograming.Nodes
 {
-    public class NW_GetProfileFromXML : Node
+    public class AP_GetProfileFromXML : Node
     {
         //TODO: read xml and convert to json profile
         #region Node class methods
-        public NW_GetProfileFromXML(VplControl hostCanvas)
+        public AP_GetProfileFromXML(VplControl hostCanvas)
             : base(hostCanvas)
         {
             AddInputPortToNode("File path", typeof(string));
@@ -59,7 +59,7 @@ namespace NW_GraphicPrograming.Nodes
 
         public override Node Clone()
         {
-            return new NW_GetProfileFromXML(HostCanvas)
+            return new AP_GetProfileFromXML(HostCanvas)
             {
                 Top = Top,
                 Left = Left

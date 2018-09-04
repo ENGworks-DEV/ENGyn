@@ -27,9 +27,9 @@ namespace NW_GraphicPrograming.Nodes
             
  
             AddControlToNode(new Label() { Content = "Get item at index", FontSize = 13, FontWeight = FontWeights.Bold });
+            Name = "Get item at index";
 
-         
-       
+
         }
 
         public override void Calculate()

@@ -56,16 +56,91 @@ namespace NW_GraphicPrograming
             VplControl.NodeTypeMode = NodeTypeModes.All;
 
 
+            //TODO change to dynamic 
 
+            StackPanel navisPanel = new StackPanel();
+            Expander NavisExp = new Expander() { Header = "Navisworks", Content=navisPanel};
+            StackPanel ApPanel = new StackPanel();
+            Expander ApExp = new Expander() { Header = "Appeareance", Content = ApPanel };
+            StackPanel ClashPanel = new StackPanel();
+            Expander ClashExp = new Expander() { Header = "Clash", Content = ClashPanel };
+            StackPanel genPanel = new StackPanel();
+            Expander gneExp = new Expander() { Header = "General", Content = genPanel };
+            StackPanel SelectionPanel = new StackPanel();
+            Expander SelectionExp = new Expander() { Header = "Selelection", Content = SelectionPanel };
+
+            StackPanel MainStack = new StackPanel();
+            //Creating buttons
             foreach (var item in VplControl.ExternalNodeTypes.OrderBy(o => o.Name).ToList())
             {
-                var button = new Button() { Content = item.Name , HorizontalContentAlignment = HorizontalAlignment.Left }; 
-                button.Click += Add_Node; 
-                   
-                DockPanel.SetDock(button, Dock.Top);
-                ButtonStack.Children.Add(button); 
-                
+                 var types = item.GetType();
+                 PropertyInfo prop = types.GetProperty("Name");
+
+                string buttonName = prop.GetValue(item).ToString();
+
+                if (item.Name.StartsWith("NW"))
+                {
+                    var button = new Button() { Name = item.Name, Content = buttonName, HorizontalContentAlignment = HorizontalAlignment.Left };
+                    button.Click += Add_Node;
+
+                    DockPanel.SetDock(button, Dock.Top);
+
+                    navisPanel.Children.Add(button);
+                    
+                }
+                if (item.Name.StartsWith("AP"))
+                {
+                    var button = new Button() { Name = item.Name, Content = buttonName, HorizontalContentAlignment = HorizontalAlignment.Left };
+                    button.Click += Add_Node;
+
+                    DockPanel.SetDock(button, Dock.Top);
+
+                    ApPanel.Children.Add(button);
+                    
+                }
+                if (item.Name.StartsWith("Clash"))
+                {
+                    var button = new Button() { Name = item.Name, Content = buttonName, HorizontalContentAlignment = HorizontalAlignment.Left };
+                    button.Click += Add_Node;
+
+                    DockPanel.SetDock(button, Dock.Top);
+
+                   ClashPanel.Children.Add(button);
+                    
+
+                }
+                if (item.Name.StartsWith("SS"))
+                {
+                    var button = new Button() { Name = item.Name, Content = buttonName, HorizontalContentAlignment = HorizontalAlignment.Left };
+                    button.Click += Add_Node;
+
+                    DockPanel.SetDock(button, Dock.Top);
+
+                    SelectionPanel.Children.Add(button);
+                    
+                }
+                else
+                {
+                    var button = new Button() {Name = item.Name, Content = buttonName, HorizontalContentAlignment = HorizontalAlignment.Left };
+                    button.Click += Add_Node;
+
+                    DockPanel.SetDock(button, Dock.Top);
+
+                    genPanel.Children.Add(button);
+
+                   // 
+                }
+               
+                 
             }
+
+            MainStack.Children.Add(NavisExp);
+            MainStack.Children.Add(ApExp);
+            MainStack.Children.Add(ClashExp);
+            MainStack.Children.Add(gneExp);
+            MainStack.Children.Add(SelectionExp);
+
+            Menu.Content = MainStack;
 
 
             runButton.Click += refresh;
@@ -96,7 +171,7 @@ namespace NW_GraphicPrograming
             
             foreach (var item in this.VplControl.ExternalNodeTypes)
             {
-                if (item.Name == button.Content.ToString())
+                if (item.Name == button.Name.ToString())
                 {
                     var node = (Node)Activator.CreateInstance(item, this.VplControl);
 

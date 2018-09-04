@@ -12,9 +12,9 @@ using System.Windows;
 
 namespace NW_GraphicPrograming.Nodes
 {
-    public class NW_ClashTest : Node
+    public class Clash_Tests : Node
     {
-        public NW_ClashTest(VplControl hostCanvas)
+        public Clash_Tests(VplControl hostCanvas)
             : base(hostCanvas)
         {
             AddInputPortToNode("NW Document", typeof(Document));
@@ -22,7 +22,7 @@ namespace NW_GraphicPrograming.Nodes
 
 
             AddControlToNode(new Label() { Content = "Clash Tests", FontSize = 13, FontWeight = FontWeights.Bold });
-
+            Name = "Get clash tests";
         }
 
         public override void Calculate()
@@ -65,7 +65,7 @@ namespace NW_GraphicPrograming.Nodes
 
         public override Node Clone()
         {
-            return new NW_ClashTest(HostCanvas)
+            return new Clash_Tests(HostCanvas)
             {
                 Top = Top,
                 Left = Left

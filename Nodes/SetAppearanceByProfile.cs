@@ -14,11 +14,11 @@ using System.Windows;
 
 namespace NW_GraphicPrograming.Nodes
 {
-    public class NW_SetAppearanceByProfile : Node
+    public class AP_SetAppearanceByProfile : Node
     {
 
         #region Node class methods
-        public NW_SetAppearanceByProfile(VplControl hostCanvas)
+        public AP_SetAppearanceByProfile(VplControl hostCanvas)
             : base(hostCanvas)
         {
             AddInputPortToNode("File path", typeof(string));
@@ -53,7 +53,7 @@ namespace NW_GraphicPrograming.Nodes
 
         public override Node Clone()
         {
-            return new NW_SetAppearanceByProfile(HostCanvas)
+            return new AP_SetAppearanceByProfile(HostCanvas)
             {
                 Top = Top,
                 Left = Left

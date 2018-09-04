@@ -18,7 +18,7 @@ namespace NW_GraphicPrograming.Nodes
 
  
             AddControlToNode(new Label { Content = "Models in file", FontSize = 13, FontWeight = FontWeights.Bold });
-
+            Name = "Get Models in file";
         }
 
         public override void Calculate()
