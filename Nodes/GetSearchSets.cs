@@ -6,6 +6,7 @@ using TUM.CMS.VplControl.Core;
 using System.Windows.Data;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Windows;
 
 namespace NW_GraphicPrograming.Nodes
 {
@@ -25,7 +26,7 @@ namespace NW_GraphicPrograming.Nodes
                 item.Description = item.Name;
             }
 
-            AddControlToNode(new Label() { Content = "Get SearchSets" });
+            AddControlToNode(new Label() { Content = "Get SearchSets", FontSize = 13, FontWeight = FontWeights.Bold });
 
             
 

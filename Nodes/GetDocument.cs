@@ -4,6 +4,7 @@ using Autodesk.Navisworks.Api;
 using TUM.CMS.VplControl.Nodes;
 using TUM.CMS.VplControl.Core;
 using System.Windows.Data;
+using System.Windows;
 
 namespace NW_GraphicPrograming.Nodes
 {
@@ -15,7 +16,7 @@ namespace NW_GraphicPrograming.Nodes
             //AddInputPortToNode("Navis1", typeof(object));
             AddOutputPortToNode("NW Document", typeof(object));
 
-            AddControlToNode(new Label { Content = "NW Document" });
+            AddControlToNode(new Label { Content = "Navisworks Document", FontSize = 13, FontWeight = FontWeights.Bold });
 
             OutputPorts[0].Data = Autodesk.Navisworks.Api.Application.ActiveDocument;
 

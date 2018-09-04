@@ -73,6 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CompactTest.cs" />
+    <Compile Include="ResfreshClashTest.cs" />
     <Compile Include="Template.cs" />
     <Compile Include="GetClash.cs" />
     <Compile Include="GetClashTest.cs" />
@@ -87,7 +88,6 @@
     <Compile Include="GetValueByCatProp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="References\viewpointXML.cs" />
-    <Compile Include="ResfreshClashTest.cs" />
     <Compile Include="SetAppearanceByProfile.cs" />
     <Compile Include="SetAppearanceBySelection.cs" />
     <Compile Include="SetValueByCatProp.cs" />

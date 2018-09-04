@@ -7,6 +7,7 @@ using TUM.CMS.VplControl.Core;
 using System.Windows.Data;
 
 using System.Collections.Generic;
+using System.Windows;
 
 namespace NW_GraphicPrograming.Nodes
 {
@@ -20,7 +21,7 @@ namespace NW_GraphicPrograming.Nodes
             AddOutputPortToNode("Navis Clash Groups", typeof(ClashResult));
 
 
-            AddControlToNode(new Label() { Content = "Clash Result"});
+            AddControlToNode(new Label() { Content = "Clash Result", FontSize = 13, FontWeight = FontWeights.Bold });
 
             
         }

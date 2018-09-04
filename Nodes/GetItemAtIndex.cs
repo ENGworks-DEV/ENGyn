@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System;
 using System.Collections;
 using System.Linq;
+using System.Windows;
 
 namespace NW_GraphicPrograming.Nodes
 {
@@ -22,10 +23,10 @@ namespace NW_GraphicPrograming.Nodes
             AddInputPortToNode("List", typeof(List<object>));
             AddInputPortToNode("Index", typeof(int));
             AddOutputPortToNode("Result", typeof(object));
-            AddControlToNode(new Label { Content = "GetItemAtIndex" });
+            
             
  
-            AddControlToNode(new Label() { Content = "Get item at index" });
+            AddControlToNode(new Label() { Content = "Get item at index", FontSize = 13, FontWeight = FontWeights.Bold });
 
          
        

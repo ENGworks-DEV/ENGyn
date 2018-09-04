@@ -5,6 +5,7 @@ using TUM.CMS.VplControl.Nodes;
 using TUM.CMS.VplControl.Core;
 using System.Windows.Data;
 using System.Collections.Generic;
+using System.Windows;
 
 namespace NW_GraphicPrograming.Nodes
 {
@@ -17,7 +18,7 @@ namespace NW_GraphicPrograming.Nodes
             AddOutputPortToNode("Selection", typeof(object));
 
 
-            AddControlToNode(new Label() { Content = "Get Selection"});
+            AddControlToNode(new Label() { Content = "Get Selection", FontSize = 13, FontWeight = FontWeights.Bold });
 
 
         }

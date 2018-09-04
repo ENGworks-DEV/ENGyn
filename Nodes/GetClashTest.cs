@@ -8,6 +8,7 @@ using System.Windows.Data;
 
 using System.Collections.Generic;
 using System;
+using System.Windows;
 
 namespace NW_GraphicPrograming.Nodes
 {
@@ -20,7 +21,7 @@ namespace NW_GraphicPrograming.Nodes
             AddOutputPortToNode("Navis Clash Tests", typeof(Object));
 
 
-            AddControlToNode(new Label() { Content = "Clash Tests"});
+            AddControlToNode(new Label() { Content = "Clash Tests", FontSize = 13, FontWeight = FontWeights.Bold });
 
         }
 

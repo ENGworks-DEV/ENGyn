@@ -21,7 +21,7 @@ namespace NW_GraphicPrograming.Nodes
             AddOutputPortToNode("Value", typeof(string));
 
 
-            AddControlToNode(new Label() { Content = "Get value by" + Environment.NewLine + "category and property" });
+            AddControlToNode(new Label() { Content = "Get value by" + Environment.NewLine + "category and property", FontSize = 13, FontWeight = FontWeights.Bold });
           
 
 

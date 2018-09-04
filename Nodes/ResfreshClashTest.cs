@@ -8,6 +8,7 @@ using System.Windows.Data;
 
 using System.Collections.Generic;
 using System;
+using System.Windows;
 
 namespace NW_GraphicPrograming.Nodes
 {
@@ -19,7 +20,7 @@ namespace NW_GraphicPrograming.Nodes
             AddInputPortToNode("Tests", typeof(object));
             AddOutputPortToNode("Clash Tests", typeof(object));
 
-            AddControlToNode(new Label() { Content = "Clash Tests" });
+            AddControlToNode(new Label() { Content = "Clash Tests", FontSize = 13, FontWeight = FontWeights.Bold });
 
         }
 
@@ -33,11 +34,12 @@ namespace NW_GraphicPrograming.Nodes
             {
                 try
                 {
-                    var clashTestList = InputPorts[0].Data as List<ClashTest>;
+                    var clashTestList = InputPorts[0].Data as List<object>;
 
-                    foreach (ClashTest item in clashTestList)
+                    foreach (var item in clashTestList)
                     {
-                        testData.TestsRunTest(item);
+                        ClashTest test = item as ClashTest;
+                        testData.TestsRunTest(test);
                     }
 
                     if (clashTestList.Count != 0)

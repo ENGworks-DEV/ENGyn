@@ -24,7 +24,7 @@ namespace NW_GraphicPrograming.Nodes
             AddInputPortToNode("Value", typeof(object));
             AddOutputPortToNode("ModelItem", typeof(object));
 
-            AddControlToNode(new Label() { Content = "Set value by category and property" });
+            AddControlToNode(new Label() { Content = "Set value by category and property", FontSize = 13, FontWeight = FontWeights.Bold });
 
         }
 

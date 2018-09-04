@@ -12,6 +12,7 @@ using System.Xml.Serialization;
 using System.IO;
 
 using NW_GraphicPrograming.XML;
+using System.Windows;
 
 namespace NW_GraphicPrograming.Nodes
 {
@@ -25,7 +26,7 @@ namespace NW_GraphicPrograming.Nodes
             AddInputPortToNode("File path", typeof(string));
 
 
-            AddControlToNode(new Label() { Content = "Appearance profile from XML" });
+            AddControlToNode(new Label() { Content = "Appearance profile from XML", FontSize = 13 , FontWeight = FontWeights.Bold });
             IsResizeable = true;
 
         }

@@ -8,6 +8,7 @@ using System.Windows.Data;
 
 using System.Collections.Generic;
 using System;
+using System.Windows;
 
 namespace NW_GraphicPrograming.Nodes
 {
@@ -22,7 +23,7 @@ namespace NW_GraphicPrograming.Nodes
 
 
 
-            AddControlToNode(new Label() { Content = "Compact Test" });
+            AddControlToNode(new Label() { Content = "Compact Test", FontSize= 13, FontWeight = FontWeights.Bold });
 
 
         }
@@ -31,7 +32,7 @@ namespace NW_GraphicPrograming.Nodes
         public override void Calculate()
         {
             
-            if (InputPorts[1].Data != null)
+            if (InputPorts[1].Data != null && InputPorts[0].Data != null)
             {
 
                 var t = InputPorts[1].Data.GetType();
@@ -51,12 +52,13 @@ namespace NW_GraphicPrograming.Nodes
                     var listData = InputPorts[1].Data as List<object>;
                     if (listData[0].GetType() == typeof(ClashTest))
                     {
-                        foreach (var ct in InputPorts[1].Data as List< ClashTest>)
+                        foreach (var ct in InputPorts[1].Data as List< object>)
                         {
+                            var clashTest = ct as ClashTest;
                                   var doc = InputPorts[0].Data as Document;
 
                                 var clashes = doc.GetClash();
-                                clashes.TestsData.TestsCompactTest(ct);
+                                clashes.TestsData.TestsCompactTest(clashTest);
 
 
                         }

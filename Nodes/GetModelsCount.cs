@@ -4,6 +4,7 @@ using Autodesk.Navisworks.Api;
 using TUM.CMS.VplControl.Nodes;
 using TUM.CMS.VplControl.Core;
 using System.Windows.Data;
+using System.Windows;
 
 namespace NW_GraphicPrograming.Nodes
 {
@@ -16,7 +17,7 @@ namespace NW_GraphicPrograming.Nodes
             AddOutputPortToNode("Navis Models Count", typeof(object));
 
  
-            AddControlToNode(new Label { Content = "NW Models in file" });
+            AddControlToNode(new Label { Content = "Models in file", FontSize = 13, FontWeight = FontWeights.Bold });
 
         }
 
