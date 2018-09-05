@@ -13,9 +13,9 @@ using System.Windows;
 
 namespace NW_GraphicPrograming.Nodes.API
 {
-    public class NW_GetAPIParameterValue : Node
+    public class GetAPIPropertyValue : Node
     {
-        public NW_GetAPIParameterValue(VplControl hostCanvas)
+        public GetAPIPropertyValue(VplControl hostCanvas)
             : base(hostCanvas)
         {
             AddInputPortToNode("Input", typeof(object));
@@ -101,7 +101,7 @@ namespace NW_GraphicPrograming.Nodes.API
 
         public override Node Clone()
         {
-            return new NW_GetAPIParameterValue(HostCanvas)
+            return new GetAPIPropertyValue(HostCanvas)
             {
                 Top = Top,
                 Left = Left

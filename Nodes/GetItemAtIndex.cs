@@ -12,7 +12,7 @@ using System.Collections;
 using System.Linq;
 using System.Windows;
 
-namespace NW_GraphicPrograming.Nodes
+namespace NW_GraphicPrograming.Nodes.General
 {
     public class GetItemAtIndex : Node
     {

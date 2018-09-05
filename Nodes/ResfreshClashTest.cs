@@ -38,7 +38,7 @@ namespace NW_GraphicPrograming.Nodes.Clash
 
                     foreach (var item in clashTestList)
                     {
-                        ClashTest test = item as ClashTest;
+                        Autodesk.Navisworks.Api.Clash.ClashTest test = item as Autodesk.Navisworks.Api.Clash.ClashTest;
                         testData.TestsRunTest(test);
                     }
 
@@ -58,7 +58,7 @@ namespace NW_GraphicPrograming.Nodes.Clash
                 catch
                 {
 
-                    var clashTest = InputPorts[0].Data as ClashTest;
+                    var clashTest = InputPorts[0].Data as Autodesk.Navisworks.Api.Clash.ClashTest;
                     testData.TestsRunTest(clashTest);
                     OutputPorts[0].Data = clashTest;
                 }

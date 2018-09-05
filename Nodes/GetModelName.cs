@@ -8,9 +8,9 @@ using System.Windows;
 
 namespace NW_GraphicPrograming.Nodes.Navisworks
 {
-    public class NW_ModelName : Node
+    public class CurrentModelName : Node
     {
-        public NW_ModelName(VplControl hostCanvas)
+        public CurrentModelName(VplControl hostCanvas)
             : base(hostCanvas)
         {
             AddInputPortToNode("NW Document", typeof(Document));
@@ -51,7 +51,7 @@ namespace NW_GraphicPrograming.Nodes.Navisworks
 
         public override Node Clone()
         {
-            return new NW_ModelName(HostCanvas)
+            return new CurrentModelName(HostCanvas)
             {
                 Top = Top,
                 Left = Left

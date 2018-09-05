@@ -10,11 +10,11 @@ using System.Windows;
 
 namespace NW_GraphicPrograming.Nodes.Navisworks
 {
-    public class SS_GetSearchSets : Node
+    public class GetSearchSet : Node
     {
         
 
-        public SS_GetSearchSets(VplControl hostCanvas)
+        public GetSearchSet(VplControl hostCanvas)
             : base(hostCanvas)
         {
             
@@ -105,7 +105,7 @@ namespace NW_GraphicPrograming.Nodes.Navisworks
 
         public override Node Clone()
         {
-            return new SS_GetSearchSets(HostCanvas)
+            return new GetSearchSet(HostCanvas)
             {
                 Top = Top,
                 Left = Left

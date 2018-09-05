@@ -11,9 +11,9 @@ using System.Windows;
 
 namespace NW_GraphicPrograming.Nodes.Clash
 {
-    public class Clash_Results : Node
+    public class ClashResults : Node
     {
-        public Clash_Results(VplControl hostCanvas)
+        public ClashResults(VplControl hostCanvas)
             : base(hostCanvas)
         {
             AddInputPortToNode("Clash Test", typeof(object));
@@ -39,9 +39,9 @@ namespace NW_GraphicPrograming.Nodes.Clash
             
 
             //Check for null in input
-            if (InputPorts[0].Data != null && InputPorts[0].Data is List<ClashTest>)
+            if (InputPorts[0].Data != null && InputPorts[0].Data is List<Autodesk.Navisworks.Api.Clash.ClashTest>)
             {
-                foreach (var item in InputPorts[0].Data as List<ClashTest>)
+                foreach (var item in InputPorts[0].Data as List<Autodesk.Navisworks.Api.Clash.ClashTest>)
                 {
                     foreach (var t in item.Children)
                     {
@@ -83,7 +83,7 @@ namespace NW_GraphicPrograming.Nodes.Clash
 
         public override Node Clone()
         {
-            return new Clash_Results(HostCanvas)
+            return new ClashResults(HostCanvas)
             {
                 Top = Top,
                 Left = Left

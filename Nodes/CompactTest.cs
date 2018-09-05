@@ -12,9 +12,9 @@ using System.Windows;
 
 namespace NW_GraphicPrograming.Nodes.Clash
 {
-    public class Clash_CompactTest : Node
+    public class CompactTest : Node
     {
-        public Clash_CompactTest(VplControl hostCanvas)
+        public CompactTest(VplControl hostCanvas)
             : base(hostCanvas)
         {
             AddInputPortToNode("Document", typeof(Document));
@@ -37,11 +37,11 @@ namespace NW_GraphicPrograming.Nodes.Clash
 
                 var t = InputPorts[1].Data.GetType();
 
-                if (InputPorts[1].Data.GetType() == typeof(ClashTest))
+                if (InputPorts[1].Data.GetType() == typeof(Autodesk.Navisworks.Api.Clash.ClashTest))
                 {
                     var doc = InputPorts[0].Data as Document;
-                    
-                    ClashTest ct = InputPorts[1].Data as ClashTest;
+
+                    Autodesk.Navisworks.Api.Clash.ClashTest ct = InputPorts[1].Data as Autodesk.Navisworks.Api.Clash.ClashTest;
                     var clashes = doc.GetClash();
                     clashes.TestsData.TestsCompactAllTests();
                     //clashes.TestsData.TestsCompactTest(ct);
@@ -50,11 +50,11 @@ namespace NW_GraphicPrograming.Nodes.Clash
 
                 {
                     var listData = InputPorts[1].Data as List<object>;
-                    if (listData[0].GetType() == typeof(ClashTest))
+                    if (listData[0].GetType() == typeof(Autodesk.Navisworks.Api.Clash.ClashTest))
                     {
-                        foreach (var ct in InputPorts[1].Data as List< object>)
+                        foreach (var ct in InputPorts[1].Data as List<object>)
                         {
-                            var clashTest = ct as ClashTest;
+                            var clashTest = ct as Autodesk.Navisworks.Api.Clash.ClashTest;
                                   var doc = InputPorts[0].Data as Document;
 
                                 var clashes = doc.GetClash();
@@ -89,7 +89,7 @@ namespace NW_GraphicPrograming.Nodes.Clash
 
         public override Node Clone()
         {
-            return new Clash_CompactTest(HostCanvas)
+            return new CompactTest(HostCanvas)
             {
                 Top = Top,
                 Left = Left

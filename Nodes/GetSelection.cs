@@ -55,7 +55,7 @@ namespace NW_GraphicPrograming.Nodes.Navisworks
 
         public override Node Clone()
         {
-            return new NW_ModelName(HostCanvas)
+            return new CurrentModelName(HostCanvas)
             {
                 Top = Top,
                 Left = Left

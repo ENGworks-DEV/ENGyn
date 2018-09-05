@@ -8,9 +8,9 @@ using System.Windows;
 
 namespace NW_GraphicPrograming.Nodes.Navisworks
 {
-    public class NW_CountOfModels : Node
+    public class ModelsInDocument : Node
     {
-        public NW_CountOfModels(VplControl hostCanvas)
+        public ModelsInDocument(VplControl hostCanvas)
             : base(hostCanvas)
         {
             AddInputPortToNode("NW_Document", typeof(Document));
@@ -47,7 +47,7 @@ namespace NW_GraphicPrograming.Nodes.Navisworks
 
         public override Node Clone()
         {
-            return new NW_CountOfModels(HostCanvas)
+            return new ModelsInDocument(HostCanvas)
             {
                 Top = Top,
                 Left = Left
