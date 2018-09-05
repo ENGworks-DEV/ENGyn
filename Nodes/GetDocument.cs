@@ -4,21 +4,22 @@ using Autodesk.Navisworks.Api;
 using TUM.CMS.VplControl.Nodes;
 using TUM.CMS.VplControl.Core;
 using System.Windows.Data;
+using System.Windows;
 
-namespace NW_GraphicPrograming.Nodes
+namespace NW_GraphicPrograming.Nodes.Navisworks
 {
-    public class NW_Document : Node
+    public class CurrentDocument : Node
     {
-        public NW_Document(VplControl hostCanvas)
+        public CurrentDocument(VplControl hostCanvas)
             : base(hostCanvas)
         {
             //AddInputPortToNode("Navis1", typeof(object));
             AddOutputPortToNode("NW Document", typeof(object));
 
-            AddControlToNode(new Label { Content = "NW Document" });
+            AddControlToNode(new Label { Content = "Navisworks Document", FontSize = 13, FontWeight = FontWeights.Bold });
 
             OutputPorts[0].Data = Autodesk.Navisworks.Api.Application.ActiveDocument;
-
+            Name = "Get Document";
             Calculate();
 
         }
@@ -47,7 +48,7 @@ namespace NW_GraphicPrograming.Nodes
 
         public override Node Clone()
         {
-            return new NW_Document(HostCanvas)
+            return new CurrentDocument(HostCanvas)
             {
                 Top = Top,
                 Left = Left

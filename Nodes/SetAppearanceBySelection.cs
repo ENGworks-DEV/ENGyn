@@ -10,8 +10,9 @@ using media = System.Windows.Media;
 
 using System.Reflection;
 using System;
+using System.Windows;
 
-namespace NW_GraphicPrograming.Nodes
+namespace NW_GraphicPrograming.Nodes.Appearance
 {
     public class SetAppearanceBySelection : Node
     {
@@ -27,7 +28,7 @@ namespace NW_GraphicPrograming.Nodes
             AddOutputPortToNode("SearchSet", typeof(List<SelectionSet>));
 
 
-            AddControlToNode(new Label() { Content = "Appearance By "+ Environment.NewLine+"Selection" });
+            AddControlToNode(new Label() { Content = "Appearance By "+ Environment.NewLine+"Selection", FontSize = 13, FontWeight = FontWeights.Bold });
             
             IsResizeable = true;
 

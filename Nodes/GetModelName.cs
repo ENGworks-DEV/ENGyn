@@ -4,23 +4,24 @@ using Autodesk.Navisworks.Api;
 using TUM.CMS.VplControl.Nodes;
 using TUM.CMS.VplControl.Core;
 using System.Windows.Data;
+using System.Windows;
 
-namespace NW_GraphicPrograming.Nodes
+namespace NW_GraphicPrograming.Nodes.Navisworks
 {
-    public class NW_ModelName : Node
+    public class CurrentModelName : Node
     {
-        public NW_ModelName(VplControl hostCanvas)
+        public CurrentModelName(VplControl hostCanvas)
             : base(hostCanvas)
         {
             AddInputPortToNode("NW Document", typeof(Document));
             AddOutputPortToNode("Navis Model Name", typeof(string));
 
 
-            AddControlToNode(new Label() { Content = "Model Name"});
+            AddControlToNode(new Label() { Content = "Model Name", FontSize = 13, FontWeight = FontWeights.Bold });
 
-            
+            Name = "Get Model Name";
 
-            
+
             IsResizeable = true;
         }
 
@@ -50,7 +51,7 @@ namespace NW_GraphicPrograming.Nodes
 
         public override Node Clone()
         {
-            return new NW_ModelName(HostCanvas)
+            return new CurrentModelName(HostCanvas)
             {
                 Top = Top,
                 Left = Left

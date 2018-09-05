@@ -6,14 +6,15 @@ using TUM.CMS.VplControl.Core;
 using System.Windows.Data;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Windows;
 
-namespace NW_GraphicPrograming.Nodes
+namespace NW_GraphicPrograming.Nodes.Navisworks
 {
-    public class GetSearchSets : Node
+    public class GetSearchSet : Node
     {
         
 
-        public GetSearchSets(VplControl hostCanvas)
+        public GetSearchSet(VplControl hostCanvas)
             : base(hostCanvas)
         {
             
@@ -25,10 +26,8 @@ namespace NW_GraphicPrograming.Nodes
                 item.Description = item.Name;
             }
 
-            AddControlToNode(new Label() { Content = "Get SearchSets" });
-            
+            AddControlToNode(new Label() { Content = "Get SearchSets", FontSize = 13, FontWeight = FontWeights.Bold });
 
-            this.BottomComment = new TUM.CMS.VplControl.Core.Comment(this) { Text = "Returns Get Search Sets" };
             
 
         }
@@ -106,7 +105,7 @@ namespace NW_GraphicPrograming.Nodes
 
         public override Node Clone()
         {
-            return new GetSearchSets(HostCanvas)
+            return new GetSearchSet(HostCanvas)
             {
                 Top = Top,
                 Left = Left

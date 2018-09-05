@@ -9,6 +9,9 @@ using System.Windows;
 using System.IO;
 using Microsoft.CSharp;
 using System.CodeDom.Compiler;
+using System.Windows.Input;
+using System.Collections.Generic;
+using System.Collections;
 
 namespace NW_GraphicPrograming
 {
@@ -27,10 +30,8 @@ namespace NW_GraphicPrograming
 
             KeyDown += VplControl.VplControl_KeyDown;
             KeyUp += VplControl.VplControl_KeyUp;
-            // Load a theme and set it as current.
-            
 
-
+            //Loading nodes dlls located in Nodes folders
             VplControl.ExternalNodeTypes.AddRange(
             Utilities.GetTypesInNamespace(Assembly.GetExecutingAssembly(), "NW_GraphicPrograming.Nodes").ToList());
 
@@ -55,20 +56,78 @@ namespace NW_GraphicPrograming
             VplControl.NodeTypeMode = NodeTypeModes.All;
 
 
+            //TODO change to dynamic 
 
-            foreach (var item in VplControl.ExternalNodeTypes)
+            List<Expander> expanderList = new List<Expander>();
+            
+
+            StackPanel MainStack = new StackPanel();
+            //Creating buttons
+            foreach (var item in VplControl.ExternalNodeTypes.OrderBy(o => o.Name).ToList())
             {
-                var button = new Button() { Content = item.Name }; // Creating button
-                button.Click += Add_Node; //Hooking up to event
-                button.Width = 140;
-                DockPanel.SetDock(button, Dock.Top);
-                ButtonStack.Children.Add(button); //Adding to grid or other parent
-                
+                //if (item.GetType() ==typeof( Node))
+                //{
+                    var types = item.GetType();
+                    
+                    var namespaceN = types.GetProperty("Namespace").Name;
+                    namespaceN = item.Namespace.Split('.').Last();
+                    int index = expanderList.FindIndex(x => x.Header.ToString() == namespaceN);
+
+                    if (index >= 0)
+                    {
+                        var button = new Button() { Content = item.Name, HorizontalContentAlignment = HorizontalAlignment.Left };
+                        button.Click += Add_Node;
+
+                        DockPanel.SetDock(button, Dock.Top);
+                        var stack = expanderList[index].Content as StackPanel;
+                        stack.Children.Add(button);
+
+                    }
+                    if (index < 0)
+                    {
+                        var button = new Button() { Content = item.Name, HorizontalContentAlignment = HorizontalAlignment.Left };
+                        button.Click += Add_Node;
+
+                        DockPanel.SetDock(button, Dock.Top);
+                        StackPanel stack = new StackPanel();
+                        stack.Children.Add(button);
+                        Expander NavisExp = new Expander() { Header = namespaceN, Content = stack };
+                        expanderList.Add(NavisExp);
+
+                    }
+                //}
+                 
+
             }
+
+
+            foreach (var item in expanderList.OrderBy(o => o.Header).ToList())
+            {
+                MainStack.Children.Add(item);
+            }
+
+
+            Menu.Content = MainStack;
 
 
             runButton.Click += refresh;
             
+        }
+
+
+        private void NewCommand(object sender, RoutedEventArgs e)
+        {
+            VplControl.NewFile();
+        }
+
+        private void OpenCommand(object sender, RoutedEventArgs e)
+        {
+            VplControl.OpenFile();
+        }
+
+        private void SaveCommand(object sender, RoutedEventArgs e)
+        {
+            VplControl.SaveFile();
         }
 
         private void Add_Node(object sender, RoutedEventArgs e)
@@ -100,13 +159,28 @@ namespace NW_GraphicPrograming
         //Ugly way to trigger calculate
         private void refresh(object sender, RoutedEventArgs e)
         {
-            foreach (Node n in this.VplControl.NodeCollection)
-            { n.setToRun = true;
-                n.Calculate();
+            var nn = SortNodes.TSort(this.VplControl.NodeCollection as IEnumerable<Node>, n => NodeDep(n) );
+
+            foreach (Node n in nn)
+            {
+                n.setToRun = true;
+                try
+                {
+                    n.Calculate();
+                }
+                catch (Exception except)
+                {
+                    MessageBox.Show(n.GetType().ToString() + Environment.NewLine + except.Message);
+
+                    n.HasError = true;
+
+                }
                 n.setToRun = false;
             }
 
         }
+
+
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -126,6 +200,59 @@ namespace NW_GraphicPrograming
 
         }
 
+        public static IEnumerable<Node> NodeDep(Node node)
 
+        {
+            var type = node.DependencyObjectType as IEnumerable<Node>;
+            var outpt = new List<Node>();
+            type = null ;
+            foreach (var item in node.InputPorts)
+            {
+                foreach (var ii in item.ConnectedConnectors)
+                {
+                    outpt.Add(ii.StartPort.ParentNode);
+
+                } 
+            }
+             
+           
+            return  outpt as IEnumerable<Node>;
+        }
     }
+    public static  class SortNodes
+    {
+
+        public static IEnumerable<T> TSort<T>(this IEnumerable<T> source, Func<T, IEnumerable<T>> dependencies, bool throwOnCycle = false)
+        {
+            var sorted = new List<T>();
+            var visited = new HashSet<T>();
+
+            foreach (var item in source)
+                Visit(item, visited, sorted, dependencies, throwOnCycle);
+
+            return sorted;
+        }
+
+        private static void Visit<T>(T item, HashSet<T> visited, List<T> sorted, Func<T, IEnumerable<T>> dependencies, bool throwOnCycle)
+        {
+            if (!visited.Contains(item))
+            {
+                visited.Add(item);
+                if (dependencies(item) != null)
+                {
+                    foreach (var dep in dependencies(item))
+                        Visit(dep, visited, sorted, dependencies, throwOnCycle);
+
+                    sorted.Add(item);
+                }
+
+            }
+            else
+            {
+                if (throwOnCycle && !sorted.Contains(item))
+                    throw new Exception("Cyclic dependency found");
+            }
+        }
+    }
+    
 }

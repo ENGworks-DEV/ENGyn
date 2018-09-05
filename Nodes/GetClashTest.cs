@@ -8,20 +8,21 @@ using System.Windows.Data;
 
 using System.Collections.Generic;
 using System;
+using System.Windows;
 
-namespace NW_GraphicPrograming.Nodes
+namespace NW_GraphicPrograming.Nodes.Clash
 {
-    public class NW_ClashTest : Node
+    public class GetClashTest : Node
     {
-        public NW_ClashTest(VplControl hostCanvas)
+        public GetClashTest(VplControl hostCanvas)
             : base(hostCanvas)
         {
             AddInputPortToNode("NW Document", typeof(Document));
             AddOutputPortToNode("Navis Clash Tests", typeof(Object));
 
 
-            AddControlToNode(new Label() { Content = "Clash Tests"});
-
+            AddControlToNode(new Label() { Content = "Clash Tests", FontSize = 13, FontWeight = FontWeights.Bold });
+            Name = "Get clash tests";
         }
 
         public override void Calculate()
@@ -64,7 +65,7 @@ namespace NW_GraphicPrograming.Nodes
 
         public override Node Clone()
         {
-            return new NW_ClashTest(HostCanvas)
+            return new GetClashTest(HostCanvas)
             {
                 Top = Top,
                 Left = Left

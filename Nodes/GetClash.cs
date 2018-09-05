@@ -7,12 +7,13 @@ using TUM.CMS.VplControl.Core;
 using System.Windows.Data;
 
 using System.Collections.Generic;
+using System.Windows;
 
-namespace NW_GraphicPrograming.Nodes
+namespace NW_GraphicPrograming.Nodes.Clash
 {
-    public class NW_ClashResult : Node
+    public class ClashResults : Node
     {
-        public NW_ClashResult(VplControl hostCanvas)
+        public ClashResults(VplControl hostCanvas)
             : base(hostCanvas)
         {
             AddInputPortToNode("Clash Test", typeof(object));
@@ -20,9 +21,9 @@ namespace NW_GraphicPrograming.Nodes
             AddOutputPortToNode("Navis Clash Groups", typeof(ClashResult));
 
 
-            AddControlToNode(new Label() { Content = "Clash Result"});
+            AddControlToNode(new Label() { Content = "Clash Result", FontSize = 13, FontWeight = FontWeights.Bold });
+            Name = "Get clash results";
 
-            
         }
 
 
@@ -38,9 +39,9 @@ namespace NW_GraphicPrograming.Nodes
             
 
             //Check for null in input
-            if (InputPorts[0].Data != null && InputPorts[0].Data is List<ClashTest>)
+            if (InputPorts[0].Data != null && InputPorts[0].Data is List<Autodesk.Navisworks.Api.Clash.ClashTest>)
             {
-                foreach (var item in InputPorts[0].Data as List<ClashTest>)
+                foreach (var item in InputPorts[0].Data as List<Autodesk.Navisworks.Api.Clash.ClashTest>)
                 {
                     foreach (var t in item.Children)
                     {
@@ -82,7 +83,7 @@ namespace NW_GraphicPrograming.Nodes
 
         public override Node Clone()
         {
-            return new NW_ClashResult(HostCanvas)
+            return new ClashResults(HostCanvas)
             {
                 Top = Top,
                 Left = Left

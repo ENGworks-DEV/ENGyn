@@ -8,7 +8,7 @@ using System.Windows.Data;
 using System.Collections.Generic;
 using System;
 
-namespace NW_GraphicPrograming.Nodes
+namespace NW_GraphicPrograming.Nodes.Navisworks
 {
     public class GetValueByCatProp : Node
     {
@@ -21,7 +21,7 @@ namespace NW_GraphicPrograming.Nodes
             AddOutputPortToNode("Value", typeof(string));
 
 
-            AddControlToNode(new Label() { Content = "Get value by" + Environment.NewLine + "category and property" });
+            AddControlToNode(new Label() { Content = "Get value by" + Environment.NewLine + "category and property", FontSize = 13, FontWeight = FontWeights.Bold });
           
 
 

@@ -8,18 +8,19 @@ using System.Windows.Data;
 
 using System.Collections.Generic;
 using System;
+using System.Windows;
 
-namespace NW_GraphicPrograming.Nodes
+namespace NW_GraphicPrograming.Nodes.Clash
 {
-    public class NW_RefreshClashTest : Node
+    public class RefreshClashTests : Node
     {
-        public NW_RefreshClashTest(VplControl hostCanvas)
+        public RefreshClashTests(VplControl hostCanvas)
             : base(hostCanvas)
         {
             AddInputPortToNode("Tests", typeof(object));
-            AddOutputPortToNode("Clash Tests", typeof(List<Object>));
+            AddOutputPortToNode("Clash Tests", typeof(object));
 
-            AddControlToNode(new Label() { Content = "Clash Tests" });
+            AddControlToNode(new Label() { Content = "Clash Tests", FontSize = 13, FontWeight = FontWeights.Bold });
 
         }
 
@@ -33,11 +34,12 @@ namespace NW_GraphicPrograming.Nodes
             {
                 try
                 {
-                    var clashTestList = InputPorts[0].Data as List<ClashTest>;
+                    var clashTestList = InputPorts[0].Data as List<object>;
 
-                    foreach (ClashTest item in clashTestList)
+                    foreach (var item in clashTestList)
                     {
-                        testData.TestsRunTest(item);
+                        Autodesk.Navisworks.Api.Clash.ClashTest test = item as Autodesk.Navisworks.Api.Clash.ClashTest;
+                        testData.TestsRunTest(test);
                     }
 
                     if (clashTestList.Count != 0)
@@ -56,7 +58,7 @@ namespace NW_GraphicPrograming.Nodes
                 catch
                 {
 
-                    var clashTest = InputPorts[0].Data as ClashTest;
+                    var clashTest = InputPorts[0].Data as Autodesk.Navisworks.Api.Clash.ClashTest;
                     testData.TestsRunTest(clashTest);
                     OutputPorts[0].Data = clashTest;
                 }
@@ -86,7 +88,7 @@ namespace NW_GraphicPrograming.Nodes
 
         public override Node Clone()
         {
-            return new NW_RefreshClashTest(HostCanvas)
+            return new RefreshClashTests(HostCanvas)
             {
                 Top = Top,
                 Left = Left

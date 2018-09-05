@@ -10,7 +10,7 @@ using Autodesk.Navisworks.Api.Interop.ComApi;
 using Autodesk.Navisworks.Api.ComApi;
 using System;
 
-namespace NW_GraphicPrograming.Nodes
+namespace NW_GraphicPrograming.Nodes.Appearance
 {
 
     public class SetValueByCatProp : Node
@@ -24,7 +24,7 @@ namespace NW_GraphicPrograming.Nodes
             AddInputPortToNode("Value", typeof(object));
             AddOutputPortToNode("ModelItem", typeof(object));
 
-            AddControlToNode(new Label() { Content = "Set value by category and property" });
+            AddControlToNode(new Label() { Content = "Set value by category and property", FontSize = 13, FontWeight = FontWeights.Bold });
 
         }
 
@@ -78,7 +78,7 @@ namespace NW_GraphicPrograming.Nodes
 
         public override Node Clone()
         {
-            return new GetValueByCatProp(HostCanvas)
+            return new SetValueByCatProp(HostCanvas)
             {
                 Top = Top,
                 Left = Left

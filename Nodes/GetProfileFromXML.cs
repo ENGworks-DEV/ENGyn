@@ -11,21 +11,21 @@ using System;
 using System.Xml.Serialization;
 using System.IO;
 
-using NW_GraphicPrograming.XML;
+using System.Windows;
 
-namespace NW_GraphicPrograming.Nodes
+namespace NW_GraphicPrograming.Nodes.Appearance
 {
-    public class GetProfileFromXML : Node
+    public class GetJsonProfileFromXLM : Node
     {
         //TODO: read xml and convert to json profile
         #region Node class methods
-        public GetProfileFromXML(VplControl hostCanvas)
+        public GetJsonProfileFromXLM(VplControl hostCanvas)
             : base(hostCanvas)
         {
             AddInputPortToNode("File path", typeof(string));
 
 
-            AddControlToNode(new Label() { Content = "Appearance profile from XML" });
+            AddControlToNode(new Label() { Content = "Appearance profile from XML", FontSize = 13 , FontWeight = FontWeights.Bold });
             IsResizeable = true;
 
         }
@@ -58,7 +58,7 @@ namespace NW_GraphicPrograming.Nodes
 
         public override Node Clone()
         {
-            return new GetProfileFromXML(HostCanvas)
+            return new GetJsonProfileFromXLM(HostCanvas)
             {
                 Top = Top,
                 Left = Left

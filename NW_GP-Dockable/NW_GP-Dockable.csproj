@@ -228,6 +228,6 @@ xcopy /Y "$(TargetDir)*.*" "%25APPDATA%25\$(ConfigurationName)\Plugins\$(TargetN
 
 mkdir "%25APPDATA%25\$(ConfigurationName)\Plugins\$(TargetName)\Nodes"
 
-xcopy /Y "$(ProjectDir)\Nodes\*.*" "%25APPDATA%25\$(ConfigurationName)\Plugins\$(TargetName)\Nodes\"</PostBuildEvent>
+xcopy /Y "$(ProjectDir)Nodes\*.*" "%25APPDATA%25\$(ConfigurationName)\Plugins\$(TargetName)\Nodes\"</PostBuildEvent>
   </PropertyGroup>
 </Project>

@@ -5,23 +5,21 @@ using TUM.CMS.VplControl.Nodes;
 using TUM.CMS.VplControl.Core;
 using System.Windows.Data;
 using System.Collections.Generic;
+using System.Windows;
 
-namespace NW_GraphicPrograming.Nodes
+namespace NW_GraphicPrograming.Nodes.Navisworks
 {
-    public class NW_GetSelection : Node
+    public class GetSelection : Node
     {
-        public NW_GetSelection(VplControl hostCanvas)
+        public GetSelection(VplControl hostCanvas)
             : base(hostCanvas)
         {
             AddInputPortToNode("NW Document", typeof(Document));
             AddOutputPortToNode("Selection", typeof(object));
 
 
-            AddControlToNode(new Label() { Content = "Get Selection"});
-            
+            AddControlToNode(new Label() { Content = "Get Selection", FontSize = 13, FontWeight = FontWeights.Bold });
 
-            this.BottomComment = new TUM.CMS.VplControl.Core.Comment(this) { Text = "Returns current selection" };
-            IsResizeable = true;
 
         }
 
@@ -57,7 +55,7 @@ namespace NW_GraphicPrograming.Nodes
 
         public override Node Clone()
         {
-            return new NW_ModelName(HostCanvas)
+            return new CurrentModelName(HostCanvas)
             {
                 Top = Top,
                 Left = Left

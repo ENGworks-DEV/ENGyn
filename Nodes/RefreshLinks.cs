@@ -8,17 +8,17 @@ using System.Windows;
 
 namespace NW_GraphicPrograming.Nodes.Navisworks
 {
-    public class ModelsInDocument : Node
+    public class RefreshLinks : Node
     {
-        public ModelsInDocument(VplControl hostCanvas)
+        public RefreshLinks(VplControl hostCanvas)
             : base(hostCanvas)
         {
             AddInputPortToNode("NW_Document", typeof(Document));
-            AddOutputPortToNode("Navis Models Count", typeof(object));
+            
 
  
-            AddControlToNode(new Label { Content = "Models in file", FontSize = 13, FontWeight = FontWeights.Bold });
-            Name = "Get Models in file";
+            AddControlToNode(new Label { Content = "Refresh Links", FontSize = 13, FontWeight = FontWeights.Bold });
+
         }
 
         public override void Calculate()
@@ -26,7 +26,7 @@ namespace NW_GraphicPrograming.Nodes.Navisworks
             if (InputPorts[0].Data != null && InputPorts[0].Data is Document)
             {
                 Document doc = InputPorts[0].Data as Document;
-                OutputPorts[0].Data = doc.Models.Count;
+                doc.UpdateFiles();
             }
         }
 
@@ -47,7 +47,7 @@ namespace NW_GraphicPrograming.Nodes.Navisworks
 
         public override Node Clone()
         {
-            return new ModelsInDocument(HostCanvas)
+            return new RefreshLinks(HostCanvas)
             {
                 Top = Top,
                 Left = Left
