@@ -65,38 +65,43 @@ namespace NW_GraphicPrograming
             //Creating buttons
             foreach (var item in VplControl.ExternalNodeTypes.OrderBy(o => o.Name).ToList())
             {
-                 var types = item.GetType();
-                 var namespaceN = types.GetProperty("Namespace").Name;
-                namespaceN = item.Namespace.Split('.').Last();
-                int index = expanderList.FindIndex(x => x.Header.ToString() == namespaceN);
-
-                if (index >= 0)
-                {
-                    var button = new Button() {  Content = item.Name, HorizontalContentAlignment = HorizontalAlignment.Left };
-                    button.Click += Add_Node;
-
-                    DockPanel.SetDock(button, Dock.Top);
-                    var stack = expanderList[index].Content as StackPanel;
-                    stack.Children.Add(button);
+                //if (item.GetType() ==typeof( Node))
+                //{
+                    var types = item.GetType();
                     
-                }
-                if (index < 0)
-                {
-                    var button = new Button() {Content = item.Name, HorizontalContentAlignment = HorizontalAlignment.Left };
-                    button.Click += Add_Node;
+                    var namespaceN = types.GetProperty("Namespace").Name;
+                    namespaceN = item.Namespace.Split('.').Last();
+                    int index = expanderList.FindIndex(x => x.Header.ToString() == namespaceN);
 
-                    DockPanel.SetDock(button, Dock.Top);
-                    StackPanel stack = new StackPanel();
-                    stack.Children.Add(button);
-                    Expander NavisExp = new Expander() { Header = namespaceN, Content = stack };
-                    expanderList.Add(NavisExp);
-                    
-                }
+                    if (index >= 0)
+                    {
+                        var button = new Button() { Content = item.Name, HorizontalContentAlignment = HorizontalAlignment.Left };
+                        button.Click += Add_Node;
+
+                        DockPanel.SetDock(button, Dock.Top);
+                        var stack = expanderList[index].Content as StackPanel;
+                        stack.Children.Add(button);
+
+                    }
+                    if (index < 0)
+                    {
+                        var button = new Button() { Content = item.Name, HorizontalContentAlignment = HorizontalAlignment.Left };
+                        button.Click += Add_Node;
+
+                        DockPanel.SetDock(button, Dock.Top);
+                        StackPanel stack = new StackPanel();
+                        stack.Children.Add(button);
+                        Expander NavisExp = new Expander() { Header = namespaceN, Content = stack };
+                        expanderList.Add(NavisExp);
+
+                    }
+                //}
+                 
 
             }
 
 
-            foreach (var item in expanderList)
+            foreach (var item in expanderList.OrderBy(o => o.Header).ToList())
             {
                 MainStack.Children.Add(item);
             }
@@ -133,7 +138,7 @@ namespace NW_GraphicPrograming
             
             foreach (var item in this.VplControl.ExternalNodeTypes)
             {
-                if (item.Name == button.Name.ToString())
+                if (item.Name == button.Content.ToString())
                 {
                     var node = (Node)Activator.CreateInstance(item, this.VplControl);
 
