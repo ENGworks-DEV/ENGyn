@@ -11,7 +11,7 @@ using System;
 using System.Reflection;
 using System.Windows;
 
-namespace NW_GraphicPrograming.Nodes
+namespace NW_GraphicPrograming.Nodes.API
 {
     public class NW_GetAPIParameterValue : Node
     {

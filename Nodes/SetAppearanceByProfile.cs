@@ -12,7 +12,7 @@ using System.IO;
 using System.Xml.Serialization;
 using System.Windows;
 
-namespace NW_GraphicPrograming.Nodes
+namespace NW_GraphicPrograming.Nodes.Appearance
 {
     public class AP_SetAppearanceByProfile : Node
     {

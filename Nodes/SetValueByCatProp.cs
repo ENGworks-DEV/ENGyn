@@ -10,7 +10,7 @@ using Autodesk.Navisworks.Api.Interop.ComApi;
 using Autodesk.Navisworks.Api.ComApi;
 using System;
 
-namespace NW_GraphicPrograming.Nodes
+namespace NW_GraphicPrograming.Nodes.Appearance
 {
 
     public class NW_SetValueByCatProp : Node

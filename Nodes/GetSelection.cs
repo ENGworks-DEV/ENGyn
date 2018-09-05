@@ -7,7 +7,7 @@ using System.Windows.Data;
 using System.Collections.Generic;
 using System.Windows;
 
-namespace NW_GraphicPrograming.Nodes
+namespace NW_GraphicPrograming.Nodes.Navisworks
 {
     public class NW_GetSelection : Node
     {

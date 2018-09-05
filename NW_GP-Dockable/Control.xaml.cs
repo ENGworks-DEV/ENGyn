@@ -58,87 +58,49 @@ namespace NW_GraphicPrograming
 
             //TODO change to dynamic 
 
-            StackPanel navisPanel = new StackPanel();
-            Expander NavisExp = new Expander() { Header = "Navisworks", Content=navisPanel};
-            StackPanel ApPanel = new StackPanel();
-            Expander ApExp = new Expander() { Header = "Appeareance", Content = ApPanel };
-            StackPanel ClashPanel = new StackPanel();
-            Expander ClashExp = new Expander() { Header = "Clash", Content = ClashPanel };
-            StackPanel genPanel = new StackPanel();
-            Expander gneExp = new Expander() { Header = "General", Content = genPanel };
-            StackPanel SelectionPanel = new StackPanel();
-            Expander SelectionExp = new Expander() { Header = "Selelection", Content = SelectionPanel };
+            List<Expander> expanderList = new List<Expander>();
+            
 
             StackPanel MainStack = new StackPanel();
             //Creating buttons
             foreach (var item in VplControl.ExternalNodeTypes.OrderBy(o => o.Name).ToList())
             {
                  var types = item.GetType();
-                 PropertyInfo prop = types.GetProperty("Name");
+                 var namespaceN = types.Namespace;
 
-                string buttonName = prop.GetValue(item).ToString();
+                int index = expanderList.FindIndex(x => x.Header.ToString() == namespaceN);
 
-                if (item.Name.StartsWith("NW"))
+                if (index >= 0)
                 {
-                    var button = new Button() { Name = item.Name, Content = buttonName, HorizontalContentAlignment = HorizontalAlignment.Left };
+                    var button = new Button() {  Content = item.Name, HorizontalContentAlignment = HorizontalAlignment.Left };
                     button.Click += Add_Node;
 
                     DockPanel.SetDock(button, Dock.Top);
-
-                    navisPanel.Children.Add(button);
+                    var stack = expanderList[index].Content as StackPanel;
+                    stack.Children.Add(button);
                     
                 }
-                if (item.Name.StartsWith("AP"))
+                if (index < 0)
                 {
-                    var button = new Button() { Name = item.Name, Content = buttonName, HorizontalContentAlignment = HorizontalAlignment.Left };
+                    var button = new Button() {Content = item.Name, HorizontalContentAlignment = HorizontalAlignment.Left };
                     button.Click += Add_Node;
 
                     DockPanel.SetDock(button, Dock.Top);
-
-                    ApPanel.Children.Add(button);
+                    StackPanel stack = new StackPanel();
+                    stack.Children.Add(button);
+                    Expander NavisExp = new Expander() { Header = namespaceN, Content = stack };
+                    expanderList.Add(NavisExp);
                     
                 }
-                if (item.Name.StartsWith("Clash"))
-                {
-                    var button = new Button() { Name = item.Name, Content = buttonName, HorizontalContentAlignment = HorizontalAlignment.Left };
-                    button.Click += Add_Node;
 
-                    DockPanel.SetDock(button, Dock.Top);
-
-                   ClashPanel.Children.Add(button);
-                    
-
-                }
-                if (item.Name.StartsWith("SS"))
-                {
-                    var button = new Button() { Name = item.Name, Content = buttonName, HorizontalContentAlignment = HorizontalAlignment.Left };
-                    button.Click += Add_Node;
-
-                    DockPanel.SetDock(button, Dock.Top);
-
-                    SelectionPanel.Children.Add(button);
-                    
-                }
-                else
-                {
-                    var button = new Button() {Name = item.Name, Content = buttonName, HorizontalContentAlignment = HorizontalAlignment.Left };
-                    button.Click += Add_Node;
-
-                    DockPanel.SetDock(button, Dock.Top);
-
-                    genPanel.Children.Add(button);
-
-                   // 
-                }
-               
-                 
             }
 
-            MainStack.Children.Add(NavisExp);
-            MainStack.Children.Add(ApExp);
-            MainStack.Children.Add(ClashExp);
-            MainStack.Children.Add(gneExp);
-            MainStack.Children.Add(SelectionExp);
+
+            foreach (var item in expanderList)
+            {
+                MainStack.Children.Add(item);
+            }
+
 
             Menu.Content = MainStack;
 

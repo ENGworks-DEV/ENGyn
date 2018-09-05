@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Windows;
 
-namespace NW_GraphicPrograming.Nodes
+namespace NW_GraphicPrograming.Nodes.Navisworks
 {
     public class SS_GetSearchSets : Node
     {

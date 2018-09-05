@@ -12,7 +12,7 @@ using System.Reflection;
 using System;
 using System.Windows;
 
-namespace NW_GraphicPrograming.Nodes
+namespace NW_GraphicPrograming.Nodes.Appearance
 {
     public class AP_SetAppearanceBySelection : Node
     {

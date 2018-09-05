@@ -11,10 +11,9 @@ using System;
 using System.Xml.Serialization;
 using System.IO;
 
-using NW_GraphicPrograming.XML;
 using System.Windows;
 
-namespace NW_GraphicPrograming.Nodes
+namespace NW_GraphicPrograming.Nodes.Appearance
 {
     public class AP_GetProfileFromXML : Node
     {
