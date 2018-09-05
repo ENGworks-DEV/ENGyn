@@ -66,8 +66,8 @@ namespace NW_GraphicPrograming
             foreach (var item in VplControl.ExternalNodeTypes.OrderBy(o => o.Name).ToList())
             {
                  var types = item.GetType();
-                 var namespaceN = types.Namespace;
-
+                 var namespaceN = types.GetProperty("Namespace").Name;
+                namespaceN = item.Namespace.Split('.').Last();
                 int index = expanderList.FindIndex(x => x.Header.ToString() == namespaceN);
 
                 if (index >= 0)
