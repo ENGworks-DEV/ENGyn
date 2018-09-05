@@ -10,9 +10,9 @@ using System;
 
 namespace NW_GraphicPrograming.Nodes.Navisworks
 {
-    public class NW_GetValueByCatProp : Node
+    public class GetValueByCatProp : Node
     {
-        public NW_GetValueByCatProp(VplControl hostCanvas)
+        public GetValueByCatProp(VplControl hostCanvas)
             : base(hostCanvas)
         {
             AddInputPortToNode("ModelItem", typeof(ModelItem));
@@ -67,7 +67,7 @@ namespace NW_GraphicPrograming.Nodes.Navisworks
 
         public override Node Clone()
         {
-            return new NW_GetValueByCatProp(HostCanvas)
+            return new GetValueByCatProp(HostCanvas)
             {
                 Top = Top,
                 Left = Left

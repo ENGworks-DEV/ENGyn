@@ -12,9 +12,9 @@ using System.Windows;
 
 namespace NW_GraphicPrograming.Nodes.Clash
 {
-    public class Clash_RefreshTest : Node
+    public class RefreshClashTests : Node
     {
-        public Clash_RefreshTest(VplControl hostCanvas)
+        public RefreshClashTests(VplControl hostCanvas)
             : base(hostCanvas)
         {
             AddInputPortToNode("Tests", typeof(object));
@@ -88,7 +88,7 @@ namespace NW_GraphicPrograming.Nodes.Clash
 
         public override Node Clone()
         {
-            return new Clash_RefreshTest(HostCanvas)
+            return new RefreshClashTests(HostCanvas)
             {
                 Top = Top,
                 Left = Left

@@ -13,9 +13,9 @@ using System;
 namespace NW_GraphicPrograming.Nodes.Appearance
 {
 
-    public class NW_SetValueByCatProp : Node
+    public class SetValueByCatProp : Node
     {
-        public NW_SetValueByCatProp(VplControl hostCanvas)
+        public SetValueByCatProp(VplControl hostCanvas)
             : base(hostCanvas)
         {
             AddInputPortToNode("ModelItem", typeof(object), true);
@@ -78,7 +78,7 @@ namespace NW_GraphicPrograming.Nodes.Appearance
 
         public override Node Clone()
         {
-            return new NW_SetValueByCatProp(HostCanvas)
+            return new SetValueByCatProp(HostCanvas)
             {
                 Top = Top,
                 Left = Left

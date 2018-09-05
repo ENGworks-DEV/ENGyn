@@ -14,11 +14,11 @@ using System.Windows;
 
 namespace NW_GraphicPrograming.Nodes.Appearance
 {
-    public class AP_SetAppearanceByProfile : Node
+    public class SetAppearanceByProfile : Node
     {
 
         #region Node class methods
-        public AP_SetAppearanceByProfile(VplControl hostCanvas)
+        public SetAppearanceByProfile(VplControl hostCanvas)
             : base(hostCanvas)
         {
             AddInputPortToNode("File path", typeof(string));
@@ -53,7 +53,7 @@ namespace NW_GraphicPrograming.Nodes.Appearance
 
         public override Node Clone()
         {
-            return new AP_SetAppearanceByProfile(HostCanvas)
+            return new SetAppearanceByProfile(HostCanvas)
             {
                 Top = Top,
                 Left = Left
@@ -288,7 +288,7 @@ namespace NW_GraphicPrograming.Nodes.Appearance
         public static void convertXMLtoConfiguration(string path)
         {
 
-            var jsonXML = JsonConvert.SerializeObject(exchangeFile);
+            var jsonXML = JsonConvert.SerializeObject(exchangeFile, Newtonsoft.Json.Formatting.Indented);
             jsonSelectionSetsFile = JsonConvert.DeserializeObject<JsonSelectionSetsConfiguration>(jsonXML);
 
             File.WriteAllText(path, jsonXML);

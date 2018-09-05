@@ -8,9 +8,9 @@ using System.Windows;
 
 namespace NW_GraphicPrograming.Nodes.Navisworks
 {
-    public class NW_RefreshLinks : Node
+    public class RefreshLinks : Node
     {
-        public NW_RefreshLinks(VplControl hostCanvas)
+        public RefreshLinks(VplControl hostCanvas)
             : base(hostCanvas)
         {
             AddInputPortToNode("NW_Document", typeof(Document));
@@ -47,7 +47,7 @@ namespace NW_GraphicPrograming.Nodes.Navisworks
 
         public override Node Clone()
         {
-            return new NW_RefreshLinks(HostCanvas)
+            return new RefreshLinks(HostCanvas)
             {
                 Top = Top,
                 Left = Left

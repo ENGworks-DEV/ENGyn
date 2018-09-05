@@ -32,6 +32,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Autodesk Navisworks Manage 2019|AnyCPU'">
     <OutputPath>bin\Autodesk Navisworks Manage 2019\</OutputPath>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Autodesk Navisworks Manage 2018|AnyCPU'">
     <OutputPath>bin\Autodesk Navisworks Manage 2018\</OutputPath>
@@ -75,6 +77,8 @@
     <Compile Include="CompactTest.cs" />
     <Compile Include="GetAPIParameters.cs" />
     <Compile Include="GetAPIParameterValue.cs" />
+    <Compile Include="GetElementFromSearch.cs" />
+    <Compile Include="GroupClashes.cs" />
     <Compile Include="ResfreshClashTest.cs" />
     <Compile Include="Template.cs" />
     <Compile Include="GetClash.cs" />
@@ -96,7 +100,9 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy /Y "$(TargetPath)" "$(SolutionDir)\NW_GP-Dockable\Nodes\"
-</PostBuildEvent>
+    <PostBuildEvent>xcopy /Y "$(TargetPath)" "$(SolutionDir)NW_GP-Dockable\Nodes\"
+$(TargetDir)$(TargetName)
+xcopy /Y "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)NW_GP-Dockable\Nodes\"
+$(TargetDir)$(TargetName)</PostBuildEvent>
   </PropertyGroup>
 </Project>

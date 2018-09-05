@@ -9,9 +9,9 @@ using System.Windows;
 
 namespace NW_GraphicPrograming.Nodes.Navisworks
 {
-    public class NW_GetSelection : Node
+    public class GetSelection : Node
     {
-        public NW_GetSelection(VplControl hostCanvas)
+        public GetSelection(VplControl hostCanvas)
             : base(hostCanvas)
         {
             AddInputPortToNode("NW Document", typeof(Document));
