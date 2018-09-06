@@ -38,7 +38,8 @@ namespace NW_GraphicPrograming.Nodes.API
                 var t = InputPorts[0].Data.GetType();
                 if (t.IsGenericType && t.GetGenericTypeDefinition() == typeof(List<>))
                 {
-                    foreach (var item in InputPorts[0].Data as List<object>)
+
+                    foreach (var item in (System.Collections.IEnumerable)InputPorts[0].Data)
                     {
                         try
                         {

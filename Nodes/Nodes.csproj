@@ -80,6 +80,7 @@
     <Compile Include="GetElementFromSearch.cs" />
     <Compile Include="GroupClashes.cs" />
     <Compile Include="ResfreshClashTest.cs" />
+    <Compile Include="FilterMask.cs" />
     <Compile Include="Template.cs" />
     <Compile Include="GetClash.cs" />
     <Compile Include="GetClashTest.cs" />
