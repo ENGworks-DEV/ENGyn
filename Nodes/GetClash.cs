@@ -36,26 +36,29 @@ namespace NW_GraphicPrograming.Nodes.Clash
             List<ClashResultGroup> clashResultGroupList = new List<ClashResultGroup>();
             List<object> lct = new List<object>();
 
-            
 
+            var type = InputPorts[0].Data.GetType();
             //Check for null in input
-            if (InputPorts[0].Data != null && InputPorts[0].Data is List<Autodesk.Navisworks.Api.Clash.ClashTest>)
+            if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(List<>))
             {
-                foreach (var item in InputPorts[0].Data as List<Autodesk.Navisworks.Api.Clash.ClashTest>)
+                foreach (var i in (System.Collections.IEnumerable)InputPorts[0].Data)
                 {
-                    foreach (var t in item.Children)
+                    if (i.GetType() == typeof(ClashTest))
                     {
+                        ClashTest item = i as ClashTest;
+                        foreach (var t in item.Children)
+                        {
 
-                        if (t.IsGroup)
-                        {
-                            clashResultGroupList.Add(t as ClashResultGroup);
-                        }
-                        else
-                        {
-                            clashResultList.Add(t as ClashResult);
+                            if (t.IsGroup)
+                            {
+                                clashResultGroupList.Add(t as ClashResultGroup);
+                            }
+                            else
+                            {
+                                clashResultList.Add(t as ClashResult);
+                            }
                         }
                     }
-                    
                 }
 
 
@@ -63,6 +66,27 @@ namespace NW_GraphicPrograming.Nodes.Clash
                 OutputPorts[0].Data = clashResultList;
                 OutputPorts[1].Data = clashResultGroupList;
             }
+
+            if (type == typeof(ClashTest))
+            {
+                ClashTest item = InputPorts[0].Data as ClashTest;
+                foreach (var t in item.Children)
+                {
+
+                    if (t.IsGroup)
+                    {
+                        clashResultGroupList.Add(t as ClashResultGroup);
+                    }
+                    else
+                    {
+                        clashResultList.Add(t as ClashResult);
+                    }
+                }
+                OutputPorts[0].Data = clashResultList;
+                OutputPorts[1].Data = clashResultGroupList;
+
+            }
+
 
         }
 

@@ -53,6 +53,9 @@
       <HintPath>C:\Program Files\Autodesk\Navisworks Manage 2019\Autodesk.Navisworks.Interop.ComApi.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
+    <Reference Include="NCalc, Version=1.3.8.0, Culture=neutral, PublicKeyToken=973cde3f1cafed03, processorArchitecture=MSIL">
+      <HintPath>..\packages\ncalc.1.3.8\lib\NCalc.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\NW_GP-Dockable\resources\Newtonsoft.Json.dll</HintPath>
@@ -75,10 +78,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CompactTest.cs" />
+    <Compile Include="Expression.cs" />
     <Compile Include="GetAPIParameters.cs" />
     <Compile Include="GetAPIParameterValue.cs" />
     <Compile Include="GetElementFromSearch.cs" />
     <Compile Include="GroupClashes.cs" />
+    <Compile Include="MainTools.cs" />
     <Compile Include="ResfreshClashTest.cs" />
     <Compile Include="FilterMask.cs" />
     <Compile Include="Template.cs" />
@@ -99,11 +104,14 @@
     <Compile Include="SetAppearanceBySelection.cs" />
     <Compile Include="SetValueByCatProp.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>xcopy /Y "$(TargetPath)" "$(SolutionDir)NW_GP-Dockable\Nodes\"
-$(TargetDir)$(TargetName)
+
 xcopy /Y "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)NW_GP-Dockable\Nodes\"
-$(TargetDir)$(TargetName)</PostBuildEvent>
+</PostBuildEvent>
   </PropertyGroup>
 </Project>

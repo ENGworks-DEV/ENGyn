@@ -20,11 +20,6 @@ namespace NW_GraphicPrograming.Nodes.Navisworks
             
             AddOutputPortToNode("SearchSets", typeof(object));
 
-            foreach (Port item in this.OutputPorts)
-            {
-                
-                item.Description = item.Name;
-            }
 
             AddControlToNode(new Label() { Content = "Get SearchSets", FontSize = 13, FontWeight = FontWeights.Bold });
 

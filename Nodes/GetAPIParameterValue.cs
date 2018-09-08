@@ -19,16 +19,15 @@ namespace NW_GraphicPrograming.Nodes.API
             : base(hostCanvas)
         {
             AddInputPortToNode("Input", typeof(object));
-            AddInputPortToNode("Param Name", typeof(string));
+            AddInputPortToNode("Name", typeof(string));
             AddOutputPortToNode("Output", typeof(object));
 
             AddControlToNode(new Label() { Content = "Get API Parameter Value", FontSize = 13, FontWeight = FontWeights.Bold });
-            this.NodeCaption = "API";
-            this.IsResizeable = true;
-            Name = "Get API Parameter Value";
+            
+          
     }
 
-        public string category;
+        
 
         public override void Calculate()
         {
@@ -112,7 +111,4 @@ namespace NW_GraphicPrograming.Nodes.API
     }
 
 }
-namespace NW_GraphicPrograming
-{
 
-}

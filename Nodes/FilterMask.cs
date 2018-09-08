@@ -20,7 +20,7 @@ namespace NW_GraphicPrograming.Nodes.General
         {
             AddInputPortToNode("List", typeof(object));
             AddInputPortToNode("Mask", typeof(object));
-            AddOutputPortToNode("In", typeof(ClashResult));
+            AddOutputPortToNode("Int", typeof(ClashResult));
             AddOutputPortToNode("Output", typeof(ClashResult));
 
 
@@ -38,7 +38,8 @@ namespace NW_GraphicPrograming.Nodes.General
             {
                if( input.GetType().IsGenericType 
                     && input.GetType().GetGenericTypeDefinition() == typeof(List<>)
-                    
+                    && mask.GetType().IsGenericType 
+                    &&    mask.GetType().GetGenericTypeDefinition() == typeof(List<>)
                     )
                 {
 
