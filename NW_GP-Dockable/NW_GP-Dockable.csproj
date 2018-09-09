@@ -121,10 +121,8 @@
     </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="TUM.CMS.VplControl, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>resources\TUM.CMS.VplControl.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="TUM.CMS.VplControl">
+      <HintPath>C:\Users\pdere\source\repos\TUM.CMS.VPLControl\src\TUM.CMS.VplControl\obj\Debug\TUM.CMS.VplControl.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />

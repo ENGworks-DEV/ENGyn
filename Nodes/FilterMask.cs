@@ -20,8 +20,8 @@ namespace NW_GraphicPrograming.Nodes.General
         {
             AddInputPortToNode("List", typeof(object));
             AddInputPortToNode("Mask", typeof(object));
-            AddOutputPortToNode("Int", typeof(ClashResult));
-            AddOutputPortToNode("Output", typeof(ClashResult));
+            AddOutputPortToNode("In", typeof(object));
+            AddOutputPortToNode("Output", typeof(object));
 
 
             AddControlToNode(new Label() { Content = "Title", FontSize = 13, FontWeight = FontWeights.Bold });
@@ -36,13 +36,9 @@ namespace NW_GraphicPrograming.Nodes.General
             var mask = InputPorts[1].Data;
             if (input != null && mask != null)
             {
-               if( input.GetType().IsGenericType 
-                    && input.GetType().GetGenericTypeDefinition() == typeof(List<>)
-                    && mask.GetType().IsGenericType 
-                    &&    mask.GetType().GetGenericTypeDefinition() == typeof(List<>)
-                    )
+               if( MainTools.IsList(input) && MainTools.IsList(mask)) 
                 {
-
+                    
                    var filtered= FilterByBoolMask(input as IList, mask as IList);
                     OutputPorts[0].Data = filtered["in"];
                     OutputPorts[1].Data = filtered["out"];
@@ -51,7 +47,7 @@ namespace NW_GraphicPrograming.Nodes.General
 
 
             }
-
+            GC.Collect();
         }
 
 

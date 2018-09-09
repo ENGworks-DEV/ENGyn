@@ -78,7 +78,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CompactTest.cs" />
-    <Compile Include="Expression.cs" />
     <Compile Include="GetAPIParameters.cs" />
     <Compile Include="GetAPIParameterValue.cs" />
     <Compile Include="GetElementFromSearch.cs" />
@@ -86,6 +85,7 @@
     <Compile Include="MainTools.cs" />
     <Compile Include="ResfreshClashTest.cs" />
     <Compile Include="FilterMask.cs" />
+    <Compile Include="StringContains.cs" />
     <Compile Include="Template.cs" />
     <Compile Include="GetClash.cs" />
     <Compile Include="GetClashTest.cs" />
