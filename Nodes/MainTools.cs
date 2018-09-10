@@ -29,10 +29,15 @@ namespace ENGyne.Nodes
             {
                 return true;
             }
-
+            if (t.IsGenericType && t.GetGenericTypeDefinition() == typeof(IList<>))
+            {
+                return true;
+            }
             return false;
 
         }
+
+        
         /// <summary>
         /// Check if object can contain type - Used after IsList()
         /// </summary>

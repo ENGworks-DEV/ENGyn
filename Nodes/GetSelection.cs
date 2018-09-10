@@ -49,7 +49,7 @@ namespace ENGyne.Nodes.Selection
 
         public override Node Clone()
         {
-            return new CurrentModelName(HostCanvas)
+            return new GetCurrentSelection(HostCanvas)
             {
                 Top = Top,
                 Left = Left

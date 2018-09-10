@@ -22,6 +22,9 @@ namespace ENGyne.Nodes.List
             AddInputPortToNode("Mask", typeof(object));
             AddOutputPortToNode("In", typeof(object));
             AddOutputPortToNode("Output", typeof(object));
+
+
+
         }
 
 
@@ -35,8 +38,9 @@ namespace ENGyne.Nodes.List
                 {
                     
                    var filtered= FilterByBoolMask(input as IList, mask as IList);
-                    OutputPorts[0].Data = filtered["in"];
-                    OutputPorts[1].Data = filtered["out"];
+                    OutputPorts[0].Data = ((IEnumerable)filtered["in"]).Cast<object>().ToList();
+                    
+                    OutputPorts[1].Data = ((IEnumerable)filtered["out"]).Cast<object>().ToList();
                 }
 
 

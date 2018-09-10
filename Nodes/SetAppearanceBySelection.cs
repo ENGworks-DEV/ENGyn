@@ -35,9 +35,14 @@ namespace ENGyne.Nodes.Appearance
             var input = InputPorts[0].Data;
 
             if (input != null)
-            {if (input is List<SelectionSet> || input is SelectionSet )
             {
-                    List<SelectionSet> searchs = (List<SelectionSet>)InputPorts[0].Data;
+                var tt = input.GetType();
+                bool istype = input.GetType() == typeof(SelectionSet);
+                
+                if (MainTools.IsList(input) || istype)
+                    {
+
+                    //IList<SelectionSet> searchs = (IList<SelectionSet>)InputPorts[0].Data;
 
                     media.Color color = (media.Color)InputPorts[1].Data;
 
@@ -45,15 +50,16 @@ namespace ENGyne.Nodes.Appearance
                     double t = ((-color.A / 255.0) + 1) * 100;
                     double transparency = t;
 
-                    foreach (SelectionSet s in searchs)
+                    foreach (var s in (System.Collections.IEnumerable)input)
                     {
-                        ApplyAppearance(s, TransformColor(color), transparency);
+                        
+                        ApplyAppearance(s as SelectionSet, TransformColor(color), transparency);
                     }
 
-                    OutputPorts[0].Data = (List<SelectionSet>)InputPorts[0].Data;
+                    OutputPorts[0].Data = (System.Collections.IEnumerable)input;
                 }
 
-                if (input is List<ModelItem> || input is ModelItem )
+                if (MainTools.IsList(input) && MainTools.ListContainsType(input,typeof(ModelItem)) || input is ModelItem )
                 {
                     List<ModelItem> searchs = (List<ModelItem>)InputPorts[0].Data;
 
