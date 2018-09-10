@@ -9,33 +9,28 @@ using System.Windows.Data;
 using System.Collections.Generic;
 using System.Windows;
 
-namespace NW_GraphicPrograming.Nodes.Navisworks
+namespace ENGyne.Nodes.Selection
 {
     public class GetElementFromSearch : Node
     {
         public GetElementFromSearch(VplControl hostCanvas)
             : base(hostCanvas)
         {
-            AddInputPortToNode("Document", typeof(object));
+            
             AddInputPortToNode("SelectionSets", typeof(object));
             AddOutputPortToNode("Output", typeof(object));
-
-
-
-            AddControlToNode(new Label() { Content = "Get Element From Search", FontSize = 13, FontWeight = FontWeights.Bold });
-
 
         }
 
 
         public override void Calculate()
         {
-            var input = InputPorts[1].Data;
+            var input = InputPorts[0].Data;
             var output = new List<ModelItemCollection>();
 
-            if (input != null && InputPorts[0].Data != null && InputPorts[0].Data.GetType() == typeof(Document))
+            if (input != null)
             {
-                var document = InputPorts[0].Data as Document;
+                
                 var type = input.GetType();
 
                 if (type == typeof(SelectionSet))
@@ -47,9 +42,8 @@ namespace NW_GraphicPrograming.Nodes.Navisworks
                     output.Add(searchResults);
 
                 }
-                bool tt = type.GetType().IsGenericType;
-                var TTT = type.GetGenericTypeDefinition();
-               if (input.GetType().IsGenericType && input.GetType().GetGenericTypeDefinition() == typeof(List<>))
+
+               if (MainTools.IsList(input) && MainTools.ListContainsType(input,typeof( SelectionSet)))
                 {
                     foreach (var item in input as List<SelectionSet>)
                     {

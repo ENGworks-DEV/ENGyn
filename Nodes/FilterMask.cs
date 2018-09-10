@@ -11,7 +11,7 @@ using System;
 using System.Collections;
 using System.Linq;
 
-namespace NW_GraphicPrograming.Nodes.General
+namespace ENGyne.Nodes.List
 {
     public class FilterMask : Node
     {
@@ -22,11 +22,6 @@ namespace NW_GraphicPrograming.Nodes.General
             AddInputPortToNode("Mask", typeof(object));
             AddOutputPortToNode("In", typeof(object));
             AddOutputPortToNode("Output", typeof(object));
-
-
-            AddControlToNode(new Label() { Content = "Title", FontSize = 13, FontWeight = FontWeights.Bold });
-
-
         }
 
 

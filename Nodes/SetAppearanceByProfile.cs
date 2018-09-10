@@ -7,12 +7,12 @@ using TUM.CMS.VplControl.Core;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using System;
-using NW_GraphicPrograming.XML;
+using ENGyne.XML;
 using System.IO;
 using System.Xml.Serialization;
 using System.Windows;
 
-namespace NW_GraphicPrograming.Nodes.Appearance
+namespace ENGyne.Nodes.Appearance
 {
     public class SetAppearanceByProfile : Node
     {
@@ -23,9 +23,6 @@ namespace NW_GraphicPrograming.Nodes.Appearance
         {
             AddInputPortToNode("File path", typeof(string));
 
-
-            AddControlToNode(new Label() { Content = "Apply appearance profile", FontSize = 13, FontWeight = FontWeights.Bold });
-            IsResizeable = true;
 
         }
 

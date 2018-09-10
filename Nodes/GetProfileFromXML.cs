@@ -13,7 +13,7 @@ using System.IO;
 
 using System.Windows;
 
-namespace NW_GraphicPrograming.Nodes.Appearance
+namespace ENGyne.Nodes.Appearance
 {
     public class GetJsonProfileFromXLM : Node
     {
@@ -24,9 +24,6 @@ namespace NW_GraphicPrograming.Nodes.Appearance
         {
             AddInputPortToNode("File path", typeof(string));
 
-
-            AddControlToNode(new Label() { Content = "Appearance profile from XML", FontSize = 13 , FontWeight = FontWeights.Bold });
-            IsResizeable = true;
 
         }
 

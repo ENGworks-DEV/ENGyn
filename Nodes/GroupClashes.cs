@@ -15,7 +15,7 @@ using Application = Autodesk.Navisworks.Api.Application;
 using GroupItem = Autodesk.Navisworks.Api.GroupItem;
 
 
-namespace NW_GraphicPrograming.Nodes.Clash
+namespace ENGyne.Nodes.Clash
 {
     public class GroupByCluster : Node
     {
@@ -26,10 +26,6 @@ namespace NW_GraphicPrograming.Nodes.Clash
             AddInputPortToNode("# of Clusters", typeof(int));
             AddInputPortToNode("# of Attempts", typeof(int));
             AddOutputPortToNode("Output", typeof(ClashResult));
-
-
-
-            AddControlToNode(new Label() { Content = "Group By Cluster", FontSize = 13, FontWeight = FontWeights.Bold });
 
 
         }

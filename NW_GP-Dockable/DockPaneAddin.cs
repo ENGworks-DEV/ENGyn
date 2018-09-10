@@ -2,42 +2,49 @@
 using System.Linq;
 using System.Windows;
 using Autodesk.Navisworks.Api.Plugins;
+using Autodesk.Windows;
 
-namespace NW_GraphicPrograming
+namespace ENGyne
 {
-   [Plugin("NW_GraphicPrograming.NW_GP_Addin", "PRD",
-      DisplayName = "NW_GraphicPrograming",
-      ToolTip = "NW_GraphicPrograming")]
-   public class NW_GP_Addin : AddInPlugin
-   {
-      public override int Execute(params string[] parameters)
-      {
-         if (Autodesk.Navisworks.Api.Application.IsAutomated)
-         {
-            throw new InvalidOperationException("Invalid when running using Automation");
-         }
-           
-         //       //Find the plugin
-            PluginRecord pr =
-                   Autodesk.Navisworks.Api.Application.Plugins.FindPlugin("NW_GraphicPrograming.NW_GP_Dock.PRD");
+        [Plugin("ENGRibbon", "ENG", DisplayName = "ENGWorks")]
+        [RibbonLayout("ENGyne.xaml")]
+        [RibbonTab("ENGworks")]
+        [Command("ID_Button_1", LargeIcon = "ENGyn.png", ToolTip = "Visual Programming", DisplayName = "ENGyne Alpha")]
 
-                if (pr != null && pr is DockPanePluginRecord && pr.IsEnabled)
-                {
-                    //check if it needs loading
-                    if (pr.LoadedPlugin == null)
+        public class Addin : CommandHandlerPlugin
+        {
+            public override int ExecuteCommand(string name, params string[] parameters)
+            {
+
+            switch (name)
+            {
+                case "ID_Button_1":
+                    //Find the plugin
                     {
-                        pr.LoadPlugin();
-                    }
+                        PluginRecord pr =
+                                 Autodesk.Navisworks.Api.Application.Plugins.FindPlugin("ENGyne.NW_GP_Dock.ENG");
 
-                    DockPanePlugin dpp = pr.LoadedPlugin as DockPanePlugin;
-                    if (dpp != null)
-                    {
-                        //switch the Visible flag
-                        dpp.Visible = !dpp.Visible;
-                    }
-                }
+                        if (pr != null && pr is DockPanePluginRecord && pr.IsEnabled)
+                        {
+                            //check if it needs loading
+                            if (pr.LoadedPlugin == null)
+                            {
+                                pr.LoadPlugin();
+                            }
 
-         return 0;
+                            DockPanePlugin dpp = pr.LoadedPlugin as DockPanePlugin;
+                            if (dpp != null)
+                            {
+                                //switch the Visible flag
+                                dpp.Visible = !dpp.Visible;
+                            }
+                        }
+
+                    }
+                    break;
+            }
+
+            return 0;
       }
    }
 }

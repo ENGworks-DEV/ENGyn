@@ -6,7 +6,7 @@ using TUM.CMS.VplControl.Core;
 using System.Windows.Data;
 using System.Windows;
 
-namespace NW_GraphicPrograming.Nodes.Navisworks
+namespace ENGyne.Nodes.Navisworks
 {
     public class ModelsInDocument : Node
     {
@@ -14,11 +14,9 @@ namespace NW_GraphicPrograming.Nodes.Navisworks
             : base(hostCanvas)
         {
             AddInputPortToNode("NW_Document", typeof(Document));
-            AddOutputPortToNode("Navis Models Count", typeof(object));
+            AddOutputPortToNode("Navis Models", typeof(object));
 
- 
-            AddControlToNode(new Label { Content = "Models in file", FontSize = 13, FontWeight = FontWeights.Bold });
-            Name = "Get Models in file";
+
         }
 
         public override void Calculate()
@@ -26,7 +24,7 @@ namespace NW_GraphicPrograming.Nodes.Navisworks
             if (InputPorts[0].Data != null && InputPorts[0].Data is Document)
             {
                 Document doc = InputPorts[0].Data as Document;
-                OutputPorts[0].Data = doc.Models.Count;
+                OutputPorts[0].Data = doc.Models.RootItems;
             }
         }
 

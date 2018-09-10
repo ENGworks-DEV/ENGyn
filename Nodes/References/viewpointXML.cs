@@ -6,7 +6,7 @@
 using System;
 using System.Xml.Serialization;
 using System.Collections.Generic;
-namespace NW_GraphicPrograming.XML
+namespace ENGyne.XML
 {
 
 

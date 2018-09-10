@@ -6,7 +6,7 @@ using TUM.CMS.VplControl.Core;
 using System.Windows.Data;
 using System.Windows;
 
-namespace NW_GraphicPrograming.Nodes.Navisworks
+namespace ENGyne.Nodes.Navisworks
 {
     public class CurrentModelName : Node
     {
@@ -15,14 +15,6 @@ namespace NW_GraphicPrograming.Nodes.Navisworks
         {
             AddInputPortToNode("NW Document", typeof(Document));
             AddOutputPortToNode("Navis Model Name", typeof(string));
-
-
-            AddControlToNode(new Label() { Content = "Model Name", FontSize = 13, FontWeight = FontWeights.Bold });
-
-            Name = "Get Model Name";
-
-
-            IsResizeable = true;
         }
 
         public override void Calculate()

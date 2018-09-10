@@ -6,7 +6,7 @@ using TUM.CMS.VplControl.Core;
 using System.Windows.Data;
 using System.Windows;
 
-namespace NW_GraphicPrograming.Nodes.Navisworks
+namespace ENGyne.Nodes.Navisworks
 {
     public class RefreshLinks : Node
     {
@@ -14,11 +14,6 @@ namespace NW_GraphicPrograming.Nodes.Navisworks
             : base(hostCanvas)
         {
             AddInputPortToNode("NW_Document", typeof(Document));
-            
-
- 
-            AddControlToNode(new Label { Content = "Refresh Links", FontSize = 13, FontWeight = FontWeights.Bold });
-
         }
 
         public override void Calculate()

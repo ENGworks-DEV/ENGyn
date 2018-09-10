@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using System;
 using System.Windows;
 
-namespace NW_GraphicPrograming.Nodes.Clash
+namespace ENGyne.Nodes.Clash
 {
     public class CompactTest : Node
     {
@@ -21,10 +21,6 @@ namespace NW_GraphicPrograming.Nodes.Clash
             AddInputPortToNode("Input", typeof(object));
             AddOutputPortToNode("Output", typeof(Document));
             Name = "Compact Clash Test";
-
-
-            AddControlToNode(new Label() { Content = "Compact Test", FontSize= 13, FontWeight = FontWeights.Bold });
-
 
         }
 

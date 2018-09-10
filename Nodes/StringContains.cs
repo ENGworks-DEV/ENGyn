@@ -8,7 +8,7 @@ using System.Windows.Data;
 using System.Windows;
 using System.Collections.Generic;
 
-namespace NW_GraphicPrograming.Nodes.General
+namespace ENGyne.Nodes.String
 {
     public class StringContains : Node
     {

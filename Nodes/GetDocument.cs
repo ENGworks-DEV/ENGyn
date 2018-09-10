@@ -6,20 +6,18 @@ using TUM.CMS.VplControl.Core;
 using System.Windows.Data;
 using System.Windows;
 
-namespace NW_GraphicPrograming.Nodes.Navisworks
+namespace ENGyne.Nodes.Navisworks
 {
     public class CurrentDocument : Node
     {
         public CurrentDocument(VplControl hostCanvas)
             : base(hostCanvas)
         {
-            //AddInputPortToNode("Navis1", typeof(object));
+ 
             AddOutputPortToNode("NW Document", typeof(object));
 
-            AddControlToNode(new Label { Content = "Navisworks Document", FontSize = 13, FontWeight = FontWeights.Bold });
-
             OutputPorts[0].Data = Autodesk.Navisworks.Api.Application.ActiveDocument;
-            Name = "Get Document";
+
             Calculate();
 
         }

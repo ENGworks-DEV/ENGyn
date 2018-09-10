@@ -12,7 +12,7 @@ using System.Reflection;
 using System;
 using System.Windows;
 
-namespace NW_GraphicPrograming.Nodes.Appearance
+namespace ENGyne.Nodes.Appearance
 {
     public class SetAppearanceBySelection : Node
     {
@@ -27,10 +27,6 @@ namespace NW_GraphicPrograming.Nodes.Appearance
             AddInputPortToNode("Color", typeof(System.Windows.Media.Color));
             AddOutputPortToNode("SearchSet", typeof(List<SelectionSet>));
 
-
-            AddControlToNode(new Label() { Content = "Appearance By "+ Environment.NewLine+"Selection", FontSize = 13, FontWeight = FontWeights.Bold });
-            
-            IsResizeable = true;
 
         }
 

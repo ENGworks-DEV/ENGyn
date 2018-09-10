@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Windows;
 
-namespace NW_GraphicPrograming.Nodes.Navisworks
+namespace ENGyne.Nodes.Selection
 {
     public class GetSearchSet : Node
     {
@@ -19,11 +19,6 @@ namespace NW_GraphicPrograming.Nodes.Navisworks
         {
             
             AddOutputPortToNode("SearchSets", typeof(object));
-
-
-            AddControlToNode(new Label() { Content = "Get SearchSets", FontSize = 13, FontWeight = FontWeights.Bold });
-
-            
 
         }
 

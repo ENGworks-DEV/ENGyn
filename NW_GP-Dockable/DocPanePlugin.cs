@@ -8,21 +8,22 @@ using System.Linq;
 
 //TODO: https://www.automatetheplanet.com/specify-assembly-references-based-build-configuration-visual-studio/
 
-namespace NW_GraphicPrograming
+namespace ENGyne
 {
-   #region WPFDocPanePlugin
+    #region WPFDocPanePlugin
 
-   [Plugin("NW_GraphicPrograming.NW_GP_Dock", "PRD", DisplayName = "NW_GraphicPrograming", ToolTip = "NW_GraphicPrograming")]
-   [DockPanePlugin(150, 200, FixedSize=false)]
-   class NW_GP_Dock : DockPanePlugin
-   {
+    [Plugin("ENGyne.NW_GP_Dock", "ENG", DisplayName = "ENGyne", ToolTip = "Visual GraphicPrograming")]
+    [DockPanePlugin(500, 500, FixedSize = false)]
+
+    class NW_GP_Dock : DockPanePlugin
+    {
         Assembly GetAssemblyByName(string name)
         {
             return AppDomain.CurrentDomain.GetAssemblies().
                    SingleOrDefault(assembly => assembly.GetName().Name == name);
         }
         public override System.Windows.Forms.Control CreateControlPane()
-      {
+        {
 
             ResourceDictionary myResourceDictionary = new ResourceDictionary();
 
@@ -40,17 +41,17 @@ namespace NW_GraphicPrograming
             eh.Child = new MainWindow();
 
 
-         eh.CreateControl();
+            eh.CreateControl();
 
-         //return the ElementHost
-         return eh;
-      }
+            //return the ElementHost
+            return eh;
+        }
 
-      public override void DestroyControlPane(System.Windows.Forms.Control pane)
-      {
-            
-         pane.Dispose();
-      }
-   }
-   #endregion
+        public override void DestroyControlPane(System.Windows.Forms.Control pane)
+        {
+
+            pane.Dispose();
+        }
+    }
+    #endregion
 }

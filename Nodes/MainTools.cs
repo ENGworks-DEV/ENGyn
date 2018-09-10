@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NW_GraphicPrograming.Nodes
+namespace ENGyne.Nodes
 {
     public static class MainTools
     {
@@ -16,6 +16,11 @@ namespace NW_GraphicPrograming.Nodes
             return false;
         }
 
+        /// <summary>
+        /// Check if object is a list
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public static bool IsList(object obj)
         {
             var t = obj.GetType();
@@ -27,6 +32,16 @@ namespace NW_GraphicPrograming.Nodes
 
             return false;
 
+        }
+        /// <summary>
+        /// Check if object can contain type - Used after IsList()
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public static bool ListContainsType(object obj, Type type)
+        {
+            return obj.GetType().IsAssignableFrom(type);
         }
 
         public static int Count<TSource>(this IEnumerable<TSource> source)

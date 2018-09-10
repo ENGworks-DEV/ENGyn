@@ -12,7 +12,7 @@ using System.Collections;
 using System.Linq;
 using System.Windows;
 
-namespace NW_GraphicPrograming.Nodes.General
+namespace ENGyne.Nodes.General
 {
     public class GetItemAtIndex : Node
     {
@@ -24,12 +24,6 @@ namespace NW_GraphicPrograming.Nodes.General
             AddInputPortToNode("Index", typeof(int));
             AddOutputPortToNode("Result", typeof(object));
             
-            
- 
-            AddControlToNode(new Label() { Content = "Get item at index", FontSize = 13, FontWeight = FontWeights.Bold });
-            Name = "Get item at index";
-
-
         }
 
         public override void Calculate()

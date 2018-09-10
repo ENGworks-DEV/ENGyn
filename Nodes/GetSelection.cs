@@ -1,25 +1,19 @@
-﻿using System.Windows.Controls;
-using System.Xml;
-using Autodesk.Navisworks.Api;
-using TUM.CMS.VplControl.Nodes;
-using TUM.CMS.VplControl.Core;
-using System.Windows.Data;
+﻿using Autodesk.Navisworks.Api;
 using System.Collections.Generic;
 using System.Windows;
+using System.Windows.Controls;
+using System.Xml;
+using TUM.CMS.VplControl.Core;
 
-namespace NW_GraphicPrograming.Nodes.Navisworks
+namespace ENGyne.Nodes.Selection
 {
-    public class GetSelection : Node
+    public class GetCurrentSelection : Node
     {
-        public GetSelection(VplControl hostCanvas)
+        public GetCurrentSelection(VplControl hostCanvas)
             : base(hostCanvas)
         {
             AddInputPortToNode("NW Document", typeof(Document));
             AddOutputPortToNode("Selection", typeof(object));
-
-
-            AddControlToNode(new Label() { Content = "Get Selection", FontSize = 13, FontWeight = FontWeights.Bold });
-
 
         }
 

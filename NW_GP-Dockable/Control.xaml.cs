@@ -13,7 +13,7 @@ using System.Windows.Input;
 using System.Collections.Generic;
 using System.Collections;
 
-namespace NW_GraphicPrograming
+namespace ENGyne
 {
 
     public partial class MainWindow : UserControl
@@ -21,6 +21,7 @@ namespace NW_GraphicPrograming
 
         //Dcoument property
         public static Document docControl { get; set; }
+        public List<Type> nodes { get; private set; }
 
         public MainWindow()
       {
@@ -63,10 +64,19 @@ namespace NW_GraphicPrograming
 
             StackPanel MainStack = new StackPanel();
             //Creating buttons
-            foreach (var item in VplControl.ExternalNodeTypes.OrderBy(o => o.Name).ToList())
+            nodes = new List<Type>();
+            
+            nodes.AddRange(Utilities
+                .GetTypesInNamespace(Assembly.Load("TUM.CMS.VplControl")
+                , "TUM.CMS.VplControl.Nodes")
+                .Where(t => t != typeof(Node) &&  typeof(Node).IsAssignableFrom(t))
+                .ToList());
+
+            nodes.AddRange(VplControl.ExternalNodeTypes);
+            
+            foreach (var item in nodes.OrderBy(o => o.Name).ToList())
             {
-                //if (item.GetType() ==typeof( Node))
-                //{
+
                     var types = item.GetType();
                     
                     var namespaceN = types.GetProperty("Namespace").Name;
@@ -95,11 +105,11 @@ namespace NW_GraphicPrograming
                         expanderList.Add(NavisExp);
 
                     }
-                //}
-                 
 
             }
 
+            
+            
 
             foreach (var item in expanderList.OrderBy(o => o.Header).ToList())
             {
@@ -136,7 +146,7 @@ namespace NW_GraphicPrograming
             
             var el = this.VplControl.ConnectorCollection;
             
-            foreach (var item in this.VplControl.ExternalNodeTypes)
+            foreach (var item in nodes)
             {
                 if (item.Name == button.Content.ToString())
                 {
@@ -153,8 +163,6 @@ namespace NW_GraphicPrograming
             }
 
         }
-
-
 
         //Ugly way to trigger calculate
         private void refresh(object sender, RoutedEventArgs e)
@@ -179,8 +187,6 @@ namespace NW_GraphicPrograming
             }
 
         }
-
-
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {

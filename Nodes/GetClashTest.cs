@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using System;
 using System.Windows;
 
-namespace NW_GraphicPrograming.Nodes.Clash
+namespace ENGyne.Nodes.Clash
 {
     public class GetClashTest : Node
     {
@@ -20,9 +20,6 @@ namespace NW_GraphicPrograming.Nodes.Clash
             AddInputPortToNode("NW Document", typeof(Document));
             AddOutputPortToNode("Navis Clash Tests", typeof(Object));
 
-
-            AddControlToNode(new Label() { Content = "Clash Tests", FontSize = 13, FontWeight = FontWeights.Bold });
-            Name = "Get clash tests";
         }
 
         public override void Calculate()

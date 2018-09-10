@@ -11,7 +11,7 @@ using System;
 using System.Reflection;
 using System.Windows;
 
-namespace NW_GraphicPrograming.Nodes.API
+namespace ENGyne.Nodes.API
 {
     public class GetAPIPropertyValue : Node
     {
@@ -22,9 +22,6 @@ namespace NW_GraphicPrograming.Nodes.API
             AddInputPortToNode("Name", typeof(string));
             AddOutputPortToNode("Output", typeof(object));
 
-            AddControlToNode(new Label() { Content = "Get API Parameter Value", FontSize = 13, FontWeight = FontWeights.Bold });
-            
-          
     }
 
         

@@ -3,10 +3,10 @@ using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NW_GraphicPrograming;
-using NW_GraphicPrograming.XML;
+using ENGyne;
+using ENGyne.XML;
 
-namespace NW_GraphicPrograming.UnitTest
+namespace ENGyne.UnitTest
 {
     [TestClass]
     public class ImportXMLConfig

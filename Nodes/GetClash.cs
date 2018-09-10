@@ -9,7 +9,7 @@ using System.Windows.Data;
 using System.Collections.Generic;
 using System.Windows;
 
-namespace NW_GraphicPrograming.Nodes.Clash
+namespace ENGyne.Nodes.Clash
 {
     public class ClashResults : Node
     {
@@ -19,10 +19,6 @@ namespace NW_GraphicPrograming.Nodes.Clash
             AddInputPortToNode("Clash Test", typeof(object));
             AddOutputPortToNode("Navis Clash", typeof(ClashResult));
             AddOutputPortToNode("Navis Clash Groups", typeof(ClashResult));
-
-
-            AddControlToNode(new Label() { Content = "Clash Result", FontSize = 13, FontWeight = FontWeights.Bold });
-            Name = "Get clash results";
 
         }
 

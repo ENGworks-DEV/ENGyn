@@ -11,7 +11,7 @@ using System;
 using System.Reflection;
 using System.Windows;
 
-namespace NW_GraphicPrograming.Nodes.API
+namespace ENGyne.Nodes.API
 {
     public class GetAPIParameters : Node
     {
@@ -22,9 +22,7 @@ namespace NW_GraphicPrograming.Nodes.API
             
             AddOutputPortToNode("Output", typeof(object));
 
-            AddControlToNode(new Label() { Content = "Get API Parameters", FontSize = 13, FontWeight = FontWeights.Bold });
-            this.NodeCaption = "API";
-            Name = "Get API Parameters";
+            
         }
 
         public static string category;
@@ -32,15 +30,15 @@ namespace NW_GraphicPrograming.Nodes.API
         public override void Calculate()
         {
             List<object> output = new List<object>();
-            if (InputPorts[0].Data != null && InputPorts[1].Data != null)
+            var input = InputPorts[0].Data;
+            if (input != null )
             {
-                if (InputPorts[0].Data.GetType() == typeof(List<object>))
+                if (MainTools.IsList(input))
                 {
                     foreach (var item in InputPorts[0].Data as List<object>)
                     {
                         try
                         {
-
                             var properties = item.GetType().GetProperties();
                             foreach (var p in properties)
                             {
@@ -48,32 +46,19 @@ namespace NW_GraphicPrograming.Nodes.API
                             }
 
                         }
-
-                        catch
-                        {
-                            output.Add(null);
-                        }
-
+                        catch {output.Add(null);}
                     }
-
                 }
-                else
-                {
+                else {
                     try
                     {
-                        var item = InputPorts[0].Data;
-                        var properties = item.GetType().GetProperties();
+                        var properties = input.GetType().GetProperties();
                         foreach (var p in properties)
                         {
                             output.Add(p.Name);
                         }
                     }
-                    catch
-                    {
-                        output.Add(null);
-                    }
-
-
+                    catch { output.Add(null); }
                 }
 
                 OutputPorts[0].Data = output;
@@ -108,7 +93,7 @@ namespace NW_GraphicPrograming.Nodes.API
     }
 
 }
-namespace NW_GraphicPrograming
+namespace ENGyne
 {
 
 }

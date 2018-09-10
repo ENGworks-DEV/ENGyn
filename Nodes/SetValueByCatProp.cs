@@ -10,7 +10,7 @@ using Autodesk.Navisworks.Api.Interop.ComApi;
 using Autodesk.Navisworks.Api.ComApi;
 using System;
 
-namespace NW_GraphicPrograming.Nodes.Appearance
+namespace ENGyne.Nodes.Navisworks
 {
 
     public class SetValueByCatProp : Node
@@ -23,8 +23,6 @@ namespace NW_GraphicPrograming.Nodes.Appearance
             AddInputPortToNode("Property", typeof(object));
             AddInputPortToNode("Value", typeof(object));
             AddOutputPortToNode("ModelItem", typeof(object));
-
-            AddControlToNode(new Label() { Content = "Set value by category and property", FontSize = 13, FontWeight = FontWeights.Bold });
 
         }
 

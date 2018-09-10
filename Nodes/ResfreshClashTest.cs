@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using System;
 using System.Windows;
 
-namespace NW_GraphicPrograming.Nodes.Clash
+namespace ENGyne.Nodes.Clash
 {
     public class RefreshClashTests : Node
     {
@@ -19,8 +19,6 @@ namespace NW_GraphicPrograming.Nodes.Clash
         {
             AddInputPortToNode("Tests", typeof(object));
             AddOutputPortToNode("Clash Tests", typeof(object));
-
-            AddControlToNode(new Label() { Content = "Clash Tests", FontSize = 13, FontWeight = FontWeights.Bold });
 
         }
 
