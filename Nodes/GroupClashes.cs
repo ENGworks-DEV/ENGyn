@@ -78,19 +78,6 @@ namespace ENGyn.Nodes.Clash
         }
 
 
-        public override void SerializeNetwork(XmlWriter xmlWriter)
-        {
-            base.SerializeNetwork(xmlWriter);
-
-            // add your xml serialization methods here
-        }
-
-        public override void DeserializeNetwork(XmlReader xmlReader)
-        {
-            base.DeserializeNetwork(xmlReader);
-
-            // add your xml deserialization methods here
-        }
 
         public override Node Clone()
         {
@@ -157,19 +144,7 @@ namespace ENGyn.Nodes.Clash
     }
 
 
-    public override void SerializeNetwork(XmlWriter xmlWriter)
-        {
-            base.SerializeNetwork(xmlWriter);
-
-            // add your xml serialization methods here
-        }
-
-        public override void DeserializeNetwork(XmlReader xmlReader)
-        {
-            base.DeserializeNetwork(xmlReader);
-
-            // add your xml deserialization methods here
-        }
+    
 
         public override Node Clone()
         {
@@ -236,19 +211,7 @@ namespace ENGyn.Nodes.Clash
         }
 
 
-        public override void SerializeNetwork(XmlWriter xmlWriter)
-        {
-            base.SerializeNetwork(xmlWriter);
-
-            // add your xml serialization methods here
-        }
-
-        public override void DeserializeNetwork(XmlReader xmlReader)
-        {
-            base.DeserializeNetwork(xmlReader);
-
-            // add your xml deserialization methods here
-        }
+       
 
         public override Node Clone()
         {
@@ -260,6 +223,77 @@ namespace ENGyn.Nodes.Clash
 
         }
     }
+
+    public class GroupByModel : Node
+    {
+        public GroupByModel(VplControl hostCanvas)
+            : base(hostCanvas)
+        {
+            AddInputPortToNode("ClashTest", typeof(object));
+            AddInputPortToNode("Model", typeof(object));
+            AddOutputPortToNode("Output", typeof(object));
+
+        }
+
+
+
+        public override void Calculate()
+        {
+            var input = InputPorts[0].Data;
+            var model = InputPorts[1].Data;
+            if (input != null)
+            {
+                var type = input.GetType();
+                if (type == typeof(ClashTest))
+                {
+                    OutputPorts[0].Data = input;
+                    
+                    if (input.GetType() == typeof(ClashTest) && model.GetType() == typeof(Model) )
+                    {
+                        ClashGrouperUtils.RelevantGroupingInfo gInfo = new ClashGrouperUtils.RelevantGroupingInfo();
+                        gInfo.GroupingModel = model as Model;
+                       
+                        ClashGrouperUtils.GroupTestClashes(input as ClashTest, GroupingModes.ChosenModelPart, gInfo);
+                    }
+                }
+                if (MainTools.IsList(input))
+                {
+                    OutputPorts[0].Data = input;
+                    foreach (var item in input as List<object>)
+                    {
+                        if (item.GetType() == typeof(ClashTest) && model.GetType() == typeof(Model))
+                        {
+                            ClashGrouperUtils.RelevantGroupingInfo gInfo = new ClashGrouperUtils.RelevantGroupingInfo();
+                            gInfo.GroupingModel = model as Model;
+
+                            ClashGrouperUtils.GroupTestClashes(item as ClashTest, GroupingModes.ChosenModelPart, gInfo);
+                            
+                        }
+
+
+                    }
+
+                }
+
+            }
+
+
+        }
+
+
+
+
+        public override Node Clone()
+        {
+            return new GroupByModel(HostCanvas)
+            {
+                Top = Top,
+                Left = Left
+            };
+
+        }
+    }
+
     //------------------------------------------------------------------
     // NavisWorks Sample code
     //------------------------------------------------------------------

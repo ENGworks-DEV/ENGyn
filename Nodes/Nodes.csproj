@@ -94,7 +94,7 @@
     <Compile Include="GetItemAtIndex.cs" />
     <Compile Include="GetModelName.cs" />
     <Compile Include="RefreshLinks.cs" />
-    <Compile Include="GetModelsCount.cs" />
+    <Compile Include="GetModels.cs" />
     <Compile Include="GetProfileFromXML.cs" />
     <Compile Include="GetSearchSets.cs" />
     <Compile Include="GetSelection.cs" />
