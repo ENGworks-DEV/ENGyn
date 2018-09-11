@@ -11,7 +11,7 @@ using System;
 using System.Reflection;
 using System.Windows;
 
-namespace ENGyne.Nodes.API
+namespace ENGyn.Nodes.API
 {
     public class GetAPIParameters : Node
     {
@@ -93,7 +93,7 @@ namespace ENGyne.Nodes.API
     }
 
 }
-namespace ENGyne
+namespace ENGyn
 {
 
 }

@@ -7,12 +7,12 @@ using TUM.CMS.VplControl.Core;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using System;
-using ENGyne.XML;
+using ENGyn.XML;
 using System.IO;
 using System.Xml.Serialization;
 using System.Windows;
 
-namespace ENGyne.Nodes.Appearance
+namespace ENGyn.Nodes.Appearance
 {
     public class SetAppearanceByProfile : Node
     {

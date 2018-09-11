@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Windows;
 
-namespace ENGyne.Nodes.Selection
+namespace ENGyn.Nodes.Selection
 {
     public class GetSearchSet : Node
     {

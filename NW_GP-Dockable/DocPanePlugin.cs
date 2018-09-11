@@ -8,11 +8,11 @@ using System.Linq;
 
 //TODO: https://www.automatetheplanet.com/specify-assembly-references-based-build-configuration-visual-studio/
 
-namespace ENGyne
+namespace ENGyn
 {
     #region WPFDocPanePlugin
 
-    [Plugin("ENGyne.NW_GP_Dock", "ENG", DisplayName = "ENGyne", ToolTip = "Visual GraphicPrograming")]
+    [Plugin("ENGyn.NW_GP_Dock", "ENG", DisplayName = "ENGyn", ToolTip = "Visual GraphicPrograming")]
     [DockPanePlugin(500, 500, FixedSize = false)]
 
     class NW_GP_Dock : DockPanePlugin

@@ -9,7 +9,7 @@ using System.Windows.Data;
 using System.Collections.Generic;
 using System.Windows;
 
-namespace ENGyne.Nodes.Selection
+namespace ENGyn.Nodes.Selection
 {
     public class GetElementFromSearch : Node
     {

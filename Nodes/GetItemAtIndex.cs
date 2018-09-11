@@ -12,7 +12,7 @@ using System.Collections;
 using System.Linq;
 using System.Windows;
 
-namespace ENGyne.Nodes.General
+namespace ENGyn.Nodes.General
 {
     public class GetItemAtIndex : Node
     {

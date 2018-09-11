@@ -4,12 +4,12 @@ using System.Windows;
 using Autodesk.Navisworks.Api.Plugins;
 using Autodesk.Windows;
 
-namespace ENGyne
+namespace ENGyn
 {
         [Plugin("ENGRibbon", "ENG", DisplayName = "ENGWorks")]
-        [RibbonLayout("ENGyne.xaml")]
+        [RibbonLayout("ENGyn.xaml")]
         [RibbonTab("ENGworks")]
-        [Command("ID_Button_1", LargeIcon = "ENGyn.png", ToolTip = "Visual Programming", DisplayName = "ENGyne Alpha")]
+        [Command("ID_Button_1", LargeIcon = "ENGyn.png", ToolTip = "Visual Programming", DisplayName = "ENGyn Alpha")]
 
         public class Addin : CommandHandlerPlugin
         {
@@ -22,7 +22,7 @@ namespace ENGyne
                     //Find the plugin
                     {
                         PluginRecord pr =
-                                 Autodesk.Navisworks.Api.Application.Plugins.FindPlugin("ENGyne.NW_GP_Dock.ENG");
+                                 Autodesk.Navisworks.Api.Application.Plugins.FindPlugin("ENGyn.NW_GP_Dock.ENG");
 
                         if (pr != null && pr is DockPanePluginRecord && pr.IsEnabled)
                         {

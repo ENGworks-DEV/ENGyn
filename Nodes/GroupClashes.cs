@@ -15,7 +15,7 @@ using Application = Autodesk.Navisworks.Api.Application;
 using GroupItem = Autodesk.Navisworks.Api.GroupItem;
 
 
-namespace ENGyne.Nodes.Clash
+namespace ENGyn.Nodes.Clash
 {
     public class GroupByCluster : Node
     {
@@ -25,7 +25,7 @@ namespace ENGyne.Nodes.Clash
             AddInputPortToNode("ClashTest", typeof(object));
             AddInputPortToNode("# of Clusters", typeof(int));
             AddInputPortToNode("# of Attempts", typeof(int));
-            AddOutputPortToNode("Output", typeof(ClashResult));
+            AddOutputPortToNode("Output", typeof(object));
 
 
         }
@@ -36,9 +36,11 @@ namespace ENGyne.Nodes.Clash
             var input = InputPorts[0].Data;
             if (input != null)
             {
+                
                 var type = input.GetType();
                 if (type == typeof(ClashTest))
                 {
+
                     var item = input;
                     if (item.GetType() == typeof(ClashTest))
                     {
@@ -50,8 +52,10 @@ namespace ENGyne.Nodes.Clash
                         ClashGrouperUtils.GroupTestClashes(item as ClashTest, GroupingModes.ClusterAnalysis, gInfo);
                     }
                 }
-                if (input.GetType().IsGenericType && type.GetGenericTypeDefinition() == typeof(List<>))
+                if (MainTools.IsList(input))
                 {
+                   
+                       OutputPorts[0].Data = input;
                     foreach (var item in input as List<object>)
                     {
                         if (item.GetType() == typeof(ClashTest))
@@ -105,11 +109,7 @@ namespace ENGyne.Nodes.Clash
             : base(hostCanvas)
         {
             AddInputPortToNode("ClashTest", typeof(object));
-            AddOutputPortToNode("Output", typeof(ClashResult));
-
-
-
-            AddControlToNode(new Label() { Content = "Group By Grid Intersection", FontSize = 13, FontWeight = FontWeights.Bold });
+            AddOutputPortToNode("Output", typeof(object));
 
 
         }
@@ -125,6 +125,7 @@ namespace ENGyne.Nodes.Clash
                 if (type == typeof(ClashTest))
                 {
                     var item = input;
+                    OutputPorts[0].Data = input;
                     if (item.GetType() == typeof(ClashTest))
                     {
                         ClashGrouperUtils.RelevantGroupingInfo gInfo = new ClashGrouperUtils.RelevantGroupingInfo();
@@ -132,8 +133,9 @@ namespace ENGyne.Nodes.Clash
                         ClashGrouperUtils.GroupTestClashes(item as ClashTest, GroupingModes.GridIntersection, gInfo);
                     }
                 }
-                if (input.GetType().IsGenericType && type.GetGenericTypeDefinition() == typeof(List<>))
+                if (MainTools.IsList(input))
                 {
+                    OutputPorts[0].Data = input;
                     foreach (var item in input as List<object>)
                     {
                         if (item.GetType() == typeof(ClashTest))
@@ -187,12 +189,7 @@ namespace ENGyne.Nodes.Clash
             : base(hostCanvas)
         {
             AddInputPortToNode("ClashTest", typeof(object));
-            AddOutputPortToNode("Output", typeof(ClashResult));
-
-
-
-            AddControlToNode(new Label() { Content = "Title", FontSize = 13, FontWeight = FontWeights.Bold });
-
+            AddOutputPortToNode("Output", typeof(object));
 
         }
 
@@ -206,6 +203,7 @@ namespace ENGyne.Nodes.Clash
                 var type = input.GetType();
                 if (type == typeof(ClashTest))
                 {
+                    OutputPorts[0].Data = input;
                     var item = input;
                     if (item.GetType() == typeof(ClashTest))
                     {
@@ -214,8 +212,9 @@ namespace ENGyne.Nodes.Clash
                         ClashGrouperUtils.GroupTestClashes(item as ClashTest, GroupingModes.Level, gInfo);
                     }
                 }
-                if (input.GetType().IsGenericType && type.GetGenericTypeDefinition() == typeof(List<>))
+                if (MainTools.IsList(input))
                 {
+                    OutputPorts[0].Data = input;
                     foreach (var item in input as List<object>)
                     {
                         if (item.GetType() == typeof(ClashTest))

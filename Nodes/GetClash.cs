@@ -9,7 +9,7 @@ using System.Windows.Data;
 using System.Collections.Generic;
 using System.Windows;
 
-namespace ENGyne.Nodes.Clash
+namespace ENGyn.Nodes.Clash
 {
     public class ClashResults : Node
     {
@@ -17,8 +17,8 @@ namespace ENGyne.Nodes.Clash
             : base(hostCanvas)
         {
             AddInputPortToNode("Clash Test", typeof(object));
-            AddOutputPortToNode("Navis Clash", typeof(ClashResult));
-            AddOutputPortToNode("Navis Clash Groups", typeof(ClashResult));
+            AddOutputPortToNode("Navis Clash", typeof(object));
+
 
         }
 
@@ -28,58 +28,39 @@ namespace ENGyne.Nodes.Clash
 
 
 
-            List<ClashResult> clashResultList = new List<ClashResult>();
-            List<ClashResultGroup> clashResultGroupList = new List<ClashResultGroup>();
-            List<object> lct = new List<object>();
+            List<object> clashResultList = new List<object>();
+
+            var input = InputPorts[0].Data;
 
 
-            var type = InputPorts[0].Data.GetType();
             //Check for null in input
-            if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(List<>))
+            if (MainTools.IsList(input))
             {
-                foreach (var i in (System.Collections.IEnumerable)InputPorts[0].Data)
+                foreach (var i in (System.Collections.IEnumerable)input)
                 {
                     if (i.GetType() == typeof(ClashTest))
                     {
                         ClashTest item = i as ClashTest;
                         foreach (var t in item.Children)
                         {
+                            clashResultList.Add(t);
 
-                            if (t.IsGroup)
-                            {
-                                clashResultGroupList.Add(t as ClashResultGroup);
-                            }
-                            else
-                            {
-                                clashResultList.Add(t as ClashResult);
-                            }
                         }
                     }
                 }
-
-
-
                 OutputPorts[0].Data = clashResultList;
-                OutputPorts[1].Data = clashResultGroupList;
+                
             }
 
-            if (type == typeof(ClashTest))
+            if (input.GetType() == typeof(ClashTest))
             {
-                ClashTest item = InputPorts[0].Data as ClashTest;
+                ClashTest item = input as ClashTest;
                 foreach (var t in item.Children)
                 {
-
-                    if (t.IsGroup)
-                    {
-                        clashResultGroupList.Add(t as ClashResultGroup);
-                    }
-                    else
-                    {
-                        clashResultList.Add(t as ClashResult);
-                    }
+                        clashResultList.Add(t);
                 }
                 OutputPorts[0].Data = clashResultList;
-                OutputPorts[1].Data = clashResultGroupList;
+                
 
             }
 

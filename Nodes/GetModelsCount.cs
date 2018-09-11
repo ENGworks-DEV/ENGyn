@@ -6,7 +6,7 @@ using TUM.CMS.VplControl.Core;
 using System.Windows.Data;
 using System.Windows;
 
-namespace ENGyne.Nodes.Navisworks
+namespace ENGyn.Nodes.Navisworks
 {
     public class ModelsInDocument : Node
     {

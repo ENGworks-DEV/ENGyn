@@ -10,16 +10,15 @@ using System.Collections.Generic;
 using System;
 using System.Windows;
 
-namespace ENGyne.Nodes.Clash
+namespace ENGyn.Nodes.Clash
 {
     public class CompactTest : Node
     {
         public CompactTest(VplControl hostCanvas)
             : base(hostCanvas)
         {
-            AddInputPortToNode("Document", typeof(Document));
-            AddInputPortToNode("Input", typeof(object));
-            AddOutputPortToNode("Output", typeof(Document));
+            AddInputPortToNode("ClashTest", typeof(object));
+            AddOutputPortToNode("ClashTest", typeof(object));
             Name = "Compact Clash Test";
 
         }
@@ -27,32 +26,31 @@ namespace ENGyne.Nodes.Clash
 
         public override void Calculate()
         {
-            
-            if (InputPorts[1].Data != null && InputPorts[0].Data != null)
+            var input = InputPorts[0].Data;
+            var doc = Autodesk.Navisworks.Api.Application.ActiveDocument;
+            if (input != null)
             {
 
-                var t = InputPorts[1].Data.GetType();
+                var t = input.GetType();
 
-                if (InputPorts[1].Data.GetType() == typeof(Autodesk.Navisworks.Api.Clash.ClashTest))
+                if (t == typeof(Autodesk.Navisworks.Api.Clash.ClashTest))
                 {
-                    var doc = InputPorts[0].Data as Document;
+                    
 
                     Autodesk.Navisworks.Api.Clash.ClashTest ct = InputPorts[1].Data as Autodesk.Navisworks.Api.Clash.ClashTest;
                     var clashes = doc.GetClash();
-                    clashes.TestsData.TestsCompactAllTests();
-                    //clashes.TestsData.TestsCompactTest(ct);
+                    clashes.TestsData.TestsCompactTest(input as ClashTest);
+                    
                 }
-                if (InputPorts[1].Data.GetType() == typeof(List<object>))
+                if (MainTools.IsList(input))
 
                 {
-                    var listData = InputPorts[1].Data as List<object>;
+                    var listData = input as List<object>;
                     if (listData[0].GetType() == typeof(Autodesk.Navisworks.Api.Clash.ClashTest))
                     {
-                        foreach (var ct in InputPorts[1].Data as List<object>)
+                        foreach (var ct in input as List<object>)
                         {
                             var clashTest = ct as Autodesk.Navisworks.Api.Clash.ClashTest;
-                                  var doc = InputPorts[0].Data as Document;
-
                                 var clashes = doc.GetClash();
                                 clashes.TestsData.TestsCompactTest(clashTest);
 
@@ -61,7 +59,7 @@ namespace ENGyne.Nodes.Clash
                     }
 
                 }
-                GC.Collect();
+                
                 
                 OutputPorts[0].Data = Autodesk.Navisworks.Api.Application.ActiveDocument;
             }

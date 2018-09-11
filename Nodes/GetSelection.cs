@@ -5,7 +5,7 @@ using System.Windows.Controls;
 using System.Xml;
 using TUM.CMS.VplControl.Core;
 
-namespace ENGyne.Nodes.Selection
+namespace ENGyn.Nodes.Selection
 {
     public class GetCurrentSelection : Node
     {

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ENGyne.Nodes
+namespace ENGyn.Nodes
 {
     public static class MainTools
     {

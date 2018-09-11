@@ -8,7 +8,7 @@ using System.Windows.Data;
 using System.Collections.Generic;
 using System;
 
-namespace ENGyne.Nodes.Navisworks
+namespace ENGyn.Nodes.Navisworks
 {
     public class GetValueByCatProp : Node
     {

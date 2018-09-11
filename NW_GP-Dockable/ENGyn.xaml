@@ -3,7 +3,7 @@
     except for ensuring x:Uid="CustomRibbonTab" has a unique ID
     -->
 <RibbonControl
-    x:Uid="ENGyne" xmlns="clr-namespace:Autodesk.Windows;assembly=AdWindows"
+    x:Uid="ENGyn" xmlns="clr-namespace:Autodesk.Windows;assembly=AdWindows"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:Autodesk.Navisworks.Gui.Roamer.AIRLook;assembly=navisworks.gui.roamer">
     <!-- END STANDARD SECTION DO NOT EDIT -->
@@ -16,7 +16,7 @@
                             Size="Large"
                             KeyTip="B1"
                             ShowText="True"
-                            Text="ENGyne"
+                            Text="ENGyn"
                             Orientation="Vertical"/>
 
             </RibbonPanelSource>

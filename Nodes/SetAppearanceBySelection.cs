@@ -12,7 +12,7 @@ using System.Reflection;
 using System;
 using System.Windows;
 
-namespace ENGyne.Nodes.Appearance
+namespace ENGyn.Nodes.Appearance
 {
     public class SetAppearanceBySelection : Node
     {

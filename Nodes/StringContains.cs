@@ -8,7 +8,7 @@ using System.Windows.Data;
 using System.Windows;
 using System.Collections.Generic;
 
-namespace ENGyne.Nodes.String
+namespace ENGyn.Nodes.String
 {
     public class StringContains : Node
     {
@@ -18,10 +18,6 @@ namespace ENGyne.Nodes.String
             AddInputPortToNode("List", typeof(object));
             AddInputPortToNode("String", typeof(object));
             AddOutputPortToNode("Output", typeof(object));
-
-
-
-            AddControlToNode(new Label() { Content = "String Contains", FontSize = 13, FontWeight = FontWeights.Bold });
 
 
         }

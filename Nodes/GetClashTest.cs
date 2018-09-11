@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using System;
 using System.Windows;
 
-namespace ENGyne.Nodes.Clash
+namespace ENGyn.Nodes.Clash
 {
     public class GetClashTest : Node
     {

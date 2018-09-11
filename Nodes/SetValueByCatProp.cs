@@ -10,7 +10,7 @@ using Autodesk.Navisworks.Api.Interop.ComApi;
 using Autodesk.Navisworks.Api.ComApi;
 using System;
 
-namespace ENGyne.Nodes.Navisworks
+namespace ENGyn.Nodes.Navisworks
 {
 
     public class SetValueByCatProp : Node

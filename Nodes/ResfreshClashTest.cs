@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using System;
 using System.Windows;
 
-namespace ENGyne.Nodes.Clash
+namespace ENGyn.Nodes.Clash
 {
     public class RefreshClashTests : Node
     {
@@ -27,45 +27,38 @@ namespace ENGyne.Nodes.Clash
             //Get clashes from document
             Document doc = Autodesk.Navisworks.Api.Application.ActiveDocument;
             var testData = doc.GetClash().TestsData;
-
-            if (InputPorts[0].Data != null)
+            var input = InputPorts[0].Data;
+            if (input != null)
             {
-                try
-                {
-                    var clashTestList = InputPorts[0].Data as List<object>;
 
-                    foreach (var item in clashTestList)
+                
+                if (MainTools.IsList(input))
+               {
+                    var clashTestList = new List<object>();
+                    foreach (var item in (System.Collections.IEnumerable)InputPorts[0].Data)
                     {
                         Autodesk.Navisworks.Api.Clash.ClashTest test = item as Autodesk.Navisworks.Api.Clash.ClashTest;
+                        var guid = test.Guid;
                         testData.TestsRunTest(test);
+                        var index = doc.GetClash().TestsData.Tests.IndexOfGuid(guid);
+                        var ct = doc.GetClash().TestsData.Tests[index];
+                        clashTestList.Add(ct);
                     }
-
-                    if (clashTestList.Count != 0)
-                    {
-                        OutputPorts[0].Data = clashTestList;
-                    }
-
-
-                    else
-                    {
-                        OutputPorts[0].Data = 0;
-                    }
-
-
+                    OutputPorts[0].Data = clashTestList;
                 }
-                catch
+
+                if (input.GetType() == typeof( ClashTest))
                 {
 
-                    var clashTest = InputPorts[0].Data as Autodesk.Navisworks.Api.Clash.ClashTest;
+                    var clashTest = input as Autodesk.Navisworks.Api.Clash.ClashTest;
+                    var guid = clashTest.Guid;
+                    var index = doc.GetClash().TestsData.Tests.IndexOfGuid(guid);
+                    var ct = doc.GetClash().TestsData.Tests[index];
                     testData.TestsRunTest(clashTest);
-                    OutputPorts[0].Data = clashTest;
+                    OutputPorts[0].Data = ct;
                 }
             }
-
-
-            //var testData = doc.GetClash().TestsData;
-
-
+            
 
         }
 

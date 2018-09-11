@@ -11,7 +11,7 @@ using System;
 using System.Reflection;
 using System.Windows;
 
-namespace ENGyne.Nodes.API
+namespace ENGyn.Nodes.API
 {
     public class GetAPIPropertyValue : Node
     {

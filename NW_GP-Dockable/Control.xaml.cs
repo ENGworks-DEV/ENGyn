@@ -13,7 +13,7 @@ using System.Windows.Input;
 using System.Collections.Generic;
 using System.Collections;
 
-namespace ENGyne
+namespace ENGyn
 {
 
     public partial class MainWindow : UserControl
@@ -28,6 +28,7 @@ namespace ENGyne
          InitializeComponent();
 
             docControl = Autodesk.Navisworks.Api.Application.ActiveDocument;
+ 
 
             KeyDown += VplControl.VplControl_KeyDown;
             KeyUp += VplControl.VplControl_KeyUp;

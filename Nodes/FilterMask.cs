@@ -11,7 +11,7 @@ using System;
 using System.Collections;
 using System.Linq;
 
-namespace ENGyne.Nodes.List
+namespace ENGyn.Nodes.List
 {
     public class FilterMask : Node
     {
