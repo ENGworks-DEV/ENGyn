@@ -5,13 +5,12 @@
 <RibbonControl
     x:Uid="ENGyn" xmlns="clr-namespace:Autodesk.Windows;assembly=AdWindows"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="clr-namespace:Autodesk.Navisworks.Gui.Roamer.AIRLook;assembly=navisworks.gui.roamer">
+    xmlns:local="clr-namespace:Autodesk.Navisworks.Gui.Roamer;assembly=navisworks.gui.roamer">
     <!-- END STANDARD SECTION DO NOT EDIT -->
 
     <RibbonTab Id="ENGworks" KeyTip="T1">
         <RibbonPanel x:Uid="RibbonPane1_1">
             <RibbonPanelSource x:Uid="RibbonPanelSource_RibbonPanel_1" KeyTip="C1" Title="Tools">
-
                 <local:NWRibbonButton x:Uid="Button_1" Id="ID_Button_1"
                             Size="Large"
                             KeyTip="B1"
