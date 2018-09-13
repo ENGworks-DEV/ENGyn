@@ -39,9 +39,11 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Autodesk Navisworks Manage 2018|AnyCPU'">
     <OutputPath>bin\Autodesk Navisworks Manage 2018\</OutputPath>
     <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
-<Reference Include="AdWindows" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2018'">
+    <Reference Include="AdWindows" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2018'">
       <HintPath>C:\Program Files\Autodesk\Navisworks Manage 2018\AdWindows.dll</HintPath>
     </Reference>
     <Reference Include="AdWindows" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2019'">
@@ -87,12 +89,12 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="navisworks.gui.roamer" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2019'" >
+    <Reference Include="navisworks.gui.roamer" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2019'">
       <HintPath>C:\Program Files\Autodesk\Navisworks Manage 2019\navisworks.gui.roamer.dll</HintPath>
     </Reference>
-      <Reference Include="navisworks.gui.roamer" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2018'">
-        <HintPath>C:\Program Files\Autodesk\Navisworks Manage 2018\navisworks.gui.roamer.dll</HintPath>
-      </Reference>
+    <Reference Include="navisworks.gui.roamer" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2018'">
+      <HintPath>C:\Program Files\Autodesk\Navisworks Manage 2018\navisworks.gui.roamer.dll</HintPath>
+    </Reference>
     <Reference Include="NCalc, Version=1.3.8.0, Culture=neutral, PublicKeyToken=973cde3f1cafed03, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\..\..\Program Files\Autodesk\Navisworks Manage 2019\Dependencies\NCalc.dll</HintPath>
     </Reference>
@@ -120,13 +122,18 @@
     <Compile Include="CompactTest.cs" />
     <Compile Include="GetAPIParameters.cs" />
     <Compile Include="GetAPIParameterValue.cs" />
+    <Compile Include="SetAPIParameterValue.cs" />
     <Compile Include="GetElementFromSearch.cs" />
+    <Compile Include="GetSearchSets - Copy.cs" />
     <Compile Include="GroupClashes.cs" />
     <Compile Include="MainTools.cs" />
     <Compile Include="ResfreshClashTest.cs" />
     <Compile Include="FilterMask.cs" />
+    <Compile Include="StringReplace.cs" />
     <Compile Include="StringContains.cs" />
     <Compile Include="GetElementsInClash.cs" />
+    <Compile Include="ListTranspose.cs" />
+    <Compile Include="WriteTextToPath.cs" />
     <Compile Include="Template.cs" />
     <Compile Include="GetClash.cs" />
     <Compile Include="GetClashTest.cs" />

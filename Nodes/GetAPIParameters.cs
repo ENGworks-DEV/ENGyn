@@ -40,11 +40,12 @@ namespace ENGyn.Nodes.API
                         try
                         {
                             var properties = item.GetType().GetProperties();
+                            var prop = new List<string>();
                             foreach (var p in properties)
                             {
-                                output.Add(p.Name);
+                                prop.Add(p.Name);
                             }
-
+                            output.Add(prop);
                         }
                         catch {output.Add(null);}
                     }

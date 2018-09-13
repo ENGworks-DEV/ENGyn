@@ -20,53 +20,83 @@ namespace ENGyn.Nodes.API
         {
             AddInputPortToNode("Input", typeof(object));
             AddInputPortToNode("Name", typeof(string));
+            AddInputPortToNode("Value", typeof(object));
             AddOutputPortToNode("Output", typeof(object));
 
     }
 
-        
+        public void manyToOne(object a, object b, string Parameter)
+        {
+            var ListA = (System.Collections.ArrayList)a;
+            var objB = b.ToString();
 
+            foreach (var objA in ListA)
+            {
+                var types = objA.GetType();
+                PropertyInfo prop = types.GetProperty(Parameter);
+                prop.SetValue(objA, objB);
+            }
+        }
+
+        public void oneToOne(object a, object b, string Parameter)
+        {
+            var ListA = (System.Collections.ArrayList)a;
+            var ListB = (System.Collections.ArrayList)b;
+
+            if (ListB.Count == ListA.Count)
+
+                {
+                for (int i = 0; i < ListA.Count; i++)
+                {
+                    var objA = ListA[i];
+                    string objB = ListB[i].ToString();
+
+                    var types = objA.GetType();
+                    PropertyInfo prop = types.GetProperty(Parameter);
+                    prop.SetValue(objA, objB);
+
+                }
+            }
+            
+        }    
+        
         public override void Calculate()
         {
             List<object> output = new List<object>();
             if (InputPorts[0].Data != null)
             {
-                var t = InputPorts[0].Data.GetType();
-                if (t.IsGenericType && t.GetGenericTypeDefinition() == typeof(List<>))
+                var input = InputPorts[0].Data;
+                var values = InputPorts[2].Data;
+                var parameter = InputPorts[1].Data.ToString();
+                if (MainTools.IsList(input) && MainTools.IsList(input))
                 {
+                    var ListA = (System.Collections.ArrayList)input;
+                    var ListB = (System.Collections.ArrayList)input;
 
-                    foreach (var item in (System.Collections.IEnumerable)InputPorts[0].Data)
+                    if (ListB.Count == ListA.Count)
                     {
                         try
                         {
-                            string method = InputPorts[1].Data as string;
-                            var types = item.GetType();
-                            PropertyInfo prop = types.GetProperty(method);
-
-                            object value = prop.GetValue(item);
-
-
-                            output.Add(value);
+                            oneToOne(input, values, parameter);
                         }
 
                         catch
                         {
                             output.Add(null);
                         }
-
                     }
+                    else
+                    {
+
+                        ManyToSome(input, values, parameter);
+                    } 
 
                 }
                 else
                 {
                     try
                     {
-                        string method = InputPorts[1].Data as string;
-                        var types = InputPorts[0].Data.GetType();
-                        PropertyInfo prop = types.GetProperty(method);
-
-                        object value = prop.GetValue(InputPorts[0].Data);
-                        output.Add(value);
+                        
                     }
                     catch
                     {
@@ -81,6 +111,23 @@ namespace ENGyn.Nodes.API
 
         }
 
+        private void ManyToSome(object a, object b, string Parameter)
+        {
+            var ListA = (System.Collections.ArrayList)a;
+            var ListB = (System.Collections.ArrayList)b;
+
+                for (int i = 0; i < ListA.Count; i++)
+                {
+                    var objA = ListA[i];
+                    string objB = ListB[0].ToString();
+
+                    var types = objA.GetType();
+                    PropertyInfo prop = types.GetProperty(Parameter);
+                    prop.SetValue(objA, objB);
+
+          
+            }
+        }
 
         public override void SerializeNetwork(XmlWriter xmlWriter)
         {

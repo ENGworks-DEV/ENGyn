@@ -25,7 +25,7 @@ namespace ENGyn.Nodes.Navisworks
             if (InputPorts[0].Data != null && InputPorts[0].Data is Document)
             {
                 Document doc = InputPorts[0].Data as Document;
-                var models = new System.Collections.Generic.List<Model>();
+                var models = new System.Collections.Generic.List<object>();
                 foreach (var item in doc.Models)
                 {
                     models.Add(item);

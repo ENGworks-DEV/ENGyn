@@ -33,6 +33,10 @@ namespace ENGyn.Nodes
             {
                 return true;
             }
+            if (t == typeof(ArrayList))
+            {
+                return true;
+            }
             return false;
 
         }
