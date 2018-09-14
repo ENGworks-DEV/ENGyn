@@ -8,7 +8,7 @@
 //using System.Windows;
 //using System.Collections.Generic;
 
-//namespace NW_GraphicPrograming.Nodes
+//namespace ENGyn.Nodes
 //{
 //    public class TemplateName : Node
 //    {
