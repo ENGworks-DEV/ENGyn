@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Nodes</RootNamespace>
     <AssemblyName>DefaultNodes</AssemblyName>
-    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <TargetFrameworkProfile />
@@ -98,9 +98,11 @@
     <Reference Include="NCalc, Version=1.3.8.0, Culture=neutral, PublicKeyToken=973cde3f1cafed03, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\..\..\Program Files\Autodesk\Navisworks Manage 2019\Dependencies\NCalc.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\NW_GP-Dockable\resources\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2019'">
+      <HintPath>C:\Program Files\Autodesk\Navisworks Manage 2019\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2018'">
+      <HintPath>C:\Program Files\Autodesk\Navisworks Manage 2018\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -160,7 +162,7 @@
   <PropertyGroup>
     <PostBuildEvent>xcopy /Y "$(TargetPath)" "$(SolutionDir)NW_GP-Dockable\Nodes\"
 
-xcopy /Y "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)NW_GP-Dockable\Nodes\"
+xcopy /Y "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)ENGyn\Nodes\"
 </PostBuildEvent>
   </PropertyGroup>
 </Project>

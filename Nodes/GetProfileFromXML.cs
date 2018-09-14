@@ -15,11 +15,11 @@ using System.Windows;
 
 namespace ENGyn.Nodes.Appearance
 {
-    public class GetJsonProfileFromXLM : Node
+    public class GetJsonProfileFromXML : Node
     {
         //TODO: read xml and convert to json profile
         #region Node class methods
-        public GetJsonProfileFromXLM(VplControl hostCanvas)
+        public GetJsonProfileFromXML(VplControl hostCanvas)
             : base(hostCanvas)
         {
             AddInputPortToNode("File path", typeof(string));
@@ -41,7 +41,7 @@ namespace ENGyn.Nodes.Appearance
 
         public override Node Clone()
         {
-            return new GetJsonProfileFromXLM(HostCanvas)
+            return new GetJsonProfileFromXML(HostCanvas)
             {
                 Top = Top,
                 Left = Left
