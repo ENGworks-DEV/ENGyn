@@ -1,4 +1,4 @@
-# NW_GraphicPrograming
+# ENGyn
 
 Graphical programing interface based on [TUM.CMS.VPLControl](https://github.com/tumcms/TUM.CMS.VPLControl) in progress
 
