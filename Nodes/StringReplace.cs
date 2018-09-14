@@ -28,7 +28,7 @@ namespace ENGyn.Nodes.String
         {
             var InputList = InputPorts[0].Data;
             var oldValue = InputPorts[1].Data;
-            var newValue = InputPorts[1].Data;
+            var newValue = InputPorts[2].Data;
             if (InputList !=null && oldValue != null && newValue != null)
             {
                 OutputPorts[0].Data = Replace(InputList, oldValue, newValue);
