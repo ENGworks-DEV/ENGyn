@@ -3,8 +3,8 @@
 //using System.Threading;
 //using System.Threading.Tasks;
 //using Microsoft.VisualStudio.TestTools.UnitTesting;
-//using ENGyne;
-//using ENGyne.XML;
+//using ENGyn;
+//using ENGyn.XML;
 
 //namespace ENGyne.UnitTest
 //{
