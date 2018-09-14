@@ -32,11 +32,11 @@ namespace ENGyn.Nodes.API
             List<object> output = new List<object>();
             if (InputPorts[0].Data != null)
             {
-                var t = InputPorts[0].Data.GetType();
-                if (t.IsGenericType && t.GetGenericTypeDefinition() == typeof(List<>))
+                var input = InputPorts[0].Data;
+                if (MainTools.IsList(input))
                 {
 
-                    foreach (var item in (System.Collections.IEnumerable)InputPorts[0].Data)
+                    foreach (var item in (System.Collections.IEnumerable)input)
                     {
                         try
                         {
@@ -45,7 +45,6 @@ namespace ENGyn.Nodes.API
                             PropertyInfo prop = types.GetProperty(method);
 
                             object value = prop.GetValue(item);
-
 
                             output.Add(value);
                         }
