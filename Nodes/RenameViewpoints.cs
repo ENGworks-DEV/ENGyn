@@ -11,41 +11,40 @@ using System;
 using System.Reflection;
 using System.Windows;
 
-
-namespace ENGyn.Nodes.API
+namespace ENGyn.Nodes.Viewpoints
 {
-    public class SetAPIPropertyValues : Node
+    public class RenameViewpoints : Node
     {
-        public SetAPIPropertyValues(VplControl hostCanvas)
+        public RenameViewpoints(VplControl hostCanvas)
             : base(hostCanvas)
         {
-            AddInputPortToNode("Input", typeof(object));
+            AddInputPortToNode("Viewpoints", typeof(object));
             AddInputPortToNode("Name", typeof(string));
-            AddInputPortToNode("Value", typeof(object));
             AddOutputPortToNode("Output", typeof(object));
 
     }
 
-        public void manyToOne(object a, object b, string Parameter)
+        public void manyToOne(object a, string Parameter)
         {
             var ListA = (System.Collections.IList)a;
-            var objB = b.ToString();
+            Document doc = Autodesk.Navisworks.Api.Application.ActiveDocument;
+            Autodesk.Navisworks.Api.DocumentParts.DocumentSavedViewpoints documentSavedViewpoints =
+                doc.SavedViewpoints;
 
             foreach (var objA in ListA)
             {
-                var types = objA.GetType();
-                PropertyInfo propertyInfo = types.GetProperty(Parameter);
-                propertyInfo.SetValue(objA, Convert.ChangeType(objB, propertyInfo.PropertyType), null);
-                
-                
+                documentSavedViewpoints.EditDisplayName(objA as SavedItem, Parameter);
             }
         }
 
-        public void oneToOne(object a, object b, string Parameter)
+        public void oneToOne(object a, object b)
         {
             var ListA = (System.Collections.IList)a;
             var ListB = (System.Collections.IList)b;
 
+            Document doc = Autodesk.Navisworks.Api.Application.ActiveDocument;
+            Autodesk.Navisworks.Api.DocumentParts.DocumentSavedViewpoints documentSavedViewpoints =
+                doc.SavedViewpoints;
             if (ListB.Count == ListA.Count)
 
                 {
@@ -53,34 +52,48 @@ namespace ENGyn.Nodes.API
                 {
                     var objA = ListA[i];
                     string objB = ListB[i].ToString();
-
-                    var types = objA.GetType();
-                    PropertyInfo propertyInfo = types.GetProperty(Parameter);
-                    propertyInfo.SetValue(objA, Convert.ChangeType(objB, propertyInfo.PropertyType), null);
+                    documentSavedViewpoints.EditDisplayName(objA as SavedItem, objB);
 
                 }
             }
             
-        }    
-        
+        }
+
+
+        private void ManyToSome(object a, object b)
+        {
+            var ListA = (System.Collections.ArrayList)a;
+            var ListB = (System.Collections.ArrayList)b;
+
+            Document doc = Autodesk.Navisworks.Api.Application.ActiveDocument;
+            Autodesk.Navisworks.Api.DocumentParts.DocumentSavedViewpoints documentSavedViewpoints =
+                doc.SavedViewpoints;
+
+            for (int i = 0; i < ListA.Count; i++)
+            {
+                var objA = ListA[i];
+                string objB = ListB[0].ToString();
+                documentSavedViewpoints.EditDisplayName(objA as SavedItem, objB);
+
+            }
+        }
         public override void Calculate()
         {
             List<object> output = new List<object>();
             if (InputPorts[0].Data != null)
             {
                 var input = InputPorts[0].Data;
-                var values = InputPorts[2].Data;
-                var parameter = InputPorts[1].Data.ToString();
-                if (MainTools.IsList(input) && MainTools.IsList(values))
+                var parameter = InputPorts[1].Data;
+                if (MainTools.IsList(input) && MainTools.IsList(input))
                 {
                     var ListA = (System.Collections.IList)input;
-                    var ListB = (System.Collections.IList)values;
+                    var ListB = (System.Collections.IList)input;
 
                     if (ListB.Count == ListA.Count)
                     {
                         try
                         {
-                            oneToOne(input, values, parameter);
+                            oneToOne(input, parameter);
                         }
 
                         catch (Exception e)
@@ -92,7 +105,7 @@ namespace ENGyn.Nodes.API
                     else
                     {
 
-                        
+                        ManyToSome(input,  parameter);
                     } 
 
                 }
@@ -100,11 +113,10 @@ namespace ENGyn.Nodes.API
                 {
                     try
                     {
-                        manyToOne(input, values, parameter);
+                        
                     }
-                    catch (Exception e)
+                    catch
                     {
-                        var mm = e.Message;
                         output.Add(null);
                     }
                 }
@@ -116,31 +128,12 @@ namespace ENGyn.Nodes.API
 
         }
 
-        private void ManyToSome(object a, object b, string Parameter)
-        {
-            var ListA = (System.Collections.ArrayList)a;
-            var ListB = (System.Collections.ArrayList)b;
-
-                for (int i = 0; i < ListA.Count; i++)
-                {
-                    var objA = ListA[i];
-                    string objB = ListB[0].ToString();
-
-                    var types = objA.GetType();
-
-                PropertyInfo propertyInfo = types.GetProperty(Parameter);
-                propertyInfo.SetValue(objA,Convert.ChangeType(objB, propertyInfo.PropertyType),null);
-                
-
-          
-            }
-        }
-
+       
 
 
         public override Node Clone()
         {
-            return new SetAPIPropertyValues(HostCanvas)
+            return new RenameViewpoints(HostCanvas)
             {
                 Top = Top,
                 Left = Left

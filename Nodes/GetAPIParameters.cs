@@ -35,7 +35,7 @@ namespace ENGyn.Nodes.API
             {
                 if (MainTools.IsList(input))
                 {
-                    foreach (var item in InputPorts[0].Data as List<object>)
+                    foreach (var item in (System.Collections.IEnumerable)InputPorts[0].Data)
                     {
                         try
                         {
@@ -68,19 +68,7 @@ namespace ENGyn.Nodes.API
         }
 
 
-        public override void SerializeNetwork(XmlWriter xmlWriter)
-        {
-            base.SerializeNetwork(xmlWriter);
-
-            // add your xml serialization methods here
-        }
-
-        public override void DeserializeNetwork(XmlReader xmlReader)
-        {
-            base.DeserializeNetwork(xmlReader);
-
-            // add your xml deserialization methods here
-        }
+   
 
         public override Node Clone()
         {

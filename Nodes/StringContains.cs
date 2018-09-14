@@ -35,19 +35,7 @@ namespace ENGyn.Nodes.String
         }
 
 
-        public override void SerializeNetwork(XmlWriter xmlWriter)
-        {
-            base.SerializeNetwork(xmlWriter);
-
-            // add your xml serialization methods here
-        }
-
-        public override void DeserializeNetwork(XmlReader xmlReader)
-        {
-            base.DeserializeNetwork(xmlReader);
-
-            // add your xml deserialization methods here
-        }
+  
 
         public override Node Clone()
         {

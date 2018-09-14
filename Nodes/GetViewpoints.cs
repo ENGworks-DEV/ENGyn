@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Windows;
 
-namespace ENGyn.Nodes.Selection
+namespace ENGyn.Nodes.Viewpoints
 {
     public class GetViewpoints : Node
     {
@@ -18,7 +18,7 @@ namespace ENGyn.Nodes.Selection
             : base(hostCanvas)
         {
             
-            AddOutputPortToNode("SearchSets", typeof(object));
+            AddOutputPortToNode("Viewpoints", typeof(object));
 
         }
 
@@ -35,7 +35,7 @@ namespace ENGyn.Nodes.Selection
                 foreach (SavedItem view in viewpoints)
                 {
                         var t = view.GetType();
-                        var name = view.DisplayName;
+                         var name = view.DisplayName;
                         recursionViewpoint(view);
                     
                 }
@@ -99,19 +99,7 @@ namespace ENGyn.Nodes.Selection
             
         }
 
-        public override void SerializeNetwork(XmlWriter xmlWriter)
-        {
-            base.SerializeNetwork(xmlWriter);
 
-            // add your xml serialization methods here
-        }
-
-        public override void DeserializeNetwork(XmlReader xmlReader)
-        {
-            base.DeserializeNetwork(xmlReader);
-
-            // add your xml deserialization methods here
-        }
 
         public override Node Clone()
         {

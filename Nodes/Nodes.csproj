@@ -121,10 +121,11 @@
   <ItemGroup>
     <Compile Include="CompactTest.cs" />
     <Compile Include="GetAPIParameters.cs" />
+    <Compile Include="RenameViewpoints.cs" />
     <Compile Include="SetAPIParameterValue.cs" />
     <Compile Include="GetAPIParameterValue.cs" />
     <Compile Include="GetElementFromSearch.cs" />
-    <Compile Include="GetSearchSets - Copy.cs" />
+    <Compile Include="GetViewpoints.cs" />
     <Compile Include="GroupClashes.cs" />
     <Compile Include="MainTools.cs" />
     <Compile Include="ResfreshClashTest.cs" />

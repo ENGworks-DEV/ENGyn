@@ -25,7 +25,7 @@ namespace ENGyn.Nodes.Clash
             AddInputPortToNode("ClashTest", typeof(object));
             AddInputPortToNode("# of Clusters", typeof(int));
             AddInputPortToNode("# of Attempts", typeof(int));
-            AddOutputPortToNode("Output", typeof(object));
+            AddOutputPortToNode("ClashTest", typeof(object));
 
 
         }
@@ -103,7 +103,7 @@ namespace ENGyn.Nodes.Clash
 
 
 
-             public override void Calculate()
+        public override void Calculate()
         {
             var input = InputPorts[0].Data;
             if (input != null)
@@ -132,19 +132,11 @@ namespace ENGyn.Nodes.Clash
 
                             ClashGrouperUtils.GroupTestClashes(item as ClashTest, GroupingModes.GridIntersection, gInfo);
                         }
-
-
                     }
-
                 }
-
             }
+        }
 
-
-    }
-
-
-    
 
         public override Node Clone()
         {
@@ -156,7 +148,6 @@ namespace ENGyn.Nodes.Clash
 
         }
     }
-
 
     public class GroupByLevel : Node
     {
