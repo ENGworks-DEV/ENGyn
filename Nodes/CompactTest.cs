@@ -19,14 +19,23 @@ namespace ENGyn.Nodes.Clash
         {
             AddInputPortToNode("ClashTest", typeof(object));
             AddOutputPortToNode("ClashTest", typeof(object));
-            Name = "Compact Clash Test";
-
         }
 
 
         public override void Calculate()
         {
             var input = InputPorts[0].Data;
+            CompactClashes(input);
+            OutputPorts[0].Data = Autodesk.Navisworks.Api.Application.ActiveDocument;
+
+        }
+
+        /// <summary>
+        /// Compacts single Clashtest list of ClashesTest
+        /// </summary>
+        /// <param name="input"></param>
+        public void CompactClashes(object input)
+        {
             var doc = Autodesk.Navisworks.Api.Application.ActiveDocument;
             if (input != null)
             {
@@ -35,12 +44,12 @@ namespace ENGyn.Nodes.Clash
 
                 if (t == typeof(Autodesk.Navisworks.Api.Clash.ClashTest))
                 {
-                    
+
 
                     Autodesk.Navisworks.Api.Clash.ClashTest ct = InputPorts[1].Data as Autodesk.Navisworks.Api.Clash.ClashTest;
                     var clashes = doc.GetClash();
                     clashes.TestsData.TestsCompactTest(input as ClashTest);
-                    
+
                 }
                 if (MainTools.IsList(input))
 
@@ -51,22 +60,19 @@ namespace ENGyn.Nodes.Clash
                         foreach (var ct in input as List<object>)
                         {
                             var clashTest = ct as Autodesk.Navisworks.Api.Clash.ClashTest;
-                                var clashes = doc.GetClash();
-                                clashes.TestsData.TestsCompactTest(clashTest);
+                            var clashes = doc.GetClash();
+                            clashes.TestsData.TestsCompactTest(clashTest);
 
 
                         }
                     }
 
                 }
-                
-                
-                OutputPorts[0].Data = Autodesk.Navisworks.Api.Application.ActiveDocument;
+
+
+               
             }
-
         }
-
-
  
 
         public override Node Clone()
