@@ -40,7 +40,7 @@ namespace ENGyn
             eh.AutoSize = true;
             eh.Child = new MainWindow();
 
-
+            
             eh.CreateControl();
 
             //return the ElementHost

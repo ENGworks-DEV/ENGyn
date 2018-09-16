@@ -35,7 +35,7 @@ namespace ENGyn
 
             //Loading nodes dlls located in Nodes folders
             VplControl.ExternalNodeTypes.AddRange(
-            Utilities.GetTypesInNamespace(Assembly.GetExecutingAssembly(), "NW_GraphicPrograming.Nodes").ToList());
+            Utilities.GetTypesInNamespace(Assembly.GetExecutingAssembly(), "ENGyn.Nodes").ToList());
 
             //Loading nodes dlls located in Nodes folders
             var assamblyLocation = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + @"\Nodes" ;
@@ -107,6 +107,8 @@ namespace ENGyn
 
                     }
 
+
+                    this.Version.Content = Assembly.GetExecutingAssembly().GetName().Version.ToString();
             }
 
             

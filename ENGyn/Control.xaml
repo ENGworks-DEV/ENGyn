@@ -19,10 +19,12 @@
             </Style.Resources>
             <Setter Property="Background" Value="#FF2C2C2C"/>
            <Setter Property="BorderBrush" Value="#FF2C2C2C"/>
-            --><!--<Setter Property="OverridesDefaultStyle" Value="True"/>--><!--
+            -->
+        <!--<Setter Property="OverridesDefaultStyle" Value="True"/>-->
+        <!--
         </Style>-->
-       
-        
+
+
         <Style TargetType="{x:Type Button}">
             <Setter Property="Background" Value="#FFF0F0F0"/>
             <Setter Property="BorderBrush" Value="#FF707070"/>
@@ -53,9 +55,9 @@
         <VplControl:VplControl x:Name="VplControl" ClipToBounds="True" Background="White" Margin="2,0,0,0" Grid.Row="1" Grid.RowSpan="1" Grid.Column="1"/>
         <Button x:Name="runButton" Content="Run" Margin="20,15,20,10" Grid.Row="2" Click="Button_Click"  FontWeight="Bold"  Width="Auto" Height="Auto"/>
         <ScrollViewer x:Name="Menu" HorizontalAlignment="Left"  Grid.Row="1" Width="180"   VerticalAlignment="Top" Margin="0,20,0,0">
-           
+
             <!--<StackPanel x:Name="ButtonStack" Width="180"/>-->
-            
+
         </ScrollViewer>
 
 
@@ -67,6 +69,7 @@
             </MenuItem>
 
         </Menu>
+        <Label x:Name ="Version" Grid.Column="1" Margin="620,15,65,9" Grid.Row="2"/>
 
 
 
