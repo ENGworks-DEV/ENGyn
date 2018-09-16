@@ -62,7 +62,7 @@ namespace ENGyn.Nodes.API
                     catch { output.Add(null); }
                 }
 
-                OutputPorts[0].Data = output;
+                OutputPorts[0].Data = output as IList<object>;
             }
                 
         }
