@@ -140,6 +140,7 @@
   <ItemGroup>
     <Compile Include="Clash\CompactTest.cs" />
     <Compile Include="API\GetAPIParameters.cs" />
+    <Compile Include="Template - Copy.cs" />
     <Compile Include="Viewpoints\RenameViewpoints.cs" />
     <Compile Include="API\SetAPIParameterValue.cs" />
     <Compile Include="API\GetAPIParameterValue.cs" />
