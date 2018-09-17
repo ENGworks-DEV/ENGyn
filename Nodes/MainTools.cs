@@ -15,7 +15,13 @@ namespace ENGyn.Nodes
                 return true;
             return false;
         }
-
+        public static string Quoted(this string str)
+        {
+            if (str != null)
+            { return "\"" + str + "\""; }
+            else
+            { return null; }
+        }
         /// <summary>
         /// Check if object is a list
         /// </summary>
@@ -23,20 +29,25 @@ namespace ENGyn.Nodes
         /// <returns></returns>
         public static bool IsList(object obj)
         {
-            var t = obj.GetType();
+            if (obj!=null)
+            {
+                var t = obj.GetType();
 
-            if (t.IsGenericType && t.GetGenericTypeDefinition() == typeof(List<>))
-            {
-                return true;
+                if (t.IsGenericType && t.GetGenericTypeDefinition() == typeof(List<>))
+                {
+                    return true;
+                }
+                if (t.IsGenericType && t.GetGenericTypeDefinition() == typeof(IList<>))
+                {
+                    return true;
+                }
+                if (t == typeof(ArrayList))
+                {
+                    return true;
+                }
+                return false;
             }
-            if (t.IsGenericType && t.GetGenericTypeDefinition() == typeof(IList<>))
-            {
-                return true;
-            }
-            if (t == typeof(ArrayList))
-            {
-                return true;
-            }
+
             return false;
 
         }

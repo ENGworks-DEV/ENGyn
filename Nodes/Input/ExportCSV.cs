@@ -36,27 +36,46 @@ namespace ENGyn.Nodes
                 if (MainTools.IsList(input))
                 {
                     var t = input.GetType();
-                    ExportCSV(path.ToString(), input as object[][]);
+                    ExportCSV(path.ToString(), input);
                 }
 
             }
 
         }
 
-        public static void ExportCSV(string filePath, object[][] data)
+   
+        public static void ExportCSV(string filePath, object data)
         {
             using (var writer = new StreamWriter(System.IO.Path.GetFullPath(filePath)))
             {
-                foreach (var line in data)
+
+                //TODO cast object to list
+                foreach (var line in (System.Collections.IList)data)
                 {
                     int count = 0;
-                    foreach (var entry in line)
+                    if (MainTools.IsList(line))
                     {
-                        writer.Write(entry);
-                        if (++count < line.Length)
-                            writer.Write(",");
+                        var t = line.GetType();
+                        var l = (System.Collections.ArrayList)line ;
+                        foreach (var entry in l)
+                        {
+                           
+                            writer.Write(MainTools.Quoted((entry ?? "").ToString().Replace("\n", string.Empty)));
+                            if (++count < l.Count)
+                                writer.Write(",");
+                        }
+                        writer.WriteLine();
+
                     }
-                    writer.WriteLine();
+                    else {
+
+                            writer.Write(MainTools.Quoted((line ?? "").ToString().Replace("\n", string.Empty)));
+                            
+                                writer.Write(",");
+
+                        writer.WriteLine();
+                    }
+                    
                 }
             }
         }
@@ -72,5 +91,5 @@ namespace ENGyn.Nodes
 
         }
     }
-
+    
 }
