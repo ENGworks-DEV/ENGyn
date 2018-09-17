@@ -74,5 +74,29 @@ namespace ENGyn.Nodes
 
             return count;
         }
+
+        public static System.Collections.IEnumerable Recursive (System.Collections.IEnumerable list)
+        {
+            List<object> output = new List<object>();
+
+            bool typelist = true;
+            int deph = 0;
+            foreach (var obj in (IList)list) // If it is a list, check if it contains a sublist
+            {
+                if (obj is IList) // If it contains a sublist
+                {
+                    //output[0].Add(new List<object>());
+                    //int d = 1 + Recursive((System.Collections.IEnumerable)obj);
+
+                    typelist = true;
+                }
+                else
+                {
+
+                }
+            }
+            
+            return output;
+        }
     }
 }
