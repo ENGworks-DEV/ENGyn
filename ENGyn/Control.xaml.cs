@@ -17,31 +17,101 @@ namespace ENGyn
 {
 
     public partial class MainWindow : UserControl
-   {
-
-        //Dcoument property
-        public static Document docControl { get; set; }
-        public List<Type> nodes { get; private set; }
+    {
+        public List<Type> Nodes { get; private set; }
+        public string DefaultNodesVersion { get; private set; }
 
         public MainWindow()
-      {
-         InitializeComponent();
-
-            docControl = Autodesk.Navisworks.Api.Application.ActiveDocument;
- 
+        {
+            InitializeComponent();
 
             KeyDown += VplControl.VplControl_KeyDown;
             KeyUp += VplControl.VplControl_KeyUp;
 
-            //Loading nodes dlls located in Nodes folders
+
+            #region Load DLLs as Nodes
+            Nodes = new List<Type>();
+            LoadExternalNodesDlls();
+            VplControl.NodeTypeMode = NodeTypeModes.All;
+            #endregion
+
+            //Nodes Menues
+            List<Expander> expanderList = new List<Expander>();
+            StackPanel MainStack = new StackPanel();
+            CreateMenuFromNodes(expanderList);
+            foreach (var item in expanderList.OrderBy(o => o.Header).ToList())
+            {
+                MainStack.Children.Add(item);
+            }
+            Menu.Content = MainStack;
+
+
+            //Assign run to refresh action
+
+            runButton.Click += Refresh;
+            //Add version to GUI
+
+            this.Version.Content = " GUI Version: " + Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            this.NodeVersion.Content = " Nodes Version: " + DefaultNodesVersion;
+
+        }
+
+        /// <summary>
+        /// Create the expander content menu with loaded nodes
+        /// </summary>
+        /// <param name="expanderList"></param>
+        private void CreateMenuFromNodes(List<Expander> expanderList)
+        {
+            foreach (var item in Nodes.OrderBy(o => o.Name).ToList())
+            {
+
+                var types = item.GetType();
+
+                var namespaceN = types.GetProperty("Namespace").Name;
+                namespaceN = item.Namespace.Split('.').Last();
+                int index = expanderList.FindIndex(x => x.Header.ToString() == namespaceN);
+
+                if (index >= 0)
+                {
+                    var button = new Button() { Content = item.Name, HorizontalContentAlignment = HorizontalAlignment.Left };
+                    button.Click += Add_Node;
+
+                    DockPanel.SetDock(button, Dock.Top);
+                    var stack = expanderList[index].Content as StackPanel;
+                    stack.Children.Add(button);
+
+                }
+                if (index < 0)
+                {
+                    var button = new Button() { Content = item.Name, HorizontalContentAlignment = HorizontalAlignment.Left };
+                    button.Click += Add_Node;
+
+                    DockPanel.SetDock(button, Dock.Top);
+                    StackPanel stack = new StackPanel();
+                    stack.Children.Add(button);
+                    Expander NavisExp = new Expander() { Header = namespaceN, Content = stack };
+                    expanderList.Add(NavisExp);
+
+                }
+
+            }
+        }
+
+        /// <summary>
+        /// Load internal nodes dlls and dlls located in specific folder inside plugins
+        /// </summary>
+        private void LoadExternalNodesDlls()
+        {
+            //Loading nodes in GUI if exists
             VplControl.ExternalNodeTypes.AddRange(
-            Utilities.GetTypesInNamespace(Assembly.GetExecutingAssembly(), "NW_GraphicPrograming.Nodes").ToList());
+            Utilities.GetTypesInNamespace(Assembly.GetExecutingAssembly(), "ENGyn.Nodes").ToList());
 
             //Loading nodes dlls located in Nodes folders
-            var assamblyLocation = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + @"\Nodes" ;
-            
+            var assamblyLocation = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + @"\Nodes";
 
-            var dlls = Directory.GetFiles(assamblyLocation,"*.dll");
+
+
+            var dlls = Directory.GetFiles(assamblyLocation, "*.dll");
             foreach (var dllPath in dlls)
             {
                 //Only load classes inherent from Node
@@ -50,81 +120,26 @@ namespace ENGyn
                     .GetTypes()
                     .Where(t => t != typeof(Node) &&
                                           typeof(Node).IsAssignableFrom(t));
+                if (assamb != null)
+                {
+                    DefaultNodesVersion = assamb.First().Assembly.GetName().Version.ToString();
+                    VplControl.ExternalNodeTypes.AddRange(assamb);
+                }
 
-                VplControl.ExternalNodeTypes.AddRange(assamb);
             }
-            
-
-            VplControl.NodeTypeMode = NodeTypeModes.All;
 
 
-            //TODO change to dynamic 
-
-            List<Expander> expanderList = new List<Expander>();
-            
-
-            StackPanel MainStack = new StackPanel();
-            //Creating buttons
-            nodes = new List<Type>();
-            
-            nodes.AddRange(Utilities
+            //Load TUM nodes
+            Nodes.AddRange(Utilities
                 .GetTypesInNamespace(Assembly.Load("TUM.CMS.VplControl")
                 , "TUM.CMS.VplControl.Nodes")
-                .Where(t => t != typeof(Node) &&  typeof(Node).IsAssignableFrom(t))
+                .Where(t => t != typeof(Node) && typeof(Node).IsAssignableFrom(t))
                 .ToList());
 
-            nodes.AddRange(VplControl.ExternalNodeTypes);
-            
-            foreach (var item in nodes.OrderBy(o => o.Name).ToList())
-            {
-
-                    var types = item.GetType();
-                    
-                    var namespaceN = types.GetProperty("Namespace").Name;
-                    namespaceN = item.Namespace.Split('.').Last();
-                    int index = expanderList.FindIndex(x => x.Header.ToString() == namespaceN);
-
-                    if (index >= 0)
-                    {
-                        var button = new Button() { Content = item.Name, HorizontalContentAlignment = HorizontalAlignment.Left };
-                        button.Click += Add_Node;
-
-                        DockPanel.SetDock(button, Dock.Top);
-                        var stack = expanderList[index].Content as StackPanel;
-                        stack.Children.Add(button);
-
-                    }
-                    if (index < 0)
-                    {
-                        var button = new Button() { Content = item.Name, HorizontalContentAlignment = HorizontalAlignment.Left };
-                        button.Click += Add_Node;
-
-                        DockPanel.SetDock(button, Dock.Top);
-                        StackPanel stack = new StackPanel();
-                        stack.Children.Add(button);
-                        Expander NavisExp = new Expander() { Header = namespaceN, Content = stack };
-                        expanderList.Add(NavisExp);
-
-                    }
-
-            }
-
-            
-            
-
-            foreach (var item in expanderList.OrderBy(o => o.Header).ToList())
-            {
-                MainStack.Children.Add(item);
-            }
-
-
-            Menu.Content = MainStack;
-
-
-            runButton.Click += refresh;
-            
+            Nodes.AddRange(VplControl.ExternalNodeTypes);
         }
 
+        #region GUI Commands
 
         private void NewCommand(object sender, RoutedEventArgs e)
         {
@@ -144,10 +159,10 @@ namespace ENGyn
         private void Add_Node(object sender, RoutedEventArgs e)
         {
             Button button = sender as Button;
-            
+
             var el = this.VplControl.ConnectorCollection;
-            
-            foreach (var item in nodes)
+
+            foreach (var item in Nodes)
             {
                 if (item.Name == button.Content.ToString())
                 {
@@ -158,17 +173,15 @@ namespace ENGyn
 
                     node.Show();
                 }
-                
 
- 
             }
 
         }
 
         //Ugly way to trigger calculate
-        private void refresh(object sender, RoutedEventArgs e)
+        private void Refresh(object sender, RoutedEventArgs e)
         {
-            var nn = SortNodes.TSort(this.VplControl.NodeCollection as IEnumerable<Node>, n => NodeDep(n) );
+            var nn = SortNodes.TSort(this.VplControl.NodeCollection as IEnumerable<Node>, n => NodeDependencyTree(n));
 
             foreach (Node n in nn)
             {
@@ -189,44 +202,36 @@ namespace ENGyn
 
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-  
-            
-        }
+        #endregion
 
-        private void NodesList_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-            var l = this;
-
-        }
-
-        private void FillButtoms(object sender, SelectedCellsChangedEventArgs e )
-        {
-
-        }
-
-        public static IEnumerable<Node> NodeDep(Node node)
-
+        /// <summary>
+        /// Create a dependency tree for nodes
+        /// </summary>
+        /// <param name="node"></param>
+        /// <returns></returns>
+        public static IEnumerable<Node> NodeDependencyTree(Node node)
         {
             var type = node.DependencyObjectType as IEnumerable<Node>;
             var outpt = new List<Node>();
-            type = null ;
+            type = null;
             foreach (var item in node.InputPorts)
             {
                 foreach (var ii in item.ConnectedConnectors)
                 {
                     outpt.Add(ii.StartPort.ParentNode);
 
-                } 
+                }
             }
-             
-           
-            return  outpt as IEnumerable<Node>;
+
+
+            return outpt as IEnumerable<Node>;
         }
     }
-    public static  class SortNodes
+
+    /// <summary>
+    /// Sorting class
+    /// </summary>
+    public static class SortNodes
     {
 
         public static IEnumerable<T> TSort<T>(this IEnumerable<T> source, Func<T, IEnumerable<T>> dependencies, bool throwOnCycle = false)
@@ -261,5 +266,5 @@ namespace ENGyn
             }
         }
     }
-    
+
 }
