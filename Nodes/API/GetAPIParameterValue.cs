@@ -77,7 +77,7 @@ namespace ENGyn.Nodes.API
 
             }
 
-            OutputPorts[0].Data = output;
+            OutputPorts[0].Data = output as IList<object>;
 
         }
 
