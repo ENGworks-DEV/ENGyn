@@ -215,6 +215,74 @@ namespace ENGyn.Nodes.Clash
         }
     }
 
+
+    public class BIM42GroupByLevel : Node
+    {
+        public BIM42GroupByLevel(VplControl hostCanvas)
+            : base(hostCanvas)
+        {
+            AddInputPortToNode("ClashTest", typeof(object));
+            AddOutputPortToNode("Output", typeof(object));
+
+        }
+
+
+
+        public override void Calculate()
+        {
+            var input = InputPorts[0].Data;
+            if (input != null)
+            {
+                var type = input.GetType();
+                if (type == typeof(ClashTest))
+                {
+                    OutputPorts[0].Data = input;
+                    var item = input;
+                    if (item.GetType() == typeof(ClashTest))
+                    {
+                        ClashGrouperUtils.RelevantGroupingInfo gInfo = new ClashGrouperUtils.RelevantGroupingInfo();
+
+                        ClashGrouperUtils.GroupTestClashes(item as ClashTest, GroupingModes.Level, gInfo);
+                    }
+                }
+                if (MainTools.IsList(input))
+                {
+                    OutputPorts[0].Data = input;
+                    foreach (var item in input as List<object>)
+                    {
+                        if (item.GetType() == typeof(ClashTest))
+                        {
+                            var clashTest = BIM42ClashGroup.GetIndividualClashResults(item as ClashTest, false);
+                            
+                            var Clashes = BIM42ClashGroup.GroupByLevel(clashTest.ToList(), "");
+                            BIM42ClashGroup.ProcessClashGroup(Clashes, item as ClashTest);
+                        }
+
+
+                    }
+
+                }
+
+            }
+
+
+        }
+
+
+
+
+        public override Node Clone()
+        {
+            return new BIM42GroupByLevel(HostCanvas)
+            {
+                Top = Top,
+                Left = Left
+            };
+
+        }
+    }
+
+
     public class GroupByModel : Node
     {
         public GroupByModel(VplControl hostCanvas)
@@ -305,6 +373,120 @@ namespace ENGyn.Nodes.Clash
     // UNINTERRUPTED OR ERROR FREE.
     //------------------------------------------------------------------
 
+        static class BIM42ClashGroup
+    {
+        public static void ProcessClashGroup(List<ClashResultGroup> clashGroups, ClashTest selectedClashTest)
+        {
+            using (Transaction tx = Application.MainDocument.BeginTransaction("Group clashes"))
+            {
+                ClashTest copiedClashTest = (ClashTest)selectedClashTest.CreateCopyWithoutChildren();
+                //When we replace theTest with our new test, theTest will be disposed. If the operation is cancelled, we need a non-disposed copy of theTest with children to sub back in.
+                ClashTest BackupTest = (ClashTest)selectedClashTest.CreateCopy();
+                DocumentClash documentClash = Application.MainDocument.GetClash();
+                int indexOfClashTest = documentClash.TestsData.Tests.IndexOf(selectedClashTest);
+                documentClash.TestsData.TestsReplaceWithCopy(indexOfClashTest, copiedClashTest);
+
+                int CurrentProgress = 0;
+                //int TotalProgress = ungroupedClashResults.Count + clashGroups.Count;
+                int TotalProgress =  clashGroups.Count;
+                Progress ProgressBar = Application.BeginProgress("Copying Results", "Copying results from " + selectedClashTest.DisplayName + " to the Group Clashes pane...");
+                foreach (ClashResultGroup clashResultGroup in clashGroups)
+                {
+                    if (ProgressBar.IsCanceled) break;
+                    documentClash.TestsData.TestsAddCopy((GroupItem)documentClash.TestsData.Tests[indexOfClashTest], clashResultGroup);
+                    CurrentProgress++;
+                    ProgressBar.Update((double)CurrentProgress / TotalProgress);
+                }
+                //foreach (ClashResult clashResult in ungroupedClashResults)
+                //{
+                //    if (ProgressBar.IsCanceled) break;
+                //    documentClash.TestsData.TestsAddCopy((GroupItem)documentClash.TestsData.Tests[indexOfClashTest], clashResult);
+                //    CurrentProgress++;
+                //    ProgressBar.Update((double)CurrentProgress / TotalProgress);
+                //}
+                if (ProgressBar.IsCanceled) documentClash.TestsData.TestsReplaceWithCopy(indexOfClashTest, BackupTest);
+                tx.Commit();
+                Application.EndProgress();
+            }
+        }
+
+
+
+            public static IEnumerable<ClashResult> GetGroupResults(ClashResultGroup clashResultGroup)
+        {
+            for (var i = 0; i < clashResultGroup.Children.Count; i++)
+            {
+                yield return (ClashResult)clashResultGroup.Children[i];
+            }
+        }
+
+        public static IEnumerable<ClashResult> GetIndividualClashResults(ClashTest clashTest, bool keepExistingGroup)
+        {
+            for (var i = 0; i < clashTest.Children.Count; i++)
+            {
+                if (clashTest.Children[i].IsGroup)
+                {
+                    if (!keepExistingGroup)
+                    {
+                        IEnumerable<ClashResult> GroupResults = GetGroupResults((ClashResultGroup)clashTest.Children[i]);
+                        foreach (ClashResult clashResult in GroupResults)
+                        {
+                            yield return clashResult;
+                        }
+                    }
+                }
+                else yield return (ClashResult)clashTest.Children[i];
+            }
+        }
+
+
+        public static List<ClashResultGroup> GroupByLevel(List<ClashResult> results, string initialName)
+        {
+            //I already checked if it exists
+            GridSystem gridSystem = Application.MainDocument.Grids.ActiveSystem;
+            Dictionary<GridLevel, ClashResultGroup> groups = new Dictionary<GridLevel, ClashResultGroup>();
+            ClashResultGroup currentGroup;
+
+            //Create a group for the null GridIntersection
+            ClashResultGroup nullGridGroup = new ClashResultGroup();
+            nullGridGroup.DisplayName = initialName + "No Level";
+
+            foreach (ClashResult result in results)
+            {
+                //Cannot add original result to new clash test, so I create a copy
+                ClashResult copiedResult = (ClashResult)result.CreateCopy();
+
+                if (gridSystem.ClosestIntersection(copiedResult.Center) != null)
+                {
+                    GridLevel closestLevel = gridSystem.ClosestIntersection(copiedResult.Center).Level;
+
+                    if (!groups.TryGetValue(closestLevel, out currentGroup))
+                    {
+                        currentGroup = new ClashResultGroup();
+                        string displayName = closestLevel.DisplayName;
+                        if (string.IsNullOrEmpty(displayName)) { displayName = "Unnamed Level"; }
+                        currentGroup.DisplayName = initialName + displayName;
+                        groups.Add(closestLevel, currentGroup);
+                    }
+                    currentGroup.Children.Add(copiedResult);
+                }
+                else
+                {
+                    nullGridGroup.Children.Add(copiedResult);
+                }
+            }
+
+            IOrderedEnumerable<KeyValuePair<GridLevel, ClashResultGroup>> list = groups.OrderBy(key => key.Key.Elevation);
+            groups = list.ToDictionary((keyItem) => keyItem.Key, (valueItem) => valueItem.Value);
+
+            List<ClashResultGroup> groupsByLevel = groups.Values.ToList();
+            if (nullGridGroup.Children.Count != 0) groupsByLevel.Add(nullGridGroup);
+
+            return groupsByLevel;
+        }
+
+
+    }
 
 
     static class ClashGrouperUtils
@@ -610,10 +792,13 @@ namespace ENGyn.Nodes.Clash
             }
 
 
-            /// <summary>
-            /// Takes a result and either adds it to the ungrouped results list or adds it to a new or existing group based on the grouping mode.
-            /// </summary>
-            private static void GroupResult(ClashResult theResult, GroupingModes Mode, Model GroupingModel = null)
+ 
+
+
+        /// <summary>
+        /// Takes a result and either adds it to the ungrouped results list or adds it to a new or existing group based on the grouping mode.
+        /// </summary>
+        private static void GroupResult(ClashResult theResult, GroupingModes Mode, Model GroupingModel = null)
             {
                 //Cannot add original result to new clash test
                 theResult = (ClashResult)theResult.CreateCopy();
