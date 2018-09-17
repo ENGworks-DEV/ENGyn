@@ -38,7 +38,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Autodesk Navisworks Manage 2018|AnyCPU'">
     <OutputPath>bin\Autodesk Navisworks Manage 2018\</OutputPath>
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>full</DebugType>
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
@@ -141,6 +141,7 @@
   <ItemGroup>
     <Compile Include="CompactTest.cs" />
     <Compile Include="GetAPIParameters.cs" />
+    <Compile Include="ListFlatten.cs" />
     <Compile Include="RenameViewpoints.cs" />
     <Compile Include="SetAPIParameterValue.cs" />
     <Compile Include="GetAPIParameterValue.cs" />
@@ -154,6 +155,8 @@
     <Compile Include="StringContains.cs" />
     <Compile Include="GetElementsInClash.cs" />
     <Compile Include="ListTranspose.cs" />
+    <Compile Include="StringToLower.cs" />
+    <Compile Include="StringToUpper.cs" />
     <Compile Include="WriteTextToPath.cs" />
     <Compile Include="Template.cs" />
     <Compile Include="GetClash.cs" />
