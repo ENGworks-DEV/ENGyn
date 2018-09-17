@@ -269,4 +269,9 @@ xcopy /Y "$(TargetDir)en-US\*.*" "%25APPDATA%25\$(ConfigurationName)\Plugins\$(T
 xcopy /Y "$(ProjectDir)ENGyn.xaml" "%25APPDATA%25\$(ConfigurationName)\Plugins\$(TargetName)\en-US\"
 xcopy /Y "$(ProjectDir)resources\ENGyn.png" "%25APPDATA%25\$(ConfigurationName)\Plugins\$(TargetName)\Images\"</PostBuildEvent>
   </PropertyGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties BuildVersion_StartDate="2000/1/1" />
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>
