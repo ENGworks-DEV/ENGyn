@@ -53,7 +53,7 @@ namespace ENGyn
 
             this.Version.Content = " GUI Version: " + Assembly.GetExecutingAssembly().GetName().Version.ToString();
             this.NodeVersion.Content = " Nodes Version: " + DefaultNodesVersion;
-
+           
         }
 
         /// <summary>
