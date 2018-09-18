@@ -80,6 +80,11 @@
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>C:\Program Files\Microsoft Office\Office16\ADDINS\Microsoft Power Query for Excel Integrated\bin\Microsoft.Office.Interop.Excel.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Practices.Prism, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\Desktop\Prism\Prism4.1\Bin\Desktop\Microsoft.Practices.Prism.dll</HintPath>
@@ -140,7 +145,10 @@
   <ItemGroup>
     <Compile Include="Clash\CompactTest.cs" />
     <Compile Include="API\GetAPIParameters.cs" />
+    <Compile Include="Excel files\ReadFromFile.cs" />
+    <Compile Include="Excel files\WriteToFile.cs" />
     <Compile Include="Input\ExportCSV.cs" />
+    <Compile Include="Input\FileFromPath.cs" />
     <Compile Include="List\ListFlatten.cs" />
     <Compile Include="String\StringToLower.cs" />
     <Compile Include="String\StringToUpper.cs" />

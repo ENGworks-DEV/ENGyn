@@ -34,9 +34,6 @@ namespace ENGyn.Nodes.List
             }
             
         }
-
-
-
         public override Node Clone()
         {
             return new ListFlatten(HostCanvas)
