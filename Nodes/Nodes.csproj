@@ -145,6 +145,7 @@
   <ItemGroup>
     <Compile Include="Clash\CompactTest.cs" />
     <Compile Include="API\GetAPIParameters.cs" />
+    <Compile Include="Excel files\FileWorksheets.cs" />
     <Compile Include="Excel files\ReadFromFile.cs" />
     <Compile Include="Excel files\WriteToFile.cs" />
     <Compile Include="Input\ExportCSV.cs" />

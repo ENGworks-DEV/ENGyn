@@ -13,7 +13,7 @@ namespace ENGyn.Nodes.Excel
             : base(hostCanvas)
         {
             AddInputPortToNode("FilePath", typeof(object));
-            AddInputPortToNode("SheetName", typeof(object));
+            AddInputPortToNode("SheetName", typeof(string));
             AddInputPortToNode("Column", typeof(int));
             AddInputPortToNode("Row", typeof(int));
             AddInputPortToNode("List<String>", typeof(List<object>));
