@@ -120,11 +120,11 @@ namespace ENGyn.Nodes.Appearance
 
                 if (selectionSetsConfs != null)
                 {
-                    foreach (var set in selectionSetsConfs.Selectionsets.Selectionset)
+                    foreach (var set in selectionSetsConfs.SelectionSets.Selectionset)
                     {
                         RecursiveSets(set);
                     }
-                    foreach (var set in selectionSetsConfs.Selectionsets.Viewfolder)
+                    foreach (var set in selectionSetsConfs.SelectionSets.Viewfolder)
                     {
                         RecursiveSets(set);
                     }
@@ -155,8 +155,7 @@ namespace ENGyn.Nodes.Appearance
                     {
                         SelectionSet set = GetSetsByGUID(selectionSets.Guid);
 
-                        if (set != null
-                            && set.GetSelectedItems().Count > 0)
+                        if (set != null  )
                         {
                             //Apply override to set
                             ApplyAppearance(set, selectionSets.color, selectionSets.transparency);
@@ -184,10 +183,9 @@ namespace ENGyn.Nodes.Appearance
                     //Get selection set
                     try
                     {
-                        SelectionSet set = GetSetsByGUID(selectionSets.Guid);
+                        var set = GetSetsByGUID(selectionSets.Guid);
 
-                        if (set != null
-                            && set.GetSelectedItems().Count > 0)
+                        if (set != null)
                         {
                             //Apply override to set
                             ApplyAppearance(set, selectionSets.color, selectionSets.transparency);
@@ -195,6 +193,7 @@ namespace ENGyn.Nodes.Appearance
                             {
                                 RecursiveSets(s);
                             }
+                            
                         }
 
                     }
@@ -218,17 +217,20 @@ namespace ENGyn.Nodes.Appearance
         private void ApplyAppearance(SelectionSet selectionSet, object Color, object transparency)
         {
             if (selectionSet != null
-                && (Color != null || transparency != null))
+                && (Color != null || transparency.ToString() != "-1"))
 
             {
-                IEnumerable<ModelItem> modelItems = selectionSet.GetSelectedItems() as IEnumerable<ModelItem>;
+                var debug = selectionSet.Search.FindAll(false);
+                IEnumerable<ModelItem> modelItems = debug as IEnumerable<ModelItem>;
+              
+
                 if (Color != null)
                 {
                     //Pick color from json
                     var color = TransformColor(ColorTranslator.FromHtml(Color.ToString()));
                     Autodesk.Navisworks.Api.Application.ActiveDocument.Models.OverridePermanentColor(modelItems, color); }
                 
-                if (transparency != null)
+                if (transparency.ToString() != "-1")
                 {
                     Autodesk.Navisworks.Api.Application.ActiveDocument.Models.OverridePermanentTransparency(modelItems, int.Parse(transparency.ToString()));
                 }
@@ -288,13 +290,14 @@ namespace ENGyn.Nodes.Appearance
     /// <summary>
     /// Stores selection set configuration to apply into OverridePermanent methods
     /// </summary>
-    public class Viewfolder
+    public class Viewfolder : Selectionset
     {
-        public List<object> Selectionset { get; set; }
+        public List<Viewfolder> Viewfolders { get; set; }
+        public List<Selectionset> Selectionset { get; set; }
         public string Name { get; set; }
         public string Guid { get; set; }
         public object color { get; set; }
-        public object transparency { get; set; }
+        public object transparency { get; set; } = "-1";
     }
 
     public class Selectionset
@@ -302,10 +305,10 @@ namespace ENGyn.Nodes.Appearance
         public string Name { get; set; }
         public string Guid { get; set; }
         public object color { get; set; }
-        public object transparency { get; set; }
+        public object transparency { get; set; } = "-1";
     }
 
-    public class Selectionsets
+    public class SelectionSets
     {
         public List<Viewfolder> Viewfolder { get; set; }
         public List<Selectionset> Selectionset { get; set; }
@@ -313,7 +316,7 @@ namespace ENGyn.Nodes.Appearance
 
     public class JsonSelectionSetsConfiguration
     {
-        public Selectionsets Selectionsets { get; set; }
+        public SelectionSets SelectionSets { get; set; }
         public string Xsi { get; set; }
         public string NoNamespaceSchemaLocation { get; set; }
         public string Units { get; set; }

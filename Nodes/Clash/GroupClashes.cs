@@ -34,49 +34,58 @@ namespace ENGyn.Nodes.Clash
         public override void Calculate()
         {
             var input = InputPorts[0].Data;
+            ProcessClash(input);
+
+        }
+
+        private void ProcessClash(object input)
+        {
+            Document doc = Autodesk.Navisworks.Api.Application.ActiveDocument;
             if (input != null)
             {
-                
+
                 var type = input.GetType();
                 if (type == typeof(ClashTest))
                 {
 
                     var item = input;
-                    if (item.GetType() == typeof(ClashTest))
+                    if (item.GetType() == typeof(SavedItemReference))
                     {
                         ClashGrouperUtils.RelevantGroupingInfo gInfo = new ClashGrouperUtils.RelevantGroupingInfo();
 
                         gInfo.NumClusters = int.Parse(InputPorts[1].Data.ToString());
                         gInfo.NumAttempts = int.Parse(InputPorts[2].Data.ToString());
 
-                        ClashGrouperUtils.GroupTestClashes(item as ClashTest, GroupingModes.ClusterAnalysis, gInfo);
+                        var ClashTest = doc.ResolveReference(item as SavedItemReference) as ClashTest;
+                        ClashGrouperUtils.GroupTestClashes(ClashTest, GroupingModes.ClusterAnalysis, gInfo);
                     }
                 }
                 if (MainTools.IsList(input))
                 {
-                   
-                       OutputPorts[0].Data = input;
+
+                    
                     foreach (var item in input as List<object>)
                     {
-                        if (item.GetType() == typeof(ClashTest))
+                        if (item.GetType() == typeof(SavedItemReference))
                         {
                             ClashGrouperUtils.RelevantGroupingInfo gInfo = new ClashGrouperUtils.RelevantGroupingInfo();
 
                             gInfo.NumClusters = int.Parse(InputPorts[1].Data.ToString());
                             gInfo.NumAttempts = int.Parse(InputPorts[2].Data.ToString());
 
-                            ClashGrouperUtils.GroupTestClashes(item as ClashTest, GroupingModes.ClusterAnalysis, gInfo);
+                            var ClashTest = doc.ResolveReference(item as SavedItemReference) as ClashTest;
+                            ClashGrouperUtils.GroupTestClashes(ClashTest, GroupingModes.ClusterAnalysis, gInfo);
                         }
 
-                        
+
                     }
 
                 }
 
             }
 
+            OutputPorts[0].Data = input;
         }
-
 
 
         public override Node Clone()
@@ -230,19 +239,29 @@ namespace ENGyn.Nodes.Clash
 
         public override void Calculate()
         {
+
             var input = InputPorts[0].Data;
+            ProcessGrouping(input);
+
+        }
+
+        private void ProcessGrouping(object input)
+        {
+            Document doc = Autodesk.Navisworks.Api.Application.ActiveDocument;
             if (input != null)
             {
                 var type = input.GetType();
-                if (type == typeof(ClashTest))
+                if (type == typeof(SavedItemReference))
                 {
                     OutputPorts[0].Data = input;
                     var item = input;
-                    if (item.GetType() == typeof(ClashTest))
+                    if (item.GetType() == typeof(SavedItemReference))
                     {
-                        ClashGrouperUtils.RelevantGroupingInfo gInfo = new ClashGrouperUtils.RelevantGroupingInfo();
+                        var ClashFromReference = doc.ResolveReference(item as SavedItemReference) as ClashTest;
+                        var clashTest = BIM42ClashGroup.GetIndividualClashResults(ClashFromReference, false);
 
-                        ClashGrouperUtils.GroupTestClashes(item as ClashTest, GroupingModes.Level, gInfo);
+                        var Clashes = BIM42ClashGroup.GroupByLevel(clashTest.ToList(), "");
+                        BIM42ClashGroup.ProcessClashGroup(Clashes, ClashFromReference as ClashTest);
                     }
                 }
                 if (MainTools.IsList(input))
@@ -250,12 +269,13 @@ namespace ENGyn.Nodes.Clash
                     OutputPorts[0].Data = input;
                     foreach (var item in input as List<object>)
                     {
-                        if (item.GetType() == typeof(ClashTest))
+                        if (item.GetType() == typeof(SavedItemReference))
                         {
-                            var clashTest = BIM42ClashGroup.GetIndividualClashResults(item as ClashTest, false);
-                            
+                            var ClashFromReference = doc.ResolveReference(item as SavedItemReference) as ClashTest;
+                            var clashTest = BIM42ClashGroup.GetIndividualClashResults(ClashFromReference, false);
+
                             var Clashes = BIM42ClashGroup.GroupByLevel(clashTest.ToList(), "");
-                            BIM42ClashGroup.ProcessClashGroup(Clashes, item as ClashTest);
+                            BIM42ClashGroup.ProcessClashGroup(Clashes, ClashFromReference as ClashTest);
                         }
 
 
@@ -264,10 +284,7 @@ namespace ENGyn.Nodes.Clash
                 }
 
             }
-
-
         }
-
 
 
 

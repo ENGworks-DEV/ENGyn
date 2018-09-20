@@ -9,6 +9,7 @@ using System.Windows.Data;
 using System.Collections.Generic;
 using System;
 using System.Windows;
+using System.Linq;
 
 namespace ENGyn.Nodes.Clash
 {
@@ -26,25 +27,28 @@ namespace ENGyn.Nodes.Clash
         {
             if (InputPorts[0].Data != null && InputPorts[0].Data is Document)
             {
-                Document doc = InputPorts[0].Data as Document;
-                var testData = doc.GetClash().TestsData;
-
-                if (testData != null && testData.Tests.Count > 0)
-                {
-                    List<Object> clashTestList = new List<Object>();
-                    foreach (var t in testData.Tests)
-                    {
-
-                        clashTestList.Add(t as Object);
-                    }
-
-                    OutputPorts[0].Data = clashTestList;
-                }
-                else
-                { OutputPorts[0].Data = 0; }
+                OutputPorts[0].Data = GetClashes(InputPorts[0].Data).ToList();
             }
         }
 
+        private IEnumerable<object> GetClashes(object input)
+        {
+            Document doc = input as Document;
+            var testData = doc.GetClash().TestsData;
+
+            if (testData != null && testData.Tests.Count > 0)
+            {
+                List<Object> clashTestList = new List<Object>();
+                foreach (var t in testData.Tests)
+                {
+                    yield return testData.CreateReference(t);
+                }
+
+              
+            }
+            else
+            { yield return 0; }
+        }
 
 
 

@@ -9,6 +9,8 @@ using System.Windows.Data;
 using System.Collections.Generic;
 using System;
 using System.Windows;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace ENGyn.Nodes.Clash
 {
@@ -24,46 +26,54 @@ namespace ENGyn.Nodes.Clash
 
         public override void Calculate()
         {
+            var input = InputPorts[0].Data;
+
+
+           OutputPorts[0].Data = RefreshClashes(input);
+           
+        }
+
+        private List<object> RefreshClashes(object input)
+        {
             //Get clashes from document
             Document doc = Autodesk.Navisworks.Api.Application.ActiveDocument;
             var testData = doc.GetClash().TestsData;
-            var input = InputPorts[0].Data;
+            var output = new List<object>();
             if (input != null)
             {
 
-                
-                if (MainTools.IsList(input))
-               {
-                    var clashTestList = new List<object>();
-                    foreach (var item in (System.Collections.IEnumerable)InputPorts[0].Data)
-                    {
-                        Autodesk.Navisworks.Api.Clash.ClashTest test = item as Autodesk.Navisworks.Api.Clash.ClashTest;
-                        var guid = test.Guid;
-                        testData.TestsRunTest(test);
-                        var index = doc.GetClash().TestsData.Tests.IndexOfGuid(guid);
-                        var ct = doc.GetClash().TestsData.Tests[index];
-                        clashTestList.Add(ct);
-                    }
-                    OutputPorts[0].Data = clashTestList;
-                }
 
-                if (input.GetType() == typeof( ClashTest))
+                if (MainTools.IsList(input))
                 {
 
-                    var clashTest = input as Autodesk.Navisworks.Api.Clash.ClashTest;
-                    var guid = clashTest.Guid;
-                    var index = doc.GetClash().TestsData.Tests.IndexOfGuid(guid);
-                    var ct = doc.GetClash().TestsData.Tests[index];
-                    testData.TestsRunTest(clashTest);
-                    OutputPorts[0].Data = ct;
+
+                    foreach (var item in (System.Collections.IEnumerable)input)
+                    {
+
+                        var ClashTest = doc.ResolveReference(item as SavedItemReference) as ClashTest;
+                        var clash = doc.Clash as DocumentClash;
+                        clash.TestsData.TestsRunTest(ClashTest);
+                        output.Add(item);
+                    }
+
                 }
+
+                if (input.GetType() == typeof(ClashTest))
+                {
+
+                    var ClashTest = doc.ResolveReference(input as SavedItemReference) as ClashTest;
+                    testData.TestsRunTest(ClashTest);
+                    output.Add(input);
+                }
+
             }
             
+            
 
+            return output;
         }
 
 
-    
 
         public override Node Clone()
         {

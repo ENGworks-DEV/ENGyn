@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Nodes</RootNamespace>
     <AssemblyName>DefaultNodes</AssemblyName>
-    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>false</Deterministic>
     <TargetFrameworkProfile />
@@ -140,6 +140,10 @@
   <ItemGroup>
     <Compile Include="Clash\CompactTest.cs" />
     <Compile Include="API\GetAPIParameters.cs" />
+    <Compile Include="List\ListFlatten.cs" />
+    <Compile Include="String\StringToLower.cs" />
+    <Compile Include="String\StringToUpper.cs" />
+    <Compile Include="RefreshAllClashes.cs" />
     <Compile Include="Viewpoints\RenameViewpoints.cs" />
     <Compile Include="API\SetAPIParameterValue.cs" />
     <Compile Include="API\GetAPIParameterValue.cs" />

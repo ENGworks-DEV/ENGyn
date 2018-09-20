@@ -48,7 +48,7 @@ namespace ENGyn
 
             //Assign run to refresh action
 
-            runButton.Click += Refresh;
+            runButton.MouseDown += Refresh;
             //Add version to GUI
 
             this.Version.Content = " GUI Version: " + Assembly.GetExecutingAssembly().GetName().Version.ToString();
@@ -183,25 +183,55 @@ namespace ENGyn
         {
             var nn = SortNodes.TSort(this.VplControl.NodeCollection as IEnumerable<Node>, n => NodeDependencyTree(n));
 
-            foreach (Node n in nn)
+            using (Transaction tx = Autodesk.Navisworks.Api.Application.MainDocument.BeginTransaction("RefreshClashes"))
             {
-                n.setToRun = true;
-                try
+                Autodesk.Navisworks.Api.Application.ProgressErrorReporting += Errorss;
+                int CurrentProgress = 0;
+                int TotalProgress = nn.Count();
+                Progress ProgressBar = Autodesk.Navisworks.Api.Application.BeginProgress("ENGyn", "Running nodes");
+                for (int i = 0; i < nn.Count(); i++)
                 {
-                    n.Calculate();
-                }
-                catch (Exception except)
-                {
-                    MessageBox.Show(n.GetType().ToString() + Environment.NewLine + except.Message);
+                    if (ProgressBar.IsCanceled) break;
+                    CurrentProgress++;
+                    
+                    nn.ElementAt(i).setToRun = true;
+                    try
+                    {
+                        nn.ElementAt(i).Calculate();
+                       
+                    }
+                    catch (Exception except)
+                    {
+                        MessageBox.Show(nn.ElementAt(i).GetType().ToString() + Environment.NewLine + except.Message);
 
-                    n.HasError = true;
+                        nn.ElementAt(i).HasError = true;
 
+                    }
+                    nn.ElementAt(i).setToRun = false;
+                    ProgressBar.Update((double)CurrentProgress / TotalProgress);
                 }
-                n.setToRun = false;
+
+                
+
+                 tx.Commit();
+                Autodesk.Navisworks.Api.Application.EndProgress();
             }
-
         }
 
+        private void Errorss(object sender, ProgressErrorReportingEventArgs e)
+        {
+            var l = e.ToString();
+            MessageBox.Show("Error");
+        }
+
+
+
+
+        public void Error(  EventHandler<ProgressErrorReportingEventArgs> e)
+        {
+            var l = e.ToString() ;
+            MessageBox.Show("Error");
+        }
         #endregion
 
         /// <summary>
