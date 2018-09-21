@@ -35,6 +35,7 @@ namespace ENGyn.Nodes.Clash
         {
             var input = InputPorts[0].Data;
             ProcessClash(input);
+            OutputPorts[0].Data = ClashGrouperUtils.NewListOfClashes;
 
         }
 
@@ -115,6 +116,14 @@ namespace ENGyn.Nodes.Clash
         public override void Calculate()
         {
             var input = InputPorts[0].Data;
+            ProcessClashByGrid(input);
+            OutputPorts[0].Data = ClashGrouperUtils.NewListOfClashes;
+        }
+
+        private void ProcessClashByGrid(object input)
+        {
+            Document doc = Autodesk.Navisworks.Api.Application.ActiveDocument;
+            var output = new List<object>();
             if (input != null)
             {
                 var type = input.GetType();
@@ -122,11 +131,12 @@ namespace ENGyn.Nodes.Clash
                 {
                     var item = input;
                     OutputPorts[0].Data = input;
-                    if (item.GetType() == typeof(ClashTest))
+                    if (item.GetType() == typeof(SavedItemReference))
                     {
                         ClashGrouperUtils.RelevantGroupingInfo gInfo = new ClashGrouperUtils.RelevantGroupingInfo();
 
-                        ClashGrouperUtils.GroupTestClashes(item as ClashTest, GroupingModes.GridIntersection, gInfo);
+                        var ClashTest = doc.ResolveReference(item as SavedItemReference) as ClashTest;
+                        ClashGrouperUtils.GroupTestClashes(ClashTest as ClashTest, GroupingModes.GridIntersection, gInfo);
                     }
                 }
                 if (MainTools.IsList(input))
@@ -134,18 +144,19 @@ namespace ENGyn.Nodes.Clash
                     OutputPorts[0].Data = input;
                     foreach (var item in input as List<object>)
                     {
-                        if (item.GetType() == typeof(ClashTest))
+                        if (item.GetType() == typeof(SavedItemReference))
                         {
+
+                            var ClashTest = doc.ResolveReference(item as SavedItemReference) as ClashTest;
                             ClashGrouperUtils.RelevantGroupingInfo gInfo = new ClashGrouperUtils.RelevantGroupingInfo();
 
 
-                            ClashGrouperUtils.GroupTestClashes(item as ClashTest, GroupingModes.GridIntersection, gInfo);
+                            ClashGrouperUtils.GroupTestClashes(ClashTest, GroupingModes.GridIntersection, gInfo);
                         }
                     }
                 }
             }
         }
-
 
         public override Node Clone()
         {
@@ -173,6 +184,15 @@ namespace ENGyn.Nodes.Clash
         public override void Calculate()
         {
             var input = InputPorts[0].Data;
+            
+            ProcessClashByLevel(input);
+            OutputPorts[0].Data = ClashGrouperUtils.NewListOfClashes;
+        }
+
+        private void ProcessClashByLevel(object input)
+        {
+            Document doc = Autodesk.Navisworks.Api.Application.ActiveDocument;
+
             if (input != null)
             {
                 var type = input.GetType();
@@ -180,11 +200,13 @@ namespace ENGyn.Nodes.Clash
                 {
                     OutputPorts[0].Data = input;
                     var item = input;
-                    if (item.GetType() == typeof(ClashTest))
+                    if (item.GetType() == typeof(SavedItemReference))
                     {
+
+                        var ClashTest = doc.ResolveReference(item as SavedItemReference) as ClashTest;
                         ClashGrouperUtils.RelevantGroupingInfo gInfo = new ClashGrouperUtils.RelevantGroupingInfo();
 
-                        ClashGrouperUtils.GroupTestClashes(item as ClashTest, GroupingModes.Level, gInfo);
+                        ClashGrouperUtils.GroupTestClashes(ClashTest, GroupingModes.Level, gInfo);
                     }
                 }
                 if (MainTools.IsList(input))
@@ -206,12 +228,9 @@ namespace ENGyn.Nodes.Clash
                 }
 
             }
-
-
         }
 
 
-       
 
         public override Node Clone()
         {
@@ -322,18 +341,25 @@ namespace ENGyn.Nodes.Clash
         {
             var input = InputPorts[0].Data;
             var model = InputPorts[1].Data;
+            ProcessClashByModel(input, model);
+
+        }
+
+        private void ProcessClashByModel(object input, object model)
+        {
+            Document doc = Autodesk.Navisworks.Api.Application.ActiveDocument;
             if (input != null)
             {
                 var type = input.GetType();
                 if (type == typeof(ClashTest))
                 {
                     OutputPorts[0].Data = input;
-                    
-                    if (input.GetType() == typeof(ClashTest) && model.GetType() == typeof(Model) )
+
+                    if (input.GetType() == typeof(ClashTest) && model.GetType() == typeof(Model))
                     {
                         ClashGrouperUtils.RelevantGroupingInfo gInfo = new ClashGrouperUtils.RelevantGroupingInfo();
                         gInfo.GroupingModel = model as Model;
-                       
+
                         ClashGrouperUtils.GroupTestClashes(input as ClashTest, GroupingModes.ChosenModelPart, gInfo);
                     }
                 }
@@ -348,7 +374,7 @@ namespace ENGyn.Nodes.Clash
                             gInfo.GroupingModel = model as Model;
 
                             ClashGrouperUtils.GroupTestClashes(item as ClashTest, GroupingModes.ChosenModelPart, gInfo);
-                            
+
                         }
 
 
@@ -357,10 +383,7 @@ namespace ENGyn.Nodes.Clash
                 }
 
             }
-
-
         }
-
 
 
 
@@ -699,6 +722,7 @@ namespace ENGyn.Nodes.Clash
         #region helpers
         private static void ProcessClashGroup(List<ClashResultGroup> clashGroups, List<ClashResult> ungroupedClashResults, ClashTest selectedClashTest)
         {
+
             using (Transaction tx = Application.MainDocument.BeginTransaction("Group clashes"))
             {
                 ClashTest copiedClashTest = (ClashTest)selectedClashTest.CreateCopyWithoutChildren();
@@ -960,7 +984,9 @@ namespace ENGyn.Nodes.Clash
             private static int UnnamedGroupCount;
             private static Dictionary<GroupingModes, string> CatchAllGroupNames;
 
-            public static void Init()
+        public static List<object> NewListOfClashes { get; set; }
+
+        public static void Init()
             {
                 CatchAllGroupNames = new Dictionary<GroupingModes, string>();
                 CatchAllGroupNames.Add(GroupingModes.None, "Results");
@@ -1246,7 +1272,8 @@ namespace ENGyn.Nodes.Clash
                     }
                     if (ProgressBar.IsCanceled) documentClash.TestsData.TestsReplaceWithCopy(i, BackupTest);
                     theTransaction.Commit();
-                    Application.EndProgress();
+                NewListOfClashes.Add(documentClash.TestsData.CreateReference(documentClash.TestsData.Tests[i]));
+                Application.EndProgress();
                 }
             }
 
