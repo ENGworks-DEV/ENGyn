@@ -231,6 +231,7 @@ namespace ENGyn.Nodes.Clash
             : base(hostCanvas)
         {
             AddInputPortToNode("ClashTest", typeof(object));
+            AddInputPortToNode("KeepExisting", typeof(object));
             AddOutputPortToNode("Output", typeof(object));
 
         }
@@ -247,6 +248,7 @@ namespace ENGyn.Nodes.Clash
 
         private void ProcessGrouping(object input)
         {
+            bool keepExisting =bool.Parse( InputPorts[1].Data.ToString());
             Document doc = Autodesk.Navisworks.Api.Application.ActiveDocument;
             if (input != null)
             {
@@ -258,7 +260,7 @@ namespace ENGyn.Nodes.Clash
                     if (item.GetType() == typeof(SavedItemReference))
                     {
                         var ClashFromReference = doc.ResolveReference(item as SavedItemReference) as ClashTest;
-                        var clashTest = BIM42ClashGroup.GetIndividualClashResults(ClashFromReference, false);
+                        var clashTest = BIM42ClashGroup.GetIndividualClashResults(ClashFromReference, keepExisting);
 
                         var Clashes = BIM42ClashGroup.GroupByLevel(clashTest.ToList(), "");
                         BIM42ClashGroup.ProcessClashGroup(Clashes, ClashFromReference as ClashTest);
@@ -272,7 +274,7 @@ namespace ENGyn.Nodes.Clash
                         if (item.GetType() == typeof(SavedItemReference))
                         {
                             var ClashFromReference = doc.ResolveReference(item as SavedItemReference) as ClashTest;
-                            var clashTest = BIM42ClashGroup.GetIndividualClashResults(ClashFromReference, false);
+                            var clashTest = BIM42ClashGroup.GetIndividualClashResults(ClashFromReference, keepExisting);
 
                             var Clashes = BIM42ClashGroup.GroupByLevel(clashTest.ToList(), "");
                             BIM42ClashGroup.ProcessClashGroup(Clashes, ClashFromReference as ClashTest);

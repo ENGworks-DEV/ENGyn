@@ -25,7 +25,7 @@ namespace ENGyn.Nodes.Clash
         public override void Calculate()
         {
             var input = InputPorts[0].Data;
-            var RESULT = CompactClashes(input).ToList();
+            var RESULT = CompactClashTest(input);
             OutputPorts[0].Data = RESULT;
            
 
@@ -43,13 +43,13 @@ namespace ENGyn.Nodes.Clash
 
                 var t = input.GetType();
 
-                if (t == typeof(Autodesk.Navisworks.Api.Clash.ClashTest))
+                if (t == typeof(SavedItemReference))
                 {
 
 
-                    Autodesk.Navisworks.Api.Clash.ClashTest ct = InputPorts[1].Data as Autodesk.Navisworks.Api.Clash.ClashTest;
+                    var ClashFromReference = doc.ResolveReference(input as SavedItemReference) as ClashTest;
                     var clashes = doc.GetClash();
-                    clashes.TestsData.TestsCompactTest(input as ClashTest);
+                    clashes.TestsData.TestsCompactTest(ClashFromReference);
                     yield return input;
                 }
                 if (MainTools.IsList(input))
@@ -60,11 +60,10 @@ namespace ENGyn.Nodes.Clash
                     {
                         foreach (var ct in input as List<object>)
                         {
-                            var clashTest = ct as Autodesk.Navisworks.Api.Clash.ClashTest;
-                            
+                            var ClashFromReference = doc.ResolveReference(ct as SavedItemReference) as ClashTest;
                             var clashes = doc.GetClash();
-                            clashes.TestsData.TestsCompactTest(clashTest);
-                               
+                            clashes.TestsData.TestsCompactTest(ClashFromReference);
+
                             yield return ct;
 
                         }
@@ -76,7 +75,46 @@ namespace ENGyn.Nodes.Clash
                
             }
         }
- 
+
+        public List<object> CompactClashTest(object input)
+        {
+            var output = new List<object>();
+            var doc = Autodesk.Navisworks.Api.Application.ActiveDocument;
+            if (input != null)
+            {
+
+                var t = input.GetType();
+
+                if (t == typeof(SavedItemReference))
+                {
+
+
+                    var ClashFromReference = doc.ResolveReference(input as SavedItemReference) as ClashTest;
+                    var clashes = doc.GetClash();
+                    clashes.TestsData.TestsCompactTest(ClashFromReference);
+                    output.Add(input);
+                }
+                if (MainTools.IsList(input))
+
+                {
+                    var listData = input as List<object>;
+                    if (listData[0].GetType() == typeof(SavedItemReference))
+                    {
+                        foreach (var ct in input as List<object>)
+                        {
+                            var ClashFromReference = doc.ResolveReference(ct as SavedItemReference) as ClashTest;
+                            var clashes = doc.GetClash();
+                            clashes.TestsData.TestsCompactTest(ClashFromReference);
+
+                            output.Add(ct);
+
+                        }
+                    }
+
+                }
+            }
+            return output;
+        }
 
         public override Node Clone()
         {

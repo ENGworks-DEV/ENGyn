@@ -18,8 +18,8 @@ namespace ENGyn.Nodes.Clash
         public RefreshAllClashTests(VplControl hostCanvas)
             : base(hostCanvas)
         {
-            AddInputPortToNode("Tests", typeof(object));
-            AddOutputPortToNode("Clash Tests", typeof(object));
+            AddInputPortToNode("NW Document", typeof(object));
+            AddOutputPortToNode("ClashTests", typeof(object));
 
         }
 

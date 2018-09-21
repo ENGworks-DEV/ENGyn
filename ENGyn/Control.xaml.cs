@@ -183,7 +183,7 @@ namespace ENGyn
         {
             var nn = SortNodes.TSort(this.VplControl.NodeCollection as IEnumerable<Node>, n => NodeDependencyTree(n));
 
-            using (Transaction tx = Autodesk.Navisworks.Api.Application.MainDocument.BeginTransaction("RefreshClashes"))
+            using (Transaction tx = Autodesk.Navisworks.Api.Application.MainDocument.BeginTransaction("ENGyn"))
             {
                 Autodesk.Navisworks.Api.Application.ProgressErrorReporting += Errorss;
                 int CurrentProgress = 0;
@@ -208,12 +208,15 @@ namespace ENGyn
 
                     }
                     nn.ElementAt(i).setToRun = false;
+                    
                     ProgressBar.Update((double)CurrentProgress / TotalProgress);
                 }
 
                 
 
                  tx.Commit();
+                ProgressBar.EndSubOperation(true);
+                
                 Autodesk.Navisworks.Api.Application.EndProgress();
             }
         }
