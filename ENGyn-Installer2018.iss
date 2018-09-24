@@ -7,7 +7,7 @@
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
 AppId={{B827E3D1-F82E-45B9-9352-53C8EF41399F}
 AppName=ENG ENGyne 2018 Setup    
-AppVersion=0.0.1.2
+AppVersion=0.0.2
 
 AppPublisher=PRD
 AppPublisherURL=-
@@ -17,7 +17,7 @@ DefaultDirName={pf}\ENGyne
 DisableDirPage=yes
 DefaultGroupName=ENG ENGyne 2018 Setup
 DisableProgramGroupPage=yes
-OutputBaseFilename=ENG ENGyne 2018 Setup 0.0.1.2
+OutputBaseFilename=ENG ENGyne 2018 Setup 0.0.2
 Compression=lzma
 SolidCompression=yes
 OutputManifestFile=Setup-Manifest.txt

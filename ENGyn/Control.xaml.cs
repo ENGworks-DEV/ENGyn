@@ -12,6 +12,7 @@ using System.CodeDom.Compiler;
 using System.Windows.Input;
 using System.Collections.Generic;
 using System.Collections;
+using System.ComponentModel;
 
 namespace ENGyn
 {
@@ -183,50 +184,50 @@ namespace ENGyn
         {
             var nn = SortNodes.TSort(this.VplControl.NodeCollection as IEnumerable<Node>, n => NodeDependencyTree(n));
 
-            using (Transaction tx = Autodesk.Navisworks.Api.Application.MainDocument.BeginTransaction("ENGyn"))
-            {
-                Autodesk.Navisworks.Api.Application.ProgressErrorReporting += Errorss;
+
+                
                 int CurrentProgress = 0;
                 int TotalProgress = nn.Count();
                 Progress ProgressBar = Autodesk.Navisworks.Api.Application.BeginProgress("ENGyn", "Running nodes");
                 for (int i = 0; i < nn.Count(); i++)
                 {
-                    if (ProgressBar.IsCanceled) break;
-                    CurrentProgress++;
-                    
-                    nn.ElementAt(i).setToRun = true;
-                    try
+                    using (Transaction tx = Autodesk.Navisworks.Api.Application.MainDocument.BeginTransaction(nn.ElementAt(i).Name))
                     {
-                        nn.ElementAt(i).Calculate();
+                        if (ProgressBar.IsCanceled) break;
+                        CurrentProgress++;
+
+                        nn.ElementAt(i).setToRun = true;
+                        try
+                        {
                        
-                    }
-                    catch (Exception except)
-                    {
-                        MessageBox.Show(nn.ElementAt(i).GetType().ToString() + Environment.NewLine + except.Message);
+                         nn.ElementAt(i).Calculate(); 
+                          
+                       
+                        }
+                        catch (Exception except)
+                        {
+                            MessageBox.Show(nn.ElementAt(i).GetType().ToString() + Environment.NewLine + except.Message);
 
-                        nn.ElementAt(i).HasError = true;
-
-                    }
-                    nn.ElementAt(i).setToRun = false;
+                            nn.ElementAt(i).HasError = true;
+                        
+                        }
+                        nn.ElementAt(i).setToRun = false;
                     
-                    ProgressBar.Update((double)CurrentProgress / TotalProgress);
-                }
-
+                        tx.Commit();
+                        tx.Dispose();
+                        ProgressBar.Update((double)CurrentProgress / TotalProgress);
+                    }
                 
 
-                 tx.Commit();
-                ProgressBar.EndSubOperation(true);
-                
-                Autodesk.Navisworks.Api.Application.EndProgress();
             }
-        }
 
-        private void Errorss(object sender, ProgressErrorReportingEventArgs e)
-        {
-            var l = e.ToString();
-            MessageBox.Show("Error");
-        }
+            ProgressBar.EndSubOperation(true);
 
+            Autodesk.Navisworks.Api.Application.EndProgress();
+         
+
+        }
+        
 
 
 

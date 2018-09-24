@@ -43,6 +43,7 @@ namespace ENGyn.Nodes.Clash
 
         }
 
+
         public List<object> CompactAllClashTest(object input)
         {
             Document doc = Autodesk.Navisworks.Api.Application.ActiveDocument;
@@ -129,6 +130,17 @@ namespace ENGyn.Nodes.Clash
             }
         }
 
+        void wait(int x)
+        {
+            DateTime t = DateTime.Now;
+            DateTime tf = DateTime.Now.AddSeconds(x);
+
+            while (t < tf)
+            {
+                t = DateTime.Now;
+            }
+        }
+
         public List<object> CompactClashTest(object input)
         {
             var output = new List<object>();
@@ -144,7 +156,7 @@ namespace ENGyn.Nodes.Clash
 
                     var ClashFromReference = doc.ResolveReference(input as SavedItemReference) as ClashTest;
                     var clashes = doc.GetClash();
-
+                    wait(1);
                     clashes.TestsData.TestsCompactTest(ClashFromReference);
                     output.Add(input);
                 }
@@ -160,7 +172,7 @@ namespace ENGyn.Nodes.Clash
                             var clashes = doc.GetClash();
                             
                             clashes.TestsData.TestsCompactTest(ClashFromReference);
-
+                            wait(1);
                             output.Add(ct);
 
                         }
