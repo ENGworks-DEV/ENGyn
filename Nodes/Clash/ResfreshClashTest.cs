@@ -11,6 +11,7 @@ using System;
 using System.Windows;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Timers;
 
 namespace ENGyn.Nodes.Clash
 {
@@ -52,13 +53,14 @@ namespace ENGyn.Nodes.Clash
 
                         var ClashTest = doc.ResolveReference(item as SavedItemReference) as ClashTest;
                         var clash = doc.Clash as DocumentClash;
-                        clash.TestsData.TestsRunTest(ClashTest);
+                        testData.TestsRunTest(ClashTest);
+                        wait(1);
                         output.Add(item);
                     }
 
                 }
 
-                if (input.GetType() == typeof(ClashTest))
+                if (input.GetType() == typeof(SavedItemReference))
                 {
 
                     var ClashTest = doc.ResolveReference(input as SavedItemReference) as ClashTest;
@@ -73,7 +75,16 @@ namespace ENGyn.Nodes.Clash
             return output;
         }
 
+        void wait(int x)
+        {
+            DateTime t = DateTime.Now;
+            DateTime tf = DateTime.Now.AddSeconds(x);
 
+            while (t < tf)
+            {
+                t = DateTime.Now;
+            }
+        }
 
         public override Node Clone()
         {

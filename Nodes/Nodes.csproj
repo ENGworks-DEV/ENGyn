@@ -144,7 +144,7 @@
     <Compile Include="Navisworks\SaveNWFile.cs" />
     <Compile Include="String\StringToLower.cs" />
     <Compile Include="String\StringToUpper.cs" />
-    <Compile Include="RefreshAllClashes.cs" />
+    <Compile Include="Clash\RefreshAllClashes.cs" />
     <Compile Include="Viewpoints\RenameViewpoints.cs" />
     <Compile Include="API\SetAPIParameterValue.cs" />
     <Compile Include="API\GetAPIParameterValue.cs" />

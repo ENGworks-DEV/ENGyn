@@ -12,13 +12,67 @@ using System.Windows;
 
 namespace ENGyn.Nodes.Clash
 {
+    public class CompactAllTests : Node
+    {
+        public CompactAllTests(VplControl hostCanvas)
+               : base(hostCanvas)
+        {
+            AddInputPortToNode("Any", typeof(object));
+            AddOutputPortToNode("ClashTests", typeof(object));
+
+
+        }
+
+        public override void Calculate()
+        {
+            var input = InputPorts[0].Data;
+            var RESULT = CompactAllClashTest(input);
+            OutputPorts[0].Data = RESULT;
+
+        }
+
+
+
+        public override Node Clone()
+        {
+            return new CompactAllTests(HostCanvas)
+            {
+                Top = Top,
+                Left = Left
+            };
+
+        }
+
+
+        public List<object> CompactAllClashTest(object input)
+        {
+            Document doc = Autodesk.Navisworks.Api.Application.ActiveDocument;
+            var clashes = doc.GetClash();
+            var output = new List<object>();
+            if (input!= null)
+            {
+
+
+                clashes.TestsData.TestsCompactAllTests();
+
+            }
+            foreach (var item in clashes.TestsData.Tests)
+            {
+                output.Add(clashes.TestsData.CreateReference(item));
+            }
+
+            return output;
+        }
+    }
+
+
     public class CompactTest : Node
     {
         public CompactTest(VplControl hostCanvas)
             : base(hostCanvas)
         {
             AddInputPortToNode("ClashTest", typeof(object));
-            AddOutputPortToNode("ClashTest", typeof(object));
+            AddOutputPortToNode("ClashTests", typeof(object));
         }
 
 
@@ -76,6 +130,17 @@ namespace ENGyn.Nodes.Clash
             }
         }
 
+        void wait(int x)
+        {
+            DateTime t = DateTime.Now;
+            DateTime tf = DateTime.Now.AddSeconds(x);
+
+            while (t < tf)
+            {
+                t = DateTime.Now;
+            }
+        }
+
         public List<object> CompactClashTest(object input)
         {
             var output = new List<object>();
@@ -91,6 +156,7 @@ namespace ENGyn.Nodes.Clash
 
                     var ClashFromReference = doc.ResolveReference(input as SavedItemReference) as ClashTest;
                     var clashes = doc.GetClash();
+                    wait(1);
                     clashes.TestsData.TestsCompactTest(ClashFromReference);
                     output.Add(input);
                 }
@@ -104,8 +170,9 @@ namespace ENGyn.Nodes.Clash
                         {
                             var ClashFromReference = doc.ResolveReference(ct as SavedItemReference) as ClashTest;
                             var clashes = doc.GetClash();
+                            
                             clashes.TestsData.TestsCompactTest(ClashFromReference);
-
+                            wait(1);
                             output.Add(ct);
 
                         }
