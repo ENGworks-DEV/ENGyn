@@ -19,7 +19,7 @@ namespace ENGyn.Nodes.Clash
             : base(hostCanvas)
         {
             AddInputPortToNode("NW Document", typeof(Document));
-            AddOutputPortToNode("Navis Clash Tests", typeof(Object));
+            AddOutputPortToNode("ClashTest", typeof(Object));
 
         }
 

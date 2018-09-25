@@ -7,24 +7,27 @@
 
 
     <UserControl.Resources>
-        <!--<Style TargetType="{x:Type Menu}">
+        <!--<DataTemplate x:Key="HeaderText">
             
-            <Style.Resources>
-                <Style TargetType="{x:Type MenuItem}">
-                    <Setter Property="Background" Value="#FF2C2C2C"/>
-                    <Setter Property="Foreground" Value="White"/>
-                    <Setter Property="BorderBrush" Value="#FF2C2C2C"/>
-                    <Setter Property="BorderThickness" Value="0"/>
-                </Style>
-            </Style.Resources>
-            <Setter Property="Background" Value="#FF2C2C2C"/>
-           <Setter Property="BorderBrush" Value="#FF2C2C2C"/>
-            -->
-        <!--<Setter Property="OverridesDefaultStyle" Value="True"/>-->
-        <!--
+                <TextBlock Text="{Binding}" 
+                        Margin="4 0"
+                        VerticalAlignment="Center"
+                        Foreground="Black"
+                        FontSize="12" 
+                        FontWeight="Bold"
+                        Width="{Binding
+                        RelativeSource={RelativeSource
+                        Mode=FindAncestor,
+                        AncestorType={x:Type Expander}},
+                        Path=ActualWidth}"
+                        TextWrapping="Wrap"/>
+          
+        </DataTemplate>
+
+        <Style TargetType="{x:Type Expander}">
+            <Setter Property="HeaderTemplate" Value="{StaticResource HeaderText}"/>
+
         </Style>-->
-
-
         <Style TargetType="{x:Type Button}">
             <Setter Property="Background" Value="#FFF0F0F0"/>
             <Setter Property="BorderBrush" Value="#FF707070"/>

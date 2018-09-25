@@ -29,7 +29,7 @@ namespace ENGyn.Nodes.Appearance
 
         public override void Calculate()
         {
-            var path = InputPorts[0].Data as string;
+            string path = InputPorts[0].Data as string;
             
             if (path != null && File.Exists(path))
             {

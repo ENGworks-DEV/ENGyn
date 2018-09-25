@@ -36,7 +36,7 @@ namespace ENGyn.Nodes.Viewpoints
                 {
                         var t = view.GetType();
                          var name = view.DisplayName;
-                        recursionViewpoint(view);
+                        RecursionViewpoint(view);
                     
                 }
             }
@@ -49,7 +49,7 @@ namespace ENGyn.Nodes.Viewpoints
         public List<SavedViewpoint> SavedViewpoints { get; set; }
         private List<SelectionSet> SelectionSet { get; set; }
 
-        private void recursionViewpoint(object s)
+        private void RecursionViewpoint(object s)
         {
             if (s != null)
             {
@@ -58,7 +58,7 @@ namespace ENGyn.Nodes.Viewpoints
                     var folder = s as FolderItem;
                     foreach (var children in folder.Children)
                     {
-                        recursionViewpoint(children);
+                        RecursionViewpoint(children);
                     }
                 }
                if (s.GetType() == typeof(SavedViewpoint))

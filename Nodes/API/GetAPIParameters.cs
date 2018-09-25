@@ -22,7 +22,7 @@ namespace ENGyn.Nodes.API
             
             AddOutputPortToNode("Output", typeof(object));
 
-            
+            this.BottomComment.Text = "Texto";
         }
 
         public static string category;

@@ -1,10 +1,4 @@
-﻿using System.Windows.Controls;
-using System.Xml;
-using Autodesk.Navisworks.Api;
-using TUM.CMS.VplControl.Nodes;
-using Autodesk.Navisworks.Api.Clash;
-using TUM.CMS.VplControl.Core;
-using System.Windows.Data;
+﻿using TUM.CMS.VplControl.Core;
 using System.Windows;
 using System.Collections.Generic;
 using System.IO;
@@ -21,8 +15,6 @@ namespace ENGyn.Nodes.Input
         {
             AddInputPortToNode("Path", typeof(object));
             AddInputPortToNode("Text", typeof(object));
-           
-
 
         }
 

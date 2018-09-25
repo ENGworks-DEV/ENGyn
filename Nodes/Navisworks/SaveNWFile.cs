@@ -1,0 +1,74 @@
+﻿using System.Windows.Controls;
+using System.Xml;
+using Autodesk.Navisworks.Api;
+using TUM.CMS.VplControl.Nodes;
+using TUM.CMS.VplControl.Core;
+using System.Windows.Data;
+using System.Windows;
+using System.IO;
+using System;
+
+namespace ENGyn.Nodes.Navisworks
+{
+    public class SaveNWFile : Node
+    {
+        public SaveNWFile(VplControl hostCanvas)
+            : base(hostCanvas)
+        {
+ 
+            AddInputPortToNode("NW Document", typeof(object));
+            AddInputPortToNode("Path", typeof(object));
+            AddOutputPortToNode("NW Document", typeof(object));
+
+            Calculate();
+
+        }
+
+        public override void Calculate()
+        {
+            var input = InputPorts[0].Data;
+
+        }
+
+        /// <summary>
+        /// Save object Document to object Path
+        /// </summary>
+        /// <param name="document"></param>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        private object SaveAsNWF(object document, object path)
+        {
+
+            var filepath = path.ToString();
+            Document doc = document as Document;
+            
+            if (doc != null && filepath != null
+                && document.GetType() == typeof(Document)
+                )
+            {
+                try {
+                    doc.SaveFile(path.ToString());
+                    return document;
+                }
+                catch (Exception exc) {
+                    MessageBox.Show("Error", exc.Message);
+                    return null;
+                }
+               
+            }
+            else
+            { return null; }
+        }
+
+        public override Node Clone()
+        {
+            return new SaveNWFile(HostCanvas)
+            {
+                Top = Top,
+                Left = Left
+            };
+        
+        }
+    }
+
+}
