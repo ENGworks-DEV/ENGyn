@@ -22,6 +22,7 @@ namespace ENGyn
             return AppDomain.CurrentDomain.GetAssemblies().
                    SingleOrDefault(assembly => assembly.GetName().Name == name);
         }
+        
         public override System.Windows.Forms.Control CreateControlPane()
         {
 
@@ -35,14 +36,12 @@ namespace ENGyn
             //create an ElementHost
             ElementHost eh = new ElementHost();
 
-
-            //assign the control
+            ////assign the control
             eh.AutoSize = true;
             eh.Child = new MainWindow();
 
-
             eh.CreateControl();
-
+            eh.BringToFront();
             //return the ElementHost
             return eh;
         }
