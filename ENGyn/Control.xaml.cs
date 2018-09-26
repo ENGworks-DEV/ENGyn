@@ -1,18 +1,13 @@
-﻿using System.Windows.Controls;
+﻿using Autodesk.Navisworks.Api;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Windows;
+using System.Windows.Controls;
 using TUM.CMS.VplControl.Core;
 using TUM.CMS.VplControl.Utilities;
-using System.Reflection;
-using System.Linq;
-using System;
-using Autodesk.Navisworks.Api;
-using System.Windows;
-using System.IO;
-using Microsoft.CSharp;
-using System.CodeDom.Compiler;
-using System.Windows.Input;
-using System.Collections.Generic;
-using System.Collections;
-using System.ComponentModel;
 
 namespace ENGyn
 {
@@ -185,55 +180,55 @@ namespace ENGyn
             var nn = SortNodes.TSort(this.VplControl.NodeCollection as IEnumerable<Node>, n => NodeDependencyTree(n));
 
 
-                
-                int CurrentProgress = 0;
-                int TotalProgress = nn.Count();
-                Progress ProgressBar = Autodesk.Navisworks.Api.Application.BeginProgress("ENGyn", "Running nodes");
-                for (int i = 0; i < nn.Count(); i++)
+
+            int CurrentProgress = 0;
+            int TotalProgress = nn.Count();
+            Progress ProgressBar = Autodesk.Navisworks.Api.Application.BeginProgress("ENGyn", "Running nodes");
+            for (int i = 0; i < nn.Count(); i++)
+            {
+                using (Transaction tx = Autodesk.Navisworks.Api.Application.MainDocument.BeginTransaction(nn.ElementAt(i).Name))
                 {
-                    using (Transaction tx = Autodesk.Navisworks.Api.Application.MainDocument.BeginTransaction(nn.ElementAt(i).Name))
+                    if (ProgressBar.IsCanceled) break;
+                    CurrentProgress++;
+
+                    nn.ElementAt(i).setToRun = true;
+                    try
                     {
-                        if (ProgressBar.IsCanceled) break;
-                        CurrentProgress++;
 
-                        nn.ElementAt(i).setToRun = true;
-                        try
-                        {
-                       
-                         nn.ElementAt(i).Calculate(); 
-                          
-                       
-                        }
-                        catch (Exception except)
-                        {
-                            MessageBox.Show(nn.ElementAt(i).GetType().ToString() + Environment.NewLine + except.Message);
+                        nn.ElementAt(i).Calculate();
 
-                            nn.ElementAt(i).HasError = true;
-                        
-                        }
-                        nn.ElementAt(i).setToRun = false;
-                    
-                        tx.Commit();
-                        tx.Dispose();
-                        ProgressBar.Update((double)CurrentProgress / TotalProgress);
+
                     }
-                
+                    catch (Exception except)
+                    {
+                        MessageBox.Show(nn.ElementAt(i).GetType().ToString() + Environment.NewLine + except.Message);
+
+                        nn.ElementAt(i).HasError = true;
+
+                    }
+                    nn.ElementAt(i).setToRun = false;
+
+                    tx.Commit();
+                    tx.Dispose();
+                    ProgressBar.Update((double)CurrentProgress / TotalProgress);
+                }
+
 
             }
 
             ProgressBar.EndSubOperation(true);
 
             Autodesk.Navisworks.Api.Application.EndProgress();
-         
+
 
         }
-        
 
 
 
-        public void Error(  EventHandler<ProgressErrorReportingEventArgs> e)
+
+        public void Error(EventHandler<ProgressErrorReportingEventArgs> e)
         {
-            var l = e.ToString() ;
+            var l = e.ToString();
             MessageBox.Show("Error");
         }
         #endregion
