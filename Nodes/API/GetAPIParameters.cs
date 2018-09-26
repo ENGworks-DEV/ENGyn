@@ -29,17 +29,32 @@ namespace ENGyn.Nodes.API
         
         public override void Calculate()
         {
-            List<object> output = new List<object>();
+            
             var input = InputPorts[0].Data;
-            if (input != null )
+            OutputPorts[0].Data=  Process(input);
+
+        }
+
+        private IList<object> Process( object input)
+        {
+            List<object> output = new List<object>();
+            Document doc = Autodesk.Navisworks.Api.Application.ActiveDocument;
+            if (input != null)
             {
                 if (MainTools.IsList(input))
                 {
                     foreach (var item in (System.Collections.IEnumerable)InputPorts[0].Data)
                     {
+                        var iterator = item;
+
+                        if (item.GetType() == typeof(SavedItemReference))
+                        {
+                            iterator = doc.ResolveReference(item as SavedItemReference);
+                        }
+
                         try
                         {
-                            var properties = item.GetType().GetProperties();
+                            var properties = iterator.GetType().GetProperties();
                             var prop = new List<string>();
                             foreach (var p in properties)
                             {
@@ -47,28 +62,37 @@ namespace ENGyn.Nodes.API
                             }
                             output.Add(prop);
                         }
-                        catch {output.Add(null);}
+                        catch { output.Add(null); }
                     }
                 }
-                else {
+                else
+                {
+                    var iterator = input;
+
+                    if (input.GetType() == typeof(SavedItemReference))
+                    {
+                        iterator = doc.ResolveReference(input as SavedItemReference);
+                    }
+
                     try
                     {
-                        var properties = input.GetType().GetProperties();
+                        var properties = iterator.GetType().GetProperties();
+                        var prop = new List<string>();
                         foreach (var p in properties)
                         {
-                            output.Add(p.Name);
+                            prop.Add(p.Name);
                         }
+                        output.Add(prop);
                     }
                     catch { output.Add(null); }
                 }
 
-                OutputPorts[0].Data = output as IList<object>;
-            }
                 
+            }
+            return output as IList<object>;
         }
 
 
-   
 
         public override Node Clone()
         {

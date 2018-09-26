@@ -17,7 +17,7 @@ namespace ENGyn.Nodes.List
             : base(hostCanvas)
         {
             AddInputPortToNode("List", typeof(object));
-            AddInputPortToNode("int", typeof(object));
+            AddInputPortToNode("Level", typeof(object));
             AddOutputPortToNode("List", typeof(object));
         }
 
@@ -25,16 +25,28 @@ namespace ENGyn.Nodes.List
         public override void Calculate()
         {
             var input = InputPorts[0].Data as List<object>;
-            int input1 = Int32.Parse(InputPorts[1].Data.ToString());
+            var level = InputPorts[1].Data;
 
-            if (input != null && input1 != null)
-            {
+            Process(input, level);
 
-                OutputPorts[0].Data = Flatten(input, input1, new List<object>());
-            }
-            
         }
-
+        /// <summary>
+        /// Flatten list by level
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="level"></param>
+        private void Process(List<object> input, object level)
+        {
+            if (input != null)
+            {
+                if (level != null)
+                {
+                    OutputPorts[0].Data = Flatten(input, int.Parse(level.ToString()), new List<object>());
+                }
+                else
+                { OutputPorts[0].Data = Flatten(input, 0, new List<object>()); }
+            }
+        }
 
 
         public override Node Clone()

@@ -29,7 +29,14 @@ namespace ENGyn.Nodes.API
 
         public override void Calculate()
         {
+            Document doc = Autodesk.Navisworks.Api.Application.ActiveDocument;
             List<object> output = new List<object>();
+            OutputPorts[0].Data =  Process(doc, output);
+
+        }
+
+        private IList<object> Process(Document doc, List<object> output)
+        {
             if (InputPorts[0].Data != null)
             {
                 var input = InputPorts[0].Data;
@@ -39,27 +46,39 @@ namespace ENGyn.Nodes.API
 
                     foreach (var item in (System.Collections.IEnumerable)input)
                     {
+                        var iterator = item;
+
+                        if (item.GetType() == typeof(SavedItemReference))
+                        {
+                            iterator = doc.ResolveReference(item as SavedItemReference);
+                        }
+
                         if (MainTools.IsList(properties))
                         {
                             foreach (var prop in (System.Collections.IEnumerable)properties)
                             {
+
+                                dynamic d = prop;
                                 string method = prop as string;
-                                var types = item.GetType();
+                                var types = iterator.GetType();
                                 PropertyInfo props = types.GetProperty(method);
 
-                                object value = props.GetValue(item);
+                                object value = props.GetValue(iterator);
 
                                 output.Add(value);
                             }
                         }
-                        else {
+                        else
+                        {
                             try
                             {
+                                dynamic d = properties;
                                 string method = properties as string;
-                                var types = item.GetType();
+                                method = d;
+                                var types = iterator.GetType();
                                 PropertyInfo prop = types.GetProperty(method);
 
-                                object value = prop.GetValue(item);
+                                object value = prop.GetValue(iterator);
 
                                 output.Add(value);
                             }
@@ -69,22 +88,31 @@ namespace ENGyn.Nodes.API
                                 output.Add(null);
                             }
                         }
-                        
+
 
                     }
 
                 }
                 else
                 {
+                    var iterator = input;
+
+                    if (input.GetType() == typeof(SavedItemReference))
+                    {
+                        iterator = doc.ResolveReference(input as SavedItemReference);
+                    }
+
                     if (MainTools.IsList(properties))
                     {
+
+
                         foreach (var prop in (System.Collections.IEnumerable)properties)
                         {
                             string method = prop as string;
-                            var types = input.GetType();
+                            var types = iterator.GetType();
                             PropertyInfo props = types.GetProperty(method);
 
-                            object value = props.GetValue(input);
+                            object value = props.GetValue(iterator);
 
                             output.Add(value);
                         }
@@ -94,10 +122,10 @@ namespace ENGyn.Nodes.API
                         try
                         {
                             string method = properties as string;
-                            var types = input.GetType();
+                            var types = iterator.GetType();
                             PropertyInfo prop = types.GetProperty(method);
 
-                            object value = prop.GetValue(input);
+                            object value = prop.GetValue(iterator);
 
                             output.Add(value);
                         }
@@ -112,10 +140,8 @@ namespace ENGyn.Nodes.API
 
             }
 
-            OutputPorts[0].Data = output as IList<object>;
-
+           return output as IList<object>;
         }
-
 
 
         public override Node Clone()

@@ -52,7 +52,8 @@ namespace ENGyn.Nodes
 
         }
 
-        
+
+
         /// <summary>
         /// Check if object can contain type - Used after IsList()
         /// </summary>
