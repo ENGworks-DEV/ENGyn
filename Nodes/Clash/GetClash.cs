@@ -31,16 +31,18 @@ namespace ENGyn.Nodes.Clash
             List<object> clashResultList = new List<object>();
 
             var input = InputPorts[0].Data;
-
+            //Get clashes from document
+            Document doc = Autodesk.Navisworks.Api.Application.ActiveDocument;
 
             //Check for null in input
             if (MainTools.IsList(input))
             {
+             
                 foreach (var i in (System.Collections.IEnumerable)input)
                 {
-                    if (i.GetType() == typeof(ClashTest))
+                    if (i.GetType() == typeof(SavedItemReference))
                     {
-                        ClashTest item = i as ClashTest;
+                        ClashTest item = doc.ResolveReference(i as SavedItemReference) as ClashTest;
                         foreach (var t in item.Children)
                         {
                             clashResultList.Add(t);
@@ -52,9 +54,9 @@ namespace ENGyn.Nodes.Clash
                 
             }
 
-            if (input.GetType() == typeof(ClashTest))
+            if (input.GetType() == typeof(SavedItemReference))
             {
-                ClashTest item = input as ClashTest;
+                ClashTest item =  doc.ResolveReference(input as SavedItemReference) as ClashTest;
                 foreach (var t in item.Children)
                 {
                         clashResultList.Add(t);

@@ -70,6 +70,15 @@ namespace ENGyn.Nodes.String
                     }
                 }
             }
+            else
+            {
+                if (a.GetType() == typeof(string) && MainTools.IsString(b) && MainTools.IsString(c))
+
+                {
+                    string container = a as string;
+                    output.Add(container.Replace(b.ToString(), c.ToString()));
+                }
+            }
             return output;
         }
 

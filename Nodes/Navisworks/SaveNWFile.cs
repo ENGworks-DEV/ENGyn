@@ -35,28 +35,48 @@ namespace ENGyn.Nodes.Navisworks
         /// <returns></returns>
         private object SaveAsNWF(object document, object path)
         {
-
-            var filepath = path.ToString();
-            Document doc = document as Document;
-
-            if (doc != null && filepath != null
-                && document.GetType() == typeof(Document)
-                )
+            var output = new object();
+            output = null;
+            if (document != null && path != null && document.GetType() == typeof(Document))
             {
-                try
+
+                if (MainTools.IsList(path))
                 {
-                    doc.SaveFile(path.ToString());
-                    return document;
+                    foreach (var item in (System.Collections.IEnumerable)path)
+                    {
+                        var filepath = item.ToString();
+                        Document doc = document as Document;
+                        try
+                        {
+                            doc.SaveFile(item.ToString());
+                            output = document;
+                        }
+                        catch (Exception exc)
+                        {
+                           
+                        }
+                    }
+                   
                 }
-                catch (Exception exc)
+                else
                 {
-                    MessageBox.Show("Error", exc.Message);
-                    return null;
+                    var filepath = path.ToString();
+                    Document doc = document as Document;
+
+                    try
+                    {
+                        doc.SaveFile(path.ToString());
+                        output =  document;
+                    }
+                    catch (Exception exc)
+                    {
+                        
+                    }
+
                 }
 
             }
-            else
-            { return null; }
+            return output;
         }
 
         public override Node Clone()
