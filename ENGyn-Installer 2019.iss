@@ -6,18 +6,18 @@
 ; Do not use the same AppId value in installers for other applications.
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
 AppId={{B827E3D1-F82E-45B9-9352-53C8EF41399F}
-AppName=ENG ENGyne 2019 Setup    
+AppName=ENG ENGyn 2019 Setup    
 AppVersion=0.0.2
 
 AppPublisher=PRD
 AppPublisherURL=-
 AppSupportURL=-
 AppUpdatesURL=-
-DefaultDirName={pf}\ENGyne
+DefaultDirName={pf}\ENGyn
 DisableDirPage=yes
-DefaultGroupName=ENG ENGyne 2019 Setup
+DefaultGroupName=ENG ENGyn 2019 Setup
 DisableProgramGroupPage=yes
-OutputBaseFilename=ENG ENGyne 2019 Setup 0.0.2
+OutputBaseFilename=ENG ENGyn 2019 Setup 0.0.2
 Compression=lzma
 SolidCompression=yes
 OutputManifestFile=Setup-Manifest.txt
@@ -32,8 +32,8 @@ Type: filesandordirs; Name: "{userappdata}\Autodesk Navisworks Manage 2019\Plugi
     
 
 [Files]
-Source: "C:\Users\pderendinger\AppData\Roaming\Autodesk Navisworks Manage 2019\Plugins\ENGyn\*"; DestDir: "{userappdata}\Autodesk Navisworks Manage 2019\Plugins\ENGyn\"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "C:\Program Files\Autodesk\Navisworks Manage 2019\Dependencies\*"; DestDir: "{pf64}\Autodesk\Navisworks Manage 2019\Dependencies\"; Flags: ignoreversion recursesubdirs createallsubdirs
-
+Source: "ENGyn\Debug\2019\*"; DestDir: "{userappdata}\Autodesk Navisworks Manage 2019\Plugins\ENGyn\"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "ENGyn\resources\*"; DestDir: "{pf64}\Autodesk\Navisworks Manage 2019\Dependencies\"; Flags: ignoreversion recursesubdirs createallsubdirs
+          
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 

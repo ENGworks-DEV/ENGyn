@@ -40,7 +40,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
-    <OutputPath>Debug\</OutputPath>
+    <OutputPath>Debug\2019\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -52,7 +52,7 @@
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Autodesk Navisworks Manage 2018|AnyCPU' ">
-    <OutputPath>bin\</OutputPath>
+    <OutputPath>Debug\2018\</OutputPath>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
   </PropertyGroup>
   <ItemGroup>
@@ -137,7 +137,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="TUM.CMS.VplControl">
-      <HintPath>C:\Program Files\Autodesk\Navisworks Manage 2018\Dependencies\TUM.CMS.VplControl.dll</HintPath>
+      <HintPath>resources\TUM.CMS.VplControl.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />

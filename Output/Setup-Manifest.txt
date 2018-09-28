@@ -1,29 +1,34 @@
 Index	SourceFilename	TimeStamp	Version	SHA1Sum	OriginalSize	FirstSlice	LastSlice	StartOffset	ChunkSuboffset	ChunkCompressedSize	Encrypted
-0	C:\Users\pderendinger\AppData\Roaming\Autodesk Navisworks Manage 2018\Plugins\ENGyn\AdWindows.dll	2016-12-09 09:08:06.000		b41f3aa04d95cce917fe60ae91cdb3c3cffa7298	2251288	1	1	0	0	3471882	no
-1	C:\Users\pderendinger\AppData\Roaming\Autodesk Navisworks Manage 2018\Plugins\ENGyn\AdWindows.resources.dll	2016-12-09 09:08:06.000		bfd6f5f26cec81a1888bddeca28f5ce83c88e499	1149464	1	1	0	2251288	3471882	no
-2	C:\Users\pderendinger\AppData\Roaming\Autodesk Navisworks Manage 2018\Plugins\ENGyn\Autodesk.Navisworks.Api.dll	2017-03-01 16:21:52.000		31a78f87c7c5438bed4b0f19b058c5b8e88c5070	3915120	1	1	0	3400752	3471882	no
-3	C:\Users\pderendinger\AppData\Roaming\Autodesk Navisworks Manage 2018\Plugins\ENGyn\Autodesk.Navisworks.Api.xml	2017-01-26 17:11:08.000		926756f35c62b52167d10e7d9df4951447eea333	943279	1	1	0	7315872	3471882	no
-4	C:\Users\pderendinger\AppData\Roaming\Autodesk Navisworks Manage 2018\Plugins\ENGyn\Autodesk.Navisworks.ComApi.dll	2017-03-01 16:22:06.000		15a4d886d5a9446755318f35b7cd01dd38cac110	351600	1	1	0	8259151	3471882	no
-5	C:\Users\pderendinger\AppData\Roaming\Autodesk Navisworks Manage 2018\Plugins\ENGyn\Autodesk.Navisworks.ComApi.xml	2012-05-14 10:02:30.000		68f102f9dedabb9b978740f2cec354cd9b97e5e6	3153	1	1	0	8610751	3471882	no
-6	C:\Users\pderendinger\AppData\Roaming\Autodesk Navisworks Manage 2018\Plugins\ENGyn\Autodesk.Navisworks.Interop.ComApi.dll	2017-03-01 16:22:12.000		19d3e3b830cea5ee9cbfc9061dc548cbfa6c0c10	310128	1	1	0	8613904	3471882	no
-7	C:\Users\pderendinger\AppData\Roaming\Autodesk Navisworks Manage 2018\Plugins\ENGyn\ENGyn.dll	2018-09-26 14:24:54.000		07da685157568fed5991f03e59f5887ad0f74c47	1636864	1	1	0	8924032	3471882	no
-8	C:\Users\pderendinger\AppData\Roaming\Autodesk Navisworks Manage 2018\Plugins\ENGyn\lcodpgluerest.dll	2017-03-01 16:23:40.000		f776e1d5f1e40acf076ab9ddf6885bd5651a6b25	129904	1	1	0	10560896	3471882	no
-9	C:\Users\pderendinger\AppData\Roaming\Autodesk Navisworks Manage 2018\Plugins\ENGyn\navisworks.glue.rest.interop.dll	2017-03-01 16:24:48.000		aabdbbe9d3adc78e75f75246c0f72359fc5e93a7	326512	1	1	0	10690800	3471882	no
-10	C:\Users\pderendinger\AppData\Roaming\Autodesk Navisworks Manage 2018\Plugins\ENGyn\navisworks.gui.roamer.dll	2017-03-01 16:24:58.000		2a248138d461fc821c57a00d5ae0b45fb523a16a	584048	1	1	0	11017312	3471882	no
-11	C:\Users\pderendinger\AppData\Roaming\Autodesk Navisworks Manage 2018\Plugins\ENGyn\navisworks.roamer.clr.dll	2017-03-01 16:25:04.000		0bc3ecb81e687aaa0482f61029640cabc389102a	245104	1	1	0	11601360	3471882	no
-12	C:\Users\pderendinger\AppData\Roaming\Autodesk Navisworks Manage 2018\Plugins\ENGyn\NCalc.dll	2018-09-26 14:23:26.000		d2e6144addd2fe11d54ba2fd8da401be6f178df3	194560	1	1	0	11846464	3471882	no
-13	C:\Users\pderendinger\AppData\Roaming\Autodesk Navisworks Manage 2018\Plugins\ENGyn\Newtonsoft.Json.dll	2015-04-14 01:55:30.000		4262109ce58a2eaf7fb09073e41aab56d7274235	513536	1	1	0	12041024	3471882	no
-14	C:\Users\pderendinger\AppData\Roaming\Autodesk Navisworks Manage 2018\Plugins\ENGyn\odviewdll_clr.dll	2017-03-01 16:25:44.000		a8290aa93b73c3606be130de155597e360317cf9	2106224	1	1	0	12554560	3471882	no
-15	C:\Users\pderendinger\AppData\Roaming\Autodesk Navisworks Manage 2018\Plugins\ENGyn\TUM.CMS.VplControl.dll	2018-09-10 09:18:18.000		6ebae1c09d3dafc3e8ae8270c82ab9e7cc0b5d2b	1304576	1	1	0	14660784	3471882	no
-16	C:\Users\pderendinger\AppData\Roaming\Autodesk Navisworks Manage 2018\Plugins\ENGyn\TUM.CMS.VplControl.pdb	2018-09-10 09:18:18.000		ade08ee30088812ac7e5a701661b4c136c33ffdc	394752	1	1	0	15965360	3471882	no
-17	C:\Users\pderendinger\AppData\Roaming\Autodesk Navisworks Manage 2018\Plugins\ENGyn\en-US\ENGyn.xaml	2018-09-26 14:23:26.000		86c53a51f1196528a30821c6aeb8f0dc11b57886	1045	1	1	0	16360112	3471882	no
-18	C:\Users\pderendinger\AppData\Roaming\Autodesk Navisworks Manage 2018\Plugins\ENGyn\Images\ENGyn.png	2018-09-26 14:23:26.000		adaf5ebd01840dcbaa18f489525ab269630ed288	1886	1	1	0	16361157	3471882	no
-19	C:\Users\pderendinger\AppData\Roaming\Autodesk Navisworks Manage 2018\Plugins\ENGyn\Nodes\DefaultNodes.dll	2018-09-26 14:28:52.000		acae8025d0f9e9267fbdc4988f8be93439ecc0d0	74752	1	1	0	16363043	3471882	no
-20	C:\Users\pderendinger\AppData\Roaming\Autodesk Navisworks Manage 2018\Plugins\ENGyn\Nodes\DefaultNodes.pdb	2018-09-26 14:28:52.000		4af63750936c227231319e1938e3c47ef8a4cdef	222720	1	1	0	16437795	3471882	no
-21	C:\Program Files\Autodesk\Navisworks Manage 2018\Dependencies\ENGyne.xaml	2018-09-10 09:16:40.000		7563a625496cf07914eeea2a1bdcc40b2a6b8200	1258	1	1	0	16660515	3471882	no
-22	C:\Program Files\Autodesk\Navisworks Manage 2018\Dependencies\NCalc.dll	2018-08-06 10:16:08.000		d2e6144addd2fe11d54ba2fd8da401be6f178df3	194560	1	1	0	16661773	3471882	no
-23	C:\Program Files\Autodesk\Navisworks Manage 2018\Dependencies\Newtonsoft.Json.dll	2018-08-06 10:16:08.000		2fb0be100de03680fc4309c9fa5a29e69397a980	653824	1	1	0	16856333	3471882	no
-24	C:\Program Files\Autodesk\Navisworks Manage 2018\Dependencies\RadialMenu.dll	2018-08-06 10:16:08.000		3c6937127d0b4bd8e43dc5e87f0800f3af6dbfb8	33792	1	1	0	17510157	3471882	no
-25	C:\Program Files\Autodesk\Navisworks Manage 2018\Dependencies\TUM.CMS.VplControl.dll	2018-09-10 09:18:18.000		6ebae1c09d3dafc3e8ae8270c82ab9e7cc0b5d2b	1304576	1	1	0	17543949	3471882	no
-26	C:\Program Files\Autodesk\Navisworks Manage 2018\Dependencies\TUM.CMS.VplControl.pdb	2018-09-10 09:18:18.000		ade08ee30088812ac7e5a701661b4c136c33ffdc	394752	1	1	0	18848525	3471882	no
-27	C:\Program Files\Autodesk\Navisworks Manage 2018\Dependencies\Xceed.Wpf.Toolkit.dll	2018-08-06 10:16:08.000		7238d00ad0cc44d7cb997d617807815eb092787a	1038336	1	1	0	19243277	3471882	no
+0	C:\Users\pdere\source\repos\ENGyn\ENGyn\ENGyn\Debug\2019\AdWindows.dll	2017-11-22 04:05:52.000		ebd9af1b7a309080d150169f78674c38db8d6708	2255344	1	1	0	0	4251021	no
+1	C:\Users\pdere\source\repos\ENGyn\ENGyn\ENGyn\Debug\2019\ENGyn.dll	2018-09-26 19:26:52.000		4056f2d9069a797d73bbe264335fac237b019847	1637376	1	1	0	2255344	4251021	no
+2	C:\Users\pdere\source\repos\ENGyn\ENGyn\ENGyn\Debug\2019\ENGyn.pdb	2018-09-26 19:26:52.000		19f528465c8c0be1de5f245d472852f718291e9d	42496	1	1	0	3892720	4251021	no
+3	C:\Users\pdere\source\repos\ENGyn\ENGyn\ENGyn\Debug\2019\lcodpgluerest.dll	2018-03-05 16:08:48.000		7d81540baa5958a8cb947cdd66c3ff5edc9d5a2c	129848	1	1	0	3935216	4251021	no
+4	C:\Users\pdere\source\repos\ENGyn\ENGyn\ENGyn\Debug\2019\ManagedMC3.dll	2017-11-15 02:03:44.000		410e98947eb0d58887b8612493157eaed72bb289	122200	1	1	0	4065064	4251021	no
+5	C:\Users\pdere\source\repos\ENGyn\ENGyn\ENGyn\Debug\2019\navisworks.glue.rest.interop.dll	2018-03-05 16:08:48.000		dda7dd0a25d5629f220761f32b73db507945bcd5	326456	1	1	0	4187264	4251021	no
+6	C:\Users\pdere\source\repos\ENGyn\ENGyn\ENGyn\Debug\2019\navisworks.gui.roamer.dll	2018-03-05 16:08:50.000		42dc6fac0abb8d24ed474e85780976291de7f5d8	869176	1	1	0	4513720	4251021	no
+7	C:\Users\pdere\source\repos\ENGyn\ENGyn\ENGyn\Debug\2019\navisworks.roamer.clr.dll	2018-03-05 16:08:48.000		376750d4eadcff4fb34f0e19170484b92f27b063	244536	1	1	0	5382896	4251021	no
+8	C:\Users\pdere\source\repos\ENGyn\ENGyn\ENGyn\Debug\2019\NCalc.dll	2018-09-14 22:23:16.000		d2e6144addd2fe11d54ba2fd8da401be6f178df3	194560	1	1	0	5627432	4251021	no
+9	C:\Users\pdere\source\repos\ENGyn\ENGyn\ENGyn\Debug\2019\Newtonsoft.Json.dll	2015-04-14 01:55:30.000		4262109ce58a2eaf7fb09073e41aab56d7274235	513536	1	1	0	5821992	4251021	no
+10	C:\Users\pdere\source\repos\ENGyn\ENGyn\ENGyn\Debug\2019\odviewdll_clr.dll	2018-03-05 16:08:50.000		a3aa76e8f87f75a3156eaf236894a7082eebca74	2808120	1	1	0	6335528	4251021	no
+11	C:\Users\pdere\source\repos\ENGyn\ENGyn\ENGyn\Debug\2019\TUM.CMS.VplControl.dll	2018-09-26 19:26:26.000		e5a750cdb28682d09dd91887afaf61d0934d8f77	1304576	1	1	0	9143648	4251021	no
+12	C:\Users\pdere\source\repos\ENGyn\ENGyn\ENGyn\Debug\2019\TUM.CMS.VplControl.pdb	2018-09-26 19:26:26.000		d4071b50de262cf05c5bed66caa187cf13559b20	390656	1	1	0	10448224	4251021	no
+13	C:\Users\pdere\source\repos\ENGyn\ENGyn\ENGyn\Debug\2019\de-DE\AdWindows.resources.dll	2017-12-05 02:08:14.000		a98997552d27560f34782ce2099c09a35fb46143	1178568	1	1	0	10838880	4251021	no
+14	C:\Users\pdere\source\repos\ENGyn\ENGyn\ENGyn\Debug\2019\en-US\AdWindows.resources.dll	2017-11-22 04:05:52.000		ea1ec7ba0e94b5081cbb08aed0b9897c4660db40	1151472	1	1	0	12017448	4251021	no
+15	C:\Users\pdere\source\repos\ENGyn\ENGyn\ENGyn\Debug\2019\es-ES\AdWindows.resources.dll	2017-12-05 02:08:14.000		09d8e5ccbbfa48e6a94fa804d71951176d037f39	1178568	1	1	0	13168920	4251021	no
+16	C:\Users\pdere\source\repos\ENGyn\ENGyn\ENGyn\Debug\2019\fr-FR\AdWindows.resources.dll	2018-01-17 06:10:46.000		82ec23efd8c73345726a6be74713b54f0a85e83e	1178568	1	1	0	14347488	4251021	no
+17	C:\Users\pdere\source\repos\ENGyn\ENGyn\ENGyn\Debug\2019\it-IT\AdWindows.resources.dll	2017-12-05 02:08:14.000		a395ed666da19dddf71e015c8c6d6b5138ea838d	1178056	1	1	0	15526056	4251021	no
+18	C:\Users\pdere\source\repos\ENGyn\ENGyn\ENGyn\Debug\2019\ja-JP\AdWindows.resources.dll	2017-12-05 02:08:14.000		eaaee0b0aea401414682efa2ef885b55c7532c9f	1181640	1	1	0	16704112	4251021	no
+19	C:\Users\pdere\source\repos\ENGyn\ENGyn\ENGyn\Debug\2019\ko-KR\AdWindows.resources.dll	2017-12-05 02:08:14.000		a23467adba2babf0e8453765c2ea24e77b5fa1b3	1178568	1	1	0	17885752	4251021	no
+20	C:\Users\pdere\source\repos\ENGyn\ENGyn\ENGyn\Debug\2019\pt-BR\AdWindows.resources.dll	2017-12-05 02:08:14.000		ea1a0f9a294e2c242f7bc5fa3d0c049944236f8a	1178568	1	1	0	19064320	4251021	no
+21	C:\Users\pdere\source\repos\ENGyn\ENGyn\ENGyn\Debug\2019\resources\ENGyn.png	2018-09-14 22:23:16.000		adaf5ebd01840dcbaa18f489525ab269630ed288	1886	1	1	0	20242888	4251021	no
+22	C:\Users\pdere\source\repos\ENGyn\ENGyn\ENGyn\Debug\2019\ru-RU\AdWindows.resources.dll	2017-11-21 01:13:46.000		e5f1fe5870c6f844c480cca898e03f6cafaf1a7b	1186760	1	1	0	20244774	4251021	no
+23	C:\Users\pdere\source\repos\ENGyn\ENGyn\ENGyn\Debug\2019\zh-CN\AdWindows.resources.dll	2017-11-21 01:13:48.000		62c6e3a0e2f8f65af1c2b5679408318ef903c08d	1176520	1	1	0	21431534	4251021	no
+24	C:\Users\pdere\source\repos\ENGyn\ENGyn\ENGyn\Debug\2019\zh-TW\AdWindows.resources.dll	2017-12-05 02:08:16.000		7507766b0553a46e35d0ed33db07f1850b570b33	1176520	1	1	0	22608054	4251021	no
+25	C:\Users\pdere\source\repos\ENGyn\ENGyn\ENGyn\resources\ENGyn.png	2018-09-14 22:23:16.000		adaf5ebd01840dcbaa18f489525ab269630ed288	1886	1	1	0	23784574	4251021	no
+26	C:\Users\pdere\source\repos\ENGyn\ENGyn\ENGyn\resources\ENGyne.xaml	2018-09-14 22:23:16.000		7563a625496cf07914eeea2a1bdcc40b2a6b8200	1258	1	1	0	23786460	4251021	no
+27	C:\Users\pdere\source\repos\ENGyn\ENGyn\ENGyn\resources\NCalc.dll	2018-09-14 22:23:16.000		d2e6144addd2fe11d54ba2fd8da401be6f178df3	194560	1	1	0	23787718	4251021	no
+28	C:\Users\pdere\source\repos\ENGyn\ENGyn\ENGyn\resources\Newtonsoft.Json.dll	2018-09-14 22:23:16.000		2fb0be100de03680fc4309c9fa5a29e69397a980	653824	1	1	0	23982278	4251021	no
+29	C:\Users\pdere\source\repos\ENGyn\ENGyn\ENGyn\resources\RadialMenu.dll	2018-09-14 22:23:16.000		3c6937127d0b4bd8e43dc5e87f0800f3af6dbfb8	33792	1	1	0	24636102	4251021	no
+30	C:\Users\pdere\source\repos\ENGyn\ENGyn\ENGyn\resources\TUM.CMS.VplControl.dll	2018-09-27 21:18:46.000		7a61b0129b3540c111458e97f7834c03c976aa0e	1304576	1	1	0	24669894	4251021	no
+31	C:\Users\pdere\source\repos\ENGyn\ENGyn\ENGyn\resources\TUM.CMS.VplControl.pdb	2018-09-27 21:18:46.000		a7aa793cbf8c86326884a7b985afb04cafbd21fc	390656	1	1	0	25974470	4251021	no
+32	C:\Users\pdere\source\repos\ENGyn\ENGyn\ENGyn\resources\Xceed.Wpf.Toolkit.dll	2018-09-14 22:23:16.000		7238d00ad0cc44d7cb997d617807815eb092787a	1038336	1	1	0	26365126	4251021	no
