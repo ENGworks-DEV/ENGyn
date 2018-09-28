@@ -18,30 +18,28 @@
 //            AddInputPortToNode("Input", typeof(object));
 //            AddOutputPortToNode("Output", typeof(ClashResult));
 
+//            AddControlToNode(new Label() { Content = "Title", FontSize = 13, FontWeight = FontWeights.Bold });
 
-
-//            AddControlToNode(new Label() { Content = "Title" , FontSize = 13, FontWeight = FontWeights.Bold});
-
-
+//            this.BottomComment.Text = "Example";
 //        }
 
 
 //        public override void Calculate()
 //        {
-            //var input = InputPorts[0].Data;
-            //if (input != null)
-            //{
-            //    var type = input.GetType();
-            //    if (type == typeof(SelectionSet))
-            //    {
+//            var input = InputPorts[0].Data;
+//            if (input != null)
+//            {
+//                var type = input.GetType();
+//                if (type == typeof(SelectionSet))
+//                {
 
-            //    }
-            //   if (type.GetType().IsGenericType && type.GetGenericTypeDefinition() == typeof(List<>))
-            //    {
+//                }
+//                if (type.GetType().IsGenericType && type.GetGenericTypeDefinition() == typeof(List<>))
+//                {
 
-            //    }
+//                }
 
-            //}
+//            }
 
 //        }
 
