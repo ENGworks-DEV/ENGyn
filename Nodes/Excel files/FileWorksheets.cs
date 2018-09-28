@@ -41,7 +41,7 @@ namespace ENGyn.Nodes.Excel
         {
 
             List<string> output = new List<string>();
-
+            try { 
             var excelApp = new Microsoft.Office.Interop.Excel.Application();
 
             //Dont show Excel when open
@@ -65,7 +65,11 @@ namespace ENGyn.Nodes.Excel
             sheet.Close(true);
             excelApp.Quit();
 
-
+            }
+            catch 
+            {
+                //To be implemented
+            }
             return output;
 
         }

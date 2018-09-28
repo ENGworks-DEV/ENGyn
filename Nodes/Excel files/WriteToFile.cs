@@ -45,31 +45,37 @@ namespace ENGyn.Nodes.Excel
         public void ExcelWrite(string path, string worksheet, int Row, int Column, List<object> Values)
         {
 
-            List<string> output = new List<string>();
-
-            var excelApp = new Microsoft.Office.Interop.Excel.Application();
-
-            //Dont show Excel when open
-            excelApp.Visible = false;
-
-            Microsoft.Office.Interop.Excel.Workbooks books = excelApp.Workbooks;
-
-            //Open Excel file by Path provided by the user
-            Microsoft.Office.Interop.Excel.Workbook sheet = books.Open(path);
-
-            //Select worksheet by the name provided by the user
-            Microsoft.Office.Interop.Excel.Worksheet indsheet = sheet.Sheets[worksheet];
-
-            Microsoft.Office.Interop.Excel.Range activecell = indsheet.Cells[Row, Column];
-
-            for (int i = 0; i < Values.Count; i += 1)
+            try
             {
-                indsheet.Cells[Row + i, Column] = Values[i].ToString();
+
+                List<string> output = new List<string>();
+
+                var excelApp = new Microsoft.Office.Interop.Excel.Application();
+
+                //Dont show Excel when open
+                excelApp.Visible = false;
+
+                Microsoft.Office.Interop.Excel.Workbooks books = excelApp.Workbooks;
+
+                //Open Excel file by Path provided by the user
+                Microsoft.Office.Interop.Excel.Workbook sheet = books.Open(path);
+
+                //Select worksheet by the name provided by the user
+                Microsoft.Office.Interop.Excel.Worksheet indsheet = sheet.Sheets[worksheet];
+
+                Microsoft.Office.Interop.Excel.Range activecell = indsheet.Cells[Row, Column];
+
+                for (int i = 0; i < Values.Count; i += 1)
+                {
+                    indsheet.Cells[Row + i, Column] = Values[i].ToString();
+                }
+
+                sheet.Close(true);
+                excelApp.Quit();
             }
 
-            sheet.Close(true);
-            excelApp.Quit();
-
+            catch
+            { }
 
         }
 

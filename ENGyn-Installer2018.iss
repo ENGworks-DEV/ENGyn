@@ -32,7 +32,7 @@ Type: filesandordirs; Name: "{userappdata}\Autodesk Navisworks Manage 2018\Plugi
     
 
 [Files]
-Source: "ENGyn\Debug\*"; DestDir: "{userappdata}\Autodesk Navisworks Manage 2018\Plugins\ENGyn\"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "ENGyn\Debug\2018\*"; DestDir: "{userappdata}\Autodesk Navisworks Manage 2018\Plugins\ENGyn\"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "ENGyn\resources\*"; DestDir: "{pf64}\Autodesk\Navisworks Manage 2018\Dependencies\"; Flags: ignoreversion recursesubdirs createallsubdirs
 
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
