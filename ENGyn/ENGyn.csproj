@@ -262,7 +262,9 @@ IF EXIST "%25APPDATA%25\$(ConfigurationName)\Plugins\$(TargetName)\" rmdir /S /Q
 
 xcopy /Y "$(TargetDir)*.*" "%25APPDATA%25\$(ConfigurationName)\Plugins\$(TargetName)\"
 
-
+xcopy /Y "$(TargetDir)Nodes\*.*" "%25APPDATA%25\$(ConfigurationName)\Plugins\$(TargetName)\Nodes\"
+ xcopy /Y "$(TargetDir)en-US\*.*" "%25APPDATA%25\$(ConfigurationName)\Plugins\$(TargetName)\"
+ xcopy /Y "$(ProjectDir)ENGyn.xaml" "%25APPDATA%25\$(ConfigurationName)\Plugins\$(TargetName)\en-US\"
 
 xcopy /Y "$(ProjectDir)resources\ENGyn.png" "%25APPDATA%25\$(ConfigurationName)\Plugins\$(TargetName)\Images\"</PostBuildEvent>
   </PropertyGroup>

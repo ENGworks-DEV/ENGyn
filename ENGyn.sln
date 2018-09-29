@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 15.0.28010.2003
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ENGyn", "ENGyn\ENGyn.csproj", "{0CF6E1A1-FD98-41C4-B377-3C7324361B63}"
+	ProjectSection(ProjectDependencies) = postProject
+		{03FEEE33-461A-45B4-BD6F-7154E58A12DB} = {03FEEE33-461A-45B4-BD6F-7154E58A12DB}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ENGyn.UnitTest", "ENGyn.UnitTest\ENGyn.UnitTest.csproj", "{B8F2A66F-07B3-43D3-B6DC-96F7FE8DAE21}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -33,7 +36,7 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		BuildVersion_StartDate = 2000/1/1
 		SolutionGuid = {58CD9914-8E9C-4804-9C25-4E86EEC6B9C1}
+		BuildVersion_StartDate = 2000/1/1
 	EndGlobalSection
 EndGlobal

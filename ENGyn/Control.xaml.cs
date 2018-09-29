@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using TUM.CMS.VplControl.Core;
 using TUM.CMS.VplControl.Utilities;
 
@@ -155,6 +156,7 @@ namespace ENGyn
         private void Add_Node(object sender, RoutedEventArgs e)
         {
             Button button = sender as Button;
+           
 
             var el = this.VplControl.ConnectorCollection;
 
@@ -164,8 +166,10 @@ namespace ENGyn
                 {
                     var node = (Node)Activator.CreateInstance(item, this.VplControl);
 
-                    node.Left = 0;
-                    node.Top = 0;
+
+                    
+                    node.Left = this.ActualWidth/2;
+                    node.Top = this.ActualHeight / 2;
 
                     node.Show();
                 }
@@ -223,7 +227,39 @@ namespace ENGyn
 
         }
 
+        private void btnCopy_Click(object sender, ExecutedRoutedEventArgs e)
+        {
+            VplControl.VplControlCopy();
+        }
 
+        private void BtnDelete_Click(object sender, ExecutedRoutedEventArgs e)
+        {
+            VplControl.VplControlDelete();
+        }
+
+        private void BtnAll_Click(object sender, ExecutedRoutedEventArgs e)
+        {
+            VplControl.VplControlSelectAll();
+        }
+
+        private void btnUnselect_Click(object sender, ExecutedRoutedEventArgs e)
+        {
+            VplControl.VplControlUnselectAll();
+        }
+
+        private void BtnGroup_Click(object sender, ExecutedRoutedEventArgs e)
+        {
+            VplControl.VplControlGroup();
+        }
+        private void btnGroupNones_Click(object sender, ExecutedRoutedEventArgs e)
+        {
+            VplControl.VplControlGroup();
+        }
+
+        private void BtnPaste_Click(object sender, ExecutedRoutedEventArgs e)
+        {
+            VplControl.VplControlPaste();
+        }
 
 
         public void Error(EventHandler<ProgressErrorReportingEventArgs> e)
@@ -255,6 +291,10 @@ namespace ENGyn
 
             return outpt as IEnumerable<Node>;
         }
+
+
+
+
     }
 
     /// <summary>

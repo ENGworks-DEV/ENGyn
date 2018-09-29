@@ -4,30 +4,26 @@
    xmlns:VplControl="clr-namespace:TUM.CMS.VplControl.Core;assembly=TUM.CMS.VplControl"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="ENGyn.MainWindow"
     Height="647" Width="1052" MinWidth="500" MinHeight="300">
+    <UserControl.InputBindings>
 
+        <KeyBinding Key="C" Modifiers="Control" Command="Copy" />
+        <KeyBinding Key="V" Modifiers="Control" Command="Paste" />
+        <KeyBinding Key="Delete" Command="Delete" />
+        <KeyBinding Key="A" Modifiers="Control" Command="SelectAll" />
+        
 
+    </UserControl.InputBindings>
+
+    <UserControl.CommandBindings>
+        <CommandBinding Command="Copy" Executed="btnCopy_Click" />
+        
+        <CommandBinding Command="Paste" Executed="BtnPaste_Click" />
+        <CommandBinding Command="Delete" Executed="BtnDelete_Click" />
+        <CommandBinding Command="SelectAll" Executed="BtnAll_Click" />
+
+    </UserControl.CommandBindings>
     <UserControl.Resources>
-        <!--<DataTemplate x:Key="HeaderText">
-            
-                <TextBlock Text="{Binding}" 
-                        Margin="4 0"
-                        VerticalAlignment="Center"
-                        Foreground="Black"
-                        FontSize="12" 
-                        FontWeight="Bold"
-                        Width="{Binding
-                        RelativeSource={RelativeSource
-                        Mode=FindAncestor,
-                        AncestorType={x:Type Expander}},
-                        Path=ActualWidth}"
-                        TextWrapping="Wrap"/>
-          
-        </DataTemplate>
 
-        <Style TargetType="{x:Type Expander}">
-            <Setter Property="HeaderTemplate" Value="{StaticResource HeaderText}"/>
-
-        </Style>-->
         <Style TargetType="{x:Type Button}">
             <Setter Property="Background" Value="#FFF0F0F0"/>
             <Setter Property="BorderBrush" Value="#FF707070"/>
