@@ -1,3 +1,6 @@
 [submodule "src/TUM.CMS.VPLControl"]
 	path = src/TUM.CMS.VPLControl
 	url = https://github.com/ENGworks-DEV/TUM.CMS.VPLControl.git
+[submodule "src/ENGyn-Public"]
+	path = src/ENGyn-Public
+	url = https://github.com/ENGworks-DEV/ENGyn-Public.git
