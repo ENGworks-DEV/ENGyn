@@ -111,17 +111,19 @@ namespace ENGyn
             var dlls = Directory.GetFiles(assamblyLocation, "*.dll");
             foreach (var dllPath in dlls)
             {
-                //Only load classes inherent from Node
 
-                var assamb = Assembly.LoadFrom(Path.Combine(dllPath))
-                    .GetTypes()
-                    .Where(t => t != typeof(Node) &&
-                                          typeof(Node).IsAssignableFrom(t));
-                if (assamb != null)
-                {
-                    DefaultNodesVersion = assamb.First().Assembly.GetName().Version.ToString();
-                    VplControl.ExternalNodeTypes.AddRange(assamb);
-                }
+                    var assamb = Assembly.LoadFrom(Path.Combine(dllPath))
+                                          .GetTypes()
+                                          .Where(t => t != typeof(Node) &&
+                                                                typeof(Node).IsAssignableFrom(t));
+
+                    if (assamb.Any())
+                    {
+                        DefaultNodesVersion = assamb.First().Assembly.GetName().Version.ToString();
+                        VplControl.ExternalNodeTypes.AddRange(assamb);
+                    }
+
+
 
             }
 

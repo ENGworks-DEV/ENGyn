@@ -1,13 +1,7 @@
-﻿using System.Windows.Controls;
-using System.Xml;
-using Autodesk.Navisworks.Api;
-using TUM.CMS.VplControl.Nodes;
-using Autodesk.Navisworks.Api.Clash;
-using TUM.CMS.VplControl.Core;
-using System.Windows.Data;
-using System.Windows;
-using System.Collections.Generic;
+﻿using Autodesk.Navisworks.Api.Clash;
 using System;
+using System.Collections.Generic;
+using TUM.CMS.VplControl.Core;
 
 namespace ENGyn.Nodes.Clash
 {
@@ -21,7 +15,7 @@ namespace ENGyn.Nodes.Clash
             AddOutputPortToNode("SelectionB", typeof(object));
 
 
-         
+
 
 
         }

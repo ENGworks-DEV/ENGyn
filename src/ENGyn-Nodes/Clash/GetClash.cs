@@ -1,13 +1,7 @@
-﻿using System.Windows.Controls;
-using System.Xml;
-using Autodesk.Navisworks.Api;
-using TUM.CMS.VplControl.Nodes;
+﻿using Autodesk.Navisworks.Api;
 using Autodesk.Navisworks.Api.Clash;
-using TUM.CMS.VplControl.Core;
-using System.Windows.Data;
-
 using System.Collections.Generic;
-using System.Windows;
+using TUM.CMS.VplControl.Core;
 
 namespace ENGyn.Nodes.Clash
 {
@@ -37,7 +31,7 @@ namespace ENGyn.Nodes.Clash
             //Check for null in input
             if (MainTools.IsList(input))
             {
-             
+
                 foreach (var i in (System.Collections.IEnumerable)input)
                 {
                     if (i.GetType() == typeof(SavedItemReference))
@@ -51,18 +45,18 @@ namespace ENGyn.Nodes.Clash
                     }
                 }
                 OutputPorts[0].Data = clashResultList;
-                
+
             }
 
             if (input.GetType() == typeof(SavedItemReference))
             {
-                ClashTest item =  doc.ResolveReference(input as SavedItemReference) as ClashTest;
+                ClashTest item = doc.ResolveReference(input as SavedItemReference) as ClashTest;
                 foreach (var t in item.Children)
                 {
-                        clashResultList.Add(t);
+                    clashResultList.Add(t);
                 }
                 OutputPorts[0].Data = clashResultList;
-                
+
 
             }
 

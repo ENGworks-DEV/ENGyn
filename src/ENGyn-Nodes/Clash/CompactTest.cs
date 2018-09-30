@@ -1,14 +1,8 @@
-﻿using System.Windows.Controls;
-using System.Xml;
-using Autodesk.Navisworks.Api;
-using TUM.CMS.VplControl.Nodes;
+﻿using Autodesk.Navisworks.Api;
 using Autodesk.Navisworks.Api.Clash;
-using TUM.CMS.VplControl.Core;
-using System.Windows.Data;
-using System.Linq;
-using System.Collections.Generic;
 using System;
-using System.Windows;
+using System.Collections.Generic;
+using TUM.CMS.VplControl.Core;
 
 namespace ENGyn.Nodes.Clash
 {
@@ -49,7 +43,7 @@ namespace ENGyn.Nodes.Clash
             Document doc = Autodesk.Navisworks.Api.Application.ActiveDocument;
             var clashes = doc.GetClash();
             var output = new List<object>();
-            if (input!= null)
+            if (input != null)
             {
 
 
@@ -81,7 +75,7 @@ namespace ENGyn.Nodes.Clash
             var input = InputPorts[0].Data;
             var RESULT = CompactClashTest(input);
             OutputPorts[0].Data = RESULT;
-           
+
 
         }
 
@@ -126,7 +120,7 @@ namespace ENGyn.Nodes.Clash
                 }
 
 
-               
+
             }
         }
 
@@ -170,7 +164,7 @@ namespace ENGyn.Nodes.Clash
                         {
                             var ClashFromReference = doc.ResolveReference(ct as SavedItemReference) as ClashTest;
                             var clashes = doc.GetClash();
-                            
+
                             clashes.TestsData.TestsCompactTest(ClashFromReference);
                             wait(1);
                             output.Add(ct);

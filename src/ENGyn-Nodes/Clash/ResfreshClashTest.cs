@@ -1,17 +1,8 @@
-﻿using System.Windows.Controls;
-using System.Xml;
-using Autodesk.Navisworks.Api;
-using TUM.CMS.VplControl.Nodes;
+﻿using Autodesk.Navisworks.Api;
 using Autodesk.Navisworks.Api.Clash;
-using TUM.CMS.VplControl.Core;
-using System.Windows.Data;
-
-using System.Collections.Generic;
 using System;
-using System.Windows;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Timers;
+using System.Collections.Generic;
+using TUM.CMS.VplControl.Core;
 
 namespace ENGyn.Nodes.Clash
 {
@@ -30,8 +21,8 @@ namespace ENGyn.Nodes.Clash
             var input = InputPorts[0].Data;
 
 
-           OutputPorts[0].Data = RefreshClashes(input);
-           
+            OutputPorts[0].Data = RefreshClashes(input);
+
         }
 
         private List<object> RefreshClashes(object input)
@@ -69,8 +60,8 @@ namespace ENGyn.Nodes.Clash
                 }
 
             }
-            
-            
+
+
 
             return output;
         }
