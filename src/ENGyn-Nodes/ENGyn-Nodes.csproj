@@ -23,7 +23,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Autodesk Navisworks Manage 2018|AnyCPU'">
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <PlatformTarget>AnyCPU</PlatformTarget>
-    <OutputPath>..\..\bin\2018\</OutputPath>
+    <OutputPath>..\..\bin\2018\Nodes\</OutputPath>
     <DebugType>full</DebugType>
     <DebugSymbols>true</DebugSymbols>
     <Prefer32Bit>false</Prefer32Bit>
@@ -158,7 +158,6 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-
     <Reference Include="NCalc, Version=1.3.8.0, Culture=neutral, PublicKeyToken=973cde3f1cafed03, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\..\..\Program Files\Autodesk\Navisworks Manage 2019\Dependencies\NCalc.dll</HintPath>
       <Private>False</Private>
