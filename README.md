@@ -16,11 +16,8 @@ Querying Clash Results
 * Navisworks Manage 2018
 
 ## Dependencies
-* Version for 2019 needs .Net 4.7 (Visual Studio 2017)
-* Navisworks handles reference dlls on a specific folder. Copy the content of the folder "resources" into  
-``` C:\Program Files\Autodesk\Navisworks Manage 2019\Dependencies ```
-* For Navisworks 2018, replace Navisworks dlls with the ones in :
-``` C:\Program Files\Autodesk\Navisworks Manage 2018\ ```
+Dependencies are loaded by configuration - 2019 uses NW 2019 dlls and net 4.7 as framework, 2018 uses NW 2018 and net 4.6.
+TUM dll need to be build in submodule to use it as reference.
 
 ## Installation
 Build the project and the Build events will copy the dlls to the right folder or copy them yourself to (replace 2019 with the version of Navisworks you have):
