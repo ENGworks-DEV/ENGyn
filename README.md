@@ -1,6 +1,6 @@
 # ENGyn
 
-![logo]:(tools/ENGyn-300x138.png)
+![logo]:(https://github.com/ENGworks-DEV/ENGyn/tree/master/tools/ENGyn-300x138.png)
 
 Graphical programing interface based on [TUM.CMS.VPLControl](https://github.com/tumcms/TUM.CMS.VPLControl) in progress
 
