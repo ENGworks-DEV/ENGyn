@@ -188,10 +188,6 @@
       <HintPath>..\packages\Navisworks-2018-2019-x64-API.1.0.1\lib\net46\navisworks.gui.interface.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="navisworks.roamer.plugin" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2018'">
-      <HintPath>..\packages\Navisworks-2018-2019-x64-API.1.0.1\lib\net46\navisworks.roamer.plugin.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="navisworks.gui.roamer" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2018'">
       <HintPath>..\packages\Navisworks-2018-2019-x64-API.1.0.1\lib\net46\navisworks.gui.roamer.dll</HintPath>
       <Private>False</Private>
@@ -349,6 +345,7 @@ xcopy /Y /e "$(OutDir)*.*" "%25APPDATA%25\$(ConfigurationName)\Plugins\$(TargetN
 
 
 
+ xcopy /Y "$(ProjectDir)ENGyn.xaml" "$(OutDir)\en-US\"
  xcopy /Y "$(ProjectDir)ENGyn.xaml" "%25APPDATA%25\$(ConfigurationName)\Plugins\$(TargetName)\en-US\"
 
 xcopy /Y "$(ProjectDir)Images\ENGyn.png" "%25APPDATA%25\$(ConfigurationName)\Plugins\$(TargetName)\Images\"</PostBuildEvent>
