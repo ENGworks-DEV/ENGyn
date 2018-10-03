@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using Autodesk.Navisworks.Api.Interop.ComApi;
 using Autodesk.Navisworks.Api.ComApi;
 using System;
+using System.Linq;
 
 namespace ENGyn.Nodes.Navisworks
 {
@@ -31,36 +32,61 @@ namespace ENGyn.Nodes.Navisworks
 
             //http://adndevblog.typepad.com/aec/2013/03/add-custom-properties-to-all-desired-model-items.html
 
+            var model = InputPorts[0].Data;
+            var category = InputPorts[1].Data ?? "";
+            var property = InputPorts[2].Data ?? "";
+            var value = InputPorts[3].Data;
 
-            if (InputPorts[0].Data is List<ModelItem>
-                && InputPorts[1].Data is string
-                && InputPorts[2].Data is string
-                && InputPorts[3].Data != null)
+            OutputPorts[0].Data = SetValuesToModelItems(model, category.ToString(), property.ToString(), value);
+        }
+
+
+
+        private IList<object> SetValuesToModelItems(object model, string category, string property, object value)
+        {
+            if (MainTools.IsList(model)
+                && category is string
+                && property is string
+                && value != null)
             {
 
-                var sel = InputPorts[0].Data;
+                var modelList = (System.Collections.IList)model;
                 List<object> modelItems = new List<object>();
 
 
-                var category = InputPorts[1].Data.ToString();
-                var property = InputPorts[2].Data.ToString();
-                var value = InputPorts[3].Data.ToString();
-
-
-
-
-                foreach (var s in sel as List<ModelItem>)
+                if (MainTools.IsList(value))
                 {
-                    SetValues(s, category, property, value);
-                    modelItems.Add(s);
+
+                    var valueList = (System.Collections.IList)value;
+
+
+                    if (modelList.Count == valueList.Count)
+                    {
+                        for (int i = 0; i < modelList.Count; i++)
+                        {
+                            var v = valueList[i].ToString();
+                          
+                            SetValues(modelList[i] as ModelItem, category, property, v);
+                            modelItems.Add(modelList[i] as ModelItem);
+
+
+                        }
+                    }
+
                 }
 
-                OutputPorts[0].Data = modelItems;
+
+
+
+                return modelItems;
+            }
+            else
+            {
+                return null;
             }
         }
 
 
-   
         public override Node Clone()
         {
             return new SetValueByCatProp(HostCanvas)
