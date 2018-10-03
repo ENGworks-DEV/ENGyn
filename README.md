@@ -1,15 +1,8 @@
 ![](https://github.com/ENGworks-DEV/ENGyn/blob/master/tools/ENGyn-300x138.png?raw=true)
-# ENGyn
 
 Graphical programing interface based on [TUM.CMS.VPLControl](https://github.com/tumcms/TUM.CMS.VPLControl) in progress
 
-Querying selected elements
-
-![](https://media.giphy.com/media/9JrzovA2JPoX95CBc8/giphy.gif)
-
-Querying Clash Results
-
-![](https://media.giphy.com/media/1fmx4BFwHO7Nez3PCm/200w_d.gif)
+[![](http://img.youtube.com/vi/zN5bTxGnX6E/0.jpg)](http://www.youtube.com/watch?v=zN5bTxGnX6E "ENGyn: Automate Group clashes")
 
 ## Navisworks tested versions
 
@@ -17,7 +10,7 @@ Querying Clash Results
 * Navisworks Manage 2018
 
 ## Dependencies
-Dependencies are loaded by configuration - 2019 uses NW 2019 dlls and net 4.7 as framework, 2018 uses NW 2018 and net 4.6.
+Dependencies are loaded by configuration - 2019 uses NW 2019 dlls and net 4.7 as framework, 2018 uses NW 2018 and net 4.6. 
 TUM dll need to be build in submodule to use it as reference.
 
 ## Installation
