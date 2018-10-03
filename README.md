@@ -2,7 +2,15 @@
 
 Graphical programing interface based on [TUM.CMS.VPLControl](https://github.com/tumcms/TUM.CMS.VPLControl) in progress
 
+## Examples
+ENGyn: Automate Group clashes
+
 [![](http://img.youtube.com/vi/zN5bTxGnX6E/0.jpg)](http://www.youtube.com/watch?v=zN5bTxGnX6E "ENGyn: Automate Group clashes")
+
+ENGyn: Apply appearance by profile
+
+[![](http://img.youtube.com/vi/Ar2xiYwzpCA/0.jpg)](http://www.youtube.com/watch?v=Ar2xiYwzpCA "ENGyn: Apply appearance by profile")
+
 
 ## Navisworks tested versions
 
