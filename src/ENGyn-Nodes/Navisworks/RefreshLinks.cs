@@ -14,19 +14,25 @@ namespace ENGyn.Nodes.Navisworks
             : base(hostCanvas)
         {
             AddInputPortToNode("NW_Document", typeof(Document));
+            AddOutputPortToNode("NW_Document", typeof(Document));
         }
 
         public override void Calculate()
         {
             if (InputPorts[0].Data != null && InputPorts[0].Data is Document)
             {
-                Document doc = InputPorts[0].Data as Document;
-                doc.UpdateFiles();
+                OutputPorts[0].Data= RefreshLink(InputPorts[0].Data);
             }
         }
 
+        private object RefreshLink(object input)
+        {
+            Document doc = input as Document;
+            doc.UpdateFiles();
+            return doc;
+        }
 
-    
+
         public override Node Clone()
         {
             return new RefreshLinks(HostCanvas)
