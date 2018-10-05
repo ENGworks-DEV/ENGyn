@@ -21,7 +21,7 @@ namespace ENGyn.XML
         [XmlAttribute(AttributeName = "color")]
         public string color { get; set; }
         [XmlAttribute(AttributeName = "transparency")]
-        public int transparency { get; set; }
+        public int transparency { get; set; } = -1;
     }
 
     [XmlRoot(ElementName = "viewfolder")]
@@ -36,7 +36,7 @@ namespace ENGyn.XML
         [XmlAttribute(AttributeName = "color")]
         public string color { get; set; }
         [XmlAttribute(AttributeName = "transparency")]
-        public int transparency { get; set; }
+        public int transparency { get; set; } = -1;
     }
 
     [XmlRoot(ElementName = "selectionsets")]
