@@ -93,6 +93,42 @@ namespace ENGyn.Nodes.Clash
         }
     }
 
+    public class GroupingOptions : Node
+    {
+        public GroupingOptions(VplControl hostCanvas)
+            : base(hostCanvas)
+        {
+            //AddControlToNode(new ComboBox { Items = { "Test1", "Test2", "Test3" } });
+
+
+        }
+
+
+        public override void Calculate()
+        {
+            var input = InputPorts[0].Data;
+            
+            OutputPorts[0].Data = null;
+
+        }
+
+  
+
+
+        public override Node Clone()
+        {
+            return new GroupingOptions(HostCanvas)
+            {
+                Top = Top,
+                Left = Left
+            };
+
+        }
+    }
+
+
+
+
     public class GroupByGridIntersection : Node
     {
         public GroupByGridIntersection(VplControl hostCanvas)
@@ -161,6 +197,10 @@ namespace ENGyn.Nodes.Clash
 
         }
     }
+
+
+
+
 
     public class GroupByLevel : Node
     {
@@ -237,12 +277,16 @@ namespace ENGyn.Nodes.Clash
     }
 
 
-    public class BIM42GroupByLevel : Node
+
+
+    public class BIM42Group : Node
     {
-        public BIM42GroupByLevel(VplControl hostCanvas)
+        public BIM42Group(VplControl hostCanvas)
             : base(hostCanvas)
         {
             AddInputPortToNode("ClashTest", typeof(object));
+            AddInputPortToNode("GroupingBy", typeof(object));
+            AddInputPortToNode("ThenGroupingBy", typeof(object));
             AddInputPortToNode("KeepExisting", typeof(object));
             AddOutputPortToNode("Output", typeof(object));
 
@@ -307,7 +351,7 @@ namespace ENGyn.Nodes.Clash
 
         public override Node Clone()
         {
-            return new BIM42GroupByLevel(HostCanvas)
+            return new BIM42Group(HostCanvas)
             {
                 Top = Top,
                 Left = Left

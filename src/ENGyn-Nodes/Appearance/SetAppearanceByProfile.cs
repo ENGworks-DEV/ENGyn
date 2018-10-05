@@ -232,7 +232,8 @@ namespace ENGyn.Nodes.Appearance
                 
                 if (transparency.ToString() != "-1")
                 {
-                    Autodesk.Navisworks.Api.Application.ActiveDocument.Models.OverridePermanentTransparency(modelItems, int.Parse(transparency.ToString()));
+                    Double t = int.Parse(transparency.ToString());
+                    Autodesk.Navisworks.Api.Application.ActiveDocument.Models.OverridePermanentTransparency(modelItems, t/100);
                 }
                
             }
