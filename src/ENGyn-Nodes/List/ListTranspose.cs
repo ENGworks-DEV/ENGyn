@@ -30,22 +30,25 @@ namespace ENGyn.Nodes.List
             {
                 if (MainTools.IsList(input))
                     {
-                   OutputPorts[0].Data=  Transpose((System.Collections.IList)input);
+                    var output = Transpose((System.Collections.IList)input); 
+                   OutputPorts[0].Data= output;
                 }
                 
 
             }
 
         }
+
+      
         public static IList Transpose(IList lists)
         {
-            if (lists.Count == 0 || !lists.Cast<object>().Any(x => x is IList))
+            if (lists.Count == 0 || !lists.Cast<dynamic>().Any(x => x is IList))
                 return lists;
 
             IEnumerable<IList> ilists = lists.Cast<IList>();
             int maxLength = ilists.Max(subList => subList.Count);
-            List<ArrayList> transposedList =
-                Enumerable.Range(0, maxLength).Select(i => new ArrayList()).ToList();
+            List<List<object>> transposedList =
+                Enumerable.Range(0, maxLength).Select(i => new List<object>()).ToList();
 
             foreach (IList sublist in ilists)
             {
@@ -55,7 +58,7 @@ namespace ENGyn.Nodes.List
                 }
             }
 
-            return transposedList;
+            return transposedList.ToList<object>();
         }
 
         public override Node Clone()
@@ -68,5 +71,19 @@ namespace ENGyn.Nodes.List
 
         }
     }
-
+    static class Extensions
+    {
+        /// <summary>
+        /// Convert ArrayList to List. https://www.dotnetperls.com/convert-arraylist-list
+        /// </summary>
+        public static List<T> ToList<T>(this IList arrayList)
+        {
+            List<T> list = new List<T>(arrayList.Count);
+            foreach (T instance in arrayList)
+            {
+                list.Add(instance);
+            }
+            return list;
+        }
+    }
 }
