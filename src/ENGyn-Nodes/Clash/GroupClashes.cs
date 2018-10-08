@@ -7,12 +7,14 @@ using System.Linq;
 using TUM.CMS.VplControl.Core;
 using Application = Autodesk.Navisworks.Api.Application;
 using GroupItem = Autodesk.Navisworks.Api.GroupItem;
+using System.Windows.Controls;
+
 
 namespace ENGyn.Nodes.Clash
 {
-    public class GroupByCluster : Node
+    public class ASDKGroupByCluster : Node
     {
-        public GroupByCluster(VplControl hostCanvas)
+        public ASDKGroupByCluster(VplControl hostCanvas)
             : base(hostCanvas)
         {
             AddInputPortToNode("ClashTest", typeof(object));
@@ -84,7 +86,7 @@ namespace ENGyn.Nodes.Clash
 
         public override Node Clone()
         {
-            return new GroupByCluster(HostCanvas)
+            return new ASDKGroupByCluster(HostCanvas)
             {
                 Top = Top,
                 Left = Left
@@ -93,9 +95,9 @@ namespace ENGyn.Nodes.Clash
         }
     }
 
-    public class GroupingOptions : Node
+    public class ASDKGroupingOptions : Node
     {
-        public GroupingOptions(VplControl hostCanvas)
+        public ASDKGroupingOptions(VplControl hostCanvas)
             : base(hostCanvas)
         {
             //AddControlToNode(new ComboBox { Items = { "Test1", "Test2", "Test3" } });
@@ -117,7 +119,7 @@ namespace ENGyn.Nodes.Clash
 
         public override Node Clone()
         {
-            return new GroupingOptions(HostCanvas)
+            return new ASDKGroupingOptions(HostCanvas)
             {
                 Top = Top,
                 Left = Left
@@ -126,12 +128,9 @@ namespace ENGyn.Nodes.Clash
         }
     }
 
-
-
-
-    public class GroupByGridIntersection : Node
+    public class ASDKGroupByGridIntersection : Node
     {
-        public GroupByGridIntersection(VplControl hostCanvas)
+        public ASDKGroupByGridIntersection(VplControl hostCanvas)
             : base(hostCanvas)
         {
             AddInputPortToNode("ClashTest", typeof(object));
@@ -189,7 +188,7 @@ namespace ENGyn.Nodes.Clash
 
         public override Node Clone()
         {
-            return new GroupByGridIntersection(HostCanvas)
+            return new ASDKGroupByGridIntersection(HostCanvas)
             {
                 Top = Top,
                 Left = Left
@@ -198,13 +197,9 @@ namespace ENGyn.Nodes.Clash
         }
     }
 
-
-
-
-
-    public class GroupByLevel : Node
+    public class ASDKGroupByLevel : Node
     {
-        public GroupByLevel(VplControl hostCanvas)
+        public ASDKGroupByLevel(VplControl hostCanvas)
             : base(hostCanvas)
         {
             AddInputPortToNode("ClashTest", typeof(object));
@@ -267,7 +262,7 @@ namespace ENGyn.Nodes.Clash
 
         public override Node Clone()
         {
-            return new GroupByLevel(HostCanvas)
+            return new ASDKGroupByLevel(HostCanvas)
             {
                 Top = Top,
                 Left = Left
@@ -276,94 +271,9 @@ namespace ENGyn.Nodes.Clash
         }
     }
 
-
-
-
-    public class BIM42Group : Node
+    public class ASDKGroupByModel : Node
     {
-        public BIM42Group(VplControl hostCanvas)
-            : base(hostCanvas)
-        {
-            AddInputPortToNode("ClashTest", typeof(object));
-            AddInputPortToNode("GroupingBy", typeof(object));
-            AddInputPortToNode("ThenGroupingBy", typeof(object));
-            AddInputPortToNode("KeepExisting", typeof(object));
-            AddOutputPortToNode("Output", typeof(object));
-
-        }
-
-
-
-        public override void Calculate()
-        {
-
-            var input = InputPorts[0].Data;
-            ProcessGrouping(input);
-
-        }
-
-        private void ProcessGrouping(object input)
-        {
-            bool keepExisting = bool.Parse(InputPorts[1].Data.ToString());
-            Document doc = Autodesk.Navisworks.Api.Application.ActiveDocument;
-            GroupingFunctions.NewListOfClashes = new List<SavedItemReference>();
-            if (input != null)
-            {
-                var type = input.GetType();
-                if (type == typeof(SavedItemReference))
-                {
-                    OutputPorts[0].Data = input;
-                    var item = input;
-                    if (item.GetType() == typeof(SavedItemReference))
-                    {
-                        var ClashFromReference = doc.ResolveReference(item as SavedItemReference) as ClashTest;
-                        GroupingFunctions.GroupClashes(ClashFromReference, GroupingMode.Level, GroupingMode.None, keepExisting);
-                        //var clashTest = BIM42ClashGroup.GetIndividualClashResults(ClashFromReference, keepExisting);
-
-                        //var Clashes = BIM42ClashGroup.GroupByLevel(clashTest.ToList(), "");
-                        //BIM42ClashGroup.ProcessClashGroup(Clashes, ClashFromReference as ClashTest);
-                    }
-                }
-                if (MainTools.IsList(input))
-                {
-                    OutputPorts[0].Data = input;
-                    foreach (var item in input as List<object>)
-                    {
-                        if (item.GetType() == typeof(SavedItemReference))
-                        {
-                            var ClashFromReference = doc.ResolveReference(item as SavedItemReference) as ClashTest;
-                            GroupingFunctions.GroupClashes(ClashFromReference, GroupingMode.Level, GroupingMode.None, keepExisting);
-                            //var clashTest = BIM42ClashGroup.GetIndividualClashResults(ClashFromReference, keepExisting);
-
-                            //var Clashes = BIM42ClashGroup.GroupByLevel(clashTest.ToList(), "");
-                            //BIM42ClashGroup.ProcessClashGroup(Clashes, ClashFromReference as ClashTest);
-                        }
-
-
-                    }
-
-                }
-
-            }
-        }
-
-
-
-        public override Node Clone()
-        {
-            return new BIM42Group(HostCanvas)
-            {
-                Top = Top,
-                Left = Left
-            };
-
-        }
-    }
-
-
-    public class GroupByModel : Node
-    {
-        public GroupByModel(VplControl hostCanvas)
+        public ASDKGroupByModel(VplControl hostCanvas)
             : base(hostCanvas)
         {
             AddInputPortToNode("ClashTest", typeof(object));
@@ -426,7 +336,136 @@ namespace ENGyn.Nodes.Clash
 
         public override Node Clone()
         {
-            return new GroupByModel(HostCanvas)
+            return new ASDKGroupByModel(HostCanvas)
+            {
+                Top = Top,
+                Left = Left
+            };
+
+        }
+    }
+
+    public class BIM42Group : Node
+    {
+        public BIM42Group(VplControl hostCanvas)
+            : base(hostCanvas)
+        {
+            AddInputPortToNode("ClashTest", typeof(object));
+            
+            //AddInputPortToNode("Allow Subgrouping", typeof(object));
+            //AddInputPortToNode("KeepExisting", typeof(object));
+            AddOutputPortToNode("Output", typeof(object));
+
+
+            StackPanel stackPanel = new StackPanel();
+
+            //Grouping Mode
+                      
+            stackPanel.Children.Add(new Label() { Content = "Grouping Mode", Foreground = System.Windows.Media.Brushes.White , VerticalContentAlignment = System.Windows.VerticalAlignment.Bottom});
+            ComboBox GroupingComboBox = new ComboBox() { ItemsSource = Enum.GetValues(typeof(GroupingMode)) };
+            stackPanel.Children.Add(GroupingComboBox);
+
+            //KeepExisting
+            stackPanel.Children.Add(new Label() { Content = "KeepExisting", Foreground = System.Windows.Media.Brushes.White, VerticalContentAlignment = System.Windows.VerticalAlignment.Bottom });
+            ComboBox KeepExistingComboBox2 = new ComboBox() { Items = {true, false } };
+            stackPanel.Children.Add(KeepExistingComboBox2);
+
+            //Allow Subgrouping
+            stackPanel.Children.Add(new Label() { Content = "Subgrouping", Foreground = System.Windows.Media.Brushes.White, VerticalContentAlignment = System.Windows.VerticalAlignment.Bottom });
+            ComboBox SubgroupingComboBox3 = new ComboBox() { ItemsSource = Enum.GetValues(typeof(GroupingMode))};
+            
+            stackPanel.Children.Add(SubgroupingComboBox3);
+
+
+            AddControlToNode(stackPanel);
+
+            
+        }
+
+
+
+        public override void Calculate()
+        {
+
+            var input = InputPorts[0].Data;
+            ProcessGrouping(input);
+
+        }
+
+        private void ProcessGrouping(object input)
+        {
+            var stack =  ControlElements[0] as StackPanel;
+
+            //Basic grouping
+            var GroupingComboBox =  stack.Children[1] as ComboBox;
+            var grouping =   GroupingMode.Level;
+            if (GroupingComboBox.SelectedItem != null && GroupingComboBox.SelectedItem.GetType() == typeof(GroupingMode))
+            {
+                var index = GroupingComboBox.SelectedIndex;
+                grouping = (GroupingMode)index;
+            }
+
+            //Keep Existing
+            var KeepExistingComboBox2 = stack.Children[3] as ComboBox;
+            bool keepExisting = true;
+            if (KeepExistingComboBox2.SelectedItem != null)
+            {
+
+                keepExisting = bool.Parse(KeepExistingComboBox2.SelectedItem.ToString()) ;
+            }
+
+
+            //Allow subgrouping
+            var AllowSubgroupingComboBox = stack.Children[5] as ComboBox;
+            var Subgrouping =  GroupingMode.None;
+            if (AllowSubgroupingComboBox.SelectedItem != null && AllowSubgroupingComboBox.SelectedItem.GetType() == typeof(GroupingMode))
+            {
+                var index =  AllowSubgroupingComboBox.SelectedIndex;
+                Subgrouping = (GroupingMode)index;
+            }
+            
+
+            Document doc = Autodesk.Navisworks.Api.Application.ActiveDocument;
+
+            GroupingFunctions.NewListOfClashes = new List<SavedItemReference>();
+            if (input != null)
+            {
+                var type = input.GetType();
+                if (type == typeof(SavedItemReference))
+                {
+                    OutputPorts[0].Data = input;
+                    var item = input;
+                    if (item.GetType() == typeof(SavedItemReference))
+                    {
+                        var ClashFromReference = doc.ResolveReference(item as SavedItemReference) as ClashTest;
+                        GroupingFunctions.GroupClashes(ClashFromReference, grouping, Subgrouping, keepExisting);
+
+                    }
+                }
+                if (MainTools.IsList(input))
+                {
+                    OutputPorts[0].Data = input;
+                    foreach (var item in input as List<object>)
+                    {
+                        if (item.GetType() == typeof(SavedItemReference))
+                        {
+                            var ClashFromReference = doc.ResolveReference(item as SavedItemReference) as ClashTest;
+                            GroupingFunctions.GroupClashes(ClashFromReference, grouping, Subgrouping, keepExisting);
+
+                        }
+
+                    }
+
+                }
+
+            }
+        }
+
+
+
+        public override Node Clone()
+        {
+            return new BIM42Group(HostCanvas)
             {
                 Top = Top,
                 Left = Left
@@ -436,29 +475,11 @@ namespace ENGyn.Nodes.Clash
     }
 
 
-    //------------------------------------------------------------------
-    // NavisWorks Sample code
-    //------------------------------------------------------------------
-
-    // (C) Copyright 2013 by Autodesk Inc.
-
-    // Permission to use, copy, modify, and distribute this software in
-    // object code form for any purpose and without fee is hereby granted,
-    // provided that the above copyright notice appears in all copies and
-    // that both that copyright notice and the limited warranty and
-    // restricted rights notice below appear in all supporting
-    // documentation.
-
-    // AUTODESK PROVIDES THIS PROGRAM "AS IS" AND WITH ALL FAULTS.
-    // AUTODESK SPECIFICALLY DISCLAIMS ANY IMPLIED WARRANTY OF
-    // MERCHANTABILITY OR FITNESS FOR A PARTICULAR USE.  AUTODESK
-    // DOES NOT WARRANT THAT THE OPERATION OF THE PROGRAM WILL BE
-    // UNINTERRUPTED OR ERROR FREE.
-    //------------------------------------------------------------------
 
     class GroupingFunctions
     {
         public static List<SavedItemReference> NewListOfClashes { get; set; }
+
 
         public static void GroupClashes(ClashTest selectedClashTest, GroupingMode groupingMode, GroupingMode subgroupingMode, bool keepExistingGroups)
         {
@@ -468,6 +489,31 @@ namespace ENGyn.Nodes.Clash
 
             //Create groups according to the first grouping mode
             CreateGroup(ref clashResultGroups, groupingMode, clashResults, "");
+
+            //Optionnaly, create subgroups
+            if (subgroupingMode != GroupingMode.None)
+            {
+                CreateSubGroups(ref clashResultGroups, subgroupingMode);
+            }
+
+            //Remove groups with only one clash
+            List<ClashResult> ungroupedClashResults = RemoveOneClashGroup(ref clashResultGroups);
+
+            //Backup the existing group, if necessary
+            if (keepExistingGroups) clashResultGroups.AddRange(BackupExistingClashGroups(selectedClashTest));
+
+            //Process these groups and clashes into the clash test
+            ProcessClashGroup(clashResultGroups, ungroupedClashResults, selectedClashTest);
+        }
+
+        public static void GroupClashes(ClashTest selectedClashTest,  GroupingMode subgroupingMode, bool keepExistingGroups)
+        {
+            //Get existing clash result
+            List<ClashResult> clashResults = GetIndividualClashResults(selectedClashTest, keepExistingGroups).ToList();
+            List<ClashResultGroup> clashResultGroups = new List<ClashResultGroup>();
+
+            //Create groups according to the first grouping mode
+            //CreateGroup(ref clashResultGroups, groupingMode, clashResults, "");
 
             //Optionnaly, create subgroups
             if (subgroupingMode != GroupingMode.None)
@@ -875,6 +921,7 @@ namespace ENGyn.Nodes.Clash
 
     public enum GroupingMode
     {
+
         [Description("<None>")]
         None,
         [Description("Level")]
@@ -893,121 +940,25 @@ namespace ENGyn.Nodes.Clash
         Status
     }
 
-    //static class BIM42ClashGroup
-    //{
-    //    public static void ProcessClashGroup(List<ClashResultGroup> clashGroups, ClashTest selectedClashTest)
-    //    {
-    //        using (Transaction tx = Application.MainDocument.BeginTransaction("Group clashes"))
-    //        {
-    //            ClashTest copiedClashTest = (ClashTest)selectedClashTest.CreateCopyWithoutChildren();
-    //            //When we replace theTest with our new test, theTest will be disposed. If the operation is cancelled, we need a non-disposed copy of theTest with children to sub back in.
-    //            ClashTest BackupTest = (ClashTest)selectedClashTest.CreateCopy();
-    //            DocumentClash documentClash = Application.MainDocument.GetClash();
-    //            int indexOfClashTest = documentClash.TestsData.Tests.IndexOf(selectedClashTest);
-    //            documentClash.TestsData.TestsReplaceWithCopy(indexOfClashTest, copiedClashTest);
+    //------------------------------------------------------------------
+    // NavisWorks Sample code
+    //------------------------------------------------------------------
 
-    //            int CurrentProgress = 0;
-    //            //int TotalProgress = ungroupedClashResults.Count + clashGroups.Count;
-    //            int TotalProgress =  clashGroups.Count;
-    //            Progress ProgressBar = Application.BeginProgress("Copying Results", "Copying results from " + selectedClashTest.DisplayName + " to the Group Clashes pane...");
-    //            foreach (ClashResultGroup clashResultGroup in clashGroups)
-    //            {
-    //                if (ProgressBar.IsCanceled) break;
-    //                documentClash.TestsData.TestsAddCopy((GroupItem)documentClash.TestsData.Tests[indexOfClashTest], clashResultGroup);
-    //                CurrentProgress++;
-    //                ProgressBar.Update((double)CurrentProgress / TotalProgress);
-    //            }
-    //            //foreach (ClashResult clashResult in ungroupedClashResults)
-    //            //{
-    //            //    if (ProgressBar.IsCanceled) break;
-    //            //    documentClash.TestsData.TestsAddCopy((GroupItem)documentClash.TestsData.Tests[indexOfClashTest], clashResult);
-    //            //    CurrentProgress++;
-    //            //    ProgressBar.Update((double)CurrentProgress / TotalProgress);
-    //            //}
-    //            if (ProgressBar.IsCanceled) documentClash.TestsData.TestsReplaceWithCopy(indexOfClashTest, BackupTest);
-    //            tx.Commit();
-    //            Application.EndProgress();
-    //        }
-    //    }
+    // (C) Copyright 2013 by Autodesk Inc.
 
+    // Permission to use, copy, modify, and distribute this software in
+    // object code form for any purpose and without fee is hereby granted,
+    // provided that the above copyright notice appears in all copies and
+    // that both that copyright notice and the limited warranty and
+    // restricted rights notice below appear in all supporting
+    // documentation.
 
-
-    //        public static IEnumerable<ClashResult> GetGroupResults(ClashResultGroup clashResultGroup)
-    //    {
-    //        for (var i = 0; i < clashResultGroup.Children.Count; i++)
-    //        {
-    //            yield return (ClashResult)clashResultGroup.Children[i];
-    //        }
-    //    }
-
-    //    public static IEnumerable<ClashResult> GetIndividualClashResults(ClashTest clashTest, bool keepExistingGroup)
-    //    {
-    //        for (var i = 0; i < clashTest.Children.Count; i++)
-    //        {
-    //            if (clashTest.Children[i].IsGroup)
-    //            {
-    //                if (!keepExistingGroup)
-    //                {
-    //                    IEnumerable<ClashResult> GroupResults = GetGroupResults((ClashResultGroup)clashTest.Children[i]);
-    //                    foreach (ClashResult clashResult in GroupResults)
-    //                    {
-    //                        yield return clashResult;
-    //                    }
-    //                }
-    //            }
-    //            else yield return (ClashResult)clashTest.Children[i];
-    //        }
-    //    }
-
-
-    //    public static List<ClashResultGroup> GroupByLevel(List<ClashResult> results, string initialName)
-    //    {
-    //        //I already checked if it exists
-    //        GridSystem gridSystem = Application.MainDocument.Grids.ActiveSystem;
-    //        Dictionary<GridLevel, ClashResultGroup> groups = new Dictionary<GridLevel, ClashResultGroup>();
-    //        ClashResultGroup currentGroup;
-
-    //        //Create a group for the null GridIntersection
-    //        ClashResultGroup nullGridGroup = new ClashResultGroup();
-    //        nullGridGroup.DisplayName = initialName + "No Level";
-
-    //        foreach (ClashResult result in results)
-    //        {
-    //            //Cannot add original result to new clash test, so I create a copy
-    //            ClashResult copiedResult = (ClashResult)result.CreateCopy();
-
-    //            if (gridSystem.ClosestIntersection(copiedResult.Center) != null)
-    //            {
-    //                GridLevel closestLevel = gridSystem.ClosestIntersection(copiedResult.Center).Level;
-
-    //                if (!groups.TryGetValue(closestLevel, out currentGroup))
-    //                {
-    //                    currentGroup = new ClashResultGroup();
-    //                    string displayName = closestLevel.DisplayName;
-    //                    if (string.IsNullOrEmpty(displayName)) { displayName = "Unnamed Level"; }
-    //                    currentGroup.DisplayName = initialName + displayName;
-    //                    groups.Add(closestLevel, currentGroup);
-    //                }
-    //                currentGroup.Children.Add(copiedResult);
-    //            }
-    //            else
-    //            {
-    //                nullGridGroup.Children.Add(copiedResult);
-    //            }
-    //        }
-
-    //        IOrderedEnumerable<KeyValuePair<GridLevel, ClashResultGroup>> list = groups.OrderBy(key => key.Key.Elevation);
-    //        groups = list.ToDictionary((keyItem) => keyItem.Key, (valueItem) => valueItem.Value);
-
-    //        List<ClashResultGroup> groupsByLevel = groups.Values.ToList();
-    //        if (nullGridGroup.Children.Count != 0) groupsByLevel.Add(nullGridGroup);
-
-    //        return groupsByLevel;
-    //    }
-
-
-    //}
-
+    // AUTODESK PROVIDES THIS PROGRAM "AS IS" AND WITH ALL FAULTS.
+    // AUTODESK SPECIFICALLY DISCLAIMS ANY IMPLIED WARRANTY OF
+    // MERCHANTABILITY OR FITNESS FOR A PARTICULAR USE.  AUTODESK
+    // DOES NOT WARRANT THAT THE OPERATION OF THE PROGRAM WILL BE
+    // UNINTERRUPTED OR ERROR FREE.
+    //------------------------------------------------------------------
 
     static class ClashGrouperUtils
     {
