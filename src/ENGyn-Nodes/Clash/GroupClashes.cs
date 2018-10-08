@@ -7,6 +7,8 @@ using System.Linq;
 using TUM.CMS.VplControl.Core;
 using Application = Autodesk.Navisworks.Api.Application;
 using GroupItem = Autodesk.Navisworks.Api.GroupItem;
+using System.Windows.Controls;
+
 
 namespace ENGyn.Nodes.Clash
 {
@@ -285,11 +287,35 @@ namespace ENGyn.Nodes.Clash
             : base(hostCanvas)
         {
             AddInputPortToNode("ClashTest", typeof(object));
-            AddInputPortToNode("GroupingBy", typeof(object));
-            AddInputPortToNode("ThenGroupingBy", typeof(object));
-            AddInputPortToNode("KeepExisting", typeof(object));
+            
+            //AddInputPortToNode("Allow Subgrouping", typeof(object));
+            //AddInputPortToNode("KeepExisting", typeof(object));
             AddOutputPortToNode("Output", typeof(object));
 
+
+            StackPanel stackPanel = new StackPanel();
+
+            //Grouping Mode
+                      
+            stackPanel.Children.Add(new Label() { Content = "Grouping Mode", Foreground = System.Windows.Media.Brushes.White , VerticalContentAlignment = System.Windows.VerticalAlignment.Bottom});
+            ComboBox GroupingComboBox = new ComboBox() { ItemsSource = Enum.GetValues(typeof(GroupingMode)) };
+            stackPanel.Children.Add(GroupingComboBox);
+
+            //KeepExisting
+            stackPanel.Children.Add(new Label() { Content = "KeepExisting", Foreground = System.Windows.Media.Brushes.White, VerticalContentAlignment = System.Windows.VerticalAlignment.Bottom });
+            ComboBox KeepExistingComboBox2 = new ComboBox() { Items = {true, false } };
+            stackPanel.Children.Add(KeepExistingComboBox2);
+
+            //Allow Subgrouping
+            stackPanel.Children.Add(new Label() { Content = "Subgrouping", Foreground = System.Windows.Media.Brushes.White, VerticalContentAlignment = System.Windows.VerticalAlignment.Bottom });
+            ComboBox SubgroupingComboBox3 = new ComboBox() { ItemsSource = Enum.GetValues(typeof(GroupingMode))};
+            
+            stackPanel.Children.Add(SubgroupingComboBox3);
+
+
+            AddControlToNode(stackPanel);
+
+            
         }
 
 
@@ -304,7 +330,36 @@ namespace ENGyn.Nodes.Clash
 
         private void ProcessGrouping(object input)
         {
-            bool keepExisting = bool.Parse(InputPorts[1].Data.ToString());
+            var stack =  ControlElements[0] as StackPanel;
+            var GroupingComboBox =  stack.Children[1] as ComboBox;
+            var grouping =   GroupingMode.Level;
+
+            if (GroupingComboBox.SelectedItem != null && GroupingComboBox.SelectedItem.GetType() == typeof(GroupingMode))
+            {
+                var index = GroupingComboBox.SelectedIndex;
+                grouping = (GroupingMode)index;
+            }
+
+
+            var KeepExistingComboBox2 = stack.Children[3] as ComboBox;
+            bool keepExisting = true;
+            if (KeepExistingComboBox2.SelectedItem != null)
+            {
+
+                keepExisting = bool.Parse(KeepExistingComboBox2.SelectedItem.ToString()) ;
+            }
+
+            var AllowSubgroupingComboBox = stack.Children[5] as ComboBox;
+
+            var Subgrouping =  GroupingMode.None;
+
+            if (AllowSubgroupingComboBox.SelectedItem != null && AllowSubgroupingComboBox.SelectedItem.GetType() == typeof(GroupingMode))
+            {
+                var index =  AllowSubgroupingComboBox.SelectedIndex;
+                Subgrouping = (GroupingMode)index;
+            }
+            
+
             Document doc = Autodesk.Navisworks.Api.Application.ActiveDocument;
             GroupingFunctions.NewListOfClashes = new List<SavedItemReference>();
             if (input != null)
@@ -317,11 +372,8 @@ namespace ENGyn.Nodes.Clash
                     if (item.GetType() == typeof(SavedItemReference))
                     {
                         var ClashFromReference = doc.ResolveReference(item as SavedItemReference) as ClashTest;
-                        GroupingFunctions.GroupClashes(ClashFromReference, GroupingMode.Level, GroupingMode.None, keepExisting);
-                        //var clashTest = BIM42ClashGroup.GetIndividualClashResults(ClashFromReference, keepExisting);
+                        GroupingFunctions.GroupClashes(ClashFromReference, grouping, Subgrouping, keepExisting);
 
-                        //var Clashes = BIM42ClashGroup.GroupByLevel(clashTest.ToList(), "");
-                        //BIM42ClashGroup.ProcessClashGroup(Clashes, ClashFromReference as ClashTest);
                     }
                 }
                 if (MainTools.IsList(input))
@@ -332,11 +384,8 @@ namespace ENGyn.Nodes.Clash
                         if (item.GetType() == typeof(SavedItemReference))
                         {
                             var ClashFromReference = doc.ResolveReference(item as SavedItemReference) as ClashTest;
-                            GroupingFunctions.GroupClashes(ClashFromReference, GroupingMode.Level, GroupingMode.None, keepExisting);
-                            //var clashTest = BIM42ClashGroup.GetIndividualClashResults(ClashFromReference, keepExisting);
+                            GroupingFunctions.GroupClashes(ClashFromReference, grouping, Subgrouping, keepExisting);
 
-                            //var Clashes = BIM42ClashGroup.GroupByLevel(clashTest.ToList(), "");
-                            //BIM42ClashGroup.ProcessClashGroup(Clashes, ClashFromReference as ClashTest);
                         }
 
 
@@ -460,6 +509,7 @@ namespace ENGyn.Nodes.Clash
     {
         public static List<SavedItemReference> NewListOfClashes { get; set; }
 
+
         public static void GroupClashes(ClashTest selectedClashTest, GroupingMode groupingMode, GroupingMode subgroupingMode, bool keepExistingGroups)
         {
             //Get existing clash result
@@ -468,6 +518,31 @@ namespace ENGyn.Nodes.Clash
 
             //Create groups according to the first grouping mode
             CreateGroup(ref clashResultGroups, groupingMode, clashResults, "");
+
+            //Optionnaly, create subgroups
+            if (subgroupingMode != GroupingMode.None)
+            {
+                CreateSubGroups(ref clashResultGroups, subgroupingMode);
+            }
+
+            //Remove groups with only one clash
+            List<ClashResult> ungroupedClashResults = RemoveOneClashGroup(ref clashResultGroups);
+
+            //Backup the existing group, if necessary
+            if (keepExistingGroups) clashResultGroups.AddRange(BackupExistingClashGroups(selectedClashTest));
+
+            //Process these groups and clashes into the clash test
+            ProcessClashGroup(clashResultGroups, ungroupedClashResults, selectedClashTest);
+        }
+
+        public static void GroupClashes(ClashTest selectedClashTest,  GroupingMode subgroupingMode, bool keepExistingGroups)
+        {
+            //Get existing clash result
+            List<ClashResult> clashResults = GetIndividualClashResults(selectedClashTest, keepExistingGroups).ToList();
+            List<ClashResultGroup> clashResultGroups = new List<ClashResultGroup>();
+
+            //Create groups according to the first grouping mode
+            //CreateGroup(ref clashResultGroups, groupingMode, clashResults, "");
 
             //Optionnaly, create subgroups
             if (subgroupingMode != GroupingMode.None)
@@ -875,6 +950,7 @@ namespace ENGyn.Nodes.Clash
 
     public enum GroupingMode
     {
+
         [Description("<None>")]
         None,
         [Description("Level")]
