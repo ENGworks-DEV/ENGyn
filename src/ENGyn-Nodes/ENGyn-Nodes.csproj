@@ -191,7 +191,7 @@
     <Compile Include="Excel files\FileWorksheets.cs" />
     <Compile Include="Excel files\ReadFromFile.cs" />
     <Compile Include="Excel files\WriteToFile.cs" />
-    <Compile Include="Input\ExportCSV.cs" />
+    <Compile Include="Input\CSV.cs" />
     <Compile Include="List\ListFlatten.cs" />
     <Compile Include="Navisworks\SaveNWFile.cs" />
     <Compile Include="String\StringToLower.cs" />
@@ -228,6 +228,7 @@
     <Compile Include="Appearance\SetAppearanceByProfile.cs" />
     <Compile Include="Appearance\SetAppearanceBySelection.cs" />
     <Compile Include="Navisworks\SetValueByCatProp.cs" />
+    <Compile Include="Input\SaveFile.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

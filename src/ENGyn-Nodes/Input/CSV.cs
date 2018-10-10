@@ -56,7 +56,7 @@ namespace ENGyn.Nodes
                     if (MainTools.IsList(line))
                     {
                         var t = line.GetType();
-                        var l = (System.Collections.ArrayList)line ;
+                        var l = (System.Collections.IList)line ;
                         foreach (var entry in l)
                         {
                            
@@ -91,5 +91,64 @@ namespace ENGyn.Nodes
 
         }
     }
-    
+
+    public class ReadCSV : Node
+    {
+        public ReadCSV(VplControl hostCanvas)
+            : base(hostCanvas)
+        {
+            AddInputPortToNode("Path", typeof(object));
+            AddOutputPortToNode("Output", typeof(object));
+
+
+
+            AddControlToNode(new Label() { Content = "Title", FontSize = 13, FontWeight = FontWeights.Bold });
+
+
+        }
+
+
+        public override void Calculate()
+        {
+            var path = InputPorts[0].Data;
+            if ( path != null)
+            {
+
+                   OutputPorts[0].Data =  ReadCSVFile(path.ToString());
+
+            }
+
+        }
+
+
+        public static object ReadCSVFile(string filePath)
+        {
+            using (var reader = new StreamReader(System.IO.Path.GetFullPath(filePath)))
+            {
+                var output = new List<List<string>>();
+
+                while (!reader.EndOfStream)
+                {
+                    List<string> temp = new List<string>();
+                    temp.AddRange(reader.ReadLine().Split(','));
+                    output.Add(temp);
+                }
+
+
+                return output;
+            }
+        }
+
+
+        public override Node Clone()
+        {
+            return new ReadCSV(HostCanvas)
+            {
+                Top = Top,
+                Left = Left
+            };
+
+        }
+    }
+
 }

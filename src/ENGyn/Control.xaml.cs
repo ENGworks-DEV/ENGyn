@@ -143,6 +143,7 @@ namespace ENGyn
         private void NewCommand(object sender, RoutedEventArgs e)
         {
             VplControl.NewFile();
+         
         }
 
         private void OpenCommand(object sender, RoutedEventArgs e)
