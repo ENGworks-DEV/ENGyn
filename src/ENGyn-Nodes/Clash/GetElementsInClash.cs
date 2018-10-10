@@ -10,7 +10,7 @@ namespace ENGyn.Nodes.Clash
         public GetElementsInClash(VplControl hostCanvas)
             : base(hostCanvas)
         {
-            AddInputPortToNode("ClashTest", typeof(object));
+            AddInputPortToNode("ClashResults", typeof(object));
             AddOutputPortToNode("SelectionA", typeof(object));
             AddOutputPortToNode("SelectionB", typeof(object));
 
