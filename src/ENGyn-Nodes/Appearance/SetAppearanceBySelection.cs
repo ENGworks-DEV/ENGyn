@@ -7,7 +7,7 @@ using TUM.CMS.VplControl.Core;
 using System.Windows.Data;
 using System.Collections.Generic;
 using media = System.Windows.Media;
-
+using System.Linq;
 using System.Reflection;
 using System;
 using System.Windows;
@@ -39,7 +39,7 @@ namespace ENGyn.Nodes.Appearance
                 var tt = input.GetType();
                 bool istype = input.GetType() == typeof(SelectionSet);
                 
-                if (MainTools.IsList(input) || istype)
+                if (MainTools.IsList(input) && istype)
                     {
 
                     //IList<SelectionSet> searchs = (IList<SelectionSet>)InputPorts[0].Data;
@@ -61,7 +61,8 @@ namespace ENGyn.Nodes.Appearance
 
                 if (MainTools.IsList(input) && MainTools.ListContainsType(input,typeof(ModelItem)) || input is ModelItem )
                 {
-                    List<ModelItem> searchs = (List<ModelItem>)InputPorts[0].Data;
+                    
+                    List<ModelItem> searchs = ((List<object>)InputPorts[0].Data).Cast<ModelItem>().ToList();
 
                     media.Color color = (media.Color)InputPorts[1].Data;
 
@@ -72,7 +73,7 @@ namespace ENGyn.Nodes.Appearance
 
                     ApplyAppearance(searchs, TransformColor(color), transparency);
 
-                    OutputPorts[0].Data = (List<ModelItem>)InputPorts[0].Data;
+                    OutputPorts[0].Data = InputPorts[0].Data;
                 }
             }
 

@@ -61,8 +61,11 @@ namespace ENGyn.Nodes
         /// <param name="type"></param>
         /// <returns></returns>
         public static bool ListContainsType(object obj, Type type)
+
         {
-            return obj.GetType().IsAssignableFrom(type);
+            bool output = ((System.Collections.IList)obj)[0].GetType() == type;
+            
+            return output;
         }
 
         public static int Count<TSource>(this IEnumerable<TSource> source)
