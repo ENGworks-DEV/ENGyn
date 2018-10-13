@@ -172,11 +172,14 @@ namespace ENGyn
                 if (item.Name == button.Content.ToString())
                 {
                     var node = (Node)Activator.CreateInstance(item, this.VplControl);
+                    //Transform center of UI to point inside VPLControl
+                    var CenterOfUI = new Point(SizedParent.ActualHeight / 2, SizedParent.ActualHeight / 2);
+                    var relative = SizedParent.TranslatePoint(CenterOfUI, this.VplControl);
+                    //Get matrix transformation
+                    var translation = VplControl.TranslateTransform;
 
-
-                    
-                    node.Left = this.ActualWidth/2;
-                    node.Top = this.ActualHeight / 2;
+                    node.Left = relative.X - translation.X;
+                    node.Top = relative.Y - translation.Y;
 
                     node.Show();
                 }

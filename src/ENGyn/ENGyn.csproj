@@ -54,6 +54,8 @@
     <OutputPath>..\..\bin\2018\</OutputPath>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <Prefer32Bit>false</Prefer32Bit>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Autodesk Navisworks Manage 2019|x64'">
     <DebugSymbols>true</DebugSymbols>
