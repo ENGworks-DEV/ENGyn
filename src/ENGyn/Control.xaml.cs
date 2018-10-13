@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 using TUM.CMS.VplControl.Core;
 using TUM.CMS.VplControl.Utilities;
 
@@ -25,6 +26,9 @@ namespace ENGyn
             KeyDown += VplControl.VplControl_KeyDown;
             KeyUp += VplControl.VplControl_KeyUp;
 
+            this.MouseWheel += Canvas_MouseWheel;
+
+            this.VplControl.SizableParent = SizedParent;
 
             #region Load DLLs as Nodes
             Nodes = new List<Type>();
@@ -295,6 +299,30 @@ namespace ENGyn
             return outpt as IEnumerable<Node>;
         }
 
+        private double actualzoom { get; set; } = 1;
+        private void Canvas_MouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            //Performing Matrix scale
+            var element = sender as UIElement;
+
+            var transform = VplControl.RenderTransform as MatrixTransform;
+            var matrix = transform.Matrix;
+            var scale = e.Delta >= 0 ? 1.1 : (1.0 / 1.1);
+            var position = e.GetPosition(Vbox);
+
+            {
+                //Limit scale to 1.2 - 0.5
+                scale = ((actualzoom > 0.5 || scale == 1.1) && (actualzoom < 1.2 || scale < 1)) ? scale : 1;
+                matrix.ScaleAt(scale, scale, position.X, position.Y);
+                transform.Matrix = matrix;
+
+                actualzoom *= scale;
+
+            }
+
+            VplControl.UpdateLayout();
+
+        }
 
 
 
