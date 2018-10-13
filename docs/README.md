@@ -32,9 +32,9 @@ ENGyn is an open-source project and would be nothing without its community. You 
 
 ### Commits:
 
-***Name:*** should follow this schema (ENGyn)(-)(\d{2,})( )(chore|feat|docs|fix|refactor|style|test|sonar|hack|release)(:)( )(.{0,80})
+***Name:*** should follow this schema (ENGyn)(-)(chore|feat|docs|fix|refactor|style|test|sonar|hack|release)(:)( )(.{0,80})
 
 e.g:
-```ENGyn-1013 fix: ZoomOut command method fixed to include new matrix zoom.```
+```ENGyn-fix: ZoomOut command method fixed to include new matrix zoom.```
 
 ***Changes:*** Should be as atomic as posible remaining transactional.
