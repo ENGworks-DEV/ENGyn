@@ -315,7 +315,7 @@ namespace ENGyn
 
             {
                 //Limit scale to 1.2 - 0.5
-                scale = ((actualzoom > 0.5 || scale == 1.1) && (actualzoom < 1.2 || scale < 1)) ? scale : 1;
+                //scale = ((actualzoom > 0.5 || scale == 1.1) && (actualzoom < 1.2 || scale < 1)) ? scale : 1;
                 matrix.ScaleAt(scale, scale, position.X, position.Y);
                 transform.Matrix = matrix;
 
