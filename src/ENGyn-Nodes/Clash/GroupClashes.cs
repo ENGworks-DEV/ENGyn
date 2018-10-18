@@ -8,7 +8,7 @@ using TUM.CMS.VplControl.Core;
 using Application = Autodesk.Navisworks.Api.Application;
 using GroupItem = Autodesk.Navisworks.Api.GroupItem;
 using System.Windows.Controls;
-
+using System.Xml;
 
 namespace ENGyn.Nodes.Clash
 {
@@ -471,6 +471,80 @@ namespace ENGyn.Nodes.Clash
                 Left = Left
             };
 
+        }
+
+
+        public override void SerializeNetwork(XmlWriter xmlWriter)
+        {
+            base.SerializeNetwork(xmlWriter);
+
+            var stack = ControlElements[0] as StackPanel;
+
+            var GroupingComboBox = stack.Children[1] as ComboBox;
+            if (GroupingComboBox != null)
+            {
+                xmlWriter.WriteStartAttribute("SelectedIndex-GroupingComboBox");
+                xmlWriter.WriteValue(GroupingComboBox.SelectedIndex);
+                xmlWriter.WriteEndAttribute();
+
+            }
+
+
+            var KeepExistingComboBox2 = stack.Children[3] as ComboBox;
+            if (KeepExistingComboBox2 != null)
+            {
+                xmlWriter.WriteStartAttribute("SelectedIndex-KeepExistingComboBox2");
+                xmlWriter.WriteValue(KeepExistingComboBox2.SelectedIndex);
+                xmlWriter.WriteEndAttribute();
+
+            }
+
+            var SubgroupingComboBox3 = stack.Children[5] as ComboBox;
+            if (SubgroupingComboBox3 != null)
+            {
+                xmlWriter.WriteStartAttribute("SelectedIndex-SubgroupingComboBox3");
+                xmlWriter.WriteValue(SubgroupingComboBox3.SelectedIndex);
+                xmlWriter.WriteEndAttribute();
+
+            }
+
+        }
+
+
+        public override void DeserializeNetwork(XmlReader xmlReader)
+        {
+            base.DeserializeNetwork(xmlReader);
+
+
+
+            var stack = ControlElements[0] as StackPanel;
+
+            var GroupingComboBox = stack.Children[1] as ComboBox;
+            if (GroupingComboBox != null)
+            {
+                var value = xmlReader.GetAttribute("SelectedIndex-GroupingComboBox");
+                var index = Convert.ToInt32(value);
+                GroupingComboBox.SelectedIndex = index;
+            }
+
+            var KeepExistingComboBox2 = stack.Children[3] as ComboBox;
+            if (KeepExistingComboBox2 != null)
+            {
+                var value = xmlReader.GetAttribute("SelectedIndex-KeepExistingComboBox2");
+                var index = Convert.ToInt32(value);
+                KeepExistingComboBox2.SelectedIndex = index;
+
+            }
+
+
+            var SubgroupingComboBox3 = stack.Children[5] as ComboBox;
+            if (SubgroupingComboBox3 != null)
+            {
+                var value = xmlReader.GetAttribute("SelectedIndex-SubgroupingComboBox3");
+                var index = Convert.ToInt32(value);
+                SubgroupingComboBox3.SelectedIndex = index;
+
+            }
         }
     }
 
