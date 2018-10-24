@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Document GraphFlowDirection="Horizontal">
+  <Nodes>
+    <ENGyn.Nodes.Clash.BIM42Group GUID="9f31bdfa-0d6f-4fa8-b185-eebb172d0fa7" TOP="4316.9620038232615" Left="3536.4363033918712" SelectedIndex-GroupingComboBox="1" SelectedIndex-KeepExistingComboBox2="0" SelectedIndex-SubgroupingComboBox3="3" />
+    <ENGyn.Nodes.Clash.RefreshAllClashTests GUID="f063b983-ab59-4dca-9427-d65165e1c6d1" TOP="4410.5033004020106" Left="3264.67910162006" />
+    <ENGyn.Nodes.Navisworks.CurrentDocument GUID="5cea69af-0da9-44c7-b6f4-57b19cfdba58" TOP="4413.7033004020113" Left="3023.07910162006" />
+  </Nodes>
+  <Connectors>
+    <TUM.CMS.VplControl.Core.Connector StartNode="f063b983-ab59-4dca-9427-d65165e1c6d1" StartIndex="0" EndNode="9f31bdfa-0d6f-4fa8-b185-eebb172d0fa7" EndIndex="0" />
+    <TUM.CMS.VplControl.Core.Connector StartNode="5cea69af-0da9-44c7-b6f4-57b19cfdba58" StartIndex="0" EndNode="f063b983-ab59-4dca-9427-d65165e1c6d1" EndIndex="0" />
+  </Connectors>
+</Document>
