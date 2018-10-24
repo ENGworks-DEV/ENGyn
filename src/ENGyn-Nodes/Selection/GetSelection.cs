@@ -23,7 +23,7 @@ namespace ENGyn.Nodes.Selection
             {
                 Document doc = InputPorts[0].Data as Document;
                 var sel = doc.CurrentSelection.SelectedItems;
-                List<ModelItem> modelItems = new List<ModelItem>();
+                List<object> modelItems = new List<object>();
                 foreach (var s in sel)
                 {
                     modelItems.Add(s);
