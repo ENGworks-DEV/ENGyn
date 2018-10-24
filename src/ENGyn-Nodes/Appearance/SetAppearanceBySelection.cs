@@ -62,7 +62,7 @@ namespace ENGyn.Nodes.Appearance
                 if (MainTools.IsList(input) && MainTools.ListContainsType(input,typeof(ModelItem)) || input is ModelItem )
                 {
                     
-                    List<ModelItem> searchs = ((List<object>)InputPorts[0].Data).Cast<ModelItem>().ToList();
+                    List<ModelItem> searchs = ((List<ModelItem>)InputPorts[0].Data).Cast<ModelItem>().ToList();
 
                     media.Color color = (media.Color)InputPorts[1].Data;
 
