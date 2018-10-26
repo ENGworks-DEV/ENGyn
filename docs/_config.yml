@@ -5,5 +5,7 @@ show_downloads: true
 logo: /assests/img/ENGyn-300x138.png
 encoding: UTF-8
 lang: en
+paginate: 5 # amount of posts to show
+paginate_path: /page:num/
 plugins:
   - jekyll-sitemap
