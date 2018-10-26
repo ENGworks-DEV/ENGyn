@@ -1,7 +1,7 @@
 title: ENGyn
 description: Graphical programing interface for Autodesk Navisworks
 theme: jekyll-theme-minimal
-paginate: 666
+show_downloads: true
 encoding: UTF-8
 lang: en
 plugins:
