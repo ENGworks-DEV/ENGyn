@@ -47,48 +47,58 @@ namespace ENGyn.Nodes.API
                     foreach (var item in (System.Collections.IEnumerable)input)
                     {
                         var iterator = item;
-
-                        if (item.GetType() == typeof(SavedItemReference))
+                        if (item != null)
                         {
-                            iterator = doc.ResolveReference(item as SavedItemReference);
-                        }
-
-                        if (MainTools.IsList(properties))
-                        {
-                            foreach (var prop in (System.Collections.IEnumerable)properties)
+                            if (item.GetType() == typeof(SavedItemReference))
                             {
-
-                                dynamic d = prop;
-                                string method = prop as string;
-                                var types = iterator.GetType();
-                                PropertyInfo props = types.GetProperty(method);
-
-                                object value = props.GetValue(iterator);
-
-                                output.Add(value);
-                            }
-                        }
-                        else
-                        {
-                            try
-                            {
-                                dynamic d = properties;
-                                string method = properties as string;
-                                method = d;
-                                var types = iterator.GetType();
-                                PropertyInfo prop = types.GetProperty(method);
-
-                                object value = prop.GetValue(iterator);
-
-                                output.Add(value);
+                                iterator = doc.ResolveReference(item as SavedItemReference);
                             }
 
-                            catch
+                            if (MainTools.IsList(properties))
                             {
-                                output.Add(null);
+                                foreach (var prop in (System.Collections.IEnumerable)properties)
+                                {
+                                    try
+                                    {
+                                        dynamic d = prop;
+                                        string method = prop as string;
+                                        var types = iterator.GetType();
+                                        PropertyInfo props = types.GetProperty(method);
+
+                                        object value = props.GetValue(iterator);
+
+                                        output.Add(value);
+                                    }
+                                    catch
+                                    {
+                                        output.Add(null);
+                                    }
+                                }
                             }
+                            else
+                            {
+                                try
+                                {
+                                    dynamic d = properties;
+                                    string method = properties as string;
+                                    method = d;
+                                    var types = iterator.GetType();
+                                    PropertyInfo prop = types.GetProperty(method);
+
+                                    object value = prop.GetValue(iterator);
+
+                                    output.Add(value);
+                                }
+
+                                catch
+                                {
+                                    output.Add(null);
+                                }
+                            }
+
                         }
 
+                        else {output.Add(item); }
 
                     }
 
