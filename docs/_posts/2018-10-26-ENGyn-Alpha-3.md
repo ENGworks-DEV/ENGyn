@@ -40,7 +40,7 @@ Keep clashes visible outside ClashDetective
 ![](/ENGyn/assests/img/RefreshClashesGroupByLevel&SelectionA.png)
 
 
-[***Refresh Clashes Group By Leve l& Selection A ***](https://github.com/ENGworks-DEV/ENGyn/blob/master/examples/RefreshClashesGroupByLevel%26SelectionA.vplxml)
+[***Refresh Clashes Group By Leve l& Selection A***](https://github.com/ENGworks-DEV/ENGyn/blob/master/examples/RefreshClashesGroupByLevel%26SelectionA.vplxml)
 
 all in one clash group
 ![](/ENGyn/assests/img/RefreshClashesGroupByLevel&SelectionA.png)
