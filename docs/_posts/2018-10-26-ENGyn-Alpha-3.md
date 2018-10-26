@@ -19,31 +19,31 @@ We have included examples of the workflows we use so you don't have to start fro
 
 ***Export Clash Names***https://github.com/ENGworks-DEV/ENGyn/blob/master/examples/ExportClashNames.vplxml)
 Use the csv export to rename clashes!
-![](/assests/img/ExportClashNames.png)
+![](/ENGyn/assests/img/ExportClashNames.png)
 
 
 ***Rename Clashes By GUID***
 
 Needs the previous example
-![](/assests/img/RenameClashesByGUID.png)
+![](/ENGyn/assests/img/RenameClashesByGUID.png)
 https://github.com/ENGworks-DEV/ENGyn/blob/master/examples/RenameClashesByGUID.vplxml
 
 ***Export Clash Test Information***
 
 Feed PowerBI
-![](/assests/img/ExportClashTestInformation.png)
+![](/ENGyn/assests/img/ExportClashTestInformation.png)
 https://github.com/ENGworks-DEV/ENGyn/blob/master/examples/ExportClashTestInformation.vplxml
 
 ***RefreshClash GroupBy ColorByTest***
 
 Keep clashes visible outside ClashDetective
-![](/assests/img/RefreshClashesGroupByLevel&SelectionA.png)
+![](/ENGyn/assests/img/RefreshClashesGroupByLevel&SelectionA.png)
 https://github.com/ENGworks-DEV/ENGyn/blob/master/examples/RefreshClash-GroupBy-ColorByTest.vplxml
 
 ***Refresh Clashes Group By Leve l& Selection A ***
 
 all in one clash group
-![](/assests/img/RefreshClashesGroupByLevel&SelectionA.png)
+![](/ENGyn/assests/img/RefreshClashesGroupByLevel&SelectionA.png)
 
 https://github.com/ENGworks-DEV/ENGyn/blob/master/examples/RefreshClashesGroupByLevel%26SelectionA.vplxml
 
