@@ -17,35 +17,33 @@ To install download the installer for your Navisworks version (2018/2019) but if
 We have included examples of the workflows we use so you don't have to start from Scratch
 
 
-***Export Clash Names***https://github.com/ENGworks-DEV/ENGyn/blob/master/examples/ExportClashNames.vplxml)
+[***Export Clash Names***](https://github.com/ENGworks-DEV/ENGyn/blob/master/examples/ExportClashNames.vplxml)
 Use the csv export to rename clashes!
 ![](/ENGyn/assests/img/ExportClashNames.png)
 
 
-***Rename Clashes By GUID***
+[***Rename Clashes By GUID***](https://github.com/ENGworks-DEV/ENGyn/blob/master/examples/RenameClashesByGUID.vplxml)
 
 Needs the previous example
 ![](/ENGyn/assests/img/RenameClashesByGUID.png)
-https://github.com/ENGworks-DEV/ENGyn/blob/master/examples/RenameClashesByGUID.vplxml
 
-***Export Clash Test Information***
+
+[***Export Clash Test Information***](https://github.com/ENGworks-DEV/ENGyn/blob/master/examples/ExportClashTestInformation.vplxml)
 
 Feed PowerBI
 ![](/ENGyn/assests/img/ExportClashTestInformation.png)
-https://github.com/ENGworks-DEV/ENGyn/blob/master/examples/ExportClashTestInformation.vplxml
 
-***RefreshClash GroupBy ColorByTest***
+
+[***RefreshClash GroupBy ColorByTest***](https://github.com/ENGworks-DEV/ENGyn/blob/master/examples/RefreshClash-GroupBy-ColorByTest.vplxml)
 
 Keep clashes visible outside ClashDetective
 ![](/ENGyn/assests/img/RefreshClashesGroupByLevel&SelectionA.png)
-https://github.com/ENGworks-DEV/ENGyn/blob/master/examples/RefreshClash-GroupBy-ColorByTest.vplxml
 
-***Refresh Clashes Group By Leve l& Selection A ***
+
+[***Refresh Clashes Group By Leve l& Selection A ***](https://github.com/ENGworks-DEV/ENGyn/blob/master/examples/RefreshClashesGroupByLevel%26SelectionA.vplxml)
 
 all in one clash group
 ![](/ENGyn/assests/img/RefreshClashesGroupByLevel&SelectionA.png)
-
-https://github.com/ENGworks-DEV/ENGyn/blob/master/examples/RefreshClashesGroupByLevel%26SelectionA.vplxml
 
 ------
 
