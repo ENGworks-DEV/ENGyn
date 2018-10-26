@@ -5,9 +5,9 @@ using TUM.CMS.VplControl.Core;
 
 namespace ENGyn.Nodes.Clash
 {
-    public class ClashResults : Node
+    public class GetClashResults : Node
     {
-        public ClashResults(VplControl hostCanvas)
+        public GetClashResults(VplControl hostCanvas)
             : base(hostCanvas)
         {
             AddInputPortToNode("Clash Test", typeof(object));
@@ -66,7 +66,7 @@ namespace ENGyn.Nodes.Clash
 
         public override Node Clone()
         {
-            return new ClashResults(HostCanvas)
+            return new GetClashResults(HostCanvas)
             {
                 Top = Top,
                 Left = Left
