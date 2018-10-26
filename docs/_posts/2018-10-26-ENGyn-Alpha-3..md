@@ -13,7 +13,7 @@ To install download the installer for your Navisworks version (2018/2019) but if
 
 ------
 ## Examples
-------------------------------------------------------------
+
 We have included examples of the workflows we use so you don't have to start from Scratch
 
 
