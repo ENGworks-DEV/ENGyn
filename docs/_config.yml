@@ -9,3 +9,4 @@ paginate: 5 # amount of posts to show
 paginate_path: /_posts/page:num
 plugins:
   - jekyll-sitemap
+  - jekyll-paginate
