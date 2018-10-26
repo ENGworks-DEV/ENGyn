@@ -10,3 +10,15 @@ paginate_path: /page:num/
 plugins:
   - jekyll-sitemap
   - jekyll-paginate
+defaults:
+  # _posts
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: single
+      author_profile: true
+      read_time: true
+      comments: true
+      share: true
+      related: true
