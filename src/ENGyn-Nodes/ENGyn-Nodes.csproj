@@ -188,6 +188,7 @@
   <ItemGroup>
     <Compile Include="Clash\CompactTest.cs" />
     <Compile Include="API\GetAPIParameters.cs" />
+    <Compile Include="Clash\RenameClash.cs" />
     <Compile Include="Excel files\FileWorksheets.cs" />
     <Compile Include="Excel files\ReadFromFile.cs" />
     <Compile Include="Excel files\WriteToFile.cs" />
@@ -212,7 +213,7 @@
     <Compile Include="List\ListTranspose.cs" />
     <Compile Include="Input\WriteTextToPath.cs" />
     <Compile Include="Template.cs" />
-    <Compile Include="Clash\GetClash.cs" />
+    <Compile Include="Clash\GetClashResults.cs" />
     <Compile Include="Clash\GetClashTest.cs" />
     <Compile Include="Navisworks\GetDocument.cs" />
     <Compile Include="List\GetItemAtIndex.cs" />
