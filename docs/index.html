@@ -1,18 +1,19 @@
 ---
 layout: default
+title: Welcome
 ---
 
-<div class="posts">
-  {% for post in site.posts %}
-    <article class="post">
 
-      <h1><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h1>
+{% for post in site.posts %}
 
-      <div class="entry">
-        {{ post.content }}
-      </div>
+<article class='post'>
+  <h1 class='post-title'>
+    <a href="{{ site.path }}{{ post.url }}">
+      {{ post.title }}
+    </a>
+  </h1>
+  <div class="post-date">{{ post.date | date: "%b %-d, %Y" }}</div>
+  {{ post.content }}
+</article>
 
-      <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read More</a>
-    </article>
-  {% endfor %}
-</div>
+{% endfor %}
