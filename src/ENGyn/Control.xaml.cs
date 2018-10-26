@@ -208,16 +208,20 @@ namespace ENGyn
                     nn.ElementAt(i).setToRun = true;
                     try
                     {
-
+                        nn.ElementAt(i).HasError = false;
+                        nn.ElementAt(i).TopComment.Visibility = Visibility.Hidden;
                         nn.ElementAt(i).Calculate();
 
 
                     }
                     catch (Exception except)
                     {
-                        MessageBox.Show(nn.ElementAt(i).GetType().ToString() + Environment.NewLine + except.Message);
+                        
 
                         nn.ElementAt(i).HasError = true;
+                        nn.ElementAt(i).TopComment.Visibility = Visibility.Visible;
+                        nn.ElementAt(i).TopComment.Text = except.Message;
+                        VplControl.UpdateLayout();
 
                     }
                     nn.ElementAt(i).setToRun = false;
