@@ -6,9 +6,9 @@ description: "Download now the latest version of ENgyn!"
 
 ![](https://github.com/ENGworks-DEV/ENGyn/blob/master/tools/ENGyn-300x138.png?raw=true)
 
-***We are happy to announce a new version of [ENGyn alpha 3](https://github.com/ENGworks-DEV/ENGyn/releases/tag/0.1.3.alpha3)***
+***We are happy to announce a new version of [ENGyn alpha 3.2](https://github.com/ENGworks-DEV/ENGyn/releases/tag/0.1.3.alpha3.2)***
 
-## [Download](https://github.com/ENGworks-DEV/ENGyn/releases/tag/0.1.3.alpha3)
+## [Download](https://github.com/ENGworks-DEV/ENGyn/releases/tag/0.1.3.alpha3.2)
 To install download the installer for your Navisworks version (2018/2019) but if you feel brave, you can build your own using the source code.
 
 ------
