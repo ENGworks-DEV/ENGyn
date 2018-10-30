@@ -30,142 +30,169 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AdWindows" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2019'">
-      <HintPath>..\packages\Navisworks-2018-2019-x64-API.1.0.0\lib\net47\AdWindows.dll</HintPath>
+      <HintPath>..\packages\Navisworks-2018-2019-x64-API.1.0.1\lib\net47\AdWindows.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Autodesk.Navisworks.Api" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2019'">
-      <HintPath>..\packages\Navisworks-2018-2019-x64-API.1.0.0\lib\net47\Autodesk.Navisworks.Api.dll</HintPath>
+      <HintPath>..\packages\Navisworks-2018-2019-x64-API.1.0.1\lib\net47\Autodesk.Navisworks.Api.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Autodesk.Navisworks.Automation" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2019'">
-      <HintPath>..\packages\Navisworks-2018-2019-x64-API.1.0.0\lib\net47\Autodesk.Navisworks.Automation.dll</HintPath>
+      <HintPath>..\packages\Navisworks-2018-2019-x64-API.1.0.1\lib\net47\Autodesk.Navisworks.Automation.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Autodesk.Navisworks.Clash" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2019'">
-      <HintPath>..\packages\Navisworks-2018-2019-x64-API.1.0.0\lib\net47\Autodesk.Navisworks.Clash.dll</HintPath>
+      <HintPath>..\packages\Navisworks-2018-2019-x64-API.1.0.1\lib\net47\Autodesk.Navisworks.Clash.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Autodesk.Navisworks.ComApi" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2019'">
-      <HintPath>..\packages\Navisworks-2018-2019-x64-API.1.0.0\lib\net47\Autodesk.Navisworks.ComApi.dll</HintPath>
+      <HintPath>..\packages\Navisworks-2018-2019-x64-API.1.0.1\lib\net47\Autodesk.Navisworks.ComApi.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Autodesk.Navisworks.Controls" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2019'">
-      <HintPath>..\packages\Navisworks-2018-2019-x64-API.1.0.0\lib\net47\Autodesk.Navisworks.Controls.dll</HintPath>
+      <HintPath>..\packages\Navisworks-2018-2019-x64-API.1.0.1\lib\net47\Autodesk.Navisworks.Controls.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Autodesk.Navisworks.Interop.ComApi" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2019'">
-      <HintPath>..\packages\Navisworks-2018-2019-x64-API.1.0.0\lib\net47\Autodesk.Navisworks.Interop.ComApi.dll</HintPath>
+      <HintPath>..\packages\Navisworks-2018-2019-x64-API.1.0.1\lib\net47\Autodesk.Navisworks.Interop.ComApi.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="Autodesk.Navisworks.Interop.Timeliner" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2019'">
-      <HintPath>..\packages\Navisworks-2018-2019-x64-API.1.0.0\lib\net47\Autodesk.Navisworks.Interop.Timeliner.dll</HintPath>
+      <HintPath>..\packages\Navisworks-2018-2019-x64-API.1.0.1\lib\net47\Autodesk.Navisworks.Interop.Timeliner.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="Autodesk.Navisworks.Resolver" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2019'">
-      <HintPath>..\packages\Navisworks-2018-2019-x64-API.1.0.0\lib\net47\Autodesk.Navisworks.Resolver.dll</HintPath>
+      <HintPath>..\packages\Navisworks-2018-2019-x64-API.1.0.1\lib\net47\Autodesk.Navisworks.Resolver.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Autodesk.Navisworks.Takeoff" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2019'">
-      <HintPath>..\packages\Navisworks-2018-2019-x64-API.1.0.0\lib\net47\Autodesk.Navisworks.Takeoff.dll</HintPath>
+      <HintPath>..\packages\Navisworks-2018-2019-x64-API.1.0.1\lib\net47\Autodesk.Navisworks.Takeoff.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Autodesk.Navisworks.Timeliner" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2019'">
-      <HintPath>..\packages\Navisworks-2018-2019-x64-API.1.0.0\lib\net47\Autodesk.Navisworks.Timeliner.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="CommonServiceLocator, Version=2.0.4.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
-      <HintPath>..\packages\CommonServiceLocator.2.0.4\lib\net46\CommonServiceLocator.dll</HintPath>
-    </Reference>
-    <Reference Include="navisworks.gui.common" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2019'">
-      <HintPath>..\packages\Navisworks-2018-2019-x64-API.1.0.0\lib\net47\navisworks.gui.common.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="navisworks.gui.generic" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2019'">
-      <HintPath>..\packages\Navisworks-2018-2019-x64-API.1.0.0\lib\net47\navisworks.gui.generic.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="navisworks.gui.interface" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2019'">
-      <HintPath>..\packages\Navisworks-2018-2019-x64-API.1.0.0\lib\net47\navisworks.gui.interface.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="navisworks.roamer.plugin" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2019'">
-      <HintPath>..\packages\Navisworks-2018-2019-x64-API.1.0.0\lib\net47\navisworks.roamer.plugin.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="AdWindows" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2018'">
-      <HintPath>..\packages\Navisworks-2018-2019-x64-API.1.0.0\lib\net46\AdWindows.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Autodesk.Navisworks.Api" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2018'">
-      <HintPath>..\packages\Navisworks-2018-2019-x64-API.1.0.0\lib\net46\Autodesk.Navisworks.Api.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Autodesk.Navisworks.Automation" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2018'">
-      <HintPath>..\packages\Navisworks-2018-2019-x64-API.1.0.0\lib\net46\Autodesk.Navisworks.Automation.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Autodesk.Navisworks.Clash" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2018'">
-      <HintPath>..\packages\Navisworks-2018-2019-x64-API.1.0.0\lib\net46\Autodesk.Navisworks.Clash.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Autodesk.Navisworks.ComApi" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2018'">
-      <HintPath>..\packages\Navisworks-2018-2019-x64-API.1.0.0\lib\net46\Autodesk.Navisworks.ComApi.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Autodesk.Navisworks.Controls" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2018'">
-      <HintPath>..\packages\Navisworks-2018-2019-x64-API.1.0.0\lib\net46\Autodesk.Navisworks.Controls.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Autodesk.Navisworks.Interop.ComApi" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2018'">
-      <HintPath>..\packages\Navisworks-2018-2019-x64-API.1.0.0\lib\net46\Autodesk.Navisworks.Interop.ComApi.dll</HintPath>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </Reference>
-    <Reference Include="Autodesk.Navisworks.Interop.Timeliner" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2018'">
-      <HintPath>..\packages\Navisworks-2018-2019-x64-API.1.0.0\lib\net46\Autodesk.Navisworks.Interop.Timeliner.dll</HintPath>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </Reference>
-    <Reference Include="Autodesk.Navisworks.Resolver" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2018'">
-      <HintPath>..\packages\Navisworks-2018-2019-x64-API.1.0.0\lib\net46\Autodesk.Navisworks.Resolver.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Autodesk.Navisworks.Takeoff" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2018'">
-      <HintPath>..\packages\Navisworks-2018-2019-x64-API.1.0.0\lib\net46\Autodesk.Navisworks.Takeoff.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Autodesk.Navisworks.Timeliner" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2018'">
-      <HintPath>..\packages\Navisworks-2018-2019-x64-API.1.0.0\lib\net46\Autodesk.Navisworks.Timeliner.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="navisworks.gui.common" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2018'">
-      <HintPath>..\packages\Navisworks-2018-2019-x64-API.1.0.0\lib\net46\navisworks.gui.common.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="navisworks.gui.generic" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2018'">
-      <HintPath>..\packages\Navisworks-2018-2019-x64-API.1.0.0\lib\net46\navisworks.gui.generic.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="navisworks.gui.interface" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2018'">
-      <HintPath>..\packages\Navisworks-2018-2019-x64-API.1.0.0\lib\net46\navisworks.gui.interface.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="navisworks.roamer.plugin" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2018'">
-      <HintPath>..\packages\Navisworks-2018-2019-x64-API.1.0.0\lib\net46\navisworks.roamer.plugin.dll</HintPath>
+      <HintPath>..\packages\Navisworks-2018-2019-x64-API.1.0.1\lib\net47\Autodesk.Navisworks.Timeliner.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
+    <Reference Include="navisworks.gui.common" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2019'">
+      <HintPath>..\packages\Navisworks-2018-2019-x64-API.1.0.1\lib\net47\navisworks.gui.common.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="navisworks.gui.generic" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2019'">
+      <HintPath>..\packages\Navisworks-2018-2019-x64-API.1.0.1\lib\net47\navisworks.gui.generic.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="navisworks.gui.interface" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2019'">
+      <HintPath>..\packages\Navisworks-2018-2019-x64-API.1.0.1\lib\net47\navisworks.gui.interface.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="navisworks.gui.roamer" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2019'">
+      <HintPath>..\packages\Navisworks-2018-2019-x64-API.1.0.1\lib\net47\navisworks.gui.roamer.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="AdWindows" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2018'">
+      <HintPath>..\packages\Navisworks-2018-2019-x64-API.1.0.1\lib\net46\AdWindows.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Autodesk.Navisworks.Api" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2018'">
+      <HintPath>..\packages\Navisworks-2018-2019-x64-API.1.0.1\lib\net46\Autodesk.Navisworks.Api.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Autodesk.Navisworks.Automation" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2018'">
+      <HintPath>..\packages\Navisworks-2018-2019-x64-API.1.0.1\lib\net46\Autodesk.Navisworks.Automation.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Autodesk.Navisworks.Clash" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2018'">
+      <HintPath>..\packages\Navisworks-2018-2019-x64-API.1.0.1\lib\net46\Autodesk.Navisworks.Clash.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Autodesk.Navisworks.ComApi" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2018'">
+      <HintPath>..\packages\Navisworks-2018-2019-x64-API.1.0.1\lib\net46\Autodesk.Navisworks.ComApi.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Autodesk.Navisworks.Controls" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2018'">
+      <HintPath>..\packages\Navisworks-2018-2019-x64-API.1.0.1\lib\net46\Autodesk.Navisworks.Controls.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Autodesk.Navisworks.Interop.ComApi" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2018'">
+      <HintPath>..\packages\Navisworks-2018-2019-x64-API.1.0.1\lib\net46\Autodesk.Navisworks.Interop.ComApi.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Autodesk.Navisworks.Interop.Timeliner" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2018'">
+      <HintPath>..\packages\Navisworks-2018-2019-x64-API.1.0.1\lib\net46\Autodesk.Navisworks.Interop.Timeliner.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Autodesk.Navisworks.Resolver" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2018'">
+      <HintPath>..\packages\Navisworks-2018-2019-x64-API.1.0.1\lib\net46\Autodesk.Navisworks.Resolver.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Autodesk.Navisworks.Takeoff" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2018'">
+      <HintPath>..\packages\Navisworks-2018-2019-x64-API.1.0.1\lib\net46\Autodesk.Navisworks.Takeoff.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Autodesk.Navisworks.Timeliner" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2018'">
+      <HintPath>..\packages\Navisworks-2018-2019-x64-API.1.0.1\lib\net46\Autodesk.Navisworks.Timeliner.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="navisworks.gui.common" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2018'">
+      <HintPath>..\packages\Navisworks-2018-2019-x64-API.1.0.1\lib\net46\navisworks.gui.common.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="navisworks.gui.generic" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2018'">
+      <HintPath>..\packages\Navisworks-2018-2019-x64-API.1.0.1\lib\net46\navisworks.gui.generic.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="navisworks.gui.interface" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2018'">
+      <HintPath>..\packages\Navisworks-2018-2019-x64-API.1.0.1\lib\net46\navisworks.gui.interface.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="navisworks.gui.roamer" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2018'">
+      <HintPath>..\packages\Navisworks-2018-2019-x64-API.1.0.1\lib\net46\navisworks.gui.roamer.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="navisworks.roamer.plugin, Version=15.0.1314.36, Culture=neutral, processorArchitecture=AMD64">
+      <HintPath>..\packages\Navisworks-2018-2019-x64-API.1.0.1\lib\net46\navisworks.roamer.plugin.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="NCalc, Version=1.3.8.0, Culture=neutral, PublicKeyToken=973cde3f1cafed03, processorArchitecture=MSIL">
       <HintPath>..\packages\ncalc.1.3.8\lib\NCalc.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2019'">
       <HintPath>C:\Program Files\Autodesk\Navisworks Manage 2019\Newtonsoft.Json.dll</HintPath>
-      <Private>False</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2018'">
       <HintPath>C:\Program Files\Autodesk\Navisworks Manage 2018\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="RadialMenu, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RadialMenu.WPF.1.3.0\lib\net46\RadialMenu.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="TUM.CMS.VplControl">
+      <HintPath>..\TUM.CMS.VPLControl\bin\TUM.CMS.VplControl.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
