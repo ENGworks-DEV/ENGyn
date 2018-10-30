@@ -6,8 +6,8 @@
 ; Do not use the same AppId value in installers for other applications.
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
 AppId={{B827E3D1-F82E-45B9-9352-53C8EF41399F}
-AppName=ENGworks ENGyn 2018    
-AppVersion=0.1.3.1
+AppName=ENGworks ENGyn 2019    
+AppVersion=0.1.3.2
 
 AppPublisher=PRD
 AppPublisherURL=-
@@ -15,9 +15,9 @@ AppSupportURL=-
 AppUpdatesURL=-
 DefaultDirName={pf}\ENGyn
 DisableDirPage=yes
-DefaultGroupName=ENGworks ENGyn 2018
+DefaultGroupName=ENGworks ENGyn 2019
 DisableProgramGroupPage=yes
-OutputBaseFilename=ENG ENGyn 2019 Setup 0.1.3.1
+OutputBaseFilename=ENG ENGyn 2019 Setup 0.1.3.2
 Compression=lzma
 SolidCompression=yes
 OutputManifestFile=Setup-Manifest.txt
