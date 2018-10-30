@@ -4,3 +4,4 @@ theme: jekyll-theme-minimal
 show_downloads: true
 logo: /assests/img/ENGyn-300x138.png
 encoding: UTF-8
+permalink: none
