@@ -8,6 +8,7 @@ using System.Windows.Data;
 using System.Collections.Generic;
 using System;
 using System.Linq;
+using ENGyn.Nodes;
 
 namespace ENGyn.Nodes.Navisworks
 {
@@ -27,34 +28,25 @@ namespace ENGyn.Nodes.Navisworks
         {
             if (InputPorts[0].Data != null
                 && InputPorts[1].Data != null
-                && InputPorts[2].Data != null
-                && MainTools.IsList(InputPorts[0].Data))
+                && InputPorts[2].Data != null)
             {
+             
+              OutputPorts[0].Data=   MainTools.RunFunction(GetValuesFromProperties, InputPorts);
 
-                var sel = InputPorts[0].Data;
-                
-                var category = InputPorts[1].Data.ToString();
-                var property = InputPorts[2].Data.ToString();
-                
-
-                OutputPorts[0].Data = GetValuesFromProperties(sel, category, property); 
             }
+
         }
 
-        public static System.Collections.IList GetValuesFromProperties(object sel, string category, string property)
-        {
-            List<object> modelItems = new List<object>();
-            if (MainTools.IsList(sel))
-            {
-                var selection = (System.Collections.IList)(sel);
 
-                foreach (var s in selection)
-                {
-                    if (s.GetType() == typeof(ModelItem))
+        public static object GetValuesFromProperties(object sel, object category, object property)
+        {
+            dynamic value = null;
+
+            if (sel.GetType() == typeof(ModelItem))
                     {
-                       var  modelItem = s as ModelItem;
-                    var prop = modelItem.PropertyCategories.FindPropertyByDisplayName(category, property);
-                    dynamic value = null;
+                     var  modelItem = sel as ModelItem;
+                    var prop = modelItem.PropertyCategories.FindPropertyByDisplayName(category.ToString(), property.ToString());
+                    
                     if (prop != null)
                     {
                         switch (prop.Value.DataType)
@@ -109,13 +101,14 @@ namespace ENGyn.Nodes.Navisworks
                     {
                         value = value.ToString();
                     }
-                    
-                    modelItems.Add(value);
-                    }
-                }
+  
             }
-            return modelItems.ToList<object>();
+            return value;
         }
+
+
+
+      
 
 
         public override Node Clone()

@@ -226,7 +226,6 @@
     <Compile Include="String\StringToUpper.cs" />
     <Compile Include="Clash\RefreshAllClashes.cs" />
     <Compile Include="Viewpoints\RenameViewpoints.cs" />
-    <Compile Include="API\SetAPIParameterValue.cs" />
     <Compile Include="API\GetAPIParameterValue.cs" />
     <Compile Include="Selection\GetElementFromSearch.cs" />
     <Compile Include="Viewpoints\GetViewpoints.cs" />

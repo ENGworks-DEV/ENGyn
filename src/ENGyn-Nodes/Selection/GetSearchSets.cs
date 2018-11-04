@@ -114,8 +114,8 @@ namespace ENGyn.Nodes.Selection
             var Property = InputPorts[2].Data;
             var Value = InputPorts[3].Data;
 
-            var search = GetSearchSet(Name, Category, Property, Value);
-            Document doc = Autodesk.Navisworks.Api.Application.ActiveDocument;
+            var search =MainTools.RunFunction( createSearchSet, InputPorts);
+   
 
 
             OutputPorts[0].Data = search;
@@ -125,70 +125,35 @@ namespace ENGyn.Nodes.Selection
 
         }
 
-        private SelectionSet GetSearchSet(object name, object category, object property, object value)
+        private object createSearchSet(object name, object category, object property, object value)
         {
             //https://adndevblog.typepad.com/aec/2012/08/add-search-selectionset-in-net.html
 
             Document doc = Autodesk.Navisworks.Api.Application.ActiveDocument;
-            List<SavedItem> selectionSets =new List<SavedItem>();
 
-            if (MainTools.IsList(name))
-            {
-                var names = (System.Collections.IList)(name);
-                var values = (System.Collections.IList)(value);
-                for (int i = 0; i < names.Count; i++)
-                {
-
-                    //Create a new search object
-                    Search s = new Search();
-                    SearchCondition sc = SearchCondition.HasPropertyByDisplayName(category.ToString(), property.ToString());
-                    s.SearchConditions.Add(sc.EqualValue(VariantData.FromDisplayString(values[i].ToString())));
+            //Create a new search object
+            Search s = new Search();
+            SearchCondition sc = SearchCondition.HasPropertyByDisplayName(category.ToString(), property.ToString());
+            s.SearchConditions.Add(sc.EqualValue(VariantData.FromDisplayString(value.ToString())));
 
 
-                    //Set the selection which we wish to search
-                    s.Selection.SelectAll();
-                    s.Locations = SearchLocations.DescendantsAndSelf;
+            //Set the selection which we wish to search
+            s.Selection.SelectAll();
+            s.Locations = SearchLocations.DescendantsAndSelf;
 
-                    //halt searching below ModelItems which match this
-                    s.PruneBelowMatch = true;
+            //halt searching below ModelItems which match this
+            s.PruneBelowMatch = true;
 
-                    //get the resulting collection by applying this search
-                    ModelItemCollection searchResults = s.FindAll(Autodesk.Navisworks.Api.Application.ActiveDocument, false);
-                    SelectionSet selectionSet = new SelectionSet();
-                    selectionSet.DisplayName = names[i].ToString();
-                    selectionSet.CopyFrom(s);
-                    Autodesk.Navisworks.Api.Application.ActiveDocument.SelectionSets.InsertCopy(0, selectionSet);
-                    var ss = Autodesk.Navisworks.Api.Application.ActiveDocument.SelectionSets.ToSavedItemCollection();
-                    selectionSets.Add(ss[0]);
-                }
-                
-            }
-            else
-            {
-                //Create a new search object
-                Search s = new Search();
-                SearchCondition sc = SearchCondition.HasPropertyByDisplayName(category.ToString(), property.ToString());
-                s.SearchConditions.Add(sc.EqualValue(VariantData.FromDisplayString(value.ToString())));
+            //get the resulting collection by applying this search
+            ModelItemCollection searchResults = s.FindAll(Autodesk.Navisworks.Api.Application.ActiveDocument, false);
+            SelectionSet selectionSet = new SelectionSet();
+            selectionSet.DisplayName = name.ToString();
+            selectionSet.CopyFrom(s);
+            Autodesk.Navisworks.Api.Application.ActiveDocument.SelectionSets.InsertCopy(0, selectionSet);
+            var ss = Autodesk.Navisworks.Api.Application.ActiveDocument.SelectionSets.ToSavedItemCollection();
 
 
-                //Set the selection which we wish to search
-                s.Selection.SelectAll();
-                s.Locations = SearchLocations.DescendantsAndSelf;
-
-                //halt searching below ModelItems which match this
-                s.PruneBelowMatch = true;
-
-                //get the resulting collection by applying this search
-                ModelItemCollection searchResults = s.FindAll(Autodesk.Navisworks.Api.Application.ActiveDocument, false);
-                SelectionSet selectionSet = new SelectionSet();
-                selectionSet.DisplayName = name.ToString();
-                selectionSet.CopyFrom(s);
-                Autodesk.Navisworks.Api.Application.ActiveDocument.SelectionSets.InsertCopy(0, selectionSet);
-                var ss = Autodesk.Navisworks.Api.Application.ActiveDocument.SelectionSets.ToSavedItemCollection();
-                selectionSets.Add(ss[0]);
-            }
-
-            return new SelectionSet();//selectionSet;
+            return ss;
         }
 
         public override Node Clone()
