@@ -7,6 +7,7 @@ using TUM.CMS.VplControl.Core;
 using System.Windows.Data;
 using System.Collections.Generic;
 using System;
+using System.Linq;
 
 namespace ENGyn.Nodes.Navisworks
 {
@@ -36,76 +37,84 @@ namespace ENGyn.Nodes.Navisworks
                 var property = InputPorts[2].Data.ToString();
                 
 
-                OutputPorts[0].Data = GetValuesFromProperties(sel, category, property); ;
+                OutputPorts[0].Data = GetValuesFromProperties(sel, category, property); 
             }
         }
 
-        public static List<object> GetValuesFromProperties(object sel, string category, string property)
+        public static System.Collections.IList GetValuesFromProperties(object sel, string category, string property)
         {
             List<object> modelItems = new List<object>();
-            foreach (var s in sel as List<ModelItem>)
+            if (MainTools.IsList(sel))
             {
+                var selection = (System.Collections.IList)(sel);
 
-                var prop = s.PropertyCategories.FindPropertyByDisplayName(category, property);
-                dynamic value = null;
-                if (prop != null)
+                foreach (var s in selection)
                 {
-                    switch (prop.Value.DataType)
+                    if (s.GetType() == typeof(ModelItem))
                     {
-                        case VariantDataType.None:
-                            break;
-                        case VariantDataType.Double:
-                            value = prop.Value.ToDouble();
-                            break;
-                        case VariantDataType.Int32:
-                            value = prop.Value.ToInt32();
-                            break;
-                        case VariantDataType.Boolean:
-                            value = prop.Value.ToBoolean();
-                            break;
-                        case VariantDataType.DisplayString:
-                            value = prop.Value.ToDisplayString();
-                            break;
-                        case VariantDataType.DateTime:
-                            value = prop.Value.ToDateTime();
-                            break;
-                        case VariantDataType.DoubleLength:
-                            value = prop.Value.ToDoubleLength();
-                            break;
-                        case VariantDataType.DoubleAngle:
-                            value = prop.Value.ToDoubleAngle();
-                            break;
-                        case VariantDataType.NamedConstant:
-                            value = prop.Value.ToNamedConstant();
-                            break;
-                        case VariantDataType.IdentifierString:
-                            value = prop.Value.ToIdentifierString();
-                            break;
-                        case VariantDataType.DoubleArea:
-                            value = prop.Value.ToDoubleArea();
-                            break;
-                        case VariantDataType.DoubleVolume:
-                            value = prop.Value.ToDoubleVolume();
-                            break;
-                        case VariantDataType.Point3D:
-                            value = prop.Value.ToPoint3D();
-                            break;
-                        case VariantDataType.Point2D:
-                            value = prop.Value.ToPoint2D();
-                            break;
-                        default:
-                            break;
+                       var  modelItem = s as ModelItem;
+                    var prop = modelItem.PropertyCategories.FindPropertyByDisplayName(category, property);
+                    dynamic value = null;
+                    if (prop != null)
+                    {
+                        switch (prop.Value.DataType)
+                        {
+                            case VariantDataType.None:
+                                break;
+                            case VariantDataType.Double:
+                                value = prop.Value.ToDouble();
+                                break;
+                            case VariantDataType.Int32:
+                                value = prop.Value.ToInt32();
+                                break;
+                            case VariantDataType.Boolean:
+                                value = prop.Value.ToBoolean();
+                                break;
+                            case VariantDataType.DisplayString:
+                                value = prop.Value.ToDisplayString();
+                                break;
+                            case VariantDataType.DateTime:
+                                value = prop.Value.ToDateTime();
+                                break;
+                            case VariantDataType.DoubleLength:
+                                value = prop.Value.ToDoubleLength();
+                                break;
+                            case VariantDataType.DoubleAngle:
+                                value = prop.Value.ToDoubleAngle();
+                                break;
+                            case VariantDataType.NamedConstant:
+                                value = prop.Value.ToNamedConstant();
+                                break;
+                            case VariantDataType.IdentifierString:
+                                value = prop.Value.ToIdentifierString();
+                                break;
+                            case VariantDataType.DoubleArea:
+                                value = prop.Value.ToDoubleArea();
+                                break;
+                            case VariantDataType.DoubleVolume:
+                                value = prop.Value.ToDoubleVolume();
+                                break;
+                            case VariantDataType.Point3D:
+                                value = prop.Value.ToPoint3D();
+                                break;
+                            case VariantDataType.Point2D:
+                                value = prop.Value.ToPoint2D();
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+
+                    if (value != null)
+                    {
+                        value = value.ToString();
+                    }
+                    
+                    modelItems.Add(value);
                     }
                 }
-
-                if (value != null)
-                {
-                    value = value.ToString();
-                }
-
-                modelItems.Add(value);
             }
-            return modelItems;
+            return modelItems.ToList<object>();
         }
 
 
