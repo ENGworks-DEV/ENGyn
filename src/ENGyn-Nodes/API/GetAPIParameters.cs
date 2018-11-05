@@ -22,7 +22,7 @@ namespace ENGyn.Nodes.API
             
             AddOutputPortToNode("Output", typeof(object));
 
-            this.BottomComment.Text = "Texto";
+            this.BottomComment.Text = "Return list of parameters in element class";
         }
 
         public static string category;
@@ -30,42 +30,22 @@ namespace ENGyn.Nodes.API
         public override void Calculate()
         {
             
-            var input = InputPorts[0].Data;
-            OutputPorts[0].Data=  Process(input);
+            OutputPorts[0].Data= MainTools.RunFunction(getAPIParameters, InputPorts) ;
 
         }
 
-        private IList<object> Process( object input)
+        /// <summary>
+        /// Return list of parameters in element class
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        private object getAPIParameters( object input)
         {
-            List<object> output = new List<object>();
+            object output = null;
             Document doc = Autodesk.Navisworks.Api.Application.ActiveDocument;
             if (input != null)
             {
-                if (MainTools.IsList(input))
-                {
-                    foreach (var item in (System.Collections.IEnumerable)InputPorts[0].Data)
-                    {
-                        var iterator = item;
-
-                        if (item.GetType() == typeof(SavedItemReference))
-                        {
-                            iterator = doc.ResolveReference(item as SavedItemReference);
-                        }
-
-                        try
-                        {
-                            var properties = iterator.GetType().GetProperties();
-                            var prop = new List<string>();
-                            foreach (var p in properties)
-                            {
-                                prop.Add(p.Name);
-                            }
-                            output.Add(prop);
-                        }
-                        catch { output.Add(null); }
-                    }
-                }
-                else
+                
                 {
                     var iterator = input;
 
@@ -82,14 +62,14 @@ namespace ENGyn.Nodes.API
                         {
                             prop.Add(p.Name);
                         }
-                        output.Add(prop);
+                        output = prop;
                     }
-                    catch { output.Add(null); }
+                    catch { output =(null); }
                 }
 
                 
             }
-            return output as IList<object>;
+            return output;
         }
 
 

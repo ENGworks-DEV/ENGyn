@@ -40,7 +40,7 @@ namespace ENGyn.Nodes.List
         }
 
       
-        public static IList Transpose(IList lists)
+        public static System.Collections.IList Transpose(IList lists)
         {
             if (lists.Count == 0 || !lists.Cast<dynamic>().Any(x => x is IList))
                 return lists;

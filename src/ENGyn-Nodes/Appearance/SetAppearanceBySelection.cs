@@ -32,53 +32,60 @@ namespace ENGyn.Nodes.Appearance
 
         public override void Calculate()
         {
-            var input = InputPorts[0].Data;
+            OutputPorts[0].Data = MainTools.RunFunction(setAppearanceBySelection, InputPorts);
+        }
+
+
+        /// <summary>
+        /// Set Appearance from color to selection
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="color"></param>
+        /// <returns>Returns input</returns>
+        private object setAppearanceBySelection(object input,object color)
+        {
+            object output = null;
+            media.Color CurrentColor = (media.Color)color;
 
             if (input != null)
             {
                 var tt = input.GetType();
                 bool istype = input.GetType() == typeof(SelectionSet);
-                
+
                 if (MainTools.IsList(input) && istype)
-                    {
-
-                    //IList<SelectionSet> searchs = (IList<SelectionSet>)InputPorts[0].Data;
-
-                    media.Color color = (media.Color)InputPorts[1].Data;
+                {
 
                     //Convert ARGB Alpha to normaliced transparency
-                    double t = ((-color.A / 255.0) + 1) * 100;
+                    double t = ((-CurrentColor.A / 255.0) + 1) * 100;
                     double transparency = t;
 
                     foreach (var s in (System.Collections.IEnumerable)input)
                     {
-                        
-                        ApplyAppearance(s as SelectionSet, TransformColor(color), transparency);
+
+                        ApplyAppearance(s as SelectionSet, TransformColor(CurrentColor), transparency);
                     }
 
                     OutputPorts[0].Data = (System.Collections.IEnumerable)input;
                 }
 
-                if (MainTools.IsList(input) && MainTools.ListContainsType(input,typeof(ModelItem)) || input is ModelItem )
+                if (MainTools.IsList(input) && MainTools.ListContainsType(input, typeof(ModelItem)) || input is ModelItem)
                 {
-                    
+
                     List<ModelItem> searchs = ((List<object>)InputPorts[0].Data).Cast<ModelItem>().ToList();
 
-                    media.Color color = (media.Color)InputPorts[1].Data;
-
                     //Convert ARGB Alpha to normaliced transparency
-                    double t = ((-color.A / 255.0) + 1) * 100;
+                    double t = ((-CurrentColor.A / 255.0) + 1) * 100;
                     double transparency = t;
 
 
-                    ApplyAppearance(searchs, TransformColor(color), transparency);
+                    ApplyAppearance(searchs, TransformColor(CurrentColor), transparency);
 
-                    OutputPorts[0].Data = InputPorts[0].Data;
+                   
                 }
+
             }
-
+            return output;
         }
-
 
         public override Node Clone()
         {
@@ -142,6 +149,7 @@ namespace ENGyn.Nodes.Appearance
             }
 
         }
+
         /// <summary>
         /// Apply appearance to modelitems list
         /// </summary>
