@@ -221,6 +221,7 @@
     <Compile Include="Excel files\WriteToFile.cs" />
     <Compile Include="Input\CSV.cs" />
     <Compile Include="List\ListFlatten.cs" />
+    <Compile Include="Clash\GetClashInfo.cs" />
     <Compile Include="Navisworks\SaveNWFile.cs" />
     <Compile Include="String\StringToLower.cs" />
     <Compile Include="String\StringToUpper.cs" />

@@ -736,6 +736,7 @@ namespace ENGyn.Nodes.Clash
 
                 if (gridSystem.ClosestIntersection(copiedResult.Center) != null)
                 {
+                   
                     GridIntersection closestGridIntersection = gridSystem.ClosestIntersection(copiedResult.Center);
 
                     if (!groups.TryGetValue(closestGridIntersection, out currentGroup))
