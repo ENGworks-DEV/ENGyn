@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TUM.CMS.VplControl.Core;
 
 namespace ENGyn.Nodes
 {
@@ -17,11 +18,15 @@ namespace ENGyn.Nodes
         }
         public static string Quoted(this string str)
         {
+        
             if (str != null)
             { return "\"" + str + "\""; }
             else
             { return null; }
         }
+
+
+
         /// <summary>
         /// Check if object is a list
         /// </summary>
@@ -52,7 +57,293 @@ namespace ENGyn.Nodes
 
         }
 
+        //erase
+        public delegate object ParamsAction(params object[] arguments);
 
+        
+
+
+        private static void StrechArgumentLists(List<Port> ports, List<Tuple<int, object>> values)
+        {
+            //Fill values list
+            foreach (var arg in ports)
+            {
+
+                System.Collections.IList argList = null;
+                if (MainTools.IsList(arg.Data))
+                {
+                    argList = (System.Collections.IList)arg.Data;
+                }
+                //Check if argument is a list and include it on a Tuple with its count number
+                var argResult = argList != null ? new Tuple<int, object>(argList.Count, argList) : new Tuple<int, object>(1, arg.Data);
+                //if args are list, count the number of object to set how many times it should run
+                values.Add(argResult);
+
+            }
+        }
+
+
+        //The sleep of reason produces monsters, or in my case horrible methods
+        public static object RunFunction(Func<object, object, object, object, object, object> method, List<Port> ports)
+        {
+
+            var properties = method.GetType().GetProperties();
+
+            var result = new List<object>();
+            var values = new List<Tuple<int, object>>();
+
+            StrechArgumentLists(ports, values);
+
+            //Get highest value == longest list count
+            int Highest = values.OrderBy(x => x.Item1).Reverse().ElementAt(0).Item1;
+
+
+
+            for (int i = 0; i < Highest; i++)
+            {
+                var ActualArgList = new List<object>();
+                foreach (var item in values)
+                {
+                    object currentArg = null;
+                    if (item.Item1 > 1 || MainTools.IsList(item.Item2))
+                    {
+                        var tempArgList = (List<object>)item.Item2;
+                        //get latest object
+
+                        var currentArgListLenght = tempArgList.Count - 1;
+                        currentArg = currentArgListLenght <= i ? tempArgList[currentArgListLenght] : tempArgList[i];
+                        ActualArgList.Add(currentArg);
+                    }
+                    else
+                    {
+                        currentArg = item.Item2;
+                        ActualArgList.Add(currentArg);
+                    }
+                }
+
+                result.Add(method.DynamicInvoke(ActualArgList[0], ActualArgList[1], ActualArgList[2], ActualArgList[3], ActualArgList[4]));
+            }
+            return result;
+        }
+
+        public static object RunFunction(Func<object, object, object, object, object> method, List<Port> ports)
+        {
+
+            var properties = method.GetType().GetProperties();
+
+            var result = new List<object>();
+            var values = new List<Tuple<int, object>>();
+
+            StrechArgumentLists(ports, values);
+
+            //Get highest value == longest list count
+            int Highest = values.OrderBy(x => x.Item1).Reverse().ElementAt(0).Item1;
+
+
+
+            for (int i = 0; i < Highest; i++)
+            {
+                var ActualArgList = new List<object>();
+                foreach (var item in values)
+                {
+                    object currentArg = null;
+                    if (item.Item1 > 1 || MainTools.IsList(item.Item2))
+                    {
+                        var tempArgList = (List<object>)item.Item2;
+                        //get latest object
+
+                        var currentArgListLenght = tempArgList.Count - 1;
+                        currentArg = currentArgListLenght <= i ? tempArgList[currentArgListLenght] : tempArgList[i];
+                        ActualArgList.Add(currentArg);
+                    }
+                    else
+                    {
+                        currentArg = item.Item2;
+                        ActualArgList.Add(currentArg);
+                    }
+                }
+
+                result.Add(method.DynamicInvoke(ActualArgList[0], ActualArgList[1], ActualArgList[2]));
+            }
+            return result;
+        }
+
+        public static object RunFunction(Func<object, object, object, object> method, List<Port> ports)
+        {
+
+            var properties = method.GetType().GetProperties();
+
+            var result = new List<object>();
+            var values = new List<Tuple<int, object>>();
+
+            StrechArgumentLists(ports, values);
+
+            //Get highest value == longest list count
+            int Highest = values.OrderBy(x => x.Item1).Reverse().ElementAt(0).Item1;
+
+
+
+            for (int i = 0; i < Highest; i++)
+            {
+                var ActualArgList = new List<object>();
+                foreach (var item in values)
+                {
+                    object currentArg = null;
+                    if (item.Item1 > 1 || MainTools.IsList(item.Item2))
+                    {
+                        var tempArgList = (List<object>)item.Item2;
+                        //get latest object
+
+                        var currentArgListLenght = tempArgList.Count - 1;
+                        currentArg = currentArgListLenght <= i ? tempArgList[currentArgListLenght] : tempArgList[i];
+                        ActualArgList.Add(currentArg);
+                    }
+                    else
+                    {
+                        currentArg = item.Item2;
+                        ActualArgList.Add(currentArg);
+                    }
+                }
+
+                result.Add(method.DynamicInvoke(ActualArgList[0], ActualArgList[1], ActualArgList[2]));
+            }
+            return result;
+        }
+
+        public static object RunFunction(Func<object, object, object> method, List<Port> ports)
+        {
+
+            var properties = method.GetType().GetProperties();
+            var values = new List<Tuple<int, object>>();
+
+            var result = new List<object>();
+
+            StrechArgumentLists(ports, values);
+
+            //Get highest value == longest list count
+            int Highest = values.OrderBy(x => x.Item1).Reverse().ElementAt(0).Item1;
+
+            for (int i = 0; i < Highest; i++)
+            {
+                var ActualArgList = new List<object>();
+                foreach (var item in values)
+                {
+                    object currentArg = null;
+                    if (item.Item1 > 1 || MainTools.IsList(item.Item2))
+                    {
+                        var tempArgList = (List<object>)item.Item2;
+                        //get latest object
+
+                        var currentArgListLenght = tempArgList.Count - 1;
+                        currentArg = currentArgListLenght <= i ? tempArgList[currentArgListLenght] : tempArgList[i];
+                        ActualArgList.Add(currentArg);
+                    }
+                    else
+                    {
+                        currentArg = item.Item2;
+                        ActualArgList.Add(currentArg);
+                    }
+                }
+                var m = method.DynamicInvoke(ActualArgList[0], ActualArgList[1]);
+                result.Add(m);
+            }
+            return result;
+        }
+
+        public static object RunFunction(Func<object, object> method, List<Port> ports)
+        {
+
+            var properties = method.GetType().GetProperties();
+            var values = new List<Tuple<int, object>>();
+
+            var result = new List<object>();
+
+            //Fill values list
+            StrechArgumentLists(ports, values);
+
+            //Get highest value == longest list count
+            int Highest = values.OrderBy(x => x.Item1).Reverse().ElementAt(0).Item1;
+
+
+
+            for (int i = 0; i < Highest; i++)
+            {
+                var ActualArgList = new List<object>();
+                foreach (var item in values)
+                {
+                    object currentArg = null;
+                    if (item.Item1 > 1 || MainTools.IsList(item.Item2))
+                    {
+                        var tempArgList = (List<object>)item.Item2;
+                        //get latest object
+
+                        var currentArgListLenght = tempArgList.Count - 1;
+                        currentArg = currentArgListLenght <= i ? tempArgList[currentArgListLenght] : tempArgList[i];
+                        ActualArgList.Add(currentArg);
+                    }
+                    else
+                    {
+                        currentArg = item.Item2;
+                        ActualArgList.Add(currentArg);
+                    }
+                }
+
+                result.Add(method.DynamicInvoke(ActualArgList[0]));
+            }
+            return result;
+        }
+
+        public static List<object> RunFunction(Delegate method, TUM.CMS.VplControl.Core.Port[] port, params object[] args)
+        {
+
+            var properties =  method.GetType().GetProperties();
+            var values = new List<Tuple<int, object>>();
+
+            var result = new List<object>();
+
+            //Fill values list
+            foreach (var arg in args)
+            {
+                   
+                    var argList = (System.Collections.IList)arg;
+                    //Check if argument is a list and include it on a Tuple with its count number
+                    var argResult = argList != null ? new Tuple<int,object>( 1, arg ) :new Tuple<int, object>( argList.Count, argList );
+                    //if args are list, count the number of object to set how many times it should run
+                    values.Add(argResult);
+                
+            }
+
+            //Get highest value == longest list count
+            int Highest = values.OrderBy(x => x.Item1).Reverse().ElementAt(0).Item1;
+
+           
+
+            for (int i = 0; i < Highest; i++)
+            {
+                var ActualArgList = new List<object>();
+                foreach (var item in values)
+                {
+                    object currentArg = null;
+                    if (item.Item1 > 1)
+                    {
+                        var tempArgList = (List<object>)item.Item2;
+                        //get latest object
+
+                        var currentArgListLenght = tempArgList.Count -1;
+                        currentArg = currentArgListLenght <= i? tempArgList[currentArgListLenght]: tempArgList;
+
+                    }
+                    else
+                    {
+                        currentArg = item.Item2;
+                    }
+                }
+
+                result.Add(method.DynamicInvoke(ActualArgList));
+            }
+            return result;
+  
+        }
 
         /// <summary>
         /// Check if object can contain type - Used after IsList()
@@ -114,4 +405,5 @@ namespace ENGyn.Nodes
             return output;
         }
     }
+
 }

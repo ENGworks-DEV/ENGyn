@@ -27,7 +27,7 @@ namespace ENGyn.Nodes.Viewpoints
         {
             Document doc = Autodesk.Navisworks.Api.Application.ActiveDocument;
 
-            SavedViewpoints = new List<SavedViewpoint>();
+            SavedViewpoints = new List<object>();
             List<SelectionSet> Viewpoints = new List<SelectionSet>();
             if (doc.SavedViewpoints != null)
             { 
@@ -45,9 +45,10 @@ namespace ENGyn.Nodes.Viewpoints
             { System.Windows.MessageBox.Show(e.Message); }
             
             OutputPorts[0].Data = SavedViewpoints;
-        }
             }
-        public List<SavedViewpoint> SavedViewpoints { get; set; }
+            }
+        public List<object> SavedViewpoints { get; set; }
+
         private List<SelectionSet> SelectionSet { get; set; }
 
         private void RecursionViewpoint(object s)
@@ -396,6 +397,8 @@ namespace ENGyn.Nodes.Viewpoints
             AddInputPortToNode("Viewpoints", typeof(object));
             AddInputPortToNode("Name", typeof(object));
             AddInputPortToNode("Folder Path", typeof(object));
+            AddInputPortToNode("Width", typeof(object));
+            AddInputPortToNode("Height", typeof(object));
             AddOutputPortToNode("Viewpoints", typeof(object));
 
         }
@@ -410,13 +413,14 @@ namespace ENGyn.Nodes.Viewpoints
             object name = null;
             object path = null;
 
-            exportViewpoint(doc, item, name, path);
+
+            OutputPorts[0].Data = MainTools.RunFunction(exportViewpoint, InputPorts); 
 
         }
 
-        private static void exportViewpoint(Document doc, object item, object name, object path)
+        private static object exportViewpoint( object item, object name, object path, object width, object height)
         {
-            Document docs = Autodesk.Navisworks.Api.Application.ActiveDocument;
+            Document doc = Autodesk.Navisworks.Api.Application.ActiveDocument;
             var svp = item as SavedViewpoint;
             var vp = svp.Viewpoint;
 
@@ -424,6 +428,7 @@ namespace ENGyn.Nodes.Viewpoints
             doc.ActiveView.CopyViewpointFrom(vp, ViewChange.JumpCut);
             System.Drawing.Bitmap thumbnailImage = doc.ActiveView.GenerateThumbnail(1000, 800);
             thumbnailImage.Save(string.Format(@"{0}{1}.jpg", path.ToString(), name.ToString()));
+            return svp;
         }
 
 
