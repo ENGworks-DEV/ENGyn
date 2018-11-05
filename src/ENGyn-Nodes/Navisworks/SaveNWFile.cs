@@ -15,8 +15,11 @@ namespace ENGyn.Nodes.Navisworks
             AddInputPortToNode("Path", typeof(object));
             AddOutputPortToNode("NW Document", typeof(object));
 
-           
 
+
+            //Help
+            this.ShowHelpOnMouseOver = true;
+            this.BottomComment.Text = "Save current document as NWF or NWD depending on the extension used on the file path";
         }
 
         public override void Calculate()

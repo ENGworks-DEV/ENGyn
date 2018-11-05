@@ -11,16 +11,19 @@ using System;
 
 namespace ENGyn.Nodes.Selection
 {
-    public class GetSearchSet : Node
+    public class GetSearchSets : Node
     {
         
 
-        public GetSearchSet(VplControl hostCanvas)
+        public GetSearchSets(VplControl hostCanvas)
             : base(hostCanvas)
         {
             
             AddOutputPortToNode("SearchSets", typeof(object));
 
+            //Help
+            this.ShowHelpOnMouseOver = true;
+            this.BottomComment.Text = "Return all SelectionSets and SearchSets available in current model. SearchSets can be filters using GetAPIParameterValue and quering HasSearch for true";
         }
 
         public override void Calculate()
@@ -39,7 +42,7 @@ namespace ENGyn.Nodes.Selection
                     GetSets(selections);
                         foreach (SelectionSet item in SelectionSet)
                         {
-                            if (item != null && item.HasSearch)
+                            if (item != null)
                             {
                                 searchSets.Add(item);
                             }
@@ -83,7 +86,7 @@ namespace ENGyn.Nodes.Selection
        
         public override Node Clone()
         {
-            return new GetSearchSet(HostCanvas)
+            return new GetSearchSets(HostCanvas)
             {
                 Top = Top,
                 Left = Left
@@ -105,6 +108,9 @@ namespace ENGyn.Nodes.Selection
             AddInputPortToNode("Value", typeof(object));
             AddOutputPortToNode("SearchSets", typeof(object));
 
+            //Help
+            this.ShowHelpOnMouseOver = true;
+            this.BottomComment.Text = "Create a SearchSet based on a simple search";
         }
 
         public override void Calculate()

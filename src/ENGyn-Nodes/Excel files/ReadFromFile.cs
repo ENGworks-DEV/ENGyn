@@ -15,6 +15,8 @@ namespace ENGyn.Nodes.Excel
             AddInputPortToNode("FilePath", typeof(object));
             AddOutputPortToNode("Data", typeof(object));
 
+            //Help
+            this.ShowHelpOnMouseOver = true;
             this.BottomComment.Text = "Read Excel data. The node takes all " +
                 "used cells in the spreadsheet from the first worksheet " +
                 "available";

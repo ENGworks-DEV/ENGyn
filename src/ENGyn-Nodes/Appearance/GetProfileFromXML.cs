@@ -24,7 +24,9 @@ namespace ENGyn.Nodes.Appearance
         {
             AddInputPortToNode("File path", typeof(string));
 
-
+            //Help 
+            this.BottomComment.Text = "Creates an Json version of the SearchSet sxml to be read by SetAppearanceByProfile";
+            this.ShowHelpOnMouseOver = true;
         }
 
         public override void Calculate()

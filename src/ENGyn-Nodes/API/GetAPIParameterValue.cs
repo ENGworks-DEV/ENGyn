@@ -28,8 +28,10 @@ namespace ENGyn.Nodes.API
             AddInputPortToNode("Name", typeof(string));
             
             AddOutputPortToNode("Output", typeof(object));
-
-    }
+            //Help 
+            this.BottomComment.Text = "Returns value of class property";
+            this.ShowHelpOnMouseOver = true;
+        }
 
         
 
@@ -48,21 +50,29 @@ namespace ENGyn.Nodes.API
             object output = null;
 
             var iterator = input;
-
+            if (input != null) { 
             if (input.GetType() == typeof(SavedItemReference))
             {
                 iterator = doc.ResolveReference(input as SavedItemReference);
 
             }
 
+            try
+            {
 
+         
                 string method = property.ToString();
                 var types = iterator.GetType();
                 PropertyInfo prop = types.GetProperty(method);
                 object value = prop.GetValue(iterator);
+                output = value;
+            }
+            catch
+            {
+              
+            }
 
-                output= value;
-
+            }
 
 
             return output;

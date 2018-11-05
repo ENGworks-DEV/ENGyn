@@ -20,6 +20,9 @@ namespace ENGyn.Nodes.Selection
             AddInputPortToNode("SelectionSets", typeof(object));
             AddOutputPortToNode("Output", typeof(object));
 
+            //Help
+            this.ShowHelpOnMouseOver = true;
+            this.BottomComment.Text = "Returns elements in SearchSet";
         }
 
 

@@ -11,9 +11,11 @@ namespace ENGyn.Nodes.Clash
             : base(hostCanvas)
         {
             AddInputPortToNode("Clash Test", typeof(object));
-            AddOutputPortToNode("Navis Clash", typeof(object));
+            AddOutputPortToNode("Clash", typeof(object));
 
-
+            //Help 
+            this.BottomComment.Text = "Return result of clashes from clash test";
+            this.ShowHelpOnMouseOver = true;
         }
 
 

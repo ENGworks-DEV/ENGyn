@@ -24,6 +24,9 @@ namespace ENGyn.Nodes.List
             AddOutputPortToNode("Output", typeof(object));
 
 
+            //Help
+            this.ShowHelpOnMouseOver = true;
+            this.BottomComment.Text = "Filter a list by a boolean mask";
 
         }
 

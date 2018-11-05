@@ -21,7 +21,9 @@ namespace ENGyn.Nodes.Clash
             AddInputPortToNode("# of Clusters", typeof(int));
             AddInputPortToNode("# of Attempts", typeof(int));
             AddOutputPortToNode("ClashTest", typeof(object));
-
+            //Help 
+            this.BottomComment.Text = "Group clashes in clash test by cluster";
+            this.ShowHelpOnMouseOver = true;
 
         }
 
@@ -95,38 +97,38 @@ namespace ENGyn.Nodes.Clash
         }
     }
 
-    public class ASDKGroupingOptions : Node
-    {
-        public ASDKGroupingOptions(VplControl hostCanvas)
-            : base(hostCanvas)
-        {
-            //AddControlToNode(new ComboBox { Items = { "Test1", "Test2", "Test3" } });
+    //public class ASDKGroupingOptions : Node
+    //{
+    //    public ASDKGroupingOptions(VplControl hostCanvas)
+    //        : base(hostCanvas)
+    //    {
+    //        //AddControlToNode(new ComboBox { Items = { "Test1", "Test2", "Test3" } });
 
 
-        }
+    //    }
 
 
-        public override void Calculate()
-        {
-            var input = InputPorts[0].Data;
+    //    public override void Calculate()
+    //    {
+    //        var input = InputPorts[0].Data;
             
-            OutputPorts[0].Data = null;
+    //        OutputPorts[0].Data = null;
 
-        }
+    //    }
 
   
 
 
-        public override Node Clone()
-        {
-            return new ASDKGroupingOptions(HostCanvas)
-            {
-                Top = Top,
-                Left = Left
-            };
+    //    public override Node Clone()
+    //    {
+    //        return new ASDKGroupingOptions(HostCanvas)
+    //        {
+    //            Top = Top,
+    //            Left = Left
+    //        };
 
-        }
-    }
+    //    }
+    //}
 
     public class ASDKGroupByGridIntersection : Node
     {
@@ -135,7 +137,10 @@ namespace ENGyn.Nodes.Clash
         {
             AddInputPortToNode("ClashTest", typeof(object));
             AddOutputPortToNode("Output", typeof(object));
-
+            
+            //Help 
+            this.BottomComment.Text = "Group clashes in clash test by nearest grid intersection";
+            this.ShowHelpOnMouseOver = true;
 
         }
 
@@ -204,7 +209,9 @@ namespace ENGyn.Nodes.Clash
         {
             AddInputPortToNode("ClashTest", typeof(object));
             AddOutputPortToNode("Output", typeof(object));
-
+            //Help 
+            this.BottomComment.Text = "Group clashes in clash test by nearest level";
+            this.ShowHelpOnMouseOver = true;
         }
 
 
@@ -279,6 +286,10 @@ namespace ENGyn.Nodes.Clash
             AddInputPortToNode("ClashTest", typeof(object));
             AddInputPortToNode("Model", typeof(object));
             AddOutputPortToNode("Output", typeof(object));
+
+            //Help 
+            this.BottomComment.Text = "Group clashes in clash test by Model. Input Model is a model in current document";
+            this.ShowHelpOnMouseOver = true;
 
         }
 
@@ -379,7 +390,9 @@ namespace ENGyn.Nodes.Clash
 
             AddControlToNode(stackPanel);
 
-            
+            //Help 
+            this.BottomComment.Text = "Based on BIM42 add in this node group clashes in by Level, Grid, Selection, Assignation, Approval or Status. This nodes can group clashes twice. ";
+            this.ShowHelpOnMouseOver = true;
         }
 
 

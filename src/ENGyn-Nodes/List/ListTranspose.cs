@@ -20,6 +20,9 @@ namespace ENGyn.Nodes.List
             AddInputPortToNode("List", typeof(object));
             AddOutputPortToNode("List", typeof(object));
 
+            //Help
+            this.ShowHelpOnMouseOver = true;
+            this.BottomComment.Text = "Transpose list of lists";
         }
 
 

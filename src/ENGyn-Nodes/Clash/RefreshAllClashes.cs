@@ -16,7 +16,9 @@ namespace ENGyn.Nodes.Clash
         {
             AddInputPortToNode("NW Document", typeof(object));
             AddOutputPortToNode("ClashTests", typeof(object));
-
+            //Help 
+            this.BottomComment.Text = "Refresh all clashes in current document";
+            this.ShowHelpOnMouseOver = true;
         }
 
         public override void Calculate()

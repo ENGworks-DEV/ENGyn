@@ -16,6 +16,9 @@ namespace ENGyn.Nodes.Input
             AddInputPortToNode("Path", typeof(object));
             AddInputPortToNode("Text", typeof(object));
 
+            //Help
+            this.ShowHelpOnMouseOver = true;
+            this.BottomComment.Text = "Write text to file";
         }
 
         public void recursion(object obj)

@@ -14,7 +14,8 @@ namespace ENGyn.Nodes.Excel
         {
             AddInputPortToNode("FilePath", typeof(object));
             AddOutputPortToNode("Data", typeof(object));
-
+            //Help
+            this.ShowHelpOnMouseOver = true;
             this.BottomComment.Text = "Get all the worksheets as a list " +
                 "of strings";
         }

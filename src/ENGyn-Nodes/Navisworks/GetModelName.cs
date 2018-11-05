@@ -15,6 +15,11 @@ namespace ENGyn.Nodes.Navisworks
         {
             AddInputPortToNode("NW Document", typeof(Document));
             AddOutputPortToNode("Navis Model Name", typeof(string));
+
+
+            //Help
+            this.ShowHelpOnMouseOver = true;
+            this.BottomComment.Text = "Get current document's name";
         }
 
         public override void Calculate()

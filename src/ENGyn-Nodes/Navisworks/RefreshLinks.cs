@@ -15,6 +15,10 @@ namespace ENGyn.Nodes.Navisworks
         {
             AddInputPortToNode("NW_Document", typeof(Document));
             AddOutputPortToNode("NW_Document", typeof(Document));
+
+            //Help
+            this.ShowHelpOnMouseOver = true;
+            this.BottomComment.Text = "Refresh all links (NWC, NWD) in current document";
         }
 
         public override void Calculate()

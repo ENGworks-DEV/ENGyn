@@ -14,7 +14,9 @@ namespace ENGyn.Nodes.Clash
             AddInputPortToNode("Any", typeof(object));
             AddOutputPortToNode("ClashTests", typeof(object));
 
-
+            //Help 
+            this.BottomComment.Text = "Compact all clashes, run it disconnected or put any input to order the execution after any other node";
+            this.ShowHelpOnMouseOver = true;
         }
 
         public override void Calculate()

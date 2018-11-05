@@ -25,9 +25,11 @@ namespace ENGyn.Nodes.Appearance
 
             AddInputPortToNode("Selection", typeof(object));
             AddInputPortToNode("Color", typeof(System.Windows.Media.Color));
-            AddOutputPortToNode("SearchSet", typeof(List<SelectionSet>));
+            AddOutputPortToNode("SearchSet", typeof(object));
 
-
+            //Help 
+            this.BottomComment.Text = "Applies color and transparency to selection";
+            this.ShowHelpOnMouseOver = true;
         }
 
         public override void Calculate()

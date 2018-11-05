@@ -23,6 +23,11 @@ namespace ENGyn.Nodes.Navisworks
 
             Calculate();
 
+
+            //Help
+            this.ShowHelpOnMouseOver = true;
+            this.BottomComment.Text = "Get current Navisworks document";
+
         }
 
         public override void Calculate()

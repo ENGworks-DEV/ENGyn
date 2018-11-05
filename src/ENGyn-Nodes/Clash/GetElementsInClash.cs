@@ -14,7 +14,9 @@ namespace ENGyn.Nodes.Clash
             AddOutputPortToNode("SelectionA", typeof(object));
             AddOutputPortToNode("SelectionB", typeof(object));
 
-
+            //Help 
+            this.BottomComment.Text = "Return list elements involved on each clash result (group or single clash)";
+            this.ShowHelpOnMouseOver = true;
 
 
 

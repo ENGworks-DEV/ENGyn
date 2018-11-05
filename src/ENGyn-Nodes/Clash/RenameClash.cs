@@ -15,6 +15,10 @@ namespace ENGyn.Nodes.Clash
             AddInputPortToNode("Clash Name", typeof(object));
             AddOutputPortToNode("Clash Results", typeof(object));
 
+            //Help 
+            this.BottomComment.Text = "Rename a clash result by GUID. It's a good idea to use in excel/CSV after exporting the info with GetClashInfo's Clash Name and GUID ";
+            this.ShowHelpOnMouseOver = true;
+
         }
 
 

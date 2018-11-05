@@ -25,6 +25,9 @@ namespace ENGyn.Nodes.Navisworks
             AddInputPortToNode("Value", typeof(object));
             AddOutputPortToNode("ModelItem", typeof(object));
 
+            //Help
+            this.ShowHelpOnMouseOver = true;
+            this.BottomComment.Text = "Write properties to ModelItems into an UserTab. Category is the name of the UserTab";
         }
 
         public override void Calculate()

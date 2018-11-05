@@ -21,8 +21,12 @@ namespace ENGyn.Nodes.API
             AddInputPortToNode("Input", typeof(object));
             
             AddOutputPortToNode("Output", typeof(object));
-
+           
+            //Help 
             this.BottomComment.Text = "Return list of parameters in element class";
+            this.ShowHelpOnMouseOver = true;
+
+            
         }
 
         public static string category;

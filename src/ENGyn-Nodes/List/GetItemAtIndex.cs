@@ -23,7 +23,12 @@ namespace ENGyn.Nodes.List
             AddInputPortToNode("List", typeof(List<object>));
             AddInputPortToNode("Index", typeof(int));
             AddOutputPortToNode("Result", typeof(object));
-            
+
+
+            //Help
+            this.ShowHelpOnMouseOver = true;
+            this.BottomComment.Text = "Get item of list at an specific index";
+
         }
 
         public override void Calculate()

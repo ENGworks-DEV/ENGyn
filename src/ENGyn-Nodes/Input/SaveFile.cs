@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using System.Windows.Input;
 using System.Windows.Forms;
 
-namespace ENGyn.Nodes
+namespace ENGyn.Nodes.Input
 {
     public class SaveFile : Node
     {
@@ -22,6 +22,11 @@ namespace ENGyn.Nodes
             saveButton.Click += SaveFile_Click;
             AddControlToNode(saveButton);
             AddOutputPortToNode("Output", typeof(object));
+
+
+            //Help
+            this.ShowHelpOnMouseOver = true;
+            this.BottomComment.Text = "Select where to save a file";
         }
 
 

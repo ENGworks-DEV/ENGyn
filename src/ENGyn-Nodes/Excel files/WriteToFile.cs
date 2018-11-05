@@ -19,6 +19,9 @@ namespace ENGyn.Nodes.Excel
             AddInputPortToNode("List<String>", typeof(List<object>));
             AddOutputPortToNode("Data", typeof(object));
 
+
+            //Help
+            this.ShowHelpOnMouseOver = true;
             this.BottomComment.Text = "Write Excel data. The node takes a " +
                 "List<string> and writes each element in a different cell";
         }

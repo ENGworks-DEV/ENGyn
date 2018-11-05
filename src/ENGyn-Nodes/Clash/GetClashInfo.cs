@@ -29,11 +29,14 @@ namespace ENGyn.Nodes.Clash
             AddOutputPortToNode("Description", typeof(object));
             AddOutputPortToNode("Grids", typeof(object));
             AddOutputPortToNode("Level", typeof(object));
+            AddOutputPortToNode("GUID", typeof(object));
             AddOutputPortToNode("X", typeof(object));
             AddOutputPortToNode("Y", typeof(object));
             AddOutputPortToNode("Z", typeof(object));
 
-
+            //Help 
+            this.BottomComment.Text = "Reports all relevant information from Clash result (group or single)";
+            this.ShowHelpOnMouseOver = true;
 
         }
 
@@ -74,6 +77,8 @@ namespace ENGyn.Nodes.Clash
                         
                         string grid = null;
                         string level = null;
+                        //DANGER WILL ROBINSON!!
+                        string GUID = (clash as ClashResult)!= null? (clash as ClashResult).Guid.ToString(): (clash as ClashResultGroup).Guid.ToString();
                         var x = clash.Center.X;
                         var y = clash.Center.Y;
                         var z = clash.Center.Z;
@@ -97,6 +102,7 @@ namespace ENGyn.Nodes.Clash
                             Description,
                             grid,
                             level,
+                            GUID,
                             x,
                             y,
                             z

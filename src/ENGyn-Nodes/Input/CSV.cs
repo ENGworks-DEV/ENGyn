@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace ENGyn.Nodes
+namespace ENGyn.Nodes.Input
 {
     public class ExportAsCSV : Node
     {
@@ -24,6 +24,9 @@ namespace ENGyn.Nodes
             AddControlToNode(new Label() { Content = "Title", FontSize = 13, FontWeight = FontWeights.Bold });
 
 
+            //Help
+            this.ShowHelpOnMouseOver = true;
+            this.BottomComment.Text = "Export input list content as string to CSV file";
         }
 
 
@@ -104,6 +107,9 @@ namespace ENGyn.Nodes
 
             AddControlToNode(new Label() { Content = "Title", FontSize = 13, FontWeight = FontWeights.Bold });
 
+            //Help
+            this.ShowHelpOnMouseOver = true;
+            this.BottomComment.Text = "Read content of file and format as CSV input";
 
         }
 

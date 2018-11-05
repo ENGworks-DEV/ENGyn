@@ -19,6 +19,11 @@ namespace ENGyn.Nodes.List
             AddInputPortToNode("List", typeof(object));
             AddInputPortToNode("Level", typeof(object));
             AddOutputPortToNode("List", typeof(object));
+
+
+            //Help
+            this.ShowHelpOnMouseOver = true;
+            this.BottomComment.Text = "Flatten a list by specific level";
         }
 
 

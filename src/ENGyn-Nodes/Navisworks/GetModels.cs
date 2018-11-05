@@ -17,6 +17,9 @@ namespace ENGyn.Nodes.Navisworks
             AddInputPortToNode("NW_Document", typeof(Document));
             AddOutputPortToNode("Navis Models", typeof(object));
 
+            //Help
+            this.ShowHelpOnMouseOver = true;
+            this.BottomComment.Text = "Get models appended to current document";
 
         }
 

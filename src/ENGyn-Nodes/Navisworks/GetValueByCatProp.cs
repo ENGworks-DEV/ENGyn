@@ -22,6 +22,10 @@ namespace ENGyn.Nodes.Navisworks
             AddInputPortToNode("Property", typeof(string));
             AddOutputPortToNode("Value", typeof(string));
 
+
+            //Help
+            this.ShowHelpOnMouseOver = true;
+            this.BottomComment.Text = "Return value of ModelItem property by category (tab name) and property ";
         }
 
         public override void Calculate()

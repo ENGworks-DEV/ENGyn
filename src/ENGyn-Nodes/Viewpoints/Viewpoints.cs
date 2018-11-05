@@ -20,6 +20,9 @@ namespace ENGyn.Nodes.Viewpoints
         {
             
             AddOutputPortToNode("Viewpoints", typeof(object));
+            //Help
+            this.ShowHelpOnMouseOver = true;
+            this.BottomComment.Text = "Return all viewpoints in current document";
 
         }
 
@@ -114,7 +117,6 @@ namespace ENGyn.Nodes.Viewpoints
         }
     }
 
-
     public class RenameViewpoints : Node
     {
         public RenameViewpoints(VplControl hostCanvas)
@@ -124,6 +126,9 @@ namespace ENGyn.Nodes.Viewpoints
             AddInputPortToNode("Name", typeof(string));
             AddOutputPortToNode("Output", typeof(object));
 
+            //Help
+            this.ShowHelpOnMouseOver = true;
+            this.BottomComment.Text = "Rename viewpoint by name string";
         }
 
         public void manyToOne(object a, string Parameter)
@@ -244,7 +249,6 @@ namespace ENGyn.Nodes.Viewpoints
         }
     }
 
-
     public class RenameViewpointsByGUID : Node
     {
         public RenameViewpointsByGUID(VplControl hostCanvas)
@@ -254,6 +258,9 @@ namespace ENGyn.Nodes.Viewpoints
             AddInputPortToNode("Name", typeof(string));
             AddOutputPortToNode("Output", typeof(object));
 
+            //Help
+            this.ShowHelpOnMouseOver = true;
+            this.BottomComment.Text = "Rename viewpoint by its GUID and new name as strgin. Great to use with a CSV list of GUIDs/Names";
         }
 
         public void manyToOne(object a, string Parameter)
@@ -401,6 +408,9 @@ namespace ENGyn.Nodes.Viewpoints
             AddInputPortToNode("Height", typeof(object));
             AddOutputPortToNode("Viewpoints", typeof(object));
 
+            //Help
+            this.ShowHelpOnMouseOver = true;
+            this.BottomComment.Text = "Export viewpoint. Set file path, name and image widht and height";
         }
 
         public override void Calculate()
@@ -442,4 +452,5 @@ namespace ENGyn.Nodes.Viewpoints
 
         }
     }
+
 }

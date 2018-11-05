@@ -15,6 +15,9 @@ namespace ENGyn.Nodes.Selection
             AddInputPortToNode("NW Document", typeof(Document));
             AddOutputPortToNode("Selection", typeof(object));
 
+            //Help
+            this.ShowHelpOnMouseOver = true;
+            this.BottomComment.Text = "Returns elements in current selection";
         }
 
         public override void Calculate()

@@ -14,7 +14,9 @@ namespace ENGyn.Nodes.Clash
         {
             AddInputPortToNode("NW Document", typeof(Document));
             AddOutputPortToNode("ClashTest", typeof(Object));
-
+            //Help 
+            this.BottomComment.Text = "Return clash tests in current document";
+            this.ShowHelpOnMouseOver = true;
         }
 
         public override void Calculate()

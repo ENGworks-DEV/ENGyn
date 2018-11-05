@@ -22,7 +22,9 @@ namespace ENGyn.Nodes.Appearance
             : base(hostCanvas)
         {
             AddInputPortToNode("File path", typeof(string));
-
+            //Help 
+            this.BottomComment.Text = "Applies color and transparency to SearchSets setted in json profile";
+            this.ShowHelpOnMouseOver = true;
 
         }
 
