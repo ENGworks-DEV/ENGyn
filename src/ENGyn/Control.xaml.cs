@@ -241,6 +241,60 @@ namespace ENGyn
 
         }
 
+        private void Refresh(object sender, ExecutedRoutedEventArgs e)
+        {
+            var nn = SortNodes.TSort(this.VplControl.NodeCollection as IEnumerable<Node>, n => NodeDependencyTree(n));
+
+
+
+            int CurrentProgress = 0;
+            int TotalProgress = nn.Count();
+            Progress ProgressBar = Autodesk.Navisworks.Api.Application.BeginProgress("ENGyn", "Running nodes");
+            for (int i = 0; i < nn.Count(); i++)
+            {
+                using (Transaction tx = Autodesk.Navisworks.Api.Application.MainDocument.BeginTransaction(nn.ElementAt(i).Name))
+                {
+                    if (ProgressBar.IsCanceled) break;
+                    CurrentProgress++;
+
+                    nn.ElementAt(i).setToRun = true;
+                    try
+                    {
+                        nn.ElementAt(i).HasError = false;
+                        nn.ElementAt(i).TopComment.Visibility = Visibility.Hidden;
+                        nn.ElementAt(i).Calculate();
+
+
+                    }
+                    catch (Exception except)
+                    {
+
+
+                        nn.ElementAt(i).HasError = true;
+                        nn.ElementAt(i).TopComment.Visibility = Visibility.Visible;
+                        nn.ElementAt(i).TopComment.Text = except.Message;
+                        VplControl.UpdateLayout();
+
+                    }
+                    nn.ElementAt(i).setToRun = false;
+
+                    tx.Commit();
+                    tx.Dispose();
+                    ProgressBar.Update((double)CurrentProgress / TotalProgress);
+                }
+
+
+            }
+
+            ProgressBar.EndSubOperation(true);
+
+            Autodesk.Navisworks.Api.Application.EndProgress();
+
+
+        }
+
+
+
         private void btnCopy_Click(object sender, ExecutedRoutedEventArgs e)
         {
             VplControl.VplControlCopy();
@@ -262,10 +316,6 @@ namespace ENGyn
         }
 
         private void BtnGroup_Click(object sender, ExecutedRoutedEventArgs e)
-        {
-            VplControl.VplControlGroup();
-        }
-        private void btnGroupNones_Click(object sender, ExecutedRoutedEventArgs e)
         {
             VplControl.VplControlGroup();
         }

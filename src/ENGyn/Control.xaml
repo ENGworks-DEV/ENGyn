@@ -4,26 +4,8 @@
    xmlns:VplControl="clr-namespace:TUM.CMS.VplControl.Core;assembly=TUM.CMS.VplControl"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="ENGyn.MainWindow"
     Height="700" Width="1000" MinWidth="500" MinHeight="300">
-    <UserControl.InputBindings>
 
-        <KeyBinding Key="C" Modifiers="Control" Command="Copy" />
-        <KeyBinding Key="V" Modifiers="Control" Command="Paste" />
-        <KeyBinding Key="Delete" Command="Delete" />
-        <KeyBinding Key="A" Modifiers="Control" Command="SelectAll" />
-
-
-    </UserControl.InputBindings>
-
-    <UserControl.CommandBindings>
-        <CommandBinding Command="Copy" Executed="btnCopy_Click" />
-
-        <CommandBinding Command="Paste" Executed="BtnPaste_Click" />
-        <CommandBinding Command="Delete" Executed="BtnDelete_Click" />
-        <CommandBinding Command="SelectAll" Executed="BtnAll_Click" />
-
-    </UserControl.CommandBindings>
     <UserControl.Resources>
-
         <Style TargetType="{x:Type Button}">
             <Setter Property="Background" Value="#FFF0F0F0"/>
             <Setter Property="BorderBrush" Value="#FF707070"/>
@@ -31,8 +13,36 @@
             <Setter Property="Height" Value="25" />
             <Setter Property="BorderThickness" Value="0"/>
         </Style>
+        <RoutedUICommand x:Key="BtnGroup_Click" Text=""/>
+
 
     </UserControl.Resources>
+
+    <UserControl.CommandBindings>
+        <CommandBinding Command="Copy" Executed="btnCopy_Click" />
+
+        <CommandBinding Command="Paste" Executed="BtnPaste_Click" />
+        <CommandBinding Command="Delete" Executed="BtnDelete_Click" />
+        <CommandBinding Command="SelectAll" Executed="BtnAll_Click" />
+        <CommandBinding Command="Select" Executed="BtnGroup_Click" />
+        <CommandBinding Command="Refresh" Executed="Refresh" />
+       
+
+
+    </UserControl.CommandBindings>
+    <UserControl.InputBindings>
+
+        <KeyBinding Key="C" Modifiers="Control" Command="Copy" />
+        <KeyBinding Key="V" Modifiers="Control" Command="Paste" />
+        <KeyBinding Key="Delete" Command="Delete" />
+        <KeyBinding Key="A" Modifiers="Control" Command="SelectAll" />
+        <KeyBinding Key="G" Modifiers="Control" Command="Select" />
+        <KeyBinding Key="F5" Modifiers="Control" Command="Refresh" />
+
+
+    </UserControl.InputBindings>
+
+
 
 
     <Grid >
