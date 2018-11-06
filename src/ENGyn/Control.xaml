@@ -26,7 +26,7 @@
         <CommandBinding Command="SelectAll" Executed="BtnAll_Click" />
         <CommandBinding Command="Select" Executed="BtnGroup_Click" />
         <CommandBinding Command="Refresh" Executed="Refresh" />
-       
+
 
 
     </UserControl.CommandBindings>
@@ -36,8 +36,8 @@
         <KeyBinding Key="V" Modifiers="Control" Command="Paste" />
         <KeyBinding Key="Delete" Command="Delete" />
         <KeyBinding Key="A" Modifiers="Control" Command="SelectAll" />
-        <KeyBinding Key="G" Modifiers="Control" Command="Select" />
-        <KeyBinding Key="F5" Modifiers="Control" Command="Refresh" />
+        <KeyBinding Gesture="Ctrl+Shift+G" Command="Select" />
+        <KeyBinding Gesture="Ctrl+F5"  Command="Refresh" />
 
 
     </UserControl.InputBindings>
@@ -85,6 +85,10 @@
                 </VplControl:VplControl>
             </Viewbox>
         </Border>
+        <TextBlock Grid.Column="1"  Width="200" TextAlignment="Center" Background="Transparent" HorizontalAlignment="Right" Margin="0,7">
+            <Hyperlink NavigateUri="https://github.com/ENGworks-DEV/ENGyn/wiki"  RequestNavigate="Hyperlink_RequestNavigate" FontSize="10" >
+                Looking for help? Check the Wiki
+            </Hyperlink></TextBlock>
 
 
 

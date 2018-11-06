@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Document GraphFlowDirection="Horizontal">
+  <Nodes>
+    <ENGyn.Nodes.Viewpoints.ExportViewpoint GUID="9f40b44d-8554-4ac2-99a8-6469b8e86694" TOP="3895.5141056539355" Left="4847.6277070179458" />
+    <ENGyn.Nodes.Viewpoints.GetViewpoints GUID="a34695d7-33ce-4172-b0ee-247763f5e24c" TOP="3925.1364425291672" Left="2919.9556508906949" />
+    <ENGyn.Nodes.API.GetAPIPropertyValue GUID="82d6c9d3-5d4a-46de-af29-07632f34bdfc" TOP="3883.7373852444207" Left="4657.120332355" />
+    <TUM.CMS.VplControl.Nodes.Input.TextNode GUID="d8e2127c-60ee-4ac0-8bea-e4f73d67e50c" TOP="4103.4384542226344" Left="3117.1393194481707" Text="DisplayName" />
+    <TUM.CMS.VplControl.Nodes.Input.TextNode GUID="a2cf56aa-4774-4365-aed4-b1fe27c2cd24" TOP="3982.8482545454558" Left="3091.6426909090915" Text="Parent" />
+    <ENGyn.Nodes.API.GetAPIPropertyValue GUID="a3a3a2c0-b9a9-477a-b999-4131eac24268" TOP="3956.2197000000015" Left="3321.6039181818192" />
+    <ENGyn.Nodes.API.GetAPIPropertyValue GUID="06b8afd9-eb6a-4be0-8421-ab5d94487588" TOP="3962.3526363636374" Left="3494.373781818183" />
+    <ENGyn.Nodes.List.FilterMask GUID="43927ca8-7655-4078-b53b-7ac3d5076001" TOP="3947.4479933135417" Left="4160.8466685390786" />
+    <ENGyn.Nodes.String.StringContains GUID="9901d396-8b49-4528-9416-adc025e757ca" TOP="3945.214993313547" Left="3988.9309685390776" />
+    <TUM.CMS.VplControl.Nodes.Input.TextNode GUID="f040b434-60b4-4d47-9d01-fb0a2cb8ab80" TOP="3969.3596300000004" Left="3752.2532399999996" Text="Export" />
+    <TUM.CMS.VplControl.Nodes.Input.TextNode GUID="ab83a799-ce09-4443-94a2-7097488099f2" TOP="3873.6351850000019" Left="4386.0461499999965" Text="DisplayName" />
+    <TUM.CMS.VplControl.Nodes.Input.TextNode GUID="aa4ae3fe-1899-4714-bc28-fedd162721a7" TOP="3991.5726812887492" Left="4371.9189863655247" Text="D:\" />
+    <TUM.CMS.VplControl.Nodes.CommentNode GUID="b1863c54-632a-452f-a6ec-3579fc4f1429" TOP="3821.5664232887489" Left="2911.6361353655266" Text="Get all Viewpoints" />
+    <TUM.CMS.VplControl.Nodes.CommentNode GUID="35104cb5-8d42-41ba-877b-c744c5366fab" TOP="3833.1925000000006" Left="3240.2516" Text="Get Viewpoint Parent name (Folder)" />
+    <TUM.CMS.VplControl.Nodes.CommentNode GUID="b4c42034-28ea-4dda-9efb-2615dc1abe7f" TOP="3823.7595299999989" Left="4005.6510399999997" Text="Filter viewpoints that belong to specific folder" />
+    <TUM.CMS.VplControl.Nodes.CommentNode GUID="728037df-6964-4ef2-8a2e-f6a67934239e" TOP="3778.8182088999997" Left="4620.0602218999966" Text="Save filtered viewpoints by their names (DisplayName)" />
+  </Nodes>
+  <Connectors>
+    <TUM.CMS.VplControl.Core.Connector StartNode="82d6c9d3-5d4a-46de-af29-07632f34bdfc" StartIndex="0" EndNode="9f40b44d-8554-4ac2-99a8-6469b8e86694" EndIndex="1" />
+    <TUM.CMS.VplControl.Core.Connector StartNode="a34695d7-33ce-4172-b0ee-247763f5e24c" StartIndex="0" EndNode="a3a3a2c0-b9a9-477a-b999-4131eac24268" EndIndex="0" />
+    <TUM.CMS.VplControl.Core.Connector StartNode="a2cf56aa-4774-4365-aed4-b1fe27c2cd24" StartIndex="0" EndNode="a3a3a2c0-b9a9-477a-b999-4131eac24268" EndIndex="1" />
+    <TUM.CMS.VplControl.Core.Connector StartNode="a3a3a2c0-b9a9-477a-b999-4131eac24268" StartIndex="0" EndNode="06b8afd9-eb6a-4be0-8421-ab5d94487588" EndIndex="0" />
+    <TUM.CMS.VplControl.Core.Connector StartNode="d8e2127c-60ee-4ac0-8bea-e4f73d67e50c" StartIndex="0" EndNode="06b8afd9-eb6a-4be0-8421-ab5d94487588" EndIndex="1" />
+    <TUM.CMS.VplControl.Core.Connector StartNode="06b8afd9-eb6a-4be0-8421-ab5d94487588" StartIndex="0" EndNode="9901d396-8b49-4528-9416-adc025e757ca" EndIndex="0" />
+    <TUM.CMS.VplControl.Core.Connector StartNode="f040b434-60b4-4d47-9d01-fb0a2cb8ab80" StartIndex="0" EndNode="9901d396-8b49-4528-9416-adc025e757ca" EndIndex="1" />
+    <TUM.CMS.VplControl.Core.Connector StartNode="a34695d7-33ce-4172-b0ee-247763f5e24c" StartIndex="0" EndNode="43927ca8-7655-4078-b53b-7ac3d5076001" EndIndex="0" />
+    <TUM.CMS.VplControl.Core.Connector StartNode="9901d396-8b49-4528-9416-adc025e757ca" StartIndex="0" EndNode="43927ca8-7655-4078-b53b-7ac3d5076001" EndIndex="1" />
+    <TUM.CMS.VplControl.Core.Connector StartNode="43927ca8-7655-4078-b53b-7ac3d5076001" StartIndex="0" EndNode="9f40b44d-8554-4ac2-99a8-6469b8e86694" EndIndex="0" />
+    <TUM.CMS.VplControl.Core.Connector StartNode="43927ca8-7655-4078-b53b-7ac3d5076001" StartIndex="0" EndNode="82d6c9d3-5d4a-46de-af29-07632f34bdfc" EndIndex="0" />
+    <TUM.CMS.VplControl.Core.Connector StartNode="ab83a799-ce09-4443-94a2-7097488099f2" StartIndex="0" EndNode="82d6c9d3-5d4a-46de-af29-07632f34bdfc" EndIndex="1" />
+    <TUM.CMS.VplControl.Core.Connector StartNode="aa4ae3fe-1899-4714-bc28-fedd162721a7" StartIndex="0" EndNode="9f40b44d-8554-4ac2-99a8-6469b8e86694" EndIndex="2" />
+  </Connectors>
+</Document>
