@@ -16,6 +16,9 @@ namespace ENGyn.Nodes.Appearance
 {
     public class SetAppearanceBySelection : Node
     {
+        private Document doc;
+
+        public List<object> SavedViewpoints { get; private set; }
 
         #region Node class methods
 
@@ -25,55 +28,95 @@ namespace ENGyn.Nodes.Appearance
 
             AddInputPortToNode("Selection", typeof(object));
             AddInputPortToNode("Color", typeof(System.Windows.Media.Color));
+            AddInputPortToNode("Transparency", typeof(object));
             AddOutputPortToNode("SearchSet", typeof(object));
 
             //Help 
-            this.BottomComment.Text = "Applies color and transparency to selection";
+            this.BottomComment.Text = "Applies color and transparency to selection. Transparency is an integral from 0 to 100";
             this.ShowHelpOnMouseOver = true;
         }
 
         public override void Calculate()
         {
-            OutputPorts[0].Data = MainTools.RunFunction(setAppearanceBySelection, InputPorts);
+            doc = Autodesk.Navisworks.Api.Application.ActiveDocument;
+            SavedViewpoints = new List<object>();
+            List<SelectionSet> Viewpoints = new List<SelectionSet>();
+            if (doc.SavedViewpoints != null)
+            {
+                SavedItemCollection viewpoints = doc.SavedViewpoints.ToSavedItemCollection();
+                try
+                {
+                    foreach (SavedItem view in viewpoints)
+                    {
+                        var t = view.GetType();
+                        var name = view.DisplayName;
+                        RecursionViewpoint(view);
+
+                    }
+                }
+                catch (System.Exception e)
+                {
+                    System.Windows.MessageBox.Show(e.Message);
+                }
+
+            }
+
+                OutputPorts[0].Data = MainTools.RunFunction(setAppearanceBySelections, InputPorts);
         }
+            private void RecursionViewpoint(object s)
+            {
+
+                if (s != null)
+                {
+                    if (s.GetType() == typeof(FolderItem))
+                    {
+                        var folder = s as FolderItem;
+                        foreach (var children in folder.Children)
+                        {
+                            RecursionViewpoint(children);
+                        }
+                    }
+                    if (s.GetType() == typeof(SavedViewpoint))
+                    {
+                        if (SavedViewpoints != null)
+                        {
+                            SavedViewpoints.Add(doc.SavedViewpoints.CreateReference(s as SavedViewpoint));
+                        }
 
 
-        /// <summary>
-        /// Set Appearance from color to selection
-        /// </summary>
-        /// <param name="input"></param>
-        /// <param name="color"></param>
-        /// <returns>Returns input</returns>
-        private object setAppearanceBySelection(object input,object color)
+                    }
+                }
+
+            }
+
+            /// <summary>
+            /// Set Appearance from color to selection
+            /// </summary>
+            /// <param name="input"></param>
+            /// <param name="color"></param>
+            /// <returns>Returns input</returns>
+            private object setAppearanceBySelection(object input,object color)
         {
             object output = null;
             media.Color CurrentColor = (media.Color)color;
 
             if (input != null)
             {
-                var tt = input.GetType();
-                bool istype = input.GetType() == typeof(SelectionSet);
-
-                if (MainTools.IsList(input) && istype)
+                if (input is SelectionSet)
                 {
 
                     //Convert ARGB Alpha to normaliced transparency
                     double t = ((-CurrentColor.A / 255.0) + 1) * 100;
                     double transparency = t;
 
-                    foreach (var s in (System.Collections.IEnumerable)input)
-                    {
+                   ApplyAppearance(input as SelectionSet, TransformColor(CurrentColor), transparency);
 
-                        ApplyAppearance(s as SelectionSet, TransformColor(CurrentColor), transparency);
-                    }
-
-                    OutputPorts[0].Data = (System.Collections.IEnumerable)input;
                 }
 
-                if (MainTools.IsList(input) && MainTools.ListContainsType(input, typeof(ModelItem)) || input is ModelItem)
+                if ( input is ModelItem)
                 {
 
-                    List<ModelItem> searchs = ((List<object>)InputPorts[0].Data).Cast<ModelItem>().ToList();
+                    List<ModelItem> searchs = new List<ModelItem>() { input as ModelItem};
 
                     //Convert ARGB Alpha to normaliced transparency
                     double t = ((-CurrentColor.A / 255.0) + 1) * 100;
@@ -81,14 +124,90 @@ namespace ENGyn.Nodes.Appearance
 
 
                     ApplyAppearance(searchs, TransformColor(CurrentColor), transparency);
+            
 
-                   
+
                 }
 
             }
+            output = input;
             return output;
         }
 
+        private object setAppearanceBySelections(object input, object color, object transparency)
+        {
+            object output = null;
+            Document doc = Autodesk.Navisworks.Api.Application.ActiveDocument;
+
+            if (input != null)
+            {
+                if (input is SelectionSet)
+                {
+
+
+                    double t = transparency != null ? (double.Parse(transparency.ToString())) / 100: -1;
+
+                    var CurrentColor = color != null ? TransformColor((media.Color)color) : null;
+                    if (true)
+                    {
+                        
+
+                        foreach (object item in SavedViewpoints)
+                        {
+                            SavedItemReference vp = item as SavedItemReference;
+                            if (vp!=null)
+                            {
+
+                                SavedViewpoint current = doc.SavedViewpoints.ResolveReference(vp) as SavedViewpoint;
+                                doc.ActiveView.CopyViewpointFrom(current.Viewpoint, ViewChange.JumpCut);
+                                ApplyAppearance(input as SelectionSet, CurrentColor, t);
+                                doc.ActiveView.RequestDelayedRedraw(ViewRedrawRequests.All);
+                                doc.SavedViewpoints.ReplaceFromCurrentView(current);
+                            }
+                        }
+
+                    }
+                    ApplyAppearance(input as SelectionSet, CurrentColor, t);
+
+                }
+
+                if (input is ModelItem)
+                {
+
+                    List<ModelItem> searchs = new List<ModelItem>() { input as ModelItem };
+
+                    //Convert ARGB Alpha to normaliced transparency
+                    double t = transparency != null ? (int.Parse(transparency.ToString())) * 100 : -1;
+
+
+                    var CurrentColor = color != null ? TransformColor((media.Color)color) : null;
+
+                    if (true)
+                    {
+                        foreach (object item in SavedViewpoints)
+                        {
+                            SavedItemReference vp = item as SavedItemReference;
+                            if (vp != null)
+                            {
+                                SavedViewpoint current = doc.SavedViewpoints.ResolveReference(vp) as SavedViewpoint;
+                                doc.ActiveView.CopyViewpointFrom(current.Viewpoint, ViewChange.JumpCut);
+                                ApplyAppearance(input as SelectionSet, CurrentColor, t);
+                                doc.ActiveView.RequestDelayedRedraw(ViewRedrawRequests.All);
+                                doc.SavedViewpoints.ReplaceFromCurrentView(current);
+                            }
+                        }
+                    }
+
+                    ApplyAppearance(input as ModelItem, CurrentColor, t);
+
+
+
+                }
+
+            }
+            output = input;
+            return output;
+        }
         public override Node Clone()
         {
             return new SetAppearanceBySelection(HostCanvas)
@@ -142,12 +261,15 @@ namespace ENGyn.Nodes.Appearance
         private void ApplyAppearance(SelectionSet selectionSet, Color color, double transparency)
         {
             if (selectionSet != null
-                && color != null)
+                )
 
             {
                 IEnumerable<ModelItem> modelItems = selectionSet.GetSelectedItems() as IEnumerable<ModelItem>;
-                Autodesk.Navisworks.Api.Application.ActiveDocument.Models.OverridePermanentColor(modelItems, color);
-                Autodesk.Navisworks.Api.Application.ActiveDocument.Models.OverridePermanentTransparency(modelItems, transparency);
+                if (color!= null)
+                    Autodesk.Navisworks.Api.Application.ActiveDocument.Models.OverridePermanentColor(modelItems, color);
+                if (transparency >= 0)
+                { Autodesk.Navisworks.Api.Application.ActiveDocument.Models.OverridePermanentTransparency(modelItems, transparency); }
+                
             }
 
         }
@@ -161,12 +283,28 @@ namespace ENGyn.Nodes.Appearance
         private void ApplyAppearance(List<ModelItem> modelItems, Color color, double transparency)
         {
             if (modelItems != null
-                && color != null)
+                )
 
             {
-                
-                Autodesk.Navisworks.Api.Application.ActiveDocument.Models.OverridePermanentColor(modelItems, color);
-                Autodesk.Navisworks.Api.Application.ActiveDocument.Models.OverridePermanentTransparency(modelItems, transparency);
+
+                if (color != null)
+                    Autodesk.Navisworks.Api.Application.ActiveDocument.Models.OverridePermanentColor(modelItems, color);
+                if (transparency >= 0)
+                { Autodesk.Navisworks.Api.Application.ActiveDocument.Models.OverridePermanentTransparency(modelItems, transparency); }
+            }
+
+        }
+        private void ApplyAppearance(ModelItem modelItems, Color color, double transparency)
+        {
+            if (modelItems != null
+                )
+
+            {
+
+                if (color != null)
+                    Autodesk.Navisworks.Api.Application.ActiveDocument.Models.OverridePermanentColor(new List<ModelItem>() { modelItems }, color);
+                if (transparency >= 0)
+                { Autodesk.Navisworks.Api.Application.ActiveDocument.Models.OverridePermanentTransparency(new List<ModelItem>() { modelItems }, transparency); }
             }
 
         }

@@ -18,7 +18,7 @@ namespace ENGyn.Nodes.Selection
         public GetSearchSets(VplControl hostCanvas)
             : base(hostCanvas)
         {
-            
+            AddInputPortToNode("object", typeof(object));
             AddOutputPortToNode("SearchSets", typeof(object));
 
             //Help
@@ -30,7 +30,7 @@ namespace ENGyn.Nodes.Selection
         {
             Document doc = Autodesk.Navisworks.Api.Application.ActiveDocument;
             
-            List<SelectionSet> searchSets = new List<SelectionSet>();
+            List<object> searchSets = new List<object>();
             if (doc.SelectionSets != null)
             { 
             SavedItemCollection selectionSets =  doc.SelectionSets;

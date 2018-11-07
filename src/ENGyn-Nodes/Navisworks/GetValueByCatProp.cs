@@ -45,12 +45,16 @@ namespace ENGyn.Nodes.Navisworks
         public static object GetValuesFromProperties(object sel, object category, object property)
         {
             dynamic value = null;
-
+            
             if (sel.GetType() == typeof(ModelItem))
                     {
-                     var  modelItem = sel as ModelItem;
+                ModelItem modelItem = findModelItem(sel);
+               
+                    if (modelItem != null)
+                { 
                     var prop = modelItem.PropertyCategories.FindPropertyByDisplayName(category.ToString(), property.ToString());
                     
+
                     if (prop != null)
                     {
                         switch (prop.Value.DataType)
@@ -100,8 +104,8 @@ namespace ENGyn.Nodes.Navisworks
                                 break;
                         }
                     }
-
-                    if (value != null)
+                }
+                if (value != null)
                     {
                         value = value.ToString();
                     }
@@ -110,10 +114,25 @@ namespace ENGyn.Nodes.Navisworks
             return value;
         }
 
+        private static ModelItem findModelItem(object sel)
+        {
+            var guid = ((ModelItem)sel).InstanceGuid;
+            Search search = new Search();
+            search.Selection.SelectAll();
 
+            search.SearchConditions.Add(
 
-      
+            
 
+            SearchCondition.HasPropertyByName("LcOaNode", "LcOaNodeGuid").EqualValue(VariantData.FromDisplayString(guid.ToString())));
+
+            // Execute Search
+
+            ModelItemCollection items = search.FindAll(Autodesk.Navisworks.Api.Application.ActiveDocument, false);
+          
+            return items.FirstOrDefault() ;
+
+        }
 
         public override Node Clone()
         {

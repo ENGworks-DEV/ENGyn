@@ -18,7 +18,7 @@ namespace ENGyn.Nodes.Viewpoints
         public GetViewpoints(VplControl hostCanvas)
             : base(hostCanvas)
         {
-            
+            AddInputPortToNode("Object", typeof(object), true);
             AddOutputPortToNode("Viewpoints", typeof(object));
             //Help
             this.ShowHelpOnMouseOver = true;
@@ -434,9 +434,44 @@ namespace ENGyn.Nodes.Viewpoints
             var svp = item as SavedViewpoint;
             var vp = svp.Viewpoint;
 
-
+            int w = width != null ? int.Parse(width.ToString()) : doc.ActiveView.Width;
+            int h = height != null ? int.Parse(height.ToString()) : doc.ActiveView.Height;
             doc.ActiveView.CopyViewpointFrom(vp, ViewChange.JumpCut);
-            System.Drawing.Bitmap thumbnailImage = doc.ActiveView.GenerateThumbnail(1000, 800);
+            doc.ActiveView.RequestDelayedRedraw(ViewRedrawRequests.All);
+            doc.SavedViewpoints.CurrentSavedViewpoint = svp;
+            ////get the plug -in of exporting image
+            //Autodesk.Navisworks.Api.Interop.ComApi.InwOpState10 oState;
+
+            //oState = Autodesk.Navisworks.Api.ComApi.ComApiBridge.State;
+            //Autodesk.Navisworks.Api.Interop.ComApi.InwOaPropertyVec options =
+
+            //    oState.GetIOPluginOptions("lcodpimage");
+
+
+
+            //// set to the format to png
+
+            //foreach (Autodesk.Navisworks.Api.Interop.ComApi.InwOaProperty opt in options.Properties())
+
+            //{
+
+            //    if (opt.name == "export.image.format")
+
+            //        opt.value = "lcodpexjpg";
+
+            //}
+            //// export it to an image
+
+            //string tempFileName = string.Format(@"{0}{1}-1.jpg", path.ToString(), name.ToString());
+
+
+
+
+            //oState.DriveIOPlugin("lcodpimage", tempFileName, options);
+
+
+
+            System.Drawing.Bitmap thumbnailImage = doc.ActiveView.GenerateThumbnail(w, h);
             thumbnailImage.Save(string.Format(@"{0}{1}.jpg", path.ToString(), name.ToString()));
             return svp;
         }
