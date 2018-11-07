@@ -26,7 +26,7 @@ namespace ENGyn.Nodes.Input
 
             //Help
             this.ShowHelpOnMouseOver = true;
-            this.BottomComment.Text = "Select where to save a file";
+            this.BottomComment.Text = "Save file dialog. Select where to save a file";
         }
 
 

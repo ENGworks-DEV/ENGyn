@@ -95,11 +95,11 @@ namespace ENGyn.Nodes.Selection
         }
     }
 
-    public class CreateSearchSet : Node
+    public class CreateSimpleSearchSet : Node
     {
 
 
-        public CreateSearchSet(VplControl hostCanvas)
+        public CreateSimpleSearchSet(VplControl hostCanvas)
             : base(hostCanvas)
         {
             AddInputPortToNode("Name", typeof(string));
@@ -164,7 +164,7 @@ namespace ENGyn.Nodes.Selection
 
         public override Node Clone()
         {
-            return new CreateSearchSet(HostCanvas)
+            return new CreateSimpleSearchSet(HostCanvas)
             {
                 Top = Top,
                 Left = Left
@@ -172,5 +172,255 @@ namespace ENGyn.Nodes.Selection
 
         }
     }
+
+    public class CreateSearch : Node
+    {
+
+
+        public CreateSearch(VplControl hostCanvas)
+            : base(hostCanvas)
+        {
+            
+            AddInputPortToNode("Category", typeof(string));
+            AddInputPortToNode("Property", typeof(string));
+            AddInputPortToNode("Value", typeof(object));
+            AddInputPortToNode("Negate", typeof(string));
+            AddOutputPortToNode("SearchSets", typeof(object));
+
+            //Help
+            this.ShowHelpOnMouseOver = true;
+            this.BottomComment.Text = "Create a Search based on Category, Parameter & Value. Optional, true to Negate ";
+        }
+
+        public override void Calculate()
+        {
+            
+
+            var search = MainTools.RunFunction(createSearch, InputPorts);
+
+            OutputPorts[0].Data = search;
+
+        }
+
+        private object createSearch(object category, object property, object value, object Negate)
+        {
+            //https://adndevblog.typepad.com/aec/2012/08/add-search-selectionset-in-net.html
+
+            Document doc = Autodesk.Navisworks.Api.Application.ActiveDocument;
+
+            //Create a new search object
+            Search s = new Search();
+            SearchCondition sc = SearchCondition.HasPropertyByDisplayName(category.ToString(), property.ToString());
+            bool negate = Negate != null ? bool.Parse(Negate.ToString()) : false;
+            if (negate)
+            { sc  = sc.Negate(); }
+
+            
+            s.SearchConditions.Add(sc.EqualValue(VariantData.FromDisplayString(value.ToString())));
+            
+            
+            //Set the selection which we wish to search
+            s.Selection.SelectAll();
+            s.Locations = SearchLocations.DescendantsAndSelf;
+
+            //halt searching below ModelItems which match this
+            s.PruneBelowMatch = true;
+
+            return s;
+        }
+
+        public override Node Clone()
+        {
+            return new CreateSearch(HostCanvas)
+            {
+                Top = Top,
+                Left = Left
+            };
+
+        }
+    }
+
+    public class CreateSearchSetFromSearch : Node
+    {
+
+
+        public CreateSearchSetFromSearch(VplControl hostCanvas)
+            : base(hostCanvas)
+        {
+            AddInputPortToNode("Name", typeof(string));
+            
+            AddInputPortToNode("Search", typeof(object));
+            AddOutputPortToNode("SearchSets", typeof(object));
+            
+            //Help
+            this.ShowHelpOnMouseOver = true;
+            this.BottomComment.Text = "Create a SearchSet based on a Search";
+        }
+
+        public override void Calculate()
+        {
+
+            var search = MainTools.RunFunction(createSearchSetFromSearch, InputPorts);
+
+            OutputPorts[0].Data = search;
+
+        }
+
+        private object createSearchSetFromSearch(object name, object search)
+        {
+            //https://adndevblog.typepad.com/aec/2012/08/add-search-selectionset-in-net.html
+
+            Document doc = Autodesk.Navisworks.Api.Application.ActiveDocument;
+            object ss = null;
+            if (search is Search)
+            {
+                var currentSearch = new Search(search as Search);
+                currentSearch.PruneBelowMatch = false;
+                currentSearch.Selection.SelectAll();
+
+                currentSearch.Locations = SearchLocations.DescendantsAndSelf;
+                SavedItem selectionSet = new SelectionSet(currentSearch);
+            selectionSet.DisplayName = name.ToString();
+    
+            
+            Autodesk.Navisworks.Api.Application.ActiveDocument.SelectionSets.InsertCopy(0, selectionSet);
+             Autodesk.Navisworks.Api.Application.ActiveDocument.SelectionSets.ToSavedItemCollection();
+
+            }
+            return ss;
+
+            
+        }
+
+        public override Node Clone()
+        {
+            return new CreateSearchSetFromSearch(HostCanvas)
+            {
+                Top = Top,
+                Left = Left
+            };
+
+        }
+    }
+
+    public class SetSearchRelation : Node
+    {
+        private string relation;
+
+        public SetSearchRelation(VplControl hostCanvas)
+            : base(hostCanvas)
+        {
+            
+
+            AddInputPortToNode("SearchA", typeof(object));
+            AddInputPortToNode("SearchB", typeof(object));
+            StackPanel stackPanel = new StackPanel();
+
+            //Grouping Mode
+
+            stackPanel.Children.Add(new Label() { Content = "Relationship", Foreground = System.Windows.Media.Brushes.White, VerticalContentAlignment = System.Windows.VerticalAlignment.Bottom });
+            ComboBox Relationship = new ComboBox() { ItemsSource = new List<string>() { "AND", "OR" } };
+            stackPanel.Children.Add(Relationship);
+            AddControlToNode(stackPanel);
+
+            AddOutputPortToNode("SearchSets", typeof(object));
+
+            //Help
+            this.ShowHelpOnMouseOver = true;
+            this.BottomComment.Text = "Create an AND/OR relation between Searchs";
+        }
+
+        public override void Calculate()
+        {
+            var stack = ControlElements[0] as StackPanel;
+            //Basic grouping
+            var RelationComboBox = stack.Children[1] as ComboBox;
+            relation = "AND";
+            if (RelationComboBox.SelectedItem != null && RelationComboBox.SelectedItem.GetType() == typeof(string))
+            {
+                
+                relation = RelationComboBox.SelectedItem.ToString();
+            }
+
+
+            var search = MainTools.RunFunction(setSearchRelation, InputPorts);
+
+            OutputPorts[0].Data = search;
+
+        }
+
+        private object setSearchRelation(object SearchA, object searchB)
+        {
+            //https://adndevblog.typepad.com/aec/2012/08/add-search-selectionset-in-net.html
+
+            Document doc = Autodesk.Navisworks.Api.Application.ActiveDocument;
+
+            Search ss = new Search();
+            if (relation == "AND")
+            { 
+
+                ss.SearchConditions.Add(((Search)SearchA).SearchConditions[0]);
+                ss.SearchConditions.Add(((Search)searchB).SearchConditions[0]);
+            
+            }
+            else
+                {
+                    ss.SearchConditions.AddGroup(((Search)SearchA).SearchConditions);
+                    ss.SearchConditions.AddGroup(((Search)searchB).SearchConditions);
+                }
+            return ss;
+
+
+        }
+
+        public override Node Clone()
+        {
+            return new SetSearchRelation(HostCanvas)
+            {
+                Top = Top,
+                Left = Left
+            };
+
+        }
+
+        public override void SerializeNetwork(XmlWriter xmlWriter)
+        {
+            base.SerializeNetwork(xmlWriter);
+
+            var stack = ControlElements[0] as StackPanel;
+
+            var GroupingComboBox = stack.Children[1] as ComboBox;
+            if (GroupingComboBox != null)
+            {
+                xmlWriter.WriteStartAttribute("SelectedIndex-Relation");
+                xmlWriter.WriteValue(GroupingComboBox.SelectedIndex);
+                xmlWriter.WriteEndAttribute();
+
+            }
+
+
+        }
+
+
+        public override void DeserializeNetwork(XmlReader xmlReader)
+        {
+            base.DeserializeNetwork(xmlReader);
+
+            var stack = ControlElements[0] as StackPanel;
+
+            var GroupingComboBox = stack.Children[1] as ComboBox;
+            if (GroupingComboBox != null)
+            {
+                var value = xmlReader.GetAttribute("SelectedIndex-Relation");
+                var index = Convert.ToInt32(value);
+                GroupingComboBox.SelectedIndex = index;
+            }
+
+            
+        }
+
+    }
+
+
 
 }

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Document GraphFlowDirection="Horizontal">
+  <Nodes>
+    <ENGyn.Nodes.Selection.CreateSearch GUID="507e42aa-d956-4daa-80ce-7235bbf8c1f9" TOP="3895.2000000000003" Left="3979.6871704745167" />
+    <TUM.CMS.VplControl.Nodes.Input.TextNode GUID="60066749-ba16-4f23-8fa5-7f53b74ceb4b" TOP="3856.8000000000006" Left="3654.0871704745173" Text="Item" />
+    <TUM.CMS.VplControl.Nodes.Input.TextNode GUID="62149bb1-337d-4f25-84fb-a4f1a7b37032" TOP="3948.2000000000003" Left="3652.8" Text="Name" />
+    <TUM.CMS.VplControl.Nodes.Input.TextNode GUID="0df7d04f-d98d-4999-9c08-7091f8e887ce" TOP="4040.8" Left="3651.3504393673111" Text="Basic Wall" />
+    <TUM.CMS.VplControl.Nodes.Input.TextNode GUID="bd40827b-5ea8-440e-ad1c-8eeb8e7279ca" TOP="4147.2" Left="3668.950439367311" Text="true" />
+    <ENGyn.Nodes.Selection.CreateSearchSetFromSearch GUID="55523b42-5050-462d-97ce-6c7ce9f9ef95" TOP="3881.6" Left="4260.15043936731" />
+  </Nodes>
+  <Connectors>
+    <TUM.CMS.VplControl.Core.Connector StartNode="60066749-ba16-4f23-8fa5-7f53b74ceb4b" StartIndex="0" EndNode="507e42aa-d956-4daa-80ce-7235bbf8c1f9" EndIndex="0" />
+    <TUM.CMS.VplControl.Core.Connector StartNode="62149bb1-337d-4f25-84fb-a4f1a7b37032" StartIndex="0" EndNode="507e42aa-d956-4daa-80ce-7235bbf8c1f9" EndIndex="1" />
+    <TUM.CMS.VplControl.Core.Connector StartNode="0df7d04f-d98d-4999-9c08-7091f8e887ce" StartIndex="0" EndNode="507e42aa-d956-4daa-80ce-7235bbf8c1f9" EndIndex="2" />
+    <TUM.CMS.VplControl.Core.Connector StartNode="bd40827b-5ea8-440e-ad1c-8eeb8e7279ca" StartIndex="0" EndNode="507e42aa-d956-4daa-80ce-7235bbf8c1f9" EndIndex="3" />
+    <TUM.CMS.VplControl.Core.Connector StartNode="507e42aa-d956-4daa-80ce-7235bbf8c1f9" StartIndex="0" EndNode="55523b42-5050-462d-97ce-6c7ce9f9ef95" EndIndex="1" />
+    <TUM.CMS.VplControl.Core.Connector StartNode="0df7d04f-d98d-4999-9c08-7091f8e887ce" StartIndex="0" EndNode="55523b42-5050-462d-97ce-6c7ce9f9ef95" EndIndex="0" />
+  </Connectors>
+</Document>

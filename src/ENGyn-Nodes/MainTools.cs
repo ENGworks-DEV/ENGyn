@@ -163,7 +163,7 @@ namespace ENGyn.Nodes
                     }
                 }
 
-                result.Add(method.DynamicInvoke(ActualArgList[0], ActualArgList[1], ActualArgList[2]));
+                result.Add(method.DynamicInvoke(ActualArgList[0], ActualArgList[1], ActualArgList[2], ActualArgList[3]));
             }
             return result;
         }
