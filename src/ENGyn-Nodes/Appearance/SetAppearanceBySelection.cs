@@ -19,6 +19,7 @@ namespace ENGyn.Nodes.Appearance
         private Document doc;
 
         public List<object> SavedViewpoints { get; private set; }
+        public bool Override { get; private set; }
 
         #region Node class methods
 
@@ -29,15 +30,39 @@ namespace ENGyn.Nodes.Appearance
             AddInputPortToNode("Selection", typeof(object));
             AddInputPortToNode("Color", typeof(System.Windows.Media.Color));
             AddInputPortToNode("Transparency", typeof(object));
+
+            StackPanel stackPanel = new StackPanel();
+
+            //Grouping Mode
+
+            stackPanel.Children.Add(new Label() { Content = "Override", Foreground = System.Windows.Media.Brushes.White, VerticalContentAlignment = System.Windows.VerticalAlignment.Bottom });
+            ComboBox Override = new ComboBox() { Items = { true, false } };
+            stackPanel.Children.Add(Override);
+            AddControlToNode(stackPanel);
+
             AddOutputPortToNode("SearchSet", typeof(object));
 
             //Help 
-            this.BottomComment.Text = "Applies color and transparency to selection. Transparency is an integral from 0 to 100";
+            this.BottomComment.Text = "Applies color and transparency to selection. " +
+                "Transparency is an integral from 0 to 100." +
+                " If Override is set to true, " +
+                "even viewpoints with saved visibility (sticky) will be updated";
+
             this.ShowHelpOnMouseOver = true;
         }
 
         public override void Calculate()
         {
+            var stack = ControlElements[0] as StackPanel;
+            //Basic grouping
+            var OverrideComboBox = stack.Children[1] as ComboBox;
+            Override = false;
+            if (OverrideComboBox.SelectedItem != null)
+            {
+
+                Override = bool.Parse(OverrideComboBox.SelectedItem.ToString());
+            }
+
             doc = Autodesk.Navisworks.Api.Application.ActiveDocument;
             SavedViewpoints = new List<object>();
             List<SelectionSet> Viewpoints = new List<SelectionSet>();
@@ -63,7 +88,8 @@ namespace ENGyn.Nodes.Appearance
 
                 OutputPorts[0].Data = MainTools.RunFunction(setAppearanceBySelections, InputPorts);
         }
-            private void RecursionViewpoint(object s)
+
+        private void RecursionViewpoint(object s)
             {
 
                 if (s != null)
@@ -89,51 +115,14 @@ namespace ENGyn.Nodes.Appearance
 
             }
 
-            /// <summary>
-            /// Set Appearance from color to selection
-            /// </summary>
-            /// <param name="input"></param>
-            /// <param name="color"></param>
-            /// <returns>Returns input</returns>
-            private object setAppearanceBySelection(object input,object color)
-        {
-            object output = null;
-            media.Color CurrentColor = (media.Color)color;
-
-            if (input != null)
-            {
-                if (input is SelectionSet)
-                {
-
-                    //Convert ARGB Alpha to normaliced transparency
-                    double t = ((-CurrentColor.A / 255.0) + 1) * 100;
-                    double transparency = t;
-
-                   ApplyAppearance(input as SelectionSet, TransformColor(CurrentColor), transparency);
-
-                }
-
-                if ( input is ModelItem)
-                {
-
-                    List<ModelItem> searchs = new List<ModelItem>() { input as ModelItem};
-
-                    //Convert ARGB Alpha to normaliced transparency
-                    double t = ((-CurrentColor.A / 255.0) + 1) * 100;
-                    double transparency = t;
-
-
-                    ApplyAppearance(searchs, TransformColor(CurrentColor), transparency);
             
 
-
-                }
-
-            }
-            output = input;
-            return output;
-        }
-
+        /// <summary>
+        /// Set Appearance from color to selection
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="color"></param>
+        /// <returns>Returns input</returns>
         private object setAppearanceBySelections(object input, object color, object transparency)
         {
             object output = null;
@@ -148,7 +137,7 @@ namespace ENGyn.Nodes.Appearance
                     double t = transparency != null ? (double.Parse(transparency.ToString())) / 100: -1;
 
                     var CurrentColor = color != null ? TransformColor((media.Color)color) : null;
-                    if (true)
+                    if (Override)
                     {
                         
 
@@ -182,7 +171,7 @@ namespace ENGyn.Nodes.Appearance
 
                     var CurrentColor = color != null ? TransformColor((media.Color)color) : null;
 
-                    if (true)
+                    if (Override)
                     {
                         foreach (object item in SavedViewpoints)
                         {
@@ -275,25 +264,11 @@ namespace ENGyn.Nodes.Appearance
         }
 
         /// <summary>
-        /// Apply appearance to modelitems list
+        /// Apply appearance to modelitem
         /// </summary>
         /// <param name="modelItems"></param>
         /// <param name="color"></param>
         /// <param name="transparency"></param>
-        private void ApplyAppearance(List<ModelItem> modelItems, Color color, double transparency)
-        {
-            if (modelItems != null
-                )
-
-            {
-
-                if (color != null)
-                    Autodesk.Navisworks.Api.Application.ActiveDocument.Models.OverridePermanentColor(modelItems, color);
-                if (transparency >= 0)
-                { Autodesk.Navisworks.Api.Application.ActiveDocument.Models.OverridePermanentTransparency(modelItems, transparency); }
-            }
-
-        }
         private void ApplyAppearance(ModelItem modelItems, Color color, double transparency)
         {
             if (modelItems != null
@@ -310,6 +285,41 @@ namespace ENGyn.Nodes.Appearance
         }
         #endregion
 
+        public override void SerializeNetwork(XmlWriter xmlWriter)
+        {
+            base.SerializeNetwork(xmlWriter);
+
+            var stack = ControlElements[0] as StackPanel;
+
+            var GroupingComboBox = stack.Children[1] as ComboBox;
+            if (GroupingComboBox != null)
+            {
+                xmlWriter.WriteStartAttribute("SelectedIndex-Relation");
+                xmlWriter.WriteValue(GroupingComboBox.SelectedIndex);
+                xmlWriter.WriteEndAttribute();
+
+            }
+
+
+        }
+
+
+        public override void DeserializeNetwork(XmlReader xmlReader)
+        {
+            base.DeserializeNetwork(xmlReader);
+
+            var stack = ControlElements[0] as StackPanel;
+
+            var GroupingComboBox = stack.Children[1] as ComboBox;
+            if (GroupingComboBox != null)
+            {
+                var value = xmlReader.GetAttribute("SelectedIndex-Relation");
+                var index = Convert.ToInt32(value);
+                GroupingComboBox.SelectedIndex = index;
+            }
+
+
+        }
 
     }
 
