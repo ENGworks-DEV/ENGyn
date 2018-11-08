@@ -11,7 +11,7 @@ description: "Download now the latest version of ENgyn!"
 To install download the installer for your Navisworks version (2018/2019) but if you feel brave, you can build your own using the source code.
 
 ------
-## New wiki
+## [New Wiki!](https://github.com/ENGworks-DEV/ENGyn/wiki) 
 
 We now have a [***Wiki***](https://github.com/ENGworks-DEV/ENGyn/wiki) to help you understand nodes and workflows. 
 We will try to keep it updated with new information each week.
