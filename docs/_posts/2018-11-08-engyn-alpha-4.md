@@ -4,6 +4,7 @@ title: "ENGyn Alpha 4"
 description: "Download now the latest version of ENgyn!"
 ---
 
+![](https://github.com/ENGworks-DEV/ENGyn/blob/master/tools/ENGyn-300x138.png?raw=true)
 ***We are happy to announce a new version of [ENGyn alpha 4](https://github.com/ENGworks-DEV/ENGyn/releases/tag/0.1.4.alpha4)***
 
 ## [Download](https://github.com/ENGworks-DEV/ENGyn/releases/tag/0.1.4.alpha4)
