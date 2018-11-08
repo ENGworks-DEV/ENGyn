@@ -17,6 +17,7 @@ namespace ENGyn
     public partial class MainWindow : UserControl
     {
         public List<Type> Nodes { get; private set; }
+
         public string DefaultNodesVersion { get; private set; }
 
         public MainWindow()
@@ -55,8 +56,8 @@ namespace ENGyn
             this.Version.Content = " GUI Version: " + Assembly.GetExecutingAssembly().GetName().Version.ToString();
             this.NodeVersion.Content = " Nodes Version: " + DefaultNodesVersion;
 
-            this.Focus()  ;
-           
+            this.Focus();
+
         }
 
         /// <summary>
@@ -118,16 +119,16 @@ namespace ENGyn
             foreach (var dllPath in dlls)
             {
 
-                    var assamb = Assembly.LoadFrom(Path.Combine(dllPath))
-                                          .GetTypes()
-                                          .Where(t => t != typeof(Node) &&
-                                                                typeof(Node).IsAssignableFrom(t));
+                var assamb = Assembly.LoadFrom(Path.Combine(dllPath))
+                                      .GetTypes()
+                                      .Where(t => t != typeof(Node) &&
+                                                            typeof(Node).IsAssignableFrom(t));
 
-                    if (assamb.Any())
-                    {
-                        DefaultNodesVersion = assamb.First().Assembly.GetName().Version.ToString();
-                        VplControl.ExternalNodeTypes.AddRange(assamb);
-                    }
+                if (assamb.Any())
+                {
+                    DefaultNodesVersion = assamb.First().Assembly.GetName().Version.ToString();
+                    VplControl.ExternalNodeTypes.AddRange(assamb);
+                }
 
 
 
@@ -149,7 +150,15 @@ namespace ENGyn
         private void NewCommand(object sender, RoutedEventArgs e)
         {
             VplControl.NewFile();
-         
+            //Performing Matrix scale
+            var element = sender as UIElement;
+
+            var transform = VplControl.RenderTransform as MatrixTransform;
+
+                transform.Matrix = new Matrix();
+
+
+            VplControl.UpdateLayout();
         }
 
         private void OpenCommand(object sender, RoutedEventArgs e)
@@ -165,7 +174,7 @@ namespace ENGyn
         private void Add_Node(object sender, RoutedEventArgs e)
         {
             Button button = sender as Button;
-           
+
 
             var el = this.VplControl.ConnectorCollection;
 
@@ -218,7 +227,7 @@ namespace ENGyn
                     }
                     catch (Exception except)
                     {
-                        
+
 
                         nn.ElementAt(i).HasError = true;
                         nn.ElementAt(i).TopComment.Visibility = Visibility.Visible;
@@ -243,8 +252,7 @@ namespace ENGyn
 
         }
 
-        private void Hyperlink_RequestNavigate(object sender,
-    System.Windows.Navigation.RequestNavigateEventArgs e)
+        private void Hyperlink_RequestNavigate(object sender, System.Windows.Navigation.RequestNavigateEventArgs e)
         {
             System.Diagnostics.Process.Start(
                 new System.Diagnostics.ProcessStartInfo(e.Uri.AbsoluteUri)
@@ -276,7 +284,8 @@ namespace ENGyn
         {
             VplControl.VplControlGroup();
         }
-        private  void BtnGroupNones_Click(object sender, ExecutedRoutedEventArgs e)
+
+        private void BtnGroupNones_Click(object sender, ExecutedRoutedEventArgs e)
         {
             VplControl.VplControlGroup();
         }
@@ -285,7 +294,6 @@ namespace ENGyn
         {
             VplControl.VplControlPaste();
         }
-
 
         public void Error(EventHandler<ProgressErrorReportingEventArgs> e)
         {
@@ -318,6 +326,7 @@ namespace ENGyn
         }
 
         private double actualzoom { get; set; } = 1;
+
         private void Canvas_MouseWheel(object sender, MouseWheelEventArgs e)
         {
             //Performing Matrix scale
