@@ -9,6 +9,13 @@ xcopy /Y  %myadress%TUM.CMS.VPLControl\bin\Newtonsoft.Json.dll "C:\Program Files
 xcopy /Y  %myadress%TUM.CMS.VPLControl\bin\RadialMenu.dll "C:\Program Files\Autodesk\Navisworks Manage 2018\Dependencies\"
 xcopy /Y  %myadress%TUM.CMS.VPLControl\bin\TUM.CMS.VplControl.pdb "C:\Program Files\Autodesk\Navisworks Manage 2018\Dependencies\"
 xcopy /Y  %myadress%TUM.CMS.VPLControl\bin\Xceed.Wpf.Toolkit.dll "C:\Program Files\Autodesk\Navisworks Manage 2018\Dependencies\"
+
+xcopy /Y %myadress%TUM.CMS.VPLControl\bin\TUM.CMS.VplControl.dll "C:\Program Files\Autodesk\Navisworks Manage 2019\Dependencies\"
+xcopy /Y  %myadress%TUM.CMS.VPLControl\bin\NCalc.dll "C:\Program Files\Autodesk\Navisworks Manage 2019\Dependencies\"
+xcopy /Y  %myadress%TUM.CMS.VPLControl\bin\Newtonsoft.Json.dll "C:\Program Files\Autodesk\Navisworks Manage 2019\Dependencies\"
+xcopy /Y  %myadress%TUM.CMS.VPLControl\bin\RadialMenu.dll "C:\Program Files\Autodesk\Navisworks Manage 2019\Dependencies\"
+xcopy /Y  %myadress%TUM.CMS.VPLControl\bin\TUM.CMS.VplControl.pdb "C:\Program Files\Autodesk\Navisworks Manage 2019\Dependencies\"
+xcopy /Y  %myadress%TUM.CMS.VPLControl\bin\Xceed.Wpf.Toolkit.dll "C:\Program Files\Autodesk\Navisworks Manage 2019\Dependencies\"
 echo FINISH
 set /p=Hit ENTER to continue...
 
