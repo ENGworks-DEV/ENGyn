@@ -72,5 +72,5 @@ On our side, we are working on new GUI implementations and documentation/videos 
 * Viewpoints: Create viewpoints
 
 
-We love to hear what you have to say, so contact us thru [innovation@engworks.com](mailto:minnovation@engworks.com?subject=ENGyn%200.1.2:%20Feedback)
+We love to hear what you have to say, so contact us thru [innovation@engworks.com](mailto:innovation@engworks.com?subject=ENGyn%200.1.4:%20Feedback)
 
