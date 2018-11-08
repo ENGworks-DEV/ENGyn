@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Document GraphFlowDirection="Horizontal">
   <Nodes>
-    <ENGyn.Nodes.ReadCSV GUID="47138c04-5181-49c7-8c8d-1b0346f903df" TOP="4454.3890784060595" Left="3187.3310621452574" />
     <TUM.CMS.VplControl.Nodes.Input.FilePathNode GUID="0d9c897c-d151-4cbd-9065-690760b1dda9" TOP="4454.0480285052363" Left="2998.9896360460834" />
     <ENGyn.Nodes.List.ListTranspose GUID="dda95c60-8466-4ff7-a326-5dde621c9ce0" TOP="4450.746458257302" Left="3394.4464129055864" />
     <ENGyn.Nodes.List.GetItemAtIndex GUID="37690b78-cf7f-4958-a3c7-e0777e51194e" TOP="4651.0314995796134" Left="3888.1897186907081" />
@@ -14,13 +13,12 @@
     <ENGyn.Nodes.Viewpoints.RenameViewpointsByGUID GUID="d8c3222a-49e5-4c4f-83ac-7fbaa5f52f5a" TOP="4447.2111809999969" Left="4178.5644370790851" />
   </Nodes>
   <Connectors>
-    <TUM.CMS.VplControl.Core.Connector StartNode="0d9c897c-d151-4cbd-9065-690760b1dda9" StartIndex="0" EndNode="47138c04-5181-49c7-8c8d-1b0346f903df" EndIndex="0" />
-    <TUM.CMS.VplControl.Core.Connector StartNode="47138c04-5181-49c7-8c8d-1b0346f903df" StartIndex="0" EndNode="dda95c60-8466-4ff7-a326-5dde621c9ce0" EndIndex="0" />
     <TUM.CMS.VplControl.Core.Connector StartNode="dda95c60-8466-4ff7-a326-5dde621c9ce0" StartIndex="0" EndNode="37690b78-cf7f-4958-a3c7-e0777e51194e" EndIndex="0" />
     <TUM.CMS.VplControl.Core.Connector StartNode="d45d3963-6186-43d7-8e53-9bc384d83db5" StartIndex="0" EndNode="37690b78-cf7f-4958-a3c7-e0777e51194e" EndIndex="1" />
     <TUM.CMS.VplControl.Core.Connector StartNode="dda95c60-8466-4ff7-a326-5dde621c9ce0" StartIndex="0" EndNode="90783168-2f10-430e-a85d-243b0c854243" EndIndex="0" />
     <TUM.CMS.VplControl.Core.Connector StartNode="8b9a6b4d-cbb8-4b0d-8b9d-ff1de29ee680" StartIndex="0" EndNode="90783168-2f10-430e-a85d-243b0c854243" EndIndex="1" />
     <TUM.CMS.VplControl.Core.Connector StartNode="90783168-2f10-430e-a85d-243b0c854243" StartIndex="0" EndNode="d8c3222a-49e5-4c4f-83ac-7fbaa5f52f5a" EndIndex="0" />
     <TUM.CMS.VplControl.Core.Connector StartNode="37690b78-cf7f-4958-a3c7-e0777e51194e" StartIndex="0" EndNode="d8c3222a-49e5-4c4f-83ac-7fbaa5f52f5a" EndIndex="1" />
+    <TUM.CMS.VplControl.Core.Connector StartNode="0d9c897c-d151-4cbd-9065-690760b1dda9" StartIndex="0" EndNode="dda95c60-8466-4ff7-a326-5dde621c9ce0" EndIndex="0" />
   </Connectors>
 </Document>

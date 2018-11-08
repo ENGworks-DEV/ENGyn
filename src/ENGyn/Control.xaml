@@ -58,6 +58,9 @@
             <ColumnDefinition Width="554*"/>
             <ColumnDefinition Width="15*"/>
         </Grid.ColumnDefinitions>
+
+
+
         <Button x:Name="runButton" Content="Run" Margin="20,15,20,10" Grid.Row="2" Click="Refresh"  FontWeight="Bold"  Width="Auto" Height="Auto"/>
         <ScrollViewer x:Name="Menu" HorizontalAlignment="Left"  Grid.Row="1" Width="180"   VerticalAlignment="Top" Margin="0,20,0,0">
 
@@ -85,10 +88,8 @@
                 </VplControl:VplControl>
             </Viewbox>
         </Border>
-        <TextBlock Grid.Column="1"  Width="200" TextAlignment="Center" Background="Transparent" HorizontalAlignment="Right" Margin="0,7">
-            <Hyperlink NavigateUri="https://github.com/ENGworks-DEV/ENGyn/wiki"  RequestNavigate="Hyperlink_RequestNavigate" FontSize="10" >
-                Looking for help? Check the Wiki
-            </Hyperlink></TextBlock>
+        <TextBlock Grid.Column="1"  Width="200" TextAlignment="Center" Background="Transparent" HorizontalAlignment="Right" Margin="0,7"><Hyperlink NavigateUri="https://github.com/ENGworks-DEV/ENGyn/wiki"  RequestNavigate="Hyperlink_RequestNavigate" FontSize="10" ><Run Text="Looking for help? Check the Wiki"/></Hyperlink></TextBlock>
+        <TextBlock x:Name="FileTitle" Grid.Column="1" HorizontalAlignment="Left" Height="20" Margin="64,5,0,0" TextWrapping="Wrap" Text="New" VerticalAlignment="Top" Width="403" FontWeight="Bold"/>
 
 
 

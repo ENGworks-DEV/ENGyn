@@ -12,11 +12,9 @@
     <ENGyn.Nodes.List.GetItemAtIndex GUID="c9331899-332f-45fe-8b82-2cd059ef837a" TOP="3648.2533151096941" Left="3815.8359519008081" />
     <TUM.CMS.VplControl.Nodes.Input.IntegerSlider GUID="036f9597-d2f7-4a2a-8baf-512ec88b631e" TOP="3764.4990591694732" Left="3409.9013555207857" SliderMax="10" SliderMin="0" SliderValue="0" SliderStep="1" IsExpanded="false" />
     <ENGyn.Nodes.List.GetItemAtIndex GUID="f7198b42-d9f5-4a6b-9f66-c4291809447b" TOP="3101.4095759786651" Left="4038.5143889071624" />
-    <TUM.CMS.VplControl.Nodes.Input.DoubleSlider GUID="32b6a032-d9a5-4bb0-b25b-90d0b502357a" TOP="3111.9434279786656" Left="3559.8547299071579" SliderMax="10" SliderMin="2" SliderValue="0" SliderStep="0.01" IsExpanded="false" />
+    <TUM.CMS.VplControl.Nodes.Input.DoubleSlider GUID="32b6a032-d9a5-4bb0-b25b-90d0b502357a" TOP="3111.9434279786656" Left="3559.8547299071579" SliderMax="10" SliderMin="2" SliderValue="0" SliderStep="1" IsExpanded="false" />
     <ENGyn.Nodes.List.GetItemAtIndex GUID="589a85e5-b9a5-435c-b41b-36292798e833" TOP="2964.6006039786662" Left="4038.290584907154" />
-    <TUM.CMS.VplControl.Nodes.Input.DoubleSlider GUID="d3e3e34d-1181-49a1-b8c5-3d788d0aa4aa" TOP="2991.850065978666" Left="3553.5446819071585" SliderMax="10" SliderMin="2" SliderValue="0" SliderStep="0.01" IsExpanded="false" />
-    <TUM.CMS.VplControl.Nodes.Input.DoubleSlider GUID="39aedc60-74c3-4717-af3b-31d4bba8aa78" TOP="16183" Left="13304" SliderMax="10" SliderMin="2" SliderValue="0" SliderStep="0.01" IsExpanded="false" />
-    <ENGyn.Nodes.List.GetItemAtIndex GUID="baa12eff-9cc9-4527-a01a-32dfdf24402c" TOP="16173" Left="13782" />
+    <TUM.CMS.VplControl.Nodes.Input.DoubleSlider GUID="d3e3e34d-1181-49a1-b8c5-3d788d0aa4aa" TOP="2991.850065978666" Left="3553.5446819071585" SliderMax="10" SliderMin="2" SliderValue="0" SliderStep="1" IsExpanded="false" />
   </Nodes>
   <Connectors>
     <TUM.CMS.VplControl.Core.Connector StartNode="62149bb1-337d-4f25-84fb-a4f1a7b37032" StartIndex="0" EndNode="507e42aa-d956-4daa-80ce-7235bbf8c1f9" EndIndex="1" />
@@ -32,7 +30,5 @@
     <TUM.CMS.VplControl.Core.Connector StartNode="32b6a032-d9a5-4bb0-b25b-90d0b502357a" StartIndex="0" EndNode="f7198b42-d9f5-4a6b-9f66-c4291809447b" EndIndex="1" />
     <TUM.CMS.VplControl.Core.Connector StartNode="66833e6f-171a-4d5e-bc36-3d509b8b2fd9" StartIndex="0" EndNode="589a85e5-b9a5-435c-b41b-36292798e833" EndIndex="0" />
     <TUM.CMS.VplControl.Core.Connector StartNode="d3e3e34d-1181-49a1-b8c5-3d788d0aa4aa" StartIndex="0" EndNode="589a85e5-b9a5-435c-b41b-36292798e833" EndIndex="1" />
-    <TUM.CMS.VplControl.Core.Connector StartNode="66833e6f-171a-4d5e-bc36-3d509b8b2fd9" StartIndex="0" EndNode="baa12eff-9cc9-4527-a01a-32dfdf24402c" EndIndex="0" />
-    <TUM.CMS.VplControl.Core.Connector StartNode="39aedc60-74c3-4717-af3b-31d4bba8aa78" StartIndex="0" EndNode="baa12eff-9cc9-4527-a01a-32dfdf24402c" EndIndex="1" />
   </Connectors>
 </Document>

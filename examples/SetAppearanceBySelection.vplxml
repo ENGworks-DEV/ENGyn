@@ -4,7 +4,7 @@
     <ENGyn.Nodes.Selection.GetCurrentSelection GUID="833521f8-4e58-4e32-a473-8406fa503f01" TOP="3831.2" Left="3788.2270650263622" />
     <ENGyn.Nodes.Navisworks.CurrentDocument GUID="5e623e53-ff30-40ac-a833-755245c9c6ed" TOP="3830.4" Left="3530.6270650263627" />
     <TUM.CMS.VplControl.Nodes.ColorNode GUID="b9fdb755-b027-4e9d-ad7b-45e593bcef21" TOP="3993.6" Left="3718.6270650263627" Color="#E01313" />
-    <ENGyn.Nodes.Appearance.SetAppearanceBySelection GUID="b3bec76b-314b-4354-b6bc-03591feb1401" TOP="3822.4" Left="4160.2270650263627" />
+    <ENGyn.Nodes.Appearance.SetAppearanceBySelection GUID="b3bec76b-314b-4354-b6bc-03591feb1401" TOP="3822.4" Left="4160.2270650263627" SelectedIndex-Relation="0" />
   </Nodes>
   <Connectors>
     <TUM.CMS.VplControl.Core.Connector StartNode="5e623e53-ff30-40ac-a833-755245c9c6ed" StartIndex="0" EndNode="833521f8-4e58-4e32-a473-8406fa503f01" EndIndex="0" />

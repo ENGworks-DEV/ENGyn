@@ -159,16 +159,19 @@ namespace ENGyn
 
 
             VplControl.UpdateLayout();
+            this.FileTitle.Text = "New";
         }
 
         private void OpenCommand(object sender, RoutedEventArgs e)
         {
             VplControl.OpenFile();
+            this.FileTitle.Text = VplControl.fileName;
         }
 
         private void SaveCommand(object sender, RoutedEventArgs e)
         {
             VplControl.SaveFile();
+            this.FileTitle.Text = VplControl.fileName;
         }
 
         private void Add_Node(object sender, RoutedEventArgs e)

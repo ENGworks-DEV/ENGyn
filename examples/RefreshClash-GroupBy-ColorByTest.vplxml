@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Document GraphFlowDirection="Horizontal">
   <Nodes>
-    <ENGyn.Nodes.Navisworks.CurrentDocument GUID="f464d005-abfc-41ae-a96d-534a8872729f" TOP="-70.040799999999933" Left="91.594599999999787" />
+    <ENGyn.Nodes.Navisworks.CurrentDocument GUID="f464d005-abfc-41ae-a96d-534a8872729f" TOP="-144.12426000000158" Left="-129.04526999999928" />
     <ENGyn.Nodes.Clash.GetElementsInClash GUID="5a3df8c4-a171-4001-ad39-3afc1da4f0a7" TOP="474.53589999999974" Left="481.25660000000016" />
     <ENGyn.Nodes.List.GetItemAtIndex GUID="666139bd-9ea3-442b-bc21-dfeaf9380b7f" TOP="490.92819999999983" Left="43.236200000000451" />
-    <ENGyn.Nodes.Clash.BIM42Group GUID="56f010a3-5011-4c3e-a72d-5f295036c3a6" TOP="-46.400000000000006" Left="685.59999999999968" SelectedIndex-GroupingComboBox="0" SelectedIndex-KeepExistingComboBox2="0" SelectedIndex-SubgroupingComboBox3="0" />
-    <ENGyn.Nodes.Clash.RefreshAllClashTests GUID="0cdd3439-85dd-4085-9b95-3871fe0a9fb7" TOP="-79.889499999999572" Left="360.64329999999995" />
-    <ENGyn.Nodes.Appearance.SetAppearanceBySelection GUID="5e8c080f-02c5-4e18-ad42-d13ab16710f3" TOP="492" Left="820.80000000000007" />
-    <TUM.CMS.VplControl.Nodes.ColorNode GUID="38f6c871-c8e3-4a27-b841-695d6b7f65a3" TOP="613.60000000000014" Left="452.80000000000007" Color="#BB0B9F" />
+    <ENGyn.Nodes.Clash.BIM42Group GUID="56f010a3-5011-4c3e-a72d-5f295036c3a6" TOP="-181.68284000000713" Left="418.2553399999972" SelectedIndex-GroupingComboBox="0" SelectedIndex-KeepExistingComboBox2="0" SelectedIndex-SubgroupingComboBox3="0" />
+    <ENGyn.Nodes.Clash.RefreshAllClashTests GUID="0cdd3439-85dd-4085-9b95-3871fe0a9fb7" TOP="-139.47836999999916" Left="148.05597999999395" />
+    <ENGyn.Nodes.Appearance.SetAppearanceBySelection GUID="5e8c080f-02c5-4e18-ad42-d13ab16710f3" TOP="506.49459000000206" Left="1165.4491400000015" SelectedIndex-Relation="0" />
+    <TUM.CMS.VplControl.Nodes.ColorNode GUID="38f6c871-c8e3-4a27-b841-695d6b7f65a3" TOP="678.02039999999556" Left="715.31312999999943" Color="#BB0B9F" />
     <ENGyn.Nodes.List.GetItemAtIndex GUID="8f713205-7267-473c-a1cc-0e193ace7eca" TOP="110.23350000000022" Left="81.533400000000825" />
-    <ENGyn.Nodes.Appearance.SetAppearanceBySelection GUID="885b5a5f-fc46-4a2f-9b54-7c76d711c77a" TOP="291.99999999999994" Left="794.79999999999961" />
-    <TUM.CMS.VplControl.Nodes.ColorNode GUID="45bd2c51-fb2e-44b2-96f3-0514c17aec21" TOP="363.8" Left="373.80000000000007" Color="#FFD100" />
-    <TUM.CMS.VplControl.Nodes.Input.IntegerSlider GUID="85aa8014-726f-440f-8eb2-a4707fcc0a67" TOP="167.70010000000036" Left="-283.27429999999987" SliderMax="10" SliderMin="0" SliderValue="0" SliderStep="1" IsExpanded="false" />
+    <ENGyn.Nodes.Appearance.SetAppearanceBySelection GUID="885b5a5f-fc46-4a2f-9b54-7c76d711c77a" TOP="192.14837999999867" Left="1157.1647500000149" SelectedIndex-Relation="0" />
+    <TUM.CMS.VplControl.Nodes.ColorNode GUID="45bd2c51-fb2e-44b2-96f3-0514c17aec21" TOP="346.08438999999345" Left="666.91281999999489" Color="#FFD100" />
+    <TUM.CMS.VplControl.Nodes.Input.IntegerSlider GUID="85aa8014-726f-440f-8eb2-a4707fcc0a67" TOP="148.37398000000246" Left="-405.67306000000355" SliderMax="10" SliderMin="0" SliderValue="0" SliderStep="1" IsExpanded="false" />
     <TUM.CMS.VplControl.Nodes.Input.DoubleSlider GUID="41caf8f2-c0b4-483c-99e2-164cb3657e54" TOP="511.71280000000093" Left="-346.55609999999928" SliderMax="10" SliderMin="2" SliderValue="1" SliderStep="1" IsExpanded="false" />
-    <ENGyn.Nodes.Clash.GetElementsInClash GUID="fa5c72fd-9dd6-4787-b049-8f89d390913c" TOP="179.53339999999986" Left="565.81019999999864" />
+    <ENGyn.Nodes.Clash.GetElementsInClash GUID="fa5c72fd-9dd6-4787-b049-8f89d390913c" TOP="198.85952000000503" Left="660.83029000000408" />
     <ENGyn.Nodes.Clash.GetClashResults GUID="f9777f28-1a10-4c61-a123-02dfd9e9dad7" TOP="174.61100941288805" Left="287.00322146998406" />
     <ENGyn.Nodes.Clash.GetClashResults GUID="b48005b4-8f3f-4812-82a3-a77d59195016" TOP="518.67450941288735" Left="234.29562146998524" />
   </Nodes>
