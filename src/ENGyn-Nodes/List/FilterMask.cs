@@ -65,6 +65,12 @@ namespace ENGyn.Nodes.List
 
         }
         //https://github.com/DynamoDS/Dynamo/blob/master/src/Libraries/CoreNodes/List.cs
+        /// <summary>
+        /// Help is in the summary
+        /// </summary>
+        /// <param name="list"></param>
+        /// <param name="mask"></param>
+        /// <returns></returns>
         public static Dictionary<string, object> FilterByBoolMask(IList list, IList mask)
         {
             Tuple<ArrayList, ArrayList> result = FilterByMaskHelper(
