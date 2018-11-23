@@ -38,60 +38,60 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AdWindows, Version=2015.11.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Navisworks-2017-x64-API.1.0.0\lib\net46\AdWindows.dll</HintPath>
+    <Reference Include="AdWindows, Version=2016.11.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Navisworks-2018-2019-x64-API.1.0.1\lib\net46\AdWindows.dll</HintPath>
     </Reference>
-    <Reference Include="Autodesk.Navisworks.Api, Version=14.0.1298.75, Culture=neutral, PublicKeyToken=d85e58fa5af9b484, processorArchitecture=AMD64">
-      <HintPath>..\..\packages\Navisworks-2017-x64-API.1.0.0\lib\net46\Autodesk.Navisworks.Api.dll</HintPath>
+    <Reference Include="Autodesk.Navisworks.Api, Version=15.0.1314.36, Culture=neutral, PublicKeyToken=d85e58fa5af9b484, processorArchitecture=AMD64">
+      <HintPath>..\..\packages\Navisworks-2018-2019-x64-API.1.0.1\lib\net46\Autodesk.Navisworks.Api.dll</HintPath>
     </Reference>
-    <Reference Include="Autodesk.Navisworks.Automation, Version=14.0.1298.75, Culture=neutral, PublicKeyToken=d85e58fa5af9b484, processorArchitecture=AMD64">
-      <HintPath>..\..\packages\Navisworks-2017-x64-API.1.0.0\lib\net46\Autodesk.Navisworks.Automation.dll</HintPath>
+    <Reference Include="Autodesk.Navisworks.Automation, Version=15.0.1314.36, Culture=neutral, PublicKeyToken=d85e58fa5af9b484, processorArchitecture=AMD64">
+      <HintPath>..\..\packages\Navisworks-2018-2019-x64-API.1.0.1\lib\net46\Autodesk.Navisworks.Automation.dll</HintPath>
     </Reference>
-    <Reference Include="Autodesk.Navisworks.Clash, Version=14.0.1298.75, Culture=neutral, PublicKeyToken=d85e58fa5af9b484, processorArchitecture=AMD64">
-      <HintPath>..\..\packages\Navisworks-2017-x64-API.1.0.0\lib\net46\Autodesk.Navisworks.Clash.dll</HintPath>
+    <Reference Include="Autodesk.Navisworks.Clash, Version=15.0.1314.36, Culture=neutral, PublicKeyToken=d85e58fa5af9b484, processorArchitecture=AMD64">
+      <HintPath>..\..\packages\Navisworks-2018-2019-x64-API.1.0.1\lib\net46\Autodesk.Navisworks.Clash.dll</HintPath>
     </Reference>
-    <Reference Include="Autodesk.Navisworks.ComApi, Version=14.0.1298.75, Culture=neutral, PublicKeyToken=d85e58fa5af9b484, processorArchitecture=AMD64">
-      <HintPath>..\..\packages\Navisworks-2017-x64-API.1.0.0\lib\net46\Autodesk.Navisworks.ComApi.dll</HintPath>
+    <Reference Include="Autodesk.Navisworks.ComApi, Version=15.0.1314.36, Culture=neutral, PublicKeyToken=d85e58fa5af9b484, processorArchitecture=AMD64">
+      <HintPath>..\..\packages\Navisworks-2018-2019-x64-API.1.0.1\lib\net46\Autodesk.Navisworks.ComApi.dll</HintPath>
     </Reference>
-    <Reference Include="Autodesk.Navisworks.Controls, Version=14.0.1298.75, Culture=neutral, PublicKeyToken=d85e58fa5af9b484, processorArchitecture=AMD64">
-      <HintPath>..\..\packages\Navisworks-2017-x64-API.1.0.0\lib\net46\Autodesk.Navisworks.Controls.dll</HintPath>
+    <Reference Include="Autodesk.Navisworks.Controls, Version=15.0.1314.36, Culture=neutral, PublicKeyToken=d85e58fa5af9b484, processorArchitecture=AMD64">
+      <HintPath>..\..\packages\Navisworks-2018-2019-x64-API.1.0.1\lib\net46\Autodesk.Navisworks.Controls.dll</HintPath>
     </Reference>
-    <Reference Include="Autodesk.Navisworks.Interop.ComApi, Version=14.0.1298.75, Culture=neutral, PublicKeyToken=d85e58fa5af9b484, processorArchitecture=AMD64">
-      <HintPath>..\..\packages\Navisworks-2017-x64-API.1.0.0\lib\net46\Autodesk.Navisworks.Interop.ComApi.dll</HintPath>
+    <Reference Include="Autodesk.Navisworks.Interop.ComApi, Version=15.0.1314.36, Culture=neutral, PublicKeyToken=d85e58fa5af9b484, processorArchitecture=AMD64">
+      <HintPath>..\..\packages\Navisworks-2018-2019-x64-API.1.0.1\lib\net46\Autodesk.Navisworks.Interop.ComApi.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
-    <Reference Include="Autodesk.Navisworks.Interop.Timeliner, Version=14.0.1298.75, Culture=neutral, PublicKeyToken=d85e58fa5af9b484, processorArchitecture=AMD64">
-      <HintPath>..\..\packages\Navisworks-2017-x64-API.1.0.0\lib\net46\Autodesk.Navisworks.Interop.Timeliner.dll</HintPath>
+    <Reference Include="Autodesk.Navisworks.Interop.Timeliner, Version=15.0.1314.36, Culture=neutral, PublicKeyToken=d85e58fa5af9b484, processorArchitecture=AMD64">
+      <HintPath>..\..\packages\Navisworks-2018-2019-x64-API.1.0.1\lib\net46\Autodesk.Navisworks.Interop.Timeliner.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
-    <Reference Include="Autodesk.Navisworks.Resolver, Version=14.0.1298.75, Culture=neutral, PublicKeyToken=d85e58fa5af9b484, processorArchitecture=AMD64">
-      <HintPath>..\..\packages\Navisworks-2017-x64-API.1.0.0\lib\net46\Autodesk.Navisworks.Resolver.dll</HintPath>
+    <Reference Include="Autodesk.Navisworks.Resolver, Version=15.0.1314.36, Culture=neutral, PublicKeyToken=d85e58fa5af9b484, processorArchitecture=AMD64">
+      <HintPath>..\..\packages\Navisworks-2018-2019-x64-API.1.0.1\lib\net46\Autodesk.Navisworks.Resolver.dll</HintPath>
     </Reference>
-    <Reference Include="Autodesk.Navisworks.Takeoff, Version=14.0.1298.75, Culture=neutral, PublicKeyToken=d85e58fa5af9b484, processorArchitecture=AMD64">
-      <HintPath>..\..\packages\Navisworks-2017-x64-API.1.0.0\lib\net46\Autodesk.Navisworks.Takeoff.dll</HintPath>
+    <Reference Include="Autodesk.Navisworks.Takeoff, Version=15.0.1314.36, Culture=neutral, PublicKeyToken=d85e58fa5af9b484, processorArchitecture=AMD64">
+      <HintPath>..\..\packages\Navisworks-2018-2019-x64-API.1.0.1\lib\net46\Autodesk.Navisworks.Takeoff.dll</HintPath>
     </Reference>
     <Reference Include="Autodesk.Navisworks.Timeliner, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d85e58fa5af9b484, processorArchitecture=AMD64">
-      <HintPath>..\..\packages\Navisworks-2017-x64-API.1.0.0\lib\net46\Autodesk.Navisworks.Timeliner.dll</HintPath>
+      <HintPath>..\..\packages\Navisworks-2018-2019-x64-API.1.0.1\lib\net46\Autodesk.Navisworks.Timeliner.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
-    <Reference Include="navisworks.gui.common, Version=14.0.1298.75, Culture=neutral, processorArchitecture=AMD64">
-      <HintPath>..\..\packages\Navisworks-2017-x64-API.1.0.0\lib\net46\navisworks.gui.common.dll</HintPath>
+    <Reference Include="navisworks.gui.common, Version=15.0.1314.36, Culture=neutral, processorArchitecture=AMD64">
+      <HintPath>..\..\packages\Navisworks-2018-2019-x64-API.1.0.1\lib\net46\navisworks.gui.common.dll</HintPath>
     </Reference>
-    <Reference Include="navisworks.gui.generic, Version=14.0.1298.75, Culture=neutral, processorArchitecture=AMD64">
-      <HintPath>..\..\packages\Navisworks-2017-x64-API.1.0.0\lib\net46\navisworks.gui.generic.dll</HintPath>
+    <Reference Include="navisworks.gui.generic, Version=15.0.1314.36, Culture=neutral, processorArchitecture=AMD64">
+      <HintPath>..\..\packages\Navisworks-2018-2019-x64-API.1.0.1\lib\net46\navisworks.gui.generic.dll</HintPath>
     </Reference>
-    <Reference Include="navisworks.gui.interface, Version=14.0.1298.75, Culture=neutral, processorArchitecture=AMD64">
-      <HintPath>..\..\packages\Navisworks-2017-x64-API.1.0.0\lib\net46\navisworks.gui.interface.dll</HintPath>
+    <Reference Include="navisworks.gui.interface, Version=15.0.1314.36, Culture=neutral, processorArchitecture=AMD64">
+      <HintPath>..\..\packages\Navisworks-2018-2019-x64-API.1.0.1\lib\net46\navisworks.gui.interface.dll</HintPath>
     </Reference>
-    <Reference Include="navisworks.gui.roamer, Version=14.0.1298.75, Culture=neutral, processorArchitecture=AMD64">
-      <HintPath>..\..\packages\Navisworks-2017-x64-API.1.0.0\lib\net46\navisworks.gui.roamer.dll</HintPath>
+    <Reference Include="navisworks.gui.roamer, Version=15.0.1314.36, Culture=neutral, processorArchitecture=AMD64">
+      <HintPath>..\..\packages\Navisworks-2018-2019-x64-API.1.0.1\lib\net46\navisworks.gui.roamer.dll</HintPath>
     </Reference>
-    <Reference Include="navisworks.roamer.plugin, Version=14.0.1298.75, Culture=neutral, processorArchitecture=AMD64">
-      <HintPath>..\..\packages\Navisworks-2017-x64-API.1.0.0\lib\net46\navisworks.roamer.plugin.dll</HintPath>
+    <Reference Include="navisworks.roamer.plugin, Version=15.0.1314.36, Culture=neutral, processorArchitecture=AMD64">
+      <HintPath>..\..\packages\Navisworks-2018-2019-x64-API.1.0.1\lib\net46\navisworks.roamer.plugin.dll</HintPath>
     </Reference>
     <Reference Include="NCalc, Version=1.3.8.0, Culture=neutral, PublicKeyToken=973cde3f1cafed03, processorArchitecture=MSIL">
       <HintPath>..\..\packages\ncalc.1.3.8\lib\NCalc.dll</HintPath>
@@ -289,7 +289,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy /Y "$(TargetPath)" "..\..\..\..\bin\2018\Nodes\"
+    <PostBuildEvent>xcopy /Y "$(TargetPath)" "..\..\..\bin\2018\Nodes\"
 
 
 </PostBuildEvent>
