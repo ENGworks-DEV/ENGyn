@@ -189,6 +189,7 @@
     <Compile Include="Input\CSV.cs" />
     <Compile Include="List\ListFlatten.cs" />
     <Compile Include="Clash\GetClashInfo.cs" />
+    <Compile Include="Navisworks\CloseNavisworks.cs" />
     <Compile Include="Navisworks\SaveNWFile.cs" />
     <Compile Include="String\String.cs" />
     <Compile Include="Clash\RefreshAllClashes.cs" />

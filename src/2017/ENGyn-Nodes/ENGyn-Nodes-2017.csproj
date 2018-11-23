@@ -193,6 +193,9 @@
     <Compile Include="..\..\ENGyn-Nodes\Clash\GetClashInfo.cs">
       <Link>GetClashInfo.cs</Link>
     </Compile>
+    <Compile Include="..\..\ENGyn-Nodes\Navisworks\CloseNavisworks.cs">
+      <Link>Navisworks\CloseNavisworks.cs</Link>
+    </Compile>
     <Compile Include="..\..\ENGyn-Nodes\Navisworks\SaveNWFile.cs">
       <Link>Navisworks\SaveNWFile.cs</Link>
     </Compile>
@@ -290,6 +293,8 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>xcopy /Y "$(TargetPath)" "..\..\..\..\bin\2017\Nodes\"
+xcopy /Y "$(TargetDir)DefaultNodes.pdb" "..\..\..\..\bin\2017\Nodes\"
+
 
 
 </PostBuildEvent>
