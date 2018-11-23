@@ -1,0 +1,297 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0C36090F-1EAD-46FF-B476-09C83A6CD2C3}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Nodes</RootNamespace>
+    <AssemblyName>DefaultNodes</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>false</Deterministic>
+    <TargetFrameworkProfile />
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Autodesk Navisworks Manage 2019|AnyCPU'">
+    <OutputPath>..\..\bin\2019\Nodes\</OutputPath>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Autodesk Navisworks Manage 2018|AnyCPU'">
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <OutputPath>bin\</OutputPath>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Autodesk Navisworks Manage 2017|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\2017\</OutputPath>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AdWindows, Version=2015.11.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Navisworks-2017-x64-API.1.0.0\lib\net46\AdWindows.dll</HintPath>
+    </Reference>
+    <Reference Include="Autodesk.Navisworks.Api, Version=14.0.1298.75, Culture=neutral, PublicKeyToken=d85e58fa5af9b484, processorArchitecture=AMD64">
+      <HintPath>..\..\packages\Navisworks-2017-x64-API.1.0.0\lib\net46\Autodesk.Navisworks.Api.dll</HintPath>
+    </Reference>
+    <Reference Include="Autodesk.Navisworks.Automation, Version=14.0.1298.75, Culture=neutral, PublicKeyToken=d85e58fa5af9b484, processorArchitecture=AMD64">
+      <HintPath>..\..\packages\Navisworks-2017-x64-API.1.0.0\lib\net46\Autodesk.Navisworks.Automation.dll</HintPath>
+    </Reference>
+    <Reference Include="Autodesk.Navisworks.Clash, Version=14.0.1298.75, Culture=neutral, PublicKeyToken=d85e58fa5af9b484, processorArchitecture=AMD64">
+      <HintPath>..\..\packages\Navisworks-2017-x64-API.1.0.0\lib\net46\Autodesk.Navisworks.Clash.dll</HintPath>
+    </Reference>
+    <Reference Include="Autodesk.Navisworks.ComApi, Version=14.0.1298.75, Culture=neutral, PublicKeyToken=d85e58fa5af9b484, processorArchitecture=AMD64">
+      <HintPath>..\..\packages\Navisworks-2017-x64-API.1.0.0\lib\net46\Autodesk.Navisworks.ComApi.dll</HintPath>
+    </Reference>
+    <Reference Include="Autodesk.Navisworks.Controls, Version=14.0.1298.75, Culture=neutral, PublicKeyToken=d85e58fa5af9b484, processorArchitecture=AMD64">
+      <HintPath>..\..\packages\Navisworks-2017-x64-API.1.0.0\lib\net46\Autodesk.Navisworks.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Autodesk.Navisworks.Interop.ComApi, Version=14.0.1298.75, Culture=neutral, PublicKeyToken=d85e58fa5af9b484, processorArchitecture=AMD64">
+      <HintPath>..\..\packages\Navisworks-2017-x64-API.1.0.0\lib\net46\Autodesk.Navisworks.Interop.ComApi.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Autodesk.Navisworks.Interop.Timeliner, Version=14.0.1298.75, Culture=neutral, PublicKeyToken=d85e58fa5af9b484, processorArchitecture=AMD64">
+      <HintPath>..\..\packages\Navisworks-2017-x64-API.1.0.0\lib\net46\Autodesk.Navisworks.Interop.Timeliner.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Autodesk.Navisworks.Resolver, Version=14.0.1298.75, Culture=neutral, PublicKeyToken=d85e58fa5af9b484, processorArchitecture=AMD64">
+      <HintPath>..\..\packages\Navisworks-2017-x64-API.1.0.0\lib\net46\Autodesk.Navisworks.Resolver.dll</HintPath>
+    </Reference>
+    <Reference Include="Autodesk.Navisworks.Takeoff, Version=14.0.1298.75, Culture=neutral, PublicKeyToken=d85e58fa5af9b484, processorArchitecture=AMD64">
+      <HintPath>..\..\packages\Navisworks-2017-x64-API.1.0.0\lib\net46\Autodesk.Navisworks.Takeoff.dll</HintPath>
+    </Reference>
+    <Reference Include="Autodesk.Navisworks.Timeliner, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d85e58fa5af9b484, processorArchitecture=AMD64">
+      <HintPath>..\..\packages\Navisworks-2017-x64-API.1.0.0\lib\net46\Autodesk.Navisworks.Timeliner.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="navisworks.gui.common, Version=14.0.1298.75, Culture=neutral, processorArchitecture=AMD64">
+      <HintPath>..\..\packages\Navisworks-2017-x64-API.1.0.0\lib\net46\navisworks.gui.common.dll</HintPath>
+    </Reference>
+    <Reference Include="navisworks.gui.generic, Version=14.0.1298.75, Culture=neutral, processorArchitecture=AMD64">
+      <HintPath>..\..\packages\Navisworks-2017-x64-API.1.0.0\lib\net46\navisworks.gui.generic.dll</HintPath>
+    </Reference>
+    <Reference Include="navisworks.gui.interface, Version=14.0.1298.75, Culture=neutral, processorArchitecture=AMD64">
+      <HintPath>..\..\packages\Navisworks-2017-x64-API.1.0.0\lib\net46\navisworks.gui.interface.dll</HintPath>
+    </Reference>
+    <Reference Include="navisworks.gui.roamer, Version=14.0.1298.75, Culture=neutral, processorArchitecture=AMD64">
+      <HintPath>..\..\packages\Navisworks-2017-x64-API.1.0.0\lib\net46\navisworks.gui.roamer.dll</HintPath>
+    </Reference>
+    <Reference Include="navisworks.roamer.plugin, Version=14.0.1298.75, Culture=neutral, processorArchitecture=AMD64">
+      <HintPath>..\..\packages\Navisworks-2017-x64-API.1.0.0\lib\net46\navisworks.roamer.plugin.dll</HintPath>
+    </Reference>
+    <Reference Include="NCalc, Version=1.3.8.0, Culture=neutral, PublicKeyToken=973cde3f1cafed03, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ncalc.1.3.8\lib\NCalc.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json.Net20, Version=3.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.Net20.dll.3.5.0\lib\2.0\Newtonsoft.Json.Net20.dll</HintPath>
+    </Reference>
+    <Reference Include="RadialMenu, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\RadialMenu.WPF.1.3.0\lib\net46\RadialMenu.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="TUM.CMS.VplControl">
+      <HintPath>..\..\TUM.CMS.VPLControl\bin\TUM.CMS.VplControl.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="TUM.CMS.VplControl">
+      <HintPath>..\TUM.CMS.VPLControl\bin\TUM.CMS.VplControl.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="Xceed.Wpf.AvalonDock, Version=3.4.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Extended.Wpf.Toolkit.3.4.0\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=3.4.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Extended.Wpf.Toolkit.3.4.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=3.4.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Extended.Wpf.Toolkit.3.4.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=3.4.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Extended.Wpf.Toolkit.3.4.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.DataGrid, Version=3.4.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Extended.Wpf.Toolkit.3.4.0\lib\net40\Xceed.Wpf.DataGrid.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=3.4.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Extended.Wpf.Toolkit.3.4.0\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\ENGyn-Nodes\API\GetAPIParameters.cs">
+      <Link>API\GetAPIParameters.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ENGyn-Nodes\Clash\CompactTest.cs">
+      <Link>Clash\CompactTest.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ENGyn-Nodes\Clash\RenameClash.cs">
+      <Link>Clash\RenameClash.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ENGyn-Nodes\Comments\GetViewpointsComments.cs">
+      <Link>Comments\GetViewpointsComments.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ENGyn-Nodes\Excel files\FileWorksheets.cs">
+      <Link>Excel files\FileWorksheets.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ENGyn-Nodes\Excel files\ReadFromFile.cs">
+      <Link>Excel files\ReadFromFile.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ENGyn-Nodes\Excel files\WriteToFile.cs">
+      <Link>Excel files\WriteToFile.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ENGyn-Nodes\Input\CSV.cs">
+      <Link>Input\CSV.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ENGyn-Nodes\List\ListFlatten.cs">
+      <Link>List\ListFlatten.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ENGyn-Nodes\Clash\GetClashInfo.cs">
+      <Link>GetClashInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ENGyn-Nodes\Navisworks\SaveNWFile.cs">
+      <Link>Navisworks\SaveNWFile.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ENGyn-Nodes\String\String.cs">
+      <Link>String\String.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ENGyn-Nodes\Clash\RefreshAllClashes.cs">
+      <Link>Clash\RefreshAllClashes.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ENGyn-Nodes\API\GetAPIParameterValue.cs">
+      <Link>API\GetAPIParameterValue.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ENGyn-Nodes\Selection\GetElementFromSearch.cs">
+      <Link>Selection\GetElementFromSearch.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ENGyn-Nodes\Viewpoints\Viewpoints.cs">
+      <Link>Viewpoints\Viewpoints.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ENGyn-Nodes\Clash\GroupClashes.cs">
+      <Link>Clash\GroupClashes.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ENGyn-Nodes\MainTools.cs">
+      <Link>MainTools.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ENGyn-Nodes\Clash\ResfreshClashTest.cs">
+      <Link>Clash\ResfreshClashTest.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ENGyn-Nodes\List\FilterMask.cs">
+      <Link>List\FilterMask.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ENGyn-Nodes\Clash\GetElementsInClash.cs">
+      <Link>Clash\GetElementsInClash.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ENGyn-Nodes\List\ListTranspose.cs">
+      <Link>List\ListTranspose.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ENGyn-Nodes\Input\WriteTextToPath.cs">
+      <Link>Input\WriteTextToPath.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ENGyn-Nodes\Template.cs">
+      <Link>Template.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ENGyn-Nodes\Clash\GetClashResults.cs">
+      <Link>Clash\GetClashResults.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ENGyn-Nodes\Clash\GetClashTest.cs">
+      <Link>Clash\GetClashTest.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ENGyn-Nodes\Navisworks\GetDocument.cs">
+      <Link>Navisworks\GetDocument.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ENGyn-Nodes\List\GetItemAtIndex.cs">
+      <Link>List\GetItemAtIndex.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ENGyn-Nodes\Navisworks\GetModelName.cs">
+      <Link>Navisworks\GetModelName.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ENGyn-Nodes\Navisworks\RefreshLinks.cs">
+      <Link>Navisworks\RefreshLinks.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ENGyn-Nodes\Navisworks\GetModels.cs">
+      <Link>Navisworks\GetModels.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ENGyn-Nodes\Appearance\GetProfileFromXML.cs">
+      <Link>Appearance\GetProfileFromXML.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ENGyn-Nodes\Selection\GetSearchSets.cs">
+      <Link>Selection\GetSearchSets.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ENGyn-Nodes\Selection\GetSelection.cs">
+      <Link>Selection\GetSelection.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ENGyn-Nodes\Navisworks\GetValueByCatProp.cs">
+      <Link>Navisworks\GetValueByCatProp.cs</Link>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="References\viewpointXML.cs" />
+    <Compile Include="..\..\ENGyn-Nodes\Appearance\SetAppearanceByProfile.cs">
+      <Link>Appearance\SetAppearanceByProfile.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ENGyn-Nodes\Appearance\SetAppearanceBySelection.cs">
+      <Link>Appearance\SetAppearanceBySelection.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ENGyn-Nodes\Navisworks\SetValueByCatProp.cs">
+      <Link>Navisworks\SetValueByCatProp.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ENGyn-Nodes\Input\SaveFile.cs">
+      <Link>Input\SaveFile.c</Link>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy /Y "$(TargetPath)" "..\..\..\..\bin\2017\Nodes\"
+
+
+</PostBuildEvent>
+  </PropertyGroup>
+</Project>
