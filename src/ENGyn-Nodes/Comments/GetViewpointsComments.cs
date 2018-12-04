@@ -1,13 +1,6 @@
-﻿using System.Windows.Controls;
-using System.Xml;
-using Autodesk.Navisworks.Api;
-using TUM.CMS.VplControl.Nodes;
-using Autodesk.Navisworks.Api.Clash;
-using TUM.CMS.VplControl.Core;
-using System.Windows.Data;
-using System.Windows;
+﻿using Autodesk.Navisworks.Api;
 using System.Collections.Generic;
-using System;
+using TUM.CMS.VplControl.Core;
 
 namespace ENGyn.Nodes.Comments
 {
@@ -22,7 +15,7 @@ namespace ENGyn.Nodes.Comments
             //Help 
             this.BottomComment.Text = "Gets Comments list associated with SavedItem: e.g. Clash or Viewpoint ";
             this.ShowHelpOnMouseOver = true;
-           
+
 
         }
 
@@ -31,7 +24,7 @@ namespace ENGyn.Nodes.Comments
         {
             var viewpoint = InputPorts[0].Data;
 
-          
+
             OutputPorts[0].Data = MainTools.RunFunction(getViewpointsComments, InputPorts);
         }
 
@@ -39,7 +32,7 @@ namespace ENGyn.Nodes.Comments
         {
             var output = new List<object>();
             if (viewpoint is Viewpoint ||
-                viewpoint is SavedItem || 
+                viewpoint is SavedItem ||
                 viewpoint is SavedViewpoint)
             {
                 var v = viewpoint as SavedItem;

@@ -74,51 +74,16 @@
     <PlatformTarget>x64</PlatformTarget>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Autodesk Navisworks Manage 2018|AnyCPU'">
+    <OutputPath>..\..\bin\2018\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputPath>bin\Release\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AdWindows" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2019'">
-      <HintPath>..\packages\Navisworks-2018-2019-x64-API.1.0.1\lib\net47\AdWindows.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Autodesk.Navisworks.Api" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2019'">
-      <HintPath>..\packages\Navisworks-2018-2019-x64-API.1.0.1\lib\net47\Autodesk.Navisworks.Api.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Autodesk.Navisworks.Automation" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2019'">
-      <HintPath>..\packages\Navisworks-2018-2019-x64-API.1.0.1\lib\net47\Autodesk.Navisworks.Automation.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Autodesk.Navisworks.Clash" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2019'">
-      <HintPath>..\packages\Navisworks-2018-2019-x64-API.1.0.1\lib\net47\Autodesk.Navisworks.Clash.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Autodesk.Navisworks.ComApi" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2019'">
-      <HintPath>..\packages\Navisworks-2018-2019-x64-API.1.0.1\lib\net47\Autodesk.Navisworks.ComApi.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Autodesk.Navisworks.Controls" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2019'">
-      <HintPath>..\packages\Navisworks-2018-2019-x64-API.1.0.1\lib\net47\Autodesk.Navisworks.Controls.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Autodesk.Navisworks.Interop.ComApi" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2019'">
-      <HintPath>..\packages\Navisworks-2018-2019-x64-API.1.0.1\lib\net47\Autodesk.Navisworks.Interop.ComApi.dll</HintPath>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </Reference>
-    <Reference Include="Autodesk.Navisworks.Interop.Timeliner" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2019'">
-      <HintPath>..\packages\Navisworks-2018-2019-x64-API.1.0.1\lib\net47\Autodesk.Navisworks.Interop.Timeliner.dll</HintPath>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </Reference>
-    <Reference Include="Autodesk.Navisworks.Resolver" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2019'">
-      <HintPath>..\packages\Navisworks-2018-2019-x64-API.1.0.1\lib\net47\Autodesk.Navisworks.Resolver.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Autodesk.Navisworks.Takeoff" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2019'">
-      <HintPath>..\packages\Navisworks-2018-2019-x64-API.1.0.1\lib\net47\Autodesk.Navisworks.Takeoff.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Autodesk.Navisworks.Timeliner" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2019'">
-      <HintPath>..\packages\Navisworks-2018-2019-x64-API.1.0.1\lib\net47\Autodesk.Navisworks.Timeliner.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="navisworks.gui.common" Condition="'$(Configuration)' == 'Autodesk Navisworks Manage 2019'">
       <HintPath>..\packages\Navisworks-2018-2019-x64-API.1.0.1\lib\net47\navisworks.gui.common.dll</HintPath>
       <Private>False</Private>
@@ -417,17 +382,14 @@
   </Target>
   -->
   <PropertyGroup>
-    <PostBuildEvent>IF EXIST "C:\Program Files\Autodesk\$(ConfigurationName)\Plugins\$(TargetName)\" rmdir /S /Q "C:\Program Files\Autodesk\$(ConfigurationName)\Plugins\$(TargetName)\"
-IF EXIST "%25APPDATA%25\$(ConfigurationName)\Plugins\$(TargetName)\" rmdir /S /Q "%25APPDATA%25\$(ConfigurationName)\Plugins\$(TargetName)\"
-
-xcopy /Y /e "$(OutDir)*.*" "%25APPDATA%25\$(ConfigurationName)\Plugins\$(TargetName)\"
+    <PostBuildEvent>IF EXIST "C:\Program Files\Autodesk\Autodesk Navisworks Manage 2018\Plugins\$(TargetName)\" rmdir /S /Q "C:\Program Files\Autodesk\Autodesk Navisworks Manage 2018\Plugins\$(TargetName)\"
+IF EXIST "%25APPDATA%25\Autodesk Navisworks Manage 2018\Plugins\$(TargetName)\" rmdir /S /Q "%25APPDATA%25\Autodesk Navisworks Manage 2018\Plugins\$(TargetName)\"
 
 
+ xcopy /Y "$(ProjectDir)ENGyn.xaml" "$(TargetDir)en-US\"
+xcopy /Y "$(ProjectDir)Images\ENGyn.png" "$(TargetDir)Images\"
 
- xcopy /Y "$(ProjectDir)ENGyn.xaml" "$(OutDir)\en-US\"
- xcopy /Y "$(ProjectDir)ENGyn.xaml" "%25APPDATA%25\$(ConfigurationName)\Plugins\$(TargetName)\en-US\"
-
-xcopy /Y "$(ProjectDir)Images\ENGyn.png" "%25APPDATA%25\$(ConfigurationName)\Plugins\$(TargetName)\Images\"</PostBuildEvent>
+ xcopy /Y /e "$(TargetDir)*.*" "%25APPDATA%25\Autodesk Navisworks Manage 2018\Plugins\$(TargetName)\"</PostBuildEvent>
   </PropertyGroup>
   <ProjectExtensions>
     <VisualStudio>

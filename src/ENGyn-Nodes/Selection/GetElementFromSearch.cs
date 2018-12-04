@@ -1,13 +1,6 @@
-﻿using System.Windows.Controls;
-using System.Xml;
-using Autodesk.Navisworks.Api;
-using TUM.CMS.VplControl.Nodes;
-using Autodesk.Navisworks.Api.Clash;
-using TUM.CMS.VplControl.Core;
-using System.Windows.Data;
-
+﻿using Autodesk.Navisworks.Api;
 using System.Collections.Generic;
-using System.Windows;
+using TUM.CMS.VplControl.Core;
 
 namespace ENGyn.Nodes.Selection
 {
@@ -16,7 +9,7 @@ namespace ENGyn.Nodes.Selection
         public GetElementFromSearch(VplControl hostCanvas)
             : base(hostCanvas)
         {
-            
+
             AddInputPortToNode("SelectionSets", typeof(object));
             AddOutputPortToNode("Output", typeof(object));
 
@@ -33,7 +26,7 @@ namespace ENGyn.Nodes.Selection
 
             if (input != null)
             {
-                
+
                 var type = input.GetType();
 
                 if (type == typeof(SelectionSet))
@@ -46,12 +39,12 @@ namespace ENGyn.Nodes.Selection
 
                 }
 
-               if (MainTools.IsList(input) && MainTools.ListContainsType(input,typeof( SelectionSet)))
+                if (MainTools.IsList(input) && MainTools.ListContainsType(input, typeof(SelectionSet)))
                 {
                     foreach (var item in input as List<SelectionSet>)
                     {
                         var selectionSet = item as SelectionSet;
-                       
+
                         ModelItemCollection searchResults =
                         selectionSet.Search.FindAll(Autodesk.Navisworks.Api.Application.ActiveDocument, false);
                         output.Add(searchResults);
@@ -59,7 +52,7 @@ namespace ENGyn.Nodes.Selection
                 }
 
             }
-           var objects =  new List<object>();
+            var objects = new List<object>();
             foreach (var item in output)
             {
                 List<ModelItem> modelitems = new List<ModelItem>();
@@ -73,7 +66,7 @@ namespace ENGyn.Nodes.Selection
         }
 
 
-      
+
 
         public override Node Clone()
         {

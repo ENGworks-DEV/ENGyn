@@ -1,16 +1,8 @@
-﻿using System.Windows.Controls;
-using System.Xml;
-using Autodesk.Navisworks.Api;
-using TUM.CMS.VplControl.Nodes;
-using Autodesk.Navisworks.Api.Clash;
-using TUM.CMS.VplControl.Core;
-using System.Windows.Data;
-
-using System.Collections.Generic;
-using System;
+﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
-using System.Windows;
+using TUM.CMS.VplControl.Core;
 
 namespace ENGyn.Nodes.List
 {
@@ -37,11 +29,11 @@ namespace ENGyn.Nodes.List
             {
                 //TODO : Catch this one
                 var count = Int32.Parse(InputPorts[1].Data.ToString());
-                
-                object inputs = InputPorts[0].Data ;
-               
-                object[] res  = ((IEnumerable)inputs).Cast<object>()
-                                 
+
+                object inputs = InputPorts[0].Data;
+
+                object[] res = ((IEnumerable)inputs).Cast<object>()
+
                                  .ToArray();
 
                 if (res != null && res.Length >= count + 1)
@@ -50,11 +42,11 @@ namespace ENGyn.Nodes.List
 
                 }
             }
-          
+
         }
 
 
- 
+
         public override Node Clone()
         {
             return new GetItemAtIndex(HostCanvas)

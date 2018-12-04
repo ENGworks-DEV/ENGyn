@@ -37,6 +37,9 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputPath>bin\Release\</OutputPath>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="AdWindows, Version=2017.11.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Navisworks-2018-2019-x64-API.1.0.1\lib\net47\AdWindows.dll</HintPath>
@@ -190,6 +193,9 @@
     </Compile>
     <Compile Include="..\..\ENGyn-Nodes\Clash\GetClashInfo.cs">
       <Link>GetClashInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ENGyn-Nodes\Math\Math.cs">
+      <Link>Math\Math.cs</Link>
     </Compile>
     <Compile Include="..\..\ENGyn-Nodes\Navisworks\SaveNWFile.cs">
       <Link>Navisworks\SaveNWFile.cs</Link>

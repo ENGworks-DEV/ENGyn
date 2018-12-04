@@ -1,12 +1,7 @@
-﻿using System.Windows.Controls;
-using System.Xml;
-using Autodesk.Navisworks.Api;
-using TUM.CMS.VplControl.Nodes;
-using TUM.CMS.VplControl.Core;
-using System.Windows.Data;
+﻿using Autodesk.Navisworks.Api;
 using System.Windows;
-using System.Linq;
-using Autodesk.Navisworks.Api.Clash;
+using TUM.CMS.VplControl.Core;
+using Application = Autodesk.Navisworks.Api.Application;
 
 namespace ENGyn.Nodes.Navisworks
 {
@@ -15,7 +10,7 @@ namespace ENGyn.Nodes.Navisworks
         public CurrentDocument(VplControl hostCanvas)
             : base(hostCanvas)
         {
- 
+
             AddOutputPortToNode("NW Document", typeof(object));
             AddInputPortToNode("NW Object", typeof(object));
 
@@ -34,16 +29,16 @@ namespace ENGyn.Nodes.Navisworks
         {
             //Just a place holder. Gives the hability to connect the node to a lower stage in the execution tree
             var input = InputPorts[0].Data;
-            
-         OutputPorts[0].Data = GetDocument();
+
+            OutputPorts[0].Data = GetDocument();
         }
 
 
         public object GetDocument()
         {
 
-       return Autodesk.Navisworks.Api.Application.ActiveDocument; 
-            
+            return Application.ActiveDocument;
+
 
         }
 
@@ -54,7 +49,7 @@ namespace ENGyn.Nodes.Navisworks
                 Top = Top,
                 Left = Left
             };
-        
+
         }
     }
 
