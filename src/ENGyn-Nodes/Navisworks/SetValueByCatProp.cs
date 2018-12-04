@@ -1,15 +1,10 @@
-using System.Windows;
-using System.Windows.Controls;
-using System.Xml;
 using Autodesk.Navisworks.Api;
-using TUM.CMS.VplControl.Nodes;
-using TUM.CMS.VplControl.Core;
-using System.Windows.Data;
-using System.Collections.Generic;
-using Autodesk.Navisworks.Api.Interop.ComApi;
 using Autodesk.Navisworks.Api.ComApi;
+using Autodesk.Navisworks.Api.Interop.ComApi;
 using System;
-using System.Linq;
+using System.Collections.Generic;
+using System.Windows;
+using TUM.CMS.VplControl.Core;
 
 namespace ENGyn.Nodes.Navisworks
 {
@@ -39,54 +34,27 @@ namespace ENGyn.Nodes.Navisworks
             var category = InputPorts[1].Data ?? "";
             var property = InputPorts[2].Data ?? "";
             var value = InputPorts[3].Data;
-
-            OutputPorts[0].Data = SetValuesToModelItems(model, category.ToString(), property.ToString(), value);
+            OutputPorts[0].Data = MainTools.RunFunction(SetValuesToModelItems, InputPorts);
+            
         }
 
 
 
-        private IList<object> SetValuesToModelItems(object model, string category, string property, object value)
+        public static object SetValuesToModelItems(object model, object category, object property, object value)
         {
-            if (MainTools.IsList(model)
-                && category is string
-                && property is string
-                && value != null)
+            if (model is ModelItem)
             {
 
-                var modelList = (System.Collections.IList)model;
-                List<object> modelItems = new List<object>();
+                ModelItem modelitem = model as ModelItem;
+                SetValues(modelitem, category.ToString(), property.ToString(), value.ToString());
+                return modelitem;
 
-
-                if (MainTools.IsList(value))
-                {
-
-                    var valueList = (System.Collections.IList)value;
-
-
-                    if (modelList.Count == valueList.Count)
-                    {
-                        for (int i = 0; i < modelList.Count; i++)
-                        {
-                            var v = valueList[i].ToString();
-                          
-                            SetValues(modelList[i] as ModelItem, category, property, v);
-                            modelItems.Add(modelList[i] as ModelItem);
-
-
-                        }
-                    }
-
-                }
-
-
-
-
-                return modelItems;
             }
             else
             {
                 return null;
             }
+
         }
 
 
