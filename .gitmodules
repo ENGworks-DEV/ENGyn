@@ -1,0 +1,3 @@
+[submodule "src/TUM.CMS.VPLControl"]
+	path = src/TUM.CMS.VPLControl
+	url = https://github.com/ENGworks-DEV/TUM.CMS.VPLControl.git
