@@ -1,15 +1,8 @@
-﻿using System.Windows.Controls;
-using System.Xml;
-using Autodesk.Navisworks.Api;
-using TUM.CMS.VplControl.Nodes;
-using Autodesk.Navisworks.Api.Clash;
-using TUM.CMS.VplControl.Core;
-using System.Windows.Data;
-using System.Windows;
-using System.Collections.Generic;
-using System;
+﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
+using TUM.CMS.VplControl.Core;
 
 namespace ENGyn.Nodes.List
 {
@@ -37,12 +30,12 @@ namespace ENGyn.Nodes.List
             var mask = InputPorts[1].Data;
             if (input != null && mask != null)
             {
-               if( MainTools.IsList(input) && MainTools.IsList(mask)) 
+                if (MainTools.IsList(input) && MainTools.IsList(mask))
                 {
-                    
-                   var filtered= FilterByBoolMask(input as IList, mask as IList);
+
+                    var filtered = FilterByBoolMask(input as IList, mask as IList);
                     OutputPorts[0].Data = ((IEnumerable)filtered["in"]).Cast<object>().ToList();
-                    
+
                     OutputPorts[1].Data = ((IEnumerable)filtered["out"]).Cast<object>().ToList();
                 }
 
@@ -53,7 +46,7 @@ namespace ENGyn.Nodes.List
         }
 
 
- 
+
 
         public override Node Clone()
         {

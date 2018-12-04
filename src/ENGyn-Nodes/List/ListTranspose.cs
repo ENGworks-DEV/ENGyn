@@ -1,14 +1,7 @@
-﻿using System.Windows.Controls;
-using System.Xml;
-using Autodesk.Navisworks.Api;
-using TUM.CMS.VplControl.Nodes;
-using Autodesk.Navisworks.Api.Clash;
-using TUM.CMS.VplControl.Core;
-using System.Windows.Data;
-using System.Windows;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.Collections;
 using System.Linq;
+using TUM.CMS.VplControl.Core;
 
 namespace ENGyn.Nodes.List
 {
@@ -32,17 +25,17 @@ namespace ENGyn.Nodes.List
             if (input != null)
             {
                 if (MainTools.IsList(input))
-                    {
-                    var output = Transpose((System.Collections.IList)input); 
-                   OutputPorts[0].Data= output;
+                {
+                    var output = Transpose((System.Collections.IList)input);
+                    OutputPorts[0].Data = output;
                 }
-                
+
 
             }
 
         }
 
-      
+
         public static System.Collections.IList Transpose(IList lists)
         {
             if (lists.Count == 0 || !lists.Cast<dynamic>().Any(x => x is IList))

@@ -12,7 +12,7 @@
     <FileAlignment>512</FileAlignment>
     <Deterministic>false</Deterministic>
     <TargetFrameworkProfile />
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Autodesk Navisworks Manage 2019|AnyCPU'">
     <OutputPath>..\..\bin\2019\Nodes\</OutputPath>
@@ -36,6 +36,11 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugType>pdbonly</DebugType>
+    <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AdWindows, Version=2017.11.1.0, Culture=neutral, processorArchitecture=MSIL">
@@ -191,6 +196,9 @@
     <Compile Include="..\..\ENGyn-Nodes\Clash\GetClashInfo.cs">
       <Link>GetClashInfo.cs</Link>
     </Compile>
+    <Compile Include="..\..\ENGyn-Nodes\Math\Math.cs">
+      <Link>Math\Math.cs</Link>
+    </Compile>
     <Compile Include="..\..\ENGyn-Nodes\Navisworks\SaveNWFile.cs">
       <Link>Navisworks\SaveNWFile.cs</Link>
     </Compile>
@@ -287,9 +295,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy /Y "$(TargetPath)" "..\..\..\..\bin\2019\Nodes\"
-
-
-</PostBuildEvent>
+    <PostBuildEvent>xcopy /Y "$(TargetDir)DefaultNodes.dll" "..\..\..\..\..\bin\2019\Nodes\"
+xcopy /Y "$(TargetDir)DefaultNodes.pdb" "..\..\..\..\..\bin\2019\Nodes\"</PostBuildEvent>
   </PropertyGroup>
 </Project>
