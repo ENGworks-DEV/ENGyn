@@ -26,6 +26,9 @@ Build the project and the Build events will copy the dlls to the right folder or
 
 ``` %APPDATA%\Autodesk Navisworks Manage 2019\Plugins\  ```
 
+TUM.VPLcontrol should be compiled using ENG version which includes different features than original version.
+[![](https://github.com/ENGworks-DEV/TUM.CMS.VPLControl)](TUM.VPLcontrol)
+
 ## Contribute ##
 
 ENGyn is an open-source project and would be nothing without its community. You can make suggestions or track and submit bugs via Github issues.  You can submit your own code to the ENGyn project via a Github pull request.
