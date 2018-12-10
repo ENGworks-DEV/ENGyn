@@ -30,59 +30,39 @@ namespace ENGyn.Nodes.Clash
 
         public override void Calculate()
         {
-            var input = InputPorts[0].Data;
-            ProcessClash(input);
-            OutputPorts[0].Data = ClashGrouperUtils.NewListOfClashes;
+            ClashGrouperUtils.NewListOfClashes = new List<object>();
+                   OutputPorts[0].Data = MainTools.RunFunction(ProcessClash, InputPorts);
 
         }
 
-        private void ProcessClash(object input)
+        private List<object> ProcessClash(object input, object NumClusters, object NumAttempts)
         {
             Document doc = Autodesk.Navisworks.Api.Application.ActiveDocument;
+
             if (input != null)
             {
 
                 var type = input.GetType();
-                if (type == typeof(ClashTest))
+                if (type == typeof(SavedItemReference))
                 {
 
-                    var item = input;
-                    if (item.GetType() == typeof(SavedItemReference))
-                    {
                         ClashGrouperUtils.RelevantGroupingInfo gInfo = new ClashGrouperUtils.RelevantGroupingInfo();
 
-                        gInfo.NumClusters = int.Parse(InputPorts[1].Data.ToString());
-                        gInfo.NumAttempts = int.Parse(InputPorts[2].Data.ToString());
+                        gInfo.NumClusters = int.Parse(NumClusters.ToString());
+                        gInfo.NumAttempts = int.Parse(NumAttempts.ToString());
 
-                        var ClashTest = doc.ResolveReference(item as SavedItemReference) as ClashTest;
+                        var ClashTest = doc.ResolveReference(input as SavedItemReference) as ClashTest;
                         ClashGrouperUtils.GroupTestClashes(ClashTest, GroupingModes.ClusterAnalysis, gInfo);
-                    }
+
                 }
-                if (MainTools.IsList(input))
+                else
                 {
-
-
-                    foreach (var item in input as List<object>)
-                    {
-                        if (item.GetType() == typeof(SavedItemReference))
-                        {
-                            ClashGrouperUtils.RelevantGroupingInfo gInfo = new ClashGrouperUtils.RelevantGroupingInfo();
-
-                            gInfo.NumClusters = int.Parse(InputPorts[1].Data.ToString());
-                            gInfo.NumAttempts = int.Parse(InputPorts[2].Data.ToString());
-
-                            var ClashTest = doc.ResolveReference(item as SavedItemReference) as ClashTest;
-                            ClashGrouperUtils.GroupTestClashes(ClashTest, GroupingModes.ClusterAnalysis, gInfo);
-                        }
-
-
-                    }
-
+                    return null;
                 }
-
             }
-
-            OutputPorts[0].Data = input;
+            var outputValue = ClashGrouperUtils.NewListOfClashes; 
+           
+            return outputValue;
         }
 
 
