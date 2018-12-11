@@ -251,6 +251,7 @@ namespace ENGyn
             ProgressBar.EndSubOperation(true);
 
             Autodesk.Navisworks.Api.Application.EndProgress();
+            ProgressBar.Dispose();
 
 
         }
