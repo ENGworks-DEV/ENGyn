@@ -49,7 +49,7 @@ namespace ENGyn.Nodes.API
 
             object output = null;
 
-            var iterator = input;
+            dynamic  iterator = input;
             if (input != null) { 
             if (input.GetType() == typeof(SavedItemReference))
             {
@@ -63,9 +63,17 @@ namespace ENGyn.Nodes.API
          
                 string method = property.ToString();
                 var types = iterator.GetType();
-                PropertyInfo prop = types.GetProperty(method);
-                object value = prop.GetValue(iterator);
-                output = value;
+                
+                    foreach (PropertyInfo prop in types.GetProperties())
+                    {
+                      if (prop.Name == method)
+                        {
+                         
+                            output = prop.GetValue(iterator, null);
+                        }
+                    }
+               
+            
             }
             catch
             {

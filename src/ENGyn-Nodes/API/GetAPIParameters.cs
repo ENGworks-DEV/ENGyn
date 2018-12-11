@@ -90,7 +90,4 @@ namespace ENGyn.Nodes.API
     }
 
 }
-namespace ENGyn
-{
 
-}

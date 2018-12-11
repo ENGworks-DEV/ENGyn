@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Windows;
 using System;
+using System.Linq;
+using Autodesk.Navisworks.Api.DocumentParts;
 
 namespace ENGyn.Nodes.Selection
 {
@@ -421,6 +423,86 @@ namespace ENGyn.Nodes.Selection
 
     }
 
+    public class SelectionSetFromSelection : Node
+    {
+        private string relation;
+
+        public SelectionSetFromSelection(VplControl hostCanvas)
+            : base(hostCanvas)
+        {
 
 
+            AddInputPortToNode("Name", typeof(object));
+            AddInputPortToNode("ModelItems", typeof(object));
+
+
+            AddOutputPortToNode("Selectionset", typeof(object));
+
+            //Help
+            this.ShowHelpOnMouseOver = true;
+            this.BottomComment.Text = "Create SelectionSet from selection or list of ModelItems";
+        }
+
+        public override void Calculate()
+        {
+
+
+
+
+            OutputPorts[0].Data = CreateSelectionSet(InputPorts[0].Data, InputPorts[1].Data);
+
+        }
+
+        private object CreateSelectionSet(object Name, object Selection)
+        {
+            //https://adndevblog.typepad.com/aec/2012/08/add-search-selectionset-in-net.html
+
+            Document oDoc = Autodesk.Navisworks.Api.Application.ActiveDocument;
+            DocumentSelectionSets oCurSets = oDoc.SelectionSets;
+
+            // my set1: current selection
+            if (MainTools.IsList(Selection))
+            {
+                if ((IList<object>)Selection != null)
+                {
+                    ModelItemCollection modelItems = new ModelItemCollection();
+                    var m = (IList<object>)Selection;
+                    foreach (var item in m)
+                    {
+                        modelItems.Add(item as ModelItem);
+                    }
+                    
+
+                    SelectionSet ss = new SelectionSet(modelItems);
+                    ss.DisplayName = Name.ToString();
+                    oCurSets.AddCopy(ss);
+                    return ss;
+                }
+            }
+
+            if (Selection is SelectionSet)
+            {
+                SelectionSet ss = new SelectionSet((SelectionSet)Selection);
+                ss.DisplayName = Name.ToString();
+                oCurSets.AddCopy(ss);
+                return ss;
+            }
+            else
+            {
+                return null;
+            }
+
+        }
+
+        public override Node Clone()
+        {
+            return new SelectionSetFromSelection(HostCanvas)
+            {
+                Top = Top,
+                Left = Left
+            };
+
+        }
+
+    }
 }

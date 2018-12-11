@@ -39,6 +39,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
     <OutputPath>bin\Release\</OutputPath>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AdWindows, Version=2016.11.2.0, Culture=neutral, processorArchitecture=MSIL">
@@ -216,10 +218,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy /Y "$(TargetPath)" "..\..\..\bin\2017\Nodes\"
-xcopy /Y "$(TargetPath)" "..\..\..\bin\2018\Nodes\"
-xcopy /Y "$(TargetPath)" "..\..\..\bin\2019\Nodes\"
-
-</PostBuildEvent>
+    <PostBuildEvent>xcopy /Y "$(TargetDir)DefaultNodes.dll" "..\..\..\..\bin\2018\Nodes\"
+xcopy /Y "$(TargetDir)DefaultNodes.pdb" "..\..\..\..\bin\2018\Nodes\"</PostBuildEvent>
   </PropertyGroup>
 </Project>
