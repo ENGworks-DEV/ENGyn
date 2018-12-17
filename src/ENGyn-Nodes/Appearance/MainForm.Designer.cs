@@ -36,6 +36,7 @@
             this.transparencySlider = new System.Windows.Forms.TrackBar();
             this.Transparency = new System.Windows.Forms.Label();
             this.labelTransparency = new System.Windows.Forms.Label();
+            this.Reset_Button = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.transparencySlider)).BeginInit();
             this.SuspendLayout();
             // 
@@ -59,7 +60,7 @@
             // 
             // colorButton
             // 
-            this.colorButton.Location = new System.Drawing.Point(374, 196);
+            this.colorButton.Location = new System.Drawing.Point(374, 141);
             this.colorButton.Name = "colorButton";
             this.colorButton.Size = new System.Drawing.Size(130, 40);
             this.colorButton.TabIndex = 2;
@@ -79,8 +80,9 @@
             // 
             // transparencySlider
             // 
-            this.transparencySlider.Location = new System.Drawing.Point(374, 299);
+            this.transparencySlider.Location = new System.Drawing.Point(374, 244);
             this.transparencySlider.Maximum = 100;
+            this.transparencySlider.Minimum = -1;
             this.transparencySlider.Name = "transparencySlider";
             this.transparencySlider.Size = new System.Drawing.Size(130, 45);
             this.transparencySlider.TabIndex = 20;
@@ -89,7 +91,7 @@
             // Transparency
             // 
             this.Transparency.AutoSize = true;
-            this.Transparency.Location = new System.Drawing.Point(432, 283);
+            this.Transparency.Location = new System.Drawing.Point(432, 228);
             this.Transparency.Name = "Transparency";
             this.Transparency.Size = new System.Drawing.Size(10, 13);
             this.Transparency.TabIndex = 5;
@@ -98,11 +100,21 @@
             // labelTransparency
             // 
             this.labelTransparency.AutoSize = true;
-            this.labelTransparency.Location = new System.Drawing.Point(398, 261);
+            this.labelTransparency.Location = new System.Drawing.Point(398, 206);
             this.labelTransparency.Name = "labelTransparency";
             this.labelTransparency.Size = new System.Drawing.Size(72, 13);
             this.labelTransparency.TabIndex = 5;
             this.labelTransparency.Text = "Transparency";
+            // 
+            // Reset_Button
+            // 
+            this.Reset_Button.Location = new System.Drawing.Point(374, 295);
+            this.Reset_Button.Name = "Reset_Button";
+            this.Reset_Button.Size = new System.Drawing.Size(130, 40);
+            this.Reset_Button.TabIndex = 21;
+            this.Reset_Button.Text = "Reset";
+            this.Reset_Button.UseVisualStyleBackColor = true;
+            this.Reset_Button.Click += new System.EventHandler(this.Reset_Button_Click);
             // 
             // MainForm
             // 
@@ -110,6 +122,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(516, 450);
+            this.Controls.Add(this.Reset_Button);
             this.Controls.Add(this.labelTransparency);
             this.Controls.Add(this.Transparency);
             this.Controls.Add(this.transparencySlider);
@@ -136,6 +149,7 @@
         private System.Windows.Forms.TrackBar transparencySlider;
         private System.Windows.Forms.Label Transparency;
         private System.Windows.Forms.Label labelTransparency;
+        private System.Windows.Forms.Button Reset_Button;
     }
 }
 

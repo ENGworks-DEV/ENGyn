@@ -186,6 +186,7 @@
     <Compile Include="List\ListFlatten.cs" />
     <Compile Include="Clash\GetClashInfo.cs" />
     <Compile Include="Math\Math.cs" />
+    <Compile Include="ModelItem\ModelItem.cs" />
     <Compile Include="Navisworks\CloseNavisworks.cs" />
     <Compile Include="Navisworks\SaveNWFile.cs" />
     <Compile Include="String\String.cs" />

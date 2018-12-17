@@ -187,7 +187,7 @@ namespace ENGyn.Nodes.Appearance
             {
                 save.Filter = "Json (.json)|*.json";
                 save.ShowDialog();
-                if (save.FileName != null)
+                if (save.FileName != null && save.FileName != "")
                 {
                     AppearanceTools.convertXMLtoConfiguration(save.FileName);
                     AppearanceTools.FilePath = save.FileName;
@@ -208,6 +208,15 @@ namespace ENGyn.Nodes.Appearance
                 ss.transparency = transparencySlider.Value;
             }
             catch { }
+        }
+
+        private void Reset_Button_Click(object sender, EventArgs e)
+        {
+            transparencySlider.Value = 0;
+            this.treeView1.SelectedNode.BackColor = new Color();
+            AppearanceTools.Selectionset ss = this.treeView1.SelectedNode.Tag as AppearanceTools.Selectionset;
+            ss.color = null;
+            ss.transparency = -1;
         }
     }
     public class AppearanceTools

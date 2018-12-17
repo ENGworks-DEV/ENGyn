@@ -6,7 +6,7 @@
         "Name": "Walls",
         "Guid": "e056fac1-20e3-4ec6-825d-4be809a58a89",
         "color": "#FF8000",
-        "transparency": -1
+        "transparency": 46
       },
       {
         "Name": "Floors",
@@ -17,13 +17,13 @@
       {
         "Name": "Ducts",
         "Guid": "4104d403-4356-47ba-8f33-413f4304ba01",
-        "color": "Purple",
+        "color": "Green",
         "transparency": -1
       },
       {
         "Name": "Pipes",
         "Guid": "1ad84486-cccb-45e0-ba69-512a044ce568",
-        "color": null,
+        "color": "White",
         "transparency": 74
       },
       {
