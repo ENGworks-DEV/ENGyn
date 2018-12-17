@@ -16,7 +16,9 @@ namespace ENGyn.Nodes.Appearance
 
         private void Load_Click(object sender, EventArgs e)
         {
-            Tools.GetPath();
+            
+
+
             treeView1.BeginUpdate();
             treeView1.Nodes.Clear();
 
@@ -51,7 +53,7 @@ namespace ENGyn.Nodes.Appearance
             treeView1.EndUpdate();
         }
 
-        private void ApplyColorToTree(Tools.Selectionset item, TreeNode treeNode)
+        private void ApplyColorToTree(Selectionset item, TreeNode treeNode)
         {
             var colorString = item.color;
             Color color = new Color();
@@ -69,7 +71,7 @@ namespace ENGyn.Nodes.Appearance
             treeNode.BackColor = color;
         }
 
-        private static void ApplyColorToTree(Tools.Viewfolder item, TreeNode treeNode)
+        private static void ApplyColorToTree(Viewfolder item, TreeNode treeNode)
         {
             var colorString = item.color;
             Color color = new Color();
@@ -101,9 +103,9 @@ namespace ENGyn.Nodes.Appearance
             if (obj != null)
             {
 
-                if (obj.GetType() == typeof(Tools.Viewfolder))
+                if (obj.GetType() == typeof(Viewfolder))
                 {
-                    var folder = obj as Tools.Viewfolder;
+                    var folder = obj as Viewfolder;
                     node.Tag = folder;
                     node.Text = folder.Name;
                     ApplyColorToTree(folder, node);
@@ -115,9 +117,9 @@ namespace ENGyn.Nodes.Appearance
                     }
 
                 }
-                if (obj.GetType() == typeof(Tools.Selectionset))
+                if (obj.GetType() == typeof(Selectionset))
                 {
-                    var selectionset = obj as Tools.Selectionset;
+                    var selectionset = obj as Selectionset;
                     node.Tag = selectionset;
                     node.Text = selectionset.Name;
                     ApplyColorToTree(selectionset, node);
@@ -131,7 +133,7 @@ namespace ENGyn.Nodes.Appearance
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
 
-            Tools.Selectionset ss = this.treeView1.SelectedNode.Tag as Tools.Selectionset;
+            Selectionset ss = this.treeView1.SelectedNode.Tag as Selectionset;
             try
             {
                 Color c = ColorTranslator.FromHtml(ss.color.ToString());
@@ -159,7 +161,7 @@ namespace ENGyn.Nodes.Appearance
         private void colorbutton_Click(object sender, EventArgs e)
         {
             this.colorDialog1.ShowDialog();
-            Tools.Selectionset ss = this.treeView1.SelectedNode.Tag as Tools.Selectionset;
+            Selectionset ss = this.treeView1.SelectedNode.Tag as Selectionset;
             Color c = this.colorDialog1.Color;
             ss.color = ColorTranslator.ToHtml(c);
             createColorRectangle(c);
@@ -183,7 +185,9 @@ namespace ENGyn.Nodes.Appearance
                 save.Filter = "Json (.json)|*.json";
                 save.ShowDialog();
                 if (save.FileName != null)
-                { Tools.convertXMLtoConfiguration(save.FileName); }
+                { Tools.convertXMLtoConfiguration(save.FileName);
+                    Tools.FilePath = save.FileName;
+                }
 
             }
 
@@ -196,7 +200,7 @@ namespace ENGyn.Nodes.Appearance
            
             try
             {
-                Tools.Selectionset ss = this.treeView1.SelectedNode.Tag as Tools.Selectionset;
+                Selectionset ss = this.treeView1.SelectedNode.Tag as Selectionset;
                 ss.transparency = transparencySlider.Value;
             }
             catch { }

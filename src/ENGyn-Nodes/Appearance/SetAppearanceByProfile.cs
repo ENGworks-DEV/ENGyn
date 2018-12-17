@@ -11,6 +11,7 @@ using ENGyn.XML;
 using System.IO;
 using System.Xml.Serialization;
 using System.Windows;
+using System.Windows.Forms;
 
 namespace ENGyn.Nodes.Appearance
 {
@@ -31,7 +32,7 @@ namespace ENGyn.Nodes.Appearance
         public override void Calculate()
         {
 
-            ReadConfiguration();
+            ReadConfiguration(InputPorts[0].Data.ToString());
 
         }
 
@@ -105,10 +106,9 @@ namespace ENGyn.Nodes.Appearance
         /// <summary>
         /// Read configuration and apply override TODO: Improve description 
         /// </summary>
-        private void ReadConfiguration()
+        private void ReadConfiguration(string path)
         {
 
-            string path = InputPorts[0].Data.ToString();
             if (path != null)
             {
                 string st = System.IO.File.ReadAllText(path);
@@ -246,9 +246,55 @@ namespace ENGyn.Nodes.Appearance
     }
     public class Tools
     {
+
+        public static JsonSelectionSetsConfiguration selectionSetsConfs { get; set; }
+
+    
+
+
+
+        private static void ReadConfiguration(string path)
+        {
+            if (path != null && File.Exists(path))
+            { 
+
+                    try
+                    {
+                        string st = System.IO.File.ReadAllText(path);
+
+                        selectionSetsConfs = JsonConvert.DeserializeObject<JsonSelectionSetsConfiguration>(st);
+
+                        if (selectionSetsConfs != null)
+                        {
+
+                        }
+                    }
+                    catch (Exception exception)
+                    {
+                        System.Windows.MessageBox.Show(exception.Message, "");
+                    }
+
+  
+            }
+
+            var debug = "ll";// selectionSetsConfs.Filename;
+
+        }
+        public static void convertXMLtoConfiguration(string path)
+        {
+
+            var jsonXML = JsonConvert.SerializeObject(selectionSetsConfs, Newtonsoft.Json.Formatting.Indented);
+
+
+            File.WriteAllText(path, jsonXML);
+
+
+        }
+
         #region Properties
         public static Exchange exchangeFile { get; set; }
         public static JsonSelectionSetsConfiguration jsonSelectionSetsFile { get; set; }
+        public static string FilePath { get; internal set; }
 
 
         #endregion
@@ -274,16 +320,7 @@ namespace ENGyn.Nodes.Appearance
 
 
 
-        public static void convertXMLtoConfiguration(string path)
-        {
 
-            var jsonXML = JsonConvert.SerializeObject(exchangeFile, Newtonsoft.Json.Formatting.Indented);
-            jsonSelectionSetsFile = JsonConvert.DeserializeObject<JsonSelectionSetsConfiguration>(jsonXML);
-
-            File.WriteAllText(path, jsonXML);
-
-
-        }
 
     }
 

@@ -101,8 +101,8 @@
     <Reference Include="NCalc, Version=1.3.8.0, Culture=neutral, PublicKeyToken=973cde3f1cafed03, processorArchitecture=MSIL">
       <HintPath>..\packages\ncalc.1.3.8\lib\NCalc.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json.Net20, Version=3.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.Net20.dll.3.5.0\lib\2.0\Newtonsoft.Json.Net20.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="RadialMenu, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\RadialMenu.WPF.1.3.0\lib\net46\RadialMenu.dll</HintPath>
@@ -168,6 +168,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Appearance\AppearanceProfiler.cs" />
+    <Compile Include="Appearance\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Appearance\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Clash\CompactTest.cs" />
     <Compile Include="API\GetAPIParameters.cs" />
     <Compile Include="Clash\RenameClash.cs" />
@@ -216,9 +223,14 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Appearance\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy /Y "$(TargetDir)DefaultNodes.dll" "..\..\..\..\bin\2018\Nodes\"
-xcopy /Y "$(TargetDir)DefaultNodes.pdb" "..\..\..\..\bin\2018\Nodes\"</PostBuildEvent>
+    <PostBuildEvent>xcopy /Y "$(TargetDir)DefaultNodes.dll" "..\..\..\bin\2018\Nodes\"
+xcopy /Y "$(TargetDir)DefaultNodes.pdb" "..\..\..\bin\2018\Nodes\"</PostBuildEvent>
   </PropertyGroup>
 </Project>
