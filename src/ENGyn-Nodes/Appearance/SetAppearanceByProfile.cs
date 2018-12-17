@@ -283,7 +283,8 @@ namespace ENGyn.Nodes.Appearance
         public static void convertXMLtoConfiguration(string path)
         {
 
-            var jsonXML = JsonConvert.SerializeObject(selectionSetsConfs, Newtonsoft.Json.Formatting.Indented);
+            var jsonXML = JsonConvert.SerializeObject(exchangeFile, Newtonsoft.Json.Formatting.Indented);
+            jsonSelectionSetsFile = JsonConvert.DeserializeObject<JsonSelectionSetsConfiguration>(jsonXML);
 
 
             File.WriteAllText(path, jsonXML);

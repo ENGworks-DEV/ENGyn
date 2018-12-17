@@ -1,1 +1,42 @@
-null
+{
+  "SelectionSets": {
+    "Viewfolder": [],
+    "Selectionset": [
+      {
+        "Name": "Walls",
+        "Guid": "e056fac1-20e3-4ec6-825d-4be809a58a89",
+        "color": "#FF8000",
+        "transparency": -1
+      },
+      {
+        "Name": "Floors",
+        "Guid": "fdbfc008-4c8c-49d9-99b7-978994506220",
+        "color": null,
+        "transparency": -1
+      },
+      {
+        "Name": "Ducts",
+        "Guid": "4104d403-4356-47ba-8f33-413f4304ba01",
+        "color": "Purple",
+        "transparency": -1
+      },
+      {
+        "Name": "Pipes",
+        "Guid": "1ad84486-cccb-45e0-ba69-512a044ce568",
+        "color": null,
+        "transparency": 74
+      },
+      {
+        "Name": "ALL",
+        "Guid": "239d0d0b-2446-45c8-8692-384d84404018",
+        "color": null,
+        "transparency": -1
+      }
+    ]
+  },
+  "Xsi": "http://www.w3.org/2001/XMLSchema-instance",
+  "NoNamespaceSchemaLocation": "http://download.autodesk.com/us/navisworks/schemas/nw-exchange-12.0.xsd",
+  "Units": "ft",
+  "Filename": "rme_basic_sample_project.nwc",
+  "Filepath": "G:\\Source\\ENGyn\\examples"
+}

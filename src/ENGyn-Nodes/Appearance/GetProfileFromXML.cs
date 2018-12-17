@@ -23,9 +23,9 @@ namespace ENGyn.Nodes.Appearance
             : base(hostCanvas)
         {
             AddInputPortToNode("File path", typeof(string));
-
+            AddOutputPortToNode("File path", typeof(string));
             //Help 
-            this.BottomComment.Text = "Creates an Json version of the SearchSet sxml to be read by SetAppearanceByProfile";
+            this.BottomComment.Text = "Creates an Json version of the SearchSet xml to be read by SetAppearanceByProfile";
             this.ShowHelpOnMouseOver = true;
         }
 
@@ -37,10 +37,12 @@ namespace ENGyn.Nodes.Appearance
             {
                 var exchange = Tools.readXML(path);
                 Tools.convertXMLtoConfiguration(path.Replace(".xml", ".json"));
+                pathFile = path.Replace(".xml", ".json");
             }
+            OutputPorts[0].Data = pathFile;
         }
 
-
+        public static string pathFile;
         public override Node Clone()
         {
             return new GetJsonProfileFromXML(HostCanvas)

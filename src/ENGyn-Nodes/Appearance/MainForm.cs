@@ -1,7 +1,10 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
-
+using static ENGyn.Nodes.Appearance.AppearanceByProfile;
 
 namespace ENGyn.Nodes.Appearance
 {
@@ -16,13 +19,13 @@ namespace ENGyn.Nodes.Appearance
 
         private void Load_Click(object sender, EventArgs e)
         {
-            
+            AppearanceTools.GetPath();
 
 
             treeView1.BeginUpdate();
             treeView1.Nodes.Clear();
 
-            foreach (var item in Tools.selectionSetsConfs.SelectionSets.Selectionset)
+            foreach (var item in AppearanceTools.selectionSetsConfs.SelectionSets.Selectionset)
             {
 
                 TreeNode treeNode = new TreeNode();
@@ -35,7 +38,7 @@ namespace ENGyn.Nodes.Appearance
                 this.treeView1.Nodes.Add(treeNode);
 
             }
-            foreach (var item in Tools.selectionSetsConfs.SelectionSets.Viewfolder)
+            foreach (var item in AppearanceTools.selectionSetsConfs.SelectionSets.Viewfolder)
             {
                 TreeNode treeNode = new TreeNode();
                 treeNode.Tag = item;
@@ -53,7 +56,7 @@ namespace ENGyn.Nodes.Appearance
             treeView1.EndUpdate();
         }
 
-        private void ApplyColorToTree(Selectionset item, TreeNode treeNode)
+        private void ApplyColorToTree(AppearanceTools.Selectionset item, TreeNode treeNode)
         {
             var colorString = item.color;
             Color color = new Color();
@@ -117,9 +120,9 @@ namespace ENGyn.Nodes.Appearance
                     }
 
                 }
-                if (obj.GetType() == typeof(Selectionset))
+                if (obj.GetType() == typeof(AppearanceTools.Selectionset))
                 {
-                    var selectionset = obj as Selectionset;
+                    var selectionset = obj as AppearanceTools.Selectionset;
                     node.Tag = selectionset;
                     node.Text = selectionset.Name;
                     ApplyColorToTree(selectionset, node);
@@ -133,7 +136,7 @@ namespace ENGyn.Nodes.Appearance
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
 
-            Selectionset ss = this.treeView1.SelectedNode.Tag as Selectionset;
+            AppearanceTools.Selectionset ss = this.treeView1.SelectedNode.Tag as AppearanceTools.Selectionset;
             try
             {
                 Color c = ColorTranslator.FromHtml(ss.color.ToString());
@@ -161,7 +164,7 @@ namespace ENGyn.Nodes.Appearance
         private void colorbutton_Click(object sender, EventArgs e)
         {
             this.colorDialog1.ShowDialog();
-            Selectionset ss = this.treeView1.SelectedNode.Tag as Selectionset;
+            AppearanceTools.Selectionset ss = this.treeView1.SelectedNode.Tag as AppearanceTools.Selectionset;
             Color c = this.colorDialog1.Color;
             ss.color = ColorTranslator.ToHtml(c);
             createColorRectangle(c);
@@ -185,8 +188,9 @@ namespace ENGyn.Nodes.Appearance
                 save.Filter = "Json (.json)|*.json";
                 save.ShowDialog();
                 if (save.FileName != null)
-                { Tools.convertXMLtoConfiguration(save.FileName);
-                    Tools.FilePath = save.FileName;
+                {
+                    AppearanceTools.convertXMLtoConfiguration(save.FileName);
+                    AppearanceTools.FilePath = save.FileName;
                 }
 
             }
@@ -200,10 +204,102 @@ namespace ENGyn.Nodes.Appearance
            
             try
             {
-                Selectionset ss = this.treeView1.SelectedNode.Tag as Selectionset;
+                AppearanceTools.Selectionset ss = this.treeView1.SelectedNode.Tag as AppearanceTools.Selectionset;
                 ss.transparency = transparencySlider.Value;
             }
             catch { }
+        }
+    }
+    public class AppearanceTools
+    {
+        public static JsonSelectionSetsConfiguration selectionSetsConfs { get; set; }
+
+        public static string FilePath { get; set; }
+
+        public static void GetPath()
+        {
+
+            using (OpenFileDialog open = new OpenFileDialog())
+            {
+                open.ShowDialog();
+                if (open.FileName != null)
+                {
+                    FilePath = open.FileName;
+                    ReadConfiguration(FilePath);
+                }
+
+
+            }
+        }
+
+        private static void ReadConfiguration(string path)
+        {
+
+            if (path != null)
+            {
+                try
+                {
+                    string st = System.IO.File.ReadAllText(path);
+
+
+                    selectionSetsConfs = JsonConvert.DeserializeObject<JsonSelectionSetsConfiguration>(st);
+
+                    if (selectionSetsConfs != null)
+                    {
+
+                    }
+                }
+                catch { }
+
+            }
+            var debug = selectionSetsConfs.Filename;
+
+        }
+        public static void convertXMLtoConfiguration(string path)
+        {
+
+            var jsonXML = JsonConvert.SerializeObject(selectionSetsConfs, Newtonsoft.Json.Formatting.Indented);
+
+
+            File.WriteAllText(path, jsonXML);
+
+
+        }
+        /// <summary>
+        /// Stores selection set configuration to apply into OverridePermanent methods
+        /// </summary>
+        public class Viewfolder : Selectionset
+        {
+            public List<Viewfolder> Viewfolders { get; set; }
+            public List<Selectionset> Selectionset { get; set; }
+            public string Name { get; set; }
+            public string Guid { get; set; }
+            public object color { get; set; }
+            public object transparency { get; set; }
+        }
+
+        public class Selectionset
+        {
+            public string Name { get; set; }
+            public string Guid { get; set; }
+            public object color { get; set; }
+            public object transparency { get; set; }
+        }
+
+        public class SelectionSets
+        {
+            public List<Viewfolder> Viewfolder { get; set; }
+            public List<Selectionset> Selectionset { get; set; }
+        }
+
+        public class JsonSelectionSetsConfiguration
+        {
+            public SelectionSets SelectionSets { get; set; }
+            public string Xsi { get; set; }
+            public string NoNamespaceSchemaLocation { get; set; }
+            public string Units { get; set; }
+            public string Filename { get; set; }
+            public string Filepath { get; set; }
         }
     }
 }
