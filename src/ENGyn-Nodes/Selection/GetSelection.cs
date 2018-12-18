@@ -62,31 +62,18 @@ namespace ENGyn.Nodes.Selection
 
         public override void Calculate()
         {
-            if (InputPorts[0].Data != null && InputPorts[0].Data is Document)
-            {
-                Document doc = InputPorts[0].Data as Document;
-                var sel = doc.CurrentSelection.SelectedItems;
-                List<object> modelItems = new List<object>();
-                foreach (var s in sel)
-                {
-                    modelItems.Add(s);
-                }
-                OutputPorts[0].Data = modelItems;
-            }
+
+                OutputPorts[0].Data = MainTools.RunFunction(GetModelItemByGUID, InputPorts);
+            
         }
         public object GetModelItemByGUID(object GUID)
         {
-            // create a search class
-            Application.ActiveDocument.CurrentSelection.SelectAll();
-
-           
-            var modelItems = Application.ActiveDocument.CurrentSelection.SelectedItems ;
-
+            Search search = new Search();
+            search.Selection.SelectAll();
             SearchCondition searchCondition =  SearchCondition.HasPropertyByName("LcOaNode","LcOaNodeGuid").EqualValue(VariantData.FromDisplayString(GUID.ToString()));
+            search.SearchConditions.Add(searchCondition);
 
-            modelItems.Where(searchCondition);
-
-          
+            ModelItemCollection modelItems = search.FindAll(Application.ActiveDocument, false);
             if(modelItems.Count > 0)
             {
                 return modelItems.First;
