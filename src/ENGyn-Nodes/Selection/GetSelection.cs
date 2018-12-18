@@ -52,7 +52,7 @@ namespace ENGyn.Nodes.Selection
         public GetSelectionByGUID(VplControl hostCanvas)
             : base(hostCanvas)
         {
-            AddInputPortToNode("GUID", typeof(Document));
+            AddInputPortToNode("GUID", typeof(object));
             AddOutputPortToNode("ModelItem", typeof(object));
 
             //Help
