@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Document GraphFlowDirection="Horizontal">
+  <Nodes>
+    <ENGyn.Nodes.Selection.GetSelectionByGUID GUID="8eae42cf-30dc-4f97-b4fd-b5365476ea50" TOP="39910" Left="39928.362038664323" />
+    <TUM.CMS.VplControl.Nodes.Input.TextNode GUID="5e6bb51c-c9ac-4f35-97a0-52fb06ef21bd" TOP="39904" Left="39659.362038664323" Text="e1d4bdfb-2688-47c1-a386-3b481166e058" />
+    <ENGyn.Nodes.Navisworks.SetValueByCatProp GUID="8d3eda63-8cd5-46b6-bdde-3ee19d952acd" TOP="39953" Left="40174.362038664323" />
+    <TUM.CMS.VplControl.Nodes.Input.TextNode GUID="b4e6041d-7f8a-40c4-ba0f-0f1b169b788e" TOP="40024" Left="39825" Text="MyCategory" />
+    <TUM.CMS.VplControl.Nodes.Input.TextNode GUID="5c9ae26e-198b-41c7-b2e9-cd3383e744cb" TOP="40112" Left="39823" Text="MyProperty" />
+    <TUM.CMS.VplControl.Nodes.Input.TextNode GUID="8bcadd43-4d11-4b1d-989d-9d6e9209221e" TOP="39416" Left="39198" Text="" />
+    <TUM.CMS.VplControl.Nodes.Input.TextNode GUID="c2a96ca7-7ddc-4284-9440-ee0948d20a3b" TOP="40203" Left="39826" Text="MyValue" />
+  </Nodes>
+  <Connectors>
+    <TUM.CMS.VplControl.Core.Connector StartNode="5e6bb51c-c9ac-4f35-97a0-52fb06ef21bd" StartIndex="0" EndNode="8eae42cf-30dc-4f97-b4fd-b5365476ea50" EndIndex="0" />
+    <TUM.CMS.VplControl.Core.Connector StartNode="8eae42cf-30dc-4f97-b4fd-b5365476ea50" StartIndex="0" EndNode="8d3eda63-8cd5-46b6-bdde-3ee19d952acd" EndIndex="0" />
+    <TUM.CMS.VplControl.Core.Connector StartNode="b4e6041d-7f8a-40c4-ba0f-0f1b169b788e" StartIndex="0" EndNode="8d3eda63-8cd5-46b6-bdde-3ee19d952acd" EndIndex="1" />
+    <TUM.CMS.VplControl.Core.Connector StartNode="c2a96ca7-7ddc-4284-9440-ee0948d20a3b" StartIndex="0" EndNode="8d3eda63-8cd5-46b6-bdde-3ee19d952acd" EndIndex="3" />
+    <TUM.CMS.VplControl.Core.Connector StartNode="5c9ae26e-198b-41c7-b2e9-cd3383e744cb" StartIndex="0" EndNode="8d3eda63-8cd5-46b6-bdde-3ee19d952acd" EndIndex="2" />
+  </Connectors>
+</Document>

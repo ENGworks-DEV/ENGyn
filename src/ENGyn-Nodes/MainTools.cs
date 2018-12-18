@@ -84,7 +84,7 @@ namespace ENGyn.Nodes
 
 
         //The sleep of reason produces monsters, or in my case horrible methods
-        public static object RunFunction(Func<object, object, object, object, object, object> method, List<Port> ports)
+        public static object RunFunction(Func< object, object, object, object, object, object> method, List<Port> ports)
         {
 
             var properties = method.GetType().GetProperties();
