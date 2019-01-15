@@ -19,7 +19,7 @@ ENGyn: Apply appearance by profile
 
 ## Dependencies
 Dependencies are loaded by configuration - 2019 uses NW 2019 dlls and net 4.7 as framework, 2018 uses NW 2018 and net 4.6. 
-TUM dll need to be build in submodule to use it as reference.
+TUM dll need to be build in submodule to use it as reference. Use git submodule update --init --recursive to update the submodule inside ENGyn repo
 
 ## Installation
 Build the project and the Build events will copy the dlls to the right folder or copy them yourself to (replace 2019 with the version of Navisworks you have):
