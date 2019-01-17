@@ -11,8 +11,8 @@
       {
         "Name": "Floors",
         "Guid": "fdbfc008-4c8c-49d9-99b7-978994506220",
-        "color": null,
-        "transparency": -1
+        "color": "Lime",
+        "transparency": 53
       },
       {
         "Name": "Ducts",

@@ -63,6 +63,7 @@
     </Reference>
     <Reference Include="Autodesk.Navisworks.Interop.ComApi, Version=15.0.1314.36, Culture=neutral, PublicKeyToken=d85e58fa5af9b484, processorArchitecture=AMD64">
       <HintPath>..\packages\Navisworks-2018-2019-x64-API.1.0.1\lib\net46\Autodesk.Navisworks.Interop.ComApi.dll</HintPath>
+      <Private>True</Private>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="Autodesk.Navisworks.Interop.Timeliner, Version=15.0.1314.36, Culture=neutral, PublicKeyToken=d85e58fa5af9b484, processorArchitecture=AMD64">

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Document GraphFlowDirection="Horizontal">
+  <Nodes>
+    <TUM.CMS.VplControl.Nodes.Input.FilePathNode GUID="85cd0c12-a270-4235-8d15-64bbba67b598" TOP="39924" Left="39660.94991212654" />
+    <ENGyn.Nodes.Input.ReadCSV GUID="dd8c2f73-88ef-4d3d-bf4a-c3b75f8758fb" TOP="39989" Left="39855.94991212654" />
+    <ENGyn.Nodes.List.ListFlatten GUID="d8d187b7-7798-41ba-b45c-0baf858acdd0" TOP="39935" Left="40191.94991212654" />
+    <TUM.CMS.VplControl.Nodes.Input.IntegerSlider GUID="b66b66a9-732b-4a28-8862-f2a633798291" TOP="40166" Left="39759.94991212654" SliderMax="10" SliderMin="0" SliderValue="1" SliderStep="1" IsExpanded="false" />
+    <ENGyn.Nodes.Navisworks.AppendFile GUID="bddd3bda-4430-452a-b4ee-760d0c8e5859" TOP="39912" Left="40402.94991212654" />
+  </Nodes>
+  <Connectors>
+    <TUM.CMS.VplControl.Core.Connector StartNode="85cd0c12-a270-4235-8d15-64bbba67b598" StartIndex="0" EndNode="dd8c2f73-88ef-4d3d-bf4a-c3b75f8758fb" EndIndex="0" />
+    <TUM.CMS.VplControl.Core.Connector StartNode="dd8c2f73-88ef-4d3d-bf4a-c3b75f8758fb" StartIndex="0" EndNode="d8d187b7-7798-41ba-b45c-0baf858acdd0" EndIndex="0" />
+    <TUM.CMS.VplControl.Core.Connector StartNode="b66b66a9-732b-4a28-8862-f2a633798291" StartIndex="0" EndNode="d8d187b7-7798-41ba-b45c-0baf858acdd0" EndIndex="1" />
+    <TUM.CMS.VplControl.Core.Connector StartNode="d8d187b7-7798-41ba-b45c-0baf858acdd0" StartIndex="0" EndNode="bddd3bda-4430-452a-b4ee-760d0c8e5859" EndIndex="0" />
+  </Connectors>
+</Document>

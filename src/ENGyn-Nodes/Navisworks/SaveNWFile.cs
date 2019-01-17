@@ -93,4 +93,55 @@ namespace ENGyn.Nodes.Navisworks
         }
     }
 
+
+    public class AppendFile : Node
+    {
+        public AppendFile(VplControl hostCanvas)
+            : base(hostCanvas)
+        {
+
+
+            AddInputPortToNode("Path", typeof(object));
+            AddOutputPortToNode("NW Document", typeof(object));
+
+
+
+            //Help
+            this.ShowHelpOnMouseOver = true;
+            this.BottomComment.Text = "Appends documents from file path";
+        }
+
+        public override void Calculate()
+        {
+
+     
+            OutputPorts[0].Data =MainTools.RunFunction( AppendFiles,InputPorts);
+
+        }
+
+        /// <summary>
+        /// Append file
+        /// </summary>
+        /// <param name="document"></param>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        private object AppendFiles( object path)
+        {
+            object output = null;
+            var doc = Autodesk.Navisworks.Api.Application.ActiveDocument;
+            doc.AppendFile(path.ToString());
+            return output;
+        }
+
+        public override Node Clone()
+        {
+            return new AppendFile(HostCanvas)
+            {
+                Top = Top,
+                Left = Left
+            };
+
+        }
+    }
+
 }

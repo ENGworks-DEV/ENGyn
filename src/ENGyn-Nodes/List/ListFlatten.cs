@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using TUM.CMS.VplControl.Core;
+using System.Linq;
 
 namespace ENGyn.Nodes.List
 {
@@ -21,7 +22,7 @@ namespace ENGyn.Nodes.List
 
         public override void Calculate()
         {
-            var input = InputPorts[0].Data as List<object>;
+            var input = InputPorts[0].Data; ;
             var level = InputPorts[1].Data;
 
             Process(input, level);
@@ -32,9 +33,11 @@ namespace ENGyn.Nodes.List
         /// </summary>
         /// <param name="input"></param>
         /// <param name="level"></param>
-        private void Process(List<object> input, object level)
-        {
-            if (input != null)
+        private void Process( object input, object level)
+        { 
+         
+
+            if (input != null )
             {
                 if (level != null)
                 {

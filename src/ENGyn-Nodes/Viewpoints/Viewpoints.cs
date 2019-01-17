@@ -30,6 +30,7 @@ namespace ENGyn.Nodes.Viewpoints
         {
             Document doc = Autodesk.Navisworks.Api.Application.ActiveDocument;
 
+
             SavedViewpoints = new List<object>();
             List<SelectionSet> Viewpoints = new List<SelectionSet>();
             if (doc.SavedViewpoints != null)
@@ -80,8 +81,7 @@ namespace ENGyn.Nodes.Viewpoints
         }
 
 
-        private SelectionSet IterateSelections(SavedItem savedItem)
-        { return null; }
+       
         public void GetSets(SavedItem savedItem)
         {
 
@@ -434,10 +434,15 @@ namespace ENGyn.Nodes.Viewpoints
             var svp = item as SavedViewpoint;
             var vp = svp.Viewpoint;
 
+            var vpRedlines = doc.ActiveView.GetRedlines();
             int w = width != null ? int.Parse(width.ToString()) : doc.ActiveView.Width;
             int h = height != null ? int.Parse(height.ToString()) : doc.ActiveView.Height;
             doc.ActiveView.CopyViewpointFrom(vp, ViewChange.JumpCut);
             doc.ActiveView.RequestDelayedRedraw(ViewRedrawRequests.All);
+            var redlines = svp.Redlines;
+            doc.ActiveView.SetRedlines( vpRedlines);
+
+
             doc.SavedViewpoints.CurrentSavedViewpoint = svp;
             ////get the plug -in of exporting image
             //Autodesk.Navisworks.Api.Interop.ComApi.InwOpState10 oState;
