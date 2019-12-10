@@ -261,7 +261,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
+    <PostBuildEvent>xcopy /Y /e "$(TargetDir)$(TargetName)*.*" "%25APPDATA%25\$(ConfigurationName)\Plugins\$(SolutionName)\Nodes\"
+</PostBuildEvent>
   </PropertyGroup>
 </Project>

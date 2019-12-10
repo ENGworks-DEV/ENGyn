@@ -12,6 +12,92 @@ namespace ENGyn.Nodes.Navisworks
         {
 
             AddInputPortToNode("NW Document", typeof(object));
+            
+            AddOutputPortToNode("NW Document", typeof(object));
+
+            //Help
+            this.ShowHelpOnMouseOver = true;
+            this.BottomComment.Text = "Save current document";
+        }
+
+        public override void Calculate()
+        {
+            var input = InputPorts[0].Data;
+            //var path = InputPorts[1].Data;
+            OutputPorts[0].Data = SaveNWF(input,"");
+
+        }
+
+        /// <summary>
+        /// Save object Document to object Path
+        /// </summary>
+        /// <param name="document"></param>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        private object SaveNWF(object document, object path)
+        {
+            var output = new object();
+            output = null;
+            if (document != null && path != null && document.GetType() == typeof(Document))
+            {
+
+                if (MainTools.IsList(path))
+                {
+                    foreach (var item in (System.Collections.IEnumerable)path)
+                    {
+                        var filepath = item.ToString();
+                        Document doc = document as Document;
+                        try
+                        {
+                            doc.TrySaveFile(doc.FileName);
+                            output = document;
+                        }
+                        catch (Exception exc)
+                        {
+                           
+                        }
+                    }
+                   
+                }
+                else
+                {
+                    var filepath = path.ToString();
+                    Document doc = document as Document;
+
+                    try
+                    {
+                        doc.SaveFile(doc.FileName);
+                        output =  document;
+                    }
+                    catch (Exception exc)
+                    {
+                        
+                    }
+
+                }
+
+            }
+            return output;
+        }
+
+        public override Node Clone()
+        {
+            return new SaveNWFile(HostCanvas)
+            {
+                Top = Top,
+                Left = Left
+            };
+
+        }
+    }
+
+    public class SaveAsNWFile : Node
+    {
+        public SaveAsNWFile(VplControl hostCanvas)
+            : base(hostCanvas)
+        {
+
+            AddInputPortToNode("NW Document", typeof(object));
             AddInputPortToNode("Path", typeof(object));
             AddOutputPortToNode("NW Document", typeof(object));
 
@@ -56,10 +142,10 @@ namespace ENGyn.Nodes.Navisworks
                         }
                         catch (Exception exc)
                         {
-                           
+
                         }
                     }
-                   
+
                 }
                 else
                 {
@@ -69,11 +155,11 @@ namespace ENGyn.Nodes.Navisworks
                     try
                     {
                         doc.SaveFile(path.ToString());
-                        output =  document;
+                        output = document;
                     }
                     catch (Exception exc)
                     {
-                        
+
                     }
 
                 }
@@ -84,7 +170,7 @@ namespace ENGyn.Nodes.Navisworks
 
         public override Node Clone()
         {
-            return new SaveNWFile(HostCanvas)
+            return new SaveAsNWFile(HostCanvas)
             {
                 Top = Top,
                 Left = Left

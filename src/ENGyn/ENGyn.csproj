@@ -68,7 +68,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Autodesk Navisworks Manage 2018|x64'">
-    <OutputPath>bin\x64\Autodesk Navisworks Manage 2018\</OutputPath>
+    <OutputPath>bin\x64\Autodesk Navisworks Manage 2019\</OutputPath>
     <PlatformTarget>x64</PlatformTarget>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>false</Prefer32Bit>
@@ -341,10 +341,8 @@
   </Target>
   -->
   <PropertyGroup>
-    <PostBuildEvent>IF EXIST "C:\Program Files\Autodesk\$(ConfigurationName)\Plugins\$(TargetName)\" rmdir /S /Q "C:\Program Files\Autodesk\$(ConfigurationName)\Plugins\$(TargetName)\"
-IF EXIST "%25APPDATA%25\$(ConfigurationName)\Plugins\$(TargetName)\" rmdir /S /Q "%25APPDATA%25\$(ConfigurationName)\Plugins\$(TargetName)\"
-
-xcopy /Y /e "$(OutDir)*.*" "%25APPDATA%25\$(ConfigurationName)\Plugins\$(TargetName)\"
+    <PostBuildEvent>
+xcopy /Y /e "$(TargetDir)*.*" "%25APPDATA%25\$(ConfigurationName)\Plugins\$(TargetName)\"
 
 
 
