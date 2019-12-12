@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28010.2003
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29001.49
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ENGyn", "ENGyn\ENGyn.csproj", "{0CF6E1A1-FD98-41C4-B377-3C7324361B63}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -30,8 +30,8 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{0CF6E1A1-FD98-41C4-B377-3C7324361B63}.2018|Any CPU.ActiveCfg = Autodesk Navisworks Manage 2018|Any CPU
 		{0CF6E1A1-FD98-41C4-B377-3C7324361B63}.2018|Any CPU.Build.0 = Autodesk Navisworks Manage 2018|Any CPU
-		{0CF6E1A1-FD98-41C4-B377-3C7324361B63}.2018|x64.ActiveCfg = Autodesk Navisworks Manage 2019|x64
-		{0CF6E1A1-FD98-41C4-B377-3C7324361B63}.2018|x64.Build.0 = Autodesk Navisworks Manage 2019|x64
+		{0CF6E1A1-FD98-41C4-B377-3C7324361B63}.2018|x64.ActiveCfg = Autodesk Navisworks Manage 2018|x64
+		{0CF6E1A1-FD98-41C4-B377-3C7324361B63}.2018|x64.Build.0 = Autodesk Navisworks Manage 2018|x64
 		{0CF6E1A1-FD98-41C4-B377-3C7324361B63}.2019|Any CPU.ActiveCfg = Autodesk Navisworks Manage 2019|Any CPU
 		{0CF6E1A1-FD98-41C4-B377-3C7324361B63}.2019|Any CPU.Build.0 = Autodesk Navisworks Manage 2019|Any CPU
 		{0CF6E1A1-FD98-41C4-B377-3C7324361B63}.2019|x64.ActiveCfg = Autodesk Navisworks Manage 2018|x64
@@ -46,8 +46,8 @@ Global
 		{0CF6E1A1-FD98-41C4-B377-3C7324361B63}.Release|x64.Build.0 = Autodesk Navisworks Manage 2018|x64
 		{03FEEE33-461A-45B4-BD6F-7154E58A12DB}.2018|Any CPU.ActiveCfg = Autodesk Navisworks Manage 2018|Any CPU
 		{03FEEE33-461A-45B4-BD6F-7154E58A12DB}.2018|Any CPU.Build.0 = Autodesk Navisworks Manage 2018|Any CPU
-		{03FEEE33-461A-45B4-BD6F-7154E58A12DB}.2018|x64.ActiveCfg = Autodesk Navisworks Manage 2019|Any CPU
-		{03FEEE33-461A-45B4-BD6F-7154E58A12DB}.2018|x64.Build.0 = Autodesk Navisworks Manage 2019|Any CPU
+		{03FEEE33-461A-45B4-BD6F-7154E58A12DB}.2018|x64.ActiveCfg = Autodesk Navisworks Manage 2018|Any CPU
+		{03FEEE33-461A-45B4-BD6F-7154E58A12DB}.2018|x64.Build.0 = Autodesk Navisworks Manage 2018|Any CPU
 		{03FEEE33-461A-45B4-BD6F-7154E58A12DB}.2019|Any CPU.ActiveCfg = Autodesk Navisworks Manage 2019|Any CPU
 		{03FEEE33-461A-45B4-BD6F-7154E58A12DB}.2019|Any CPU.Build.0 = Autodesk Navisworks Manage 2019|Any CPU
 		{03FEEE33-461A-45B4-BD6F-7154E58A12DB}.2019|x64.ActiveCfg = Autodesk Navisworks Manage 2019|Any CPU
@@ -109,7 +109,7 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {58CD9914-8E9C-4804-9C25-4E86EEC6B9C1}
 		BuildVersion_StartDate = 2000/1/1
+		SolutionGuid = {58CD9914-8E9C-4804-9C25-4E86EEC6B9C1}
 	EndGlobalSection
 EndGlobal
