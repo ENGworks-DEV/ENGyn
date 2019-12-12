@@ -33,13 +33,13 @@ namespace ENGyn.Nodes.Clash
 
             //KeepExisting
             stackPanel.Children.Add(new Label() { Content = "Selection", Foreground = System.Windows.Media.Brushes.White, VerticalContentAlignment = System.Windows.VerticalAlignment.Bottom });
-            ComboBox KeepExistingComboBox2 = new ComboBox() { Items = { 0, 1 } };
+            ComboBox KeepExistingComboBox2 = new ComboBox() { Items = { "A", "B" } };
             stackPanel.Children.Add(KeepExistingComboBox2);
 
             AddControlToNode(stackPanel);
 
             //Help 
-            this.BottomComment.Text = "Based on BIM42 add in this node group clashes in by Level, Grid, Selection, Assignation, Approval or Status. This nodes can group clashes twice. ";
+            this.BottomComment.Text = "Based on BIM42 add-in this node group clashes in by Property. This nodes can group clashes twice. ";
             this.ShowHelpOnMouseOver = true;
         }
 
@@ -52,11 +52,11 @@ namespace ENGyn.Nodes.Clash
 
             var stack = ControlElements[0] as StackPanel;
             var comboBox = stack.Children[1] as ComboBox;
-            int selection = 0;
+            string selection = "A";
             if (comboBox.SelectedItem != null)
             {
 
-                int.TryParse(comboBox.SelectedItem.ToString(),out selection);
+                selection = comboBox.SelectedItem.ToString();
             }
 
             var Category = InputPorts[1].Data.ToString();
@@ -124,13 +124,13 @@ namespace ENGyn.Nodes.Clash
         /// <param name="Category"></param>
         /// <param name="Property"></param>
         /// <returns></returns>
-        public static object GroupByProperty(object clashTest, int Selection, string Category, string Property)
+        public static object GroupByProperty(object clashTest, string Selection, string Category, string Property)
         {
             if (string.IsNullOrWhiteSpace(Category) || string.IsNullOrWhiteSpace(Property))
             {
                 return null;
             }
-            clashSelection = Selection;
+            clashSelection = Selection == "A" ? 0:1;
             clashCategory = Category;
             clashProperty = Property;
             var test = GroupClash(clashTest, (GroupingMode.Properties));
