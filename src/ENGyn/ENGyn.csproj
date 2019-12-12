@@ -32,7 +32,7 @@
     <BootstrapperEnabled>true</BootstrapperEnabled>
     <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
     <TargetFrameworkProfile />
-    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Autodesk Navisworks Manage 2019|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
