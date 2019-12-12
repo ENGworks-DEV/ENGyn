@@ -213,6 +213,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Clash\ClashByProp.cs" />
     <Compile Include="Clash\CompactTest.cs" />
     <Compile Include="API\GetAPIParameters.cs" />
     <Compile Include="Clash\RenameClash.cs" />
